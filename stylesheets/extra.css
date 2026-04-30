@@ -1,0 +1,166 @@
+/* Coverage badges */
+.cov {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  border-radius: 0.6em;
+  font-size: 0.82em;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #fff;
+}
+.cov-full        { background: #1b5e20; }                /* Fully — 🟩 deep green */
+.cov-mostly      { background: #7cb342; }                /* Mostly — 🟩 light green */
+.cov-partial     { background: #fbc02d; color:#222; }   /* Partially — 🟨 yellow */
+.cov-conceptual  { background: #9e9e9e; color:#222; }    /* Conceptually Related — ⬜ grey */
+.cov-indirect    { background: #424242; }                /* Indirectly Supported — ⬛ black */
+
+/* Coverage bar on overview cards */
+.cov-bar {
+  background: #eceff1;
+  border-radius: 6px;
+  height: 14px;
+  overflow: hidden;
+  margin: 6px 0;
+}
+.cov-bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg,#43a047,#2e7d32);
+}
+.cov-bar.warn > span  { background: linear-gradient(90deg,#fbc02d,#f57c00); }
+
+.cov-score {
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.cov-pass { color: #2e7d32; }
+.cov-warn { color: #ef6c00; }
+
+/* Inline coverage banner inside topics.md */
+.cov-inline {
+  background: #f5f7fa;
+  border: 1px solid #e0e4e8;
+  border-left: 4px solid #1976d2;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 1em 0 1.5em;
+}
+.cov-inline .cov-bar { margin: 4px 0 6px; }
+
+/* Compact request grid cards */
+.req-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin: 1em 0 2em;
+}
+.req-card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.req-card h3 { margin: 0 0 4px; font-size: 1.05em; }
+.req-card .sub { color: var(--md-default-fg-color--light); font-size: 0.88em; margin-bottom: 8px;}
+.req-card .links a { margin-right: 10px; font-size: 0.88em; }
+
+/* Side-by-side SYSU vs CMU course-focus comparison */
+.focus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 1em 0 1.5em;
+}
+@media (max-width: 720px) { .focus-grid { grid-template-columns: 1fr; } }
+.focus-card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: 12px 16px;
+  background: var(--md-default-bg-color);
+}
+.focus-card h4 {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--md-primary-fg-color);
+  font-size: 0.95em;
+}
+
+/* Show full sidebar contents without inner scroll bars */
+.md-sidebar__scrollwrap {
+  overflow: visible !important;
+  max-height: none !important;
+}
+.md-sidebar {
+  height: auto !important;
+}
+
+/* ----------------------------------------------------------------
+   Make the layout flush-left at all widths.
+   Material centers .md-grid with max-width: 61rem; remove the cap
+   and the auto margins so the left sidebar sits against the
+   viewport's left edge instead of floating in the middle.
+   ---------------------------------------------------------------- */
+.md-grid {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+.md-main__inner {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+.md-header__inner,
+.md-tabs__inner {
+  max-width: none !important;
+  margin-left: 0 !important;
+}
+
+/* ----------------------------------------------------------------
+   Keep top navigation tabs AND the left sidebar visible at narrower
+   viewports. Material's default collapses both into the ☰ drawer
+   below 76.25em (~1220px) for the sidebar and 60em (~960px) for tabs.
+   Lower both breakpoints to 48em (~768px) so half-screen laptop
+   layouts still show full navigation.
+   ---------------------------------------------------------------- */
+@media screen and (min-width: 48em) and (max-width: 76.1875em) {
+  /* 1. Re-show the top tabs bar */
+  .md-tabs {
+    display: block !important;
+  }
+
+  /* 2. Hide the hamburger button so it doesn't double up with tabs */
+  label.md-header__button.md-icon[for="__drawer"] {
+    display: none !important;
+  }
+
+  /* 3. Bring the left primary sidebar back as a sticky column
+        (Material normally absolutely-positions it off-screen as a drawer) */
+  .md-sidebar--primary {
+    position: sticky !important;
+    top: 2.4rem;
+    left: 0 !important;
+    width: 12.1rem !important;
+    height: calc(100vh - 2.4rem) !important;
+    transform: none !important;
+    z-index: 1 !important;
+    background-color: var(--md-default-bg-color) !important;
+  }
+  .md-sidebar--primary .md-sidebar__scrollwrap {
+    overflow-y: auto !important;
+    margin: 0 !important;
+  }
+  .md-sidebar--primary .md-sidebar__inner {
+    padding-top: 1.2rem;
+  }
+
+  /* 4. Reserve space in the main content area for the sidebar */
+  .md-main__inner.md-grid {
+    margin-left: 12.1rem;
+  }
+
+  /* 5. Hide the drawer overlay (would otherwise dim the page) */
+  .md-overlay {
+    display: none !important;
+  }
+}

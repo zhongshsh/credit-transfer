@@ -1,0 +1,28 @@
+The course grade consists of 40% for regular performance (including attendance and class participation) and 60% for tests or assessments.
+
+This course is jointly taught by Prof. Yanghui Rao, Prof. Hanjiang Lai, and Prof. Ning Tan, with the following division of topics:
+
+Prof. Yanghui Rao
+• Bayesian Classifier
+• Maximum Entropy Model
+• Boosting Methods
+• Markov Chain Monte Carlo (MCMC)
+
+Prof. Hanjiang Lai
+• Pretrained Models
+• Prompt Learning
+• Causal Inference (including Backdoor, Frontdoor, and Counterfactuals)
+• Few-shot Learning
+
+Prof. Ning Tan
+• Reinforcement Learning
+• Imitation Learning
+
+Each instructor administers assessments independently:
+
+* Prof. Ning Tan and Prof. Yanghui Rao conduct in-class timed tests, which must be completed and submitted during the class session.
+* Prof. Hanjiang Lai evaluates students through one bilingual (Chinese-English) course report and one presentation, which includes coding implementation and slides.
+
+
+
+

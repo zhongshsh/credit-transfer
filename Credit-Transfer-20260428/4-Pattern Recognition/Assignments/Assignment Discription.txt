@@ -1,0 +1,103 @@
+Course Assignments
+Assessment Breakdown
+
+* Individual Assignment (40%): to be completed independently
+* Group Project (50%): teams of 3–4 students
+* Participation (10%): random roll call and in-class performance
+
+---
+
+### Individual Assignment (40%)
+
+Choose one specific topic covered in this course and write an **introductory survey report**.
+
+The report should include:
+
+* description and definition of the problem/topic;
+* categorization of models/methods;
+* explanation of the core ideas, advantages and disadvantages of representative techniques;
+* latest research advances;
+* current challenges and future research trends;
+* illustrations where appropriate;
+* properly formatted references.
+
+Requirements:
+
+* Language: Chinese
+* Main text: no fewer than **5,000 words**
+* Deadline: **end of Week 18**
+* Submission format: Word document, filename “Name-StudentID”; the document must contain the reference list and specify the exact word count of the main text.
+
+---
+
+### Group Project (50%)
+
+#### I. Requirements
+
+Each group selects **one** project topic from the six candidates provided and conducts exploratory/innovative research on it.
+
+The final report should follow the structure of an academic paper, including: **Title, Abstract, Introduction, Method, Experiments, Conclusion, References**.
+
+Report requirements:
+
+* Language: **English**
+* Template: **CVPR double-column format**
+* Length: at least **4 pages of main text** (references not included)
+* Clearly state the contribution ratio of each member
+* Deadline: **end of Week 19**
+
+Presentation: in the last four weeks (Weeks 15–18), there will be project presentations. **Each group member must answer at least one question.**
+
+---
+
+#### II. Candidate Project Topics
+
+**Topic 1: Multimodal Video–Language Analysis for Video/Image**
+Background: The integration of vision and natural language has drawn increasing attention and is becoming more important in real-world scenarios. The 4th PIC challenge ([http://picdataset.com/](http://picdataset.com/)) provides three multimodal video analysis tasks. Please pick one task, conduct experiments, and write your report.
+Requirements: This is an open research task. You may combine your own research experience to select an appropriate task, design a suitable model, and construct a reasonable framework and comparative experiments. The course report should be written in a formal academic style. Grading will be based on writing quality, methodological originality, and experimental performance.
+
+**Topic 2: Image Classification with Few Samples**
+Background: In many practical scenarios (e.g. unmanned retail, disease diagnosis), only a limited amount of data can be collected, and deep learning models typically do not perform well on image classification with scarce training data. Therefore, how to obtain an AI classifier with good generalization under very limited data (tens to one or two hundred examples) is an urgent problem.
+Requirements: Without using extra datasets of the **same modality** (i.e. do **not** use extra same-modality data as in some meta-learning approaches; however, you may use natural-image pre-trained models for medical image classification), develop novel few-shot image recognition models/methods. Conduct comprehensive experiments on at least **one public medical image dataset** and **two natural image datasets**, compare with **at least five** existing methods, and aim to reach or surpass the current state-of-the-art performance.
+
+**Topic 3: Robust Visual Recognition with Noisy Labels**
+Background: With the development of deep learning, especially CNNs, visual recognition tasks such as image classification, object detection, face recognition, and person re-identification have made great progress. However, in real applications, data annotations often contain noise, which leads to significant performance degradation. There already exist dedicated studies on this problem, e.g.
+[1] K. Nishi, et al., “Augmentation Strategies for Learning with Noisy Labels,” CVPR 2021.
+Requirements: Based on a thorough literature review of related work, propose innovative ideas for visual recognition under noisy labels. Using widely adopted public datasets, achieve performance superior to current state-of-the-art methods on at least one task (image classification or face recognition). The method and results should be written up in paper form.
+
+**Topic 4: Universal Domain Adaptation for Visual Recognition**
+Background: It is well known that the success of machine learning methods in visual recognition heavily relies on supervised training on large-scale labeled datasets. Unfortunately, when a model trained on Dataset A (source domain) is deployed on a new Dataset B (target domain), its performance often drops significantly—this is the dataset bias problem. Unsupervised domain adaptation aims to reduce such bias. Besides dataset bias, in practice the label sets of source and target domains are often not identical. This has become a recent hot topic—Universal Domain Adaptation (UniDA).
+Requirements: Summarize existing research on UniDA, propose an improved method, and evaluate it on public datasets ([http://ai.bu.edu/visda-2021/#data](http://ai.bu.edu/visda-2021/#data)). Use the results in the following work as a baseline: [https://arxiv.org/abs/2104.03344](https://arxiv.org/abs/2104.03344). Strive to achieve higher classification accuracy. The course report should follow formal academic writing; grading will consider writing quality, methodological originality, and accuracy.
+
+**Topic 5: Community Detection in Complex Networks Based on High-order Structures**
+Background: Community detection is a very popular topic in network analysis. Although many methods have been proposed, most of them only consider **low-order** structural features—i.e. analysis at the level of individual nodes and edges—so they cannot effectively capture **high-order** features, such as dense subgraph structures (motifs). Recent studies have explored some high-order methods, but they usually focus only on motif-based hypergraphs and assume such hypergraphs are connected. In real networks, this assumption often does not hold: a fully connected original network may produce a hypergraph that is split into blocks (with no connections between blocks) and even contains many isolated nodes. Existing high-order methods may perform poorly on such split hypergraphs because two nodes without a hyperedge between them cannot be clustered together, even if they belong to the same community in the original network. Our goal is therefore to design a new high-order structural feature and, based on it, obtain better community detection results.
+Requirements:
+
+1. Design a new high-order structure and, based on it, propose a new community detection algorithm;
+2. The new algorithm should improve accuracy by **more than 5%** compared with existing algorithms;
+3. Produce a reasonably complete draft of an academic paper.
+
+**Topic 6: Dialogue Management for Multi-turn Human–Machine Dialogue Systems**
+Background: Dialogue systems are a typical application of sequence models and generally include natural language understanding, dialogue state tracking, policy learning, and response generation. The Dialogue System Technology Challenge (DSTC) is a top academic competition on dialogue systems, initiated in 2013 by researchers from Microsoft Research, CMU, and Honda Research Institute. Track 2 of DSTC8 ([https://github.com/dstc8-track2/NOESIS-II/](https://github.com/dstc8-track2/NOESIS-II/)) defines a multi-turn response selection task, where the AI model must select the correct response from 100 candidates given the dialogue history. The task includes two datasets: Ubuntu and Advising. Our project aims to propose, implement, and evaluate a new model for Subtask 1 or Subtask 2 of DSTC8 Track 2, and strive for state-of-the-art performance.
+Requirements:
+
+1. Analyze the problems of existing methods and propose a new model;
+2. The new model should effectively address at least one existing issue and outperform the baseline;
+3. Aim to reach the top ranks of the leaderboard and produce a good academic paper draft.
+
+---
+
+### III. Mid-term Check for the Group Project
+
+To ensure timely progress of every group, **by Sunday of Week 12** each group must submit a mid-term progress report to the course email.
+
+The mid-term report must show **substantive progress** and will mainly check the following points:
+
+1. Division of work among group members;
+2. Understanding of the chosen topic area, presented in the form of **Introduction** and **Related Work**;
+3. Experimental progress: at least **one baseline method** must have been run on **at least one dataset** and results reported;
+4. Difficulties encountered and key problems to be solved;
+5. Planned solutions to the above difficulties.
+
+The mid-term report can be written in Word. References should follow the **Chinese national (GB/T) format**, ordered according to their first appearance in the text, for example:
+[1] Khan A, Maji P. Approximate graph Laplacians for multimodal data clustering[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2019, 43(3): 798–813.

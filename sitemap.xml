@@ -64,4 +64,16 @@
          <loc>https://YOUR-GH-USERNAME.github.io/REPO-NAME/request-5/topics.html</loc>
          <lastmod>2026-05-01</lastmod>
     </url>
+    <url>
+         <loc>https://YOUR-GH-USERNAME.github.io/REPO-NAME/request-6/homework.html</loc>
+         <lastmod>2026-05-01</lastmod>
+    </url>
+    <url>
+         <loc>https://YOUR-GH-USERNAME.github.io/REPO-NAME/request-6/syllabus.html</loc>
+         <lastmod>2026-05-01</lastmod>
+    </url>
+    <url>
+         <loc>https://YOUR-GH-USERNAME.github.io/REPO-NAME/request-6/topics.html</loc>
+         <lastmod>2026-05-01</lastmod>
+    </url>
 </urlset>

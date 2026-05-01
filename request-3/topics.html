@@ -876,17 +876,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#why-coverage-is-below-75-honest-assessment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why coverage is below 75% — honest assessment
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1270,17 +1259,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#why-coverage-is-below-75-honest-assessment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why coverage is below 75% — honest assessment
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1300,6 +1278,38 @@
 
 <h1 id="request-3-lecture-alignment">Request 3: Lecture Alignment<a class="headerlink" href="#request-3-lecture-alignment" title="Permanent link">&para;</a></h1>
 <p><strong>SYSU Machine Learning  ▶  CMU 10-703 Deep Reinforcement Learning and Control</strong></p>
+<div class="grid cards">
+<ul>
+<li>
+<p><strong><a href="https://cmudeeprl.github.io/703website_f23/">CMU — 10-703 Deep Reinforcement Learning and Control</a></strong></p>
+<hr />
+<p><strong>Focus.</strong> Foundations and modern algorithms for deep reinforcement learning and control.</p>
+<p><em>Topics:</em> Markov Decision Processes; value-based methods (Q-learning, DQN, double-DQN); policy-gradient methods (REINFORCE, A2C / A3C, TRPO, PPO, SAC); model-based RL and planning; exploration / exploitation trade-offs; imitation learning and inverse RL; hierarchical and meta-RL; applications to robotics, games, and decision systems.</p>
+<p><strong>Objectives.</strong></p>
+<ol>
+<li>Formalize sequential decision problems as MDPs and POMDPs.</li>
+<li>Implement value- and policy-based deep-RL algorithms from scratch.</li>
+<li>Reason about exploration, sample complexity, and stability of deep-RL training.</li>
+<li>Apply model-based RL and imitation learning to real control tasks.</li>
+<li>Read and critique current deep-RL research literature.</li>
+</ol>
+</li>
+<li>
+<p><strong><a href="../Credit-Transfer-20260428/3-Syllabus-Machine%20Learning.pdf">SYSU — Machine Learning</a></strong></p>
+<hr />
+<p><strong>Focus.</strong> Provides a comprehensive graduate-level foundation in modern machine learning, combining probabilistic models, discriminative and generative frameworks, and recent paradigms including pre-trained models, prompt learning, causal inference, and reinforcement learning.</p>
+<p><strong>Objectives.</strong></p>
+<ol>
+<li>Understand probabilistic and statistical principles of ML.</li>
+<li>Apply discriminative and generative models for supervised learning.</li>
+<li>Implement ensemble and Bayesian-inference methods.</li>
+<li>Explain pre-trained and prompt-based paradigms.</li>
+<li>Understand causal reasoning (backdoor / frontdoor / counterfactual).</li>
+<li>Apply MDPs and RL algorithms for decision-making.</li>
+</ol>
+</li>
+</ul>
+</div>
 <!-- COV-INLINE -->
 <div class="cov-inline">
 <div class="cov-bar warn"><span style="width:59.61538461538461%"></span></div>
@@ -1560,33 +1570,6 @@ in 10-703 at all but demonstrates graduate-level breadth in adjacent areas:</p>
 </tbody>
 </table>
 <!-- /COV-IGNORE -->
-
-<h2 id="why-coverage-is-below-75-honest-assessment">Why coverage is below 75% — honest assessment<a class="headerlink" href="#why-coverage-is-below-75-honest-assessment" title="Permanent link">&para;</a></h2>
-<p><strong>The RL core is solidly covered.</strong> The 14 lectures rated <em>Fully</em> or <em>Mostly</em>
-include the entire deep-RL core (MDPs · VI / PI · TD / MC learning · function
-approximation · DQN family · PG / REINFORCE / A-C · <strong>PPO with paper-grade
-implementation</strong> · BC · MBRL · SSL · sensory→latent planning · visual IL ·
-language→robot control). The PPO assignment (paper read + Clipped Surrogate +
-Adaptive KL Penalty + GAE + Actor-Critic on a non-trivial NLP task) is
-comparable in scope to a full 10-703 HW.</p>
-<p><strong>The remaining gaps are real, not framing.</strong> Multi-armed Bandits (lecture 2
-of 10-703, foundational) and Evolutionary Methods are genuinely standard
-graduate-RL content that SYSU does not cover. A second tier of nine lectures
-is honestly scored as <strong>Conceptual</strong> rather than Partial / Indirect because
-SYSU's M12 "State-of-the-art Algorithms" pages (p.60–62) list the canonical
-methods <strong>by name only</strong> — DDPG / TD3 / SAC (L10), MOReL / MOPO / MBOP /
-LOMPO (L20–L21), HER (L14) — without the deterministic-PG / re-parametrization
-/ conservative-Q / distribution-shift derivations that the corresponding
-10-703 lectures spend a full hour on. Likewise M14 p.15 names ExIt / AlphaZero
-(L15) inside the MBRL taxonomy without self-play or PUCT details; M12 p.54
-states the exploration–exploitation tradeoff (L19) without UCB / count-based /
-RND / ICM; M12 p.5–9 names sim→real transfer + Progressive Net / PathNet
-(L22) without domain randomization or system identification; M14 p.57's
-robot-arm pipeline uses Gaussian-Process dynamics (L26, PILCO-era) rather
-than Diffusion Policy / NeRF / point-cloud representations; and M15 p.33
-draws the GAN-IRL analogy (L13 / L14) without the GAIL discriminator
-objective. Together these honest down-ratings are the structural reason for
-the sub-75% score.</p>
 
 
 

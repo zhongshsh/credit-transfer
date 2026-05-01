@@ -1,0 +1,413 @@
+# SP09  Queuing Theory
+# Pages: 28
+
+=== p1 ===
+5ÅL§6
+üèØ{0
+÷ #
+Autumn 2022
+Jie Gong (SYSU) Queuing Theory Autumn 2022 1 / 28
+
+=== p2 ===
+Outline
+1 üè.ÄVg
+2 ÄMarkov üè.
+3 ­½n
+4 ÄMarkov üè.*Ð
+5 (
+Jie Gong (SYSU) Queuing Theory Autumn 2022 2 / 28
+
+=== p3 ===
+üè.ÄVg
+Outline
+1 üè.ÄVg
+2 ÄMarkov üè.
+3 ­½n
+4 ÄMarkov üè.*Ð
+5 (
+Jie Gong (SYSU) Queuing Theory Autumn 2022 3 / 28
+
+=== p4 ===
+üè.ÄVg
+üèXÚ
+服务台
+(单一、多个)
+等待队列
+(无限、有限)到达过程数据源
+到达间隔 等待时间
+等待队长
+服务时间
+逗留时间
+系统队长
+Jie Gong (SYSU) Queuing Theory Autumn 2022 4 / 28
+
+=== p5 ===
+üè.ÄVg
+Ä|¤
+L§µ£ã5±9üèXÚ5Æ
+üè5Kµ£ãüèèÚÉÑÖgS
+ÑÖL§µ£ãÑÖÅ/ªÚó¹
+Jie Gong (SYSU) Queuing Theory Autumn 2022 5 / 28
+
+=== p6 ===
+üè.ÄVg
+Aëê
+²þÇλµü mSüèXÚê
+▶ ²þm λ−1
+²þÑÖÇµµü mSÑÖ¤ê
+▶ ²þÑÖm µ−1
+ÖrÝµü mSÑÖmoÚ
+a(t) = lim
+τ→0
+T(t,τ)
+τ = λ
+µ
+]|^Ç/ÑÖìÓ^Ç
+ρ= a
+s
+Jie Gong (SYSU) Queuing Theory Autumn 2022 6 / 28
+
+=== p7 ===
+üè.ÄVg
+5Uëê
+{lÇ
+óéþµü mS¤ÑÖê
+VÇµÃ{á=ÑÖVÇ
+m/Am
+èÝ
+Jie Gong (SYSU) Queuing Theory Autumn 2022 7 / 28
+
+=== p8 ===
+üè.ÄVg
+.PÒ
+服务台等待队列到达过程数据源
+A/B/s(k) Z
+▶ AµL§(MµPoisson L§¶Dµ½m¶Gµ5L§)
+▶ BµÑÖL§
+▶ sµÑÖê8
+▶ kµmê§%@Ã¡
+▶ Zµüè5K§%@k\kÑ(First-in-ﬁrst-out, FIFO)
+▶ «~µM/M/1 L«L§Poisson§ÑÖmÑlê©Ù§
+üÑÖ§Ã¡m§k\kÑ5K
+Jie Gong (SYSU) Queuing Theory Autumn 2022 8 / 28
+
+=== p9 ===
+ÄMarkov üè.
+Outline
+1 üè.ÄVg
+2 ÄMarkov üè.
+3 ­½n
+4 ÄMarkov üè.*Ð
+5 (
+Jie Gong (SYSU) Queuing Theory Autumn 2022 9 / 28
+
+=== p10 ===
+ÄMarkov üè.
+M/M/1 üèXÚ
+Poisson L§§rÝλ§ÑÖmê©Ù§ëê
+µ§üÑÖ§Ã¡m§k\kÑ
+X(t) L«tXÚSê£=èÝ¤ §Ñlëê
+λn(t) =λ,µn(t) =µàg)«L§
+Q =
+
+
+−λ λ 0
+µ −λ−µ λ
+µ −λ−µ λ
+0 ... ... ...
+
+
+Jie Gong (SYSU) Queuing Theory Autumn 2022 10 / 28
+
+=== p11 ===
+ÄMarkov üè.
+M/M/1 üèXÚ
+èÝ­©Ù(AÛ©Ù)
+pn = ρn(1 −ρ), ρ = λ
+µ <1
+XÚ²þêÚè²þê
+L= ρ
+1 −ρ, L Q = ρ2
+1 −ρ
+Jie Gong (SYSU) Queuing Theory Autumn 2022 11 / 28
+
+=== p12 ===
+ÄMarkov üè.
+M/M/1 üèXÚ
+²þÏ3mÚ²þm
+W = 1
+µ(1 −ρ), W Q = ρ
+µ(1 −ρ)
+m©Ù
+P(WQ ≤x) = 1−ρe−µ(1−ρ)x
+Jie Gong (SYSU) Queuing Theory Autumn 2022 12 / 28
+
+=== p13 ===
+­½n
+Outline
+1 üè.ÄVg
+2 ÄMarkov üè.
+3 ­½n
+4 ÄMarkov üè.*Ð
+5 (
+Jie Gong (SYSU) Queuing Theory Autumn 2022 13 / 28
+
+=== p14 ===
+­½n
+PASTA½n
+PASTA(Poisson Arrivals See Time Averages) µéu?¿üè
+XÚ§Ù tèÝX(t)"XJÙL§Poisson§
+S1,S2,···§-Yk = X(S−
+k )§Ù¥S−
+k 
+c]m§KkYk  X(t) Ó©Ù
+Jie Gong (SYSU) Queuing Theory Autumn 2022 14 / 28
+
+=== p15 ===
+­½n
+PASTA½n
+|^
+Poisson L§ÕáOþ5£ÃPÁ5¤
+PASTAé?¿þ¤á§Ø¦­
+Poisson L§b´¿©^§7^
+Poisson §PASTAØ½¤á
+▶ ~µmmT ∼U(1,2)§ÑÖm½1"Kπ0 ̸= p0
+Jie Gong (SYSU) Queuing Theory Autumn 2022 15 / 28
+
+=== p16 ===
+­½n
+Little úª
+½nµéu?¿üèXÚ§3²­Gek
+L= λW
+Ù¥λ²þÇ§L²þXÚèÝ§W ²þ
+Ï3m
+Jie Gong (SYSU) Queuing Theory Autumn 2022 16 / 28
+
+=== p17 ===
+­½n
+Little úª
+*n)
+▶ ,(å?\ÑÖ!£Þw²þèÝ§
+uT3üèL§¥!?\üèXÚ²þê
+Ê·5
+▶ ·^u?Û²ïGüèXÚ
+▶ '%nÚO²þþ§é!ÑÖmVÇ©Ù9üè5
+KØ?Û¦
+▶ nÚO²þþ´éÓ+½Â§úªÒ¤á
+Jie Gong (SYSU) Queuing Theory Autumn 2022 17 / 28
+
+=== p18 ===
+­½n
+Little úª
+~µéuèÝÚm§k
+LQ = λWQ
+~µéu.è£èÝk¤ §k
+L= λ(1 −PB)W
+~µyÑÖ|^Çúª
+ρ= λ
+µ
+Jie Gong (SYSU) Queuing Theory Autumn 2022 18 / 28
+
+=== p19 ===
+ÄMarkov üè.*Ð
+Outline
+1 üè.ÄVg
+2 ÄMarkov üè.
+3 ­½n
+4 ÄMarkov üè.*Ð
+5 (
+Jie Gong (SYSU) Queuing Theory Autumn 2022 19 / 28
+
+=== p20 ===
+ÄMarkov üè.*Ð
+M/M/s üèXÚ
+èÝ­©Ù
+p0 =
+
+
+s−1∑
+j=0
+aj
+j! + as
+s!
+s
+s−a
+
+
+−1
+pj = aj
+j! p0, j ≤s
+pj = as
+s! ρj−sp0, j >s
+Ù¥a= λ
+µ§ρ= a
+s <1 XÚ²­
+Jie Gong (SYSU) Queuing Theory Autumn 2022 20 / 28
+
+=== p21 ===
+ÄMarkov üè.*Ð
+M/M/s(k) üèXÚ
+èÝ­©Ù
+p0 =
+
+
+s−1∑
+j=0
+aj
+j! + as
+s!
+1 −ρk+1
+1 −ρ
+
+
+−1
+pj = aj
+j! p0, j ≤s
+pj = as
+s! ρj−sp0, j >s
+Jie Gong (SYSU) Queuing Theory Autumn 2022 21 / 28
+
+=== p22 ===
+ÄMarkov üè.*Ð
+M/M/s(k) üèXÚ
+k= 0§k
+pj =
+aj
+j!
+∑s
+j=0
+aj
+j!
+, j ≤s
+ÑÖì÷£j = s¤§#¬lmXÚ£{l¤
+{lÇ£O=úª¤
+Pblock = ps =
+as
+s!∑s
+j=0
+aj
+j!
+Ï&{ÖnØ­úª§2A^u>{Úêâ
+ÖþO¥
+Jie Gong (SYSU) Queuing Theory Autumn 2022 22 / 28
+
+=== p23 ===
+ÄMarkov üè.*Ð
+M/M/1(k) üèXÚ
+XÚ²þêÚè²þê
+L= ρ
+1 −ρ
+1 −(k+ 2)ρk+1 + (k+ 1)ρk+2
+1 −ρk+2
+²þÏ3m
+▶ Äè÷§ÙÏ3m0
+W(1) = L−(k+ 2)pk+1 + 1
+µ
+▶ Ä?\XÚ
+W(2) = W(1)
+1 −pk+1
+Jie Gong (SYSU) Queuing Theory Autumn 2022 23 / 28
+
+=== p24 ===
+ÄMarkov üè.*Ð
+~f
+'±en«üè.ò5U
+Jie Gong (SYSU) Queuing Theory Autumn 2022 24 / 28
+
+=== p25 ===
+ÄMarkov üè.*Ð
+~f
+(a) õèõÑÖì
+T1 = 1
+µ + mQ1
+mµ−λ
+Ù¥Q1 = ρ= λ
+mµ
+(b) üèõÑÖì
+T2 = 1
+µ + Q2
+mµ−λ
+Ù¥Q2 = p0(mρ)m
+m!(1−ρ) ,p0 =
+[∑m−1
+n=0
+(mρ)m
+n! + (mρ)m
+m!(1−ρ)
+]−1
+(c) üèüÑÖì
+T3 = 1
+mµ + Q3
+mµ−λ
+Ù¥Q3 = ρ
+Jie Gong (SYSU) Queuing Theory Autumn 2022 25 / 28
+
+=== p26 ===
+ÄMarkov üè.*Ð
+~f
+83
+/A8 4.3 /D9 /B8 /AS /CS /A2 /D5 /BR /BX /BY
+Ꜳ /BR /B7 /DD /BN /B5 /CF
+¯λ =
+∞∑
+k=0
+λ
+k + 1 pk = λ
+ρ
+∞∑
+k=0
+ρk+1
+(k + 1)! e−ρ = µ(1 − e−ρ) (4.2. 23)
+/A6 /C9 /BP
+¯ρ =
+¯λ
+µ = 1 − e−ρ (4.2. 24)
+/BV /C2 e−ρ > 0 /AL /BE Ꜽ /BY ¯ρ <1 /AL /AN /AR /BW /A2 /CT /CV /B5 λ /CJ µ /BR /C6 /CM /CG /B2 /BA /CA /BR /A4
+/DG /C8 /A8 /B5 /B8 /D5 /A6 /B1 /DI /AF /AQ /D1 /C6 /A4 /B5 /CJ /AN /AI /BL /BW /A2 /BR /AI /BL /CF /AH /BL /CJ /CS  /DE ℄ /CD
+/CW /BY /C6 Æ /AL /D9 /A6 /B1 /B7 /B7 /D3 /AZ /AR /AI /BL /BW /A2 /BR /BA /CA /DA /A4
+§4.2.2 /CW /BI /A9 /A1 /AL /D4 M/M/s(k) /C0 /AP /B9 /AI
+/BY /C9  /BB /AD /BB M/M/s(k) /AS /CS /BW /A2 /CC /BJ /C2 /BP /CW /AD /BB /D1 s + k /AN /BU /C2 /CQ /BR
+M/M/s /AS /CS /BW /A2 (/A8 4.4) /A4 /C5 /A6 /BN M/M/s /AS /CS /BW /A2 /AN /A0 /AN /BR /A6 /BN /BI /D8 /BP
+pj = aj
+j! p0, (j < s) (4.2. 25)
+pj = as
+s! ρj−sp0, (s ≤ j ≤ s + k) (4.2. 26)
+p0 =
+
+
+s−1∑
+j=0
+aj
+j! + as
+s! ·1 − ρk+1
+1 − ρ
+
+
+−1
+(4.2. 27)
+/C5 M/M/s /AS /CS /BW /A2 /BR /CS  /DE ℄ /BR /BH Ꜹ (4.2. 8-4.2. 9) /CC /BX /AL pj
+/BR /BH Ꜹ /BR /D6 Ꜹ /B2
+/AK /CJ Ꜷ /AN /BR /AL /AW /B2 p0
+/BR /AR /CO Ꜷ /AN /D1 /B0 /A4
+Jie Gong (SYSU) Queuing Theory Autumn 2022 26 / 28
+
+=== p27 ===
+(
+Outline
+1 üè.ÄVg
+2 ÄMarkov üè.
+3 ­½n
+4 ÄMarkov üè.*Ð
+5 (
+Jie Gong (SYSU) Queuing Theory Autumn 2022 27 / 28
+
+=== p28 ===
+(
+(
+üèØ
+▶ M/M/1
+▶ PASTA½n
+▶ Little úª
+▶ M/M/s, M/M/s(k)
+Jie Gong (SYSU) Queuing Theory Autumn 2022 28 / 28
+

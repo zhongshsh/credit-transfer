@@ -1,0 +1,1703 @@
+# SP04  Arrival Processes
+# Pages: 31
+
+=== p1 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+随机过程
+马啸
+中山大学计算机学院
+2022 年秋
+马啸 (SYSU) 随机过程 2022 年秋 1 / 31
+
+=== p2 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+1 Review
+2 Introduction
+Arrival Processes
+3 Definition and properties of a Poission process
+Memoryless Property
+Probability Density of Sn and joint density of S1, . . . , Sn
+The probability mass function for N(t)
+Alternate definition of Poisson processes
+The Poisson process as a limit of shrinking Bernoulli processes
+4 Exercises
+马啸 (SYSU) 随机过程 2022 年秋 2 / 31
+
+=== p3 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+Bernoulli 试验是独立重复地做一个试验，观察某特定事件 A 是否发生。
+A 发生（成功）时，记1，否则记 0. 这个试验结果序列称之为 Bernoulli
+过程，其描述涉及以下几个概念：
+两点分布: P{Z = 1 } = p (成功概率), P{Z = 0 } = 1 − p。独立同分
+布 （IID）的 01 序列构成 Bernoulli 过程；
+二项分布 （计数过程）: (0, n] 时间区间内，成功的次数服从二项分
+布。
+P{N(n) = m} =
+n
+m
+
+pm(1 − p)n−m, 0 ≤ m ≤ n￿
+马啸 (SYSU) 随机过程 2022 年秋 3 / 31
+
+=== p4 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+几何分布 （间隔过程）: 任给一个时刻，从该时刻起到下次成功发
+生需要等待的时间服从几何分布。
+P{X = k} = p(1 − p)k−1, k ≥ 1￿
+帕斯卡分布: 任给一个时刻，从该时刻起到第 r 次成功发生需要等
+待的时间服从帕斯卡分布，这个是 r 个几何分布的和。
+马啸 (SYSU) 随机过程 2022 年秋 4 / 31
+
+=== p5 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+考虑以下问题：
+1 讨论以上各个随机变量的分布律、均值、方差、矩生成函数等。
+2 说明 Bernoulli 分布的无记忆性。
+3 给定计数条件下，成功发生的位置的分布律。
+4 Bernoulli 过程的极限过程。
+思考题：
+1 Bernoulli 过程的样本空间是什么？
+2 Bernoulli 过程的树表示。
+马啸 (SYSU) 随机过程 2022 年秋 5 / 31
+
+=== p6 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Introduction Arrival Processes
+Arrival Processes
+An arrival process is a sequence of increasing rv.s 0 < S1 < S2 < . . .
+where Si < Si+1 means that X1 = S1 and Xi = Si − Si−1 for i > 1 are
+positive rv.s, FXi (0) = 0 . The differences Xi are call interarrival times and
+the Si are called arrival epochs .
+For each t > 0, N(t) is the number of arrivals in (0, t]. We call
+{N(t) : t > 0} an arrival counting process .
+马啸 (SYSU) 随机过程 2022 年秋 6 / 31
+
+=== p7 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Introduction Arrival Processes
+Arrival Processes
+Remark.
+The process starts at time 0 and that multiple arrivals cannot occur
+simultaneously , or we will permit simultaneous arrivals or arrivals at time 0
+as events of zero probability , but these can be ignored.
+The figure shows how the arrival epochs, inter-arrival times, and counting
+variables are interrelated for a generic stair case function.
+马啸 (SYSU) 随机过程 2022 年秋 7 / 31
+
+=== p8 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Introduction Arrival Processes
+Arrival Processes
+Remark.
+Xi = Si − Si−1 for i ⩾ 2 and X1 = S1; Sn = Pn
+i=1 Xi.
+{Sn ⩽ t} = {N(t) ⩾ n} for all n ⩾ 1, t > 0.
+If Sn = τ for some τ ⩽ t, then N(τ) = n and N(t) ⩾ n.
+An arrival process can be specified by the joint distributions of the arrival
+epochs, or of the inter-arrival times, or of the counting random variables .
+马啸 (SYSU) 随机过程 2022 年秋 8 / 31
+
+=== p9 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process
+Definition and properties of a Poission process
+Definition 1
+A renewal process is an arrival process for which the sequence of interarrival times
+X1, X2, . . . are i.i.d..
+Consider an arrival process X1, X2, · · · where the i-th interarrival time Xi is
+determined by the outcome of flipping a coin. Pr{Xi = x} = 1
+2 , x ∈ {1, 2}. This
+is a renewal process.
+Definition 2
+A Poisson process is a renewal process for which each Xi has an exponential
+distribution,
+P{X > x} = Fc
+X (x) = exp(−λx) for x ⩾ 0,
+where λ is a fixed parameter called the rate, or each Xi has the PDF:
+fX (x) = λ exp(−λx) for x ⩾ 0.
+马啸 (SYSU) 随机过程 2022 年秋 9 / 31
+
+=== p10 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Memoryless Property
+Memoryless Property
+The remarkable simplicity of Poisson processes is closely related to the
+memoryless property:
+Definition 3
+A rv. X is memoryless if X is positive and, for all real t > 0 and x > 0,
+P{X > t + x} = P{X > t}P{X > x}.
+Since the interarrival interval for a Poisson process is exponential, i.e.,
+P{X > x} = exp(−λx) for x ⩾ 0,
+exp(−λ(x + t)) = exp(−λt) exp(−λx).
+An arbitrary rv. X is memoryless iff it is exponential.
+马啸 (SYSU) 随机过程 2022 年秋 10 / 31
+
+=== p11 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Memoryless Property
+Memoryless Property
+The reason for the word “memoryless” is more apparent when using
+conditional probabilities,
+P{X > t + x|X > t} = P{X > x}.
+If people in a checkout line have exponential service, and you have waited
+15 minute for the person in front, what is his or her remaining service
+time?
+Same as when service started. The remaining waiting time has no
+’memory’ of previous waiting.
+Has your time waiting been wasted?
+Why do you move to another line if someone takes a long time?
+马啸 (SYSU) 随机过程 2022 年秋 11 / 31
+
+=== p12 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Memoryless Property
+Memoryless Property
+Theorem 1
+For a Poisson process of rate λ, and any given t > 0, the length of the
+interval from t until the first arrival after t is a positive r.v. Z with the CDF
+FZ(z) = 1 − exp(−λz) for z ⩾ 0.
+This r.v. is independent of both N(t) and the N(t) arrival epochs before
+time t. It is also independent of the set of r.v.s {N(τ) : τ ⩽ t}.
+Idea of proof: Conditional on N(t) = n and Sn = τ, i.e., the number n of
+arrivals in (0, t] and the time, τ of the most recent arrival in (0, t].
+马啸 (SYSU) 随机过程 2022 年秋 12 / 31
+
+=== p13 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Memoryless Property
+Memoryless Property
+Remark.
+This theorem essentially extends the idea of ’memorylessness’ to the
+entire Poisson process.
+That is, starting at any t > 0, the interval Z to the next arrival is also
+an exponential rv. of rate λ. Z is independent of everything before t.
+Let Zm be the time from the (m − 1)th arrival after t to the mth
+arrival epoch after t. We can see that Z1, Z2, . . . are unconditionally
+i.i.d and also independent of {N(τ) : τ ⩽ t} and S1, S2, . . . , SN(t).
+Thus the interarrival process starting at t with first interarrival Z, and
+continuing with subsequent interarrivals is also a Poisson process .
+马啸 (SYSU) 随机过程 2022 年秋 13 / 31
+
+=== p14 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Memoryless Property
+Stationary increment property
+Definition 4
+A counting process {N(t) : t > 0} has the stationary increment property if
+N(t′) − N(t) has the same CDF as N(t′ − t) for every t′ > t > 0.
+Let
+eN(t, t′) = N(t′) − N(t).
+Stationary increments means that eN(t, t′) has the same distribution as
+N(t′ − t).
+Thus, the distribution of the number of arrivals in an interval depends on
+the size of the interval but NOT the starting point.
+马啸 (SYSU) 随机过程 2022 年秋 14 / 31
+
+=== p15 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Memoryless Property
+Independent increment property
+Definition 5
+A counting process {N(t) :t > 0} has the independent increment
+property if, for every integer k > 0 and every k-tuple of times
+0 < t1 < · · · < tk, the k-tuples of rv.s N(t1), eN(t1, t2), . . . , eN(tk−1, tk)
+are statistically independent.
+This implies that the number of arrivals in each of a set of
+non-overlapping intervals are independent r.v.s.
+Theorem 2
+Poisson processes have both the stationary increment and
+independent increment properties.
+马啸 (SYSU) 随机过程 2022 年秋 15 / 31
+
+=== p16 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Probability Density of Sn and joint density of S1, . . . ,Sn
+Probability Density of X and joint density of X1, . . . , Xn
+For a Poisson process X1, X2, · · · , where Xi are i.i.d. rv.s with the
+PDF
+fX(x) =λ exp(−λx),
+then the joint density of X1, X2, . . . , Xn is
+fX1,...,Xn (x1, . . . , xn) =λn exp(−λx1 − λx2 − · · · − λxn)
+= λn exp(−λsn)
+where sn = Pn
+i=1 xi.
+马啸 (SYSU) 随机过程 2022 年秋 16 / 31
+
+=== p17 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Probability Density of Sn and joint density of S1, . . . ,Sn
+Probability Density of Sn and joint density of S1, . . . , Sn
+Definition 6
+For a Poisson process, let Sn = Pn
+i=1 Xi, where Xi are i.i.d. rv.s with the
+PDF
+fX(x) = λ exp(−λx),
+then the Sn has the Erlang density (Sn ∼ Γ(n, λ)):
+fSn (t) = λntn−1 exp(−λt)
+(n − 1)! .
+Idea of proof: S1 = X1 and Sn = Sn−1 + Xn, where Sn−1 and Xn are
+independent. Use induction,
+fSn (t) =
+Z t
+0
+fSn−1 (x) · fXn (t − x)dx
+马啸 (SYSU) 随机过程 2022 年秋 17 / 31
+
+=== p18 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Probability Density of Sn and joint density of S1, . . . ,Sn
+Probability Density of Sn and joint density of S1, . . . , Sn
+Theorem 3
+Let S1, S2, . . . , Sn, . . . be the arrival epoches of a Poisson process with the
+rate λ. Then the joint density of S1, S2, . . . , Sn is
+fS1,...,Sn (s1, . . . , sn) = λn exp(−λsn) for 0 ⩽ s1 ⩽ s2 ⩽ · · · ⩽ sn.
+Given that the n-th arrival is at sn, the other n − 1 arrivals are uniformly
+distributed in (0, sn), subject to the ordering. Integrating, we get the
+Erlang marginal density .
+马啸 (SYSU) 随机过程 2022 年秋 18 / 31
+
+=== p19 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The probability mass function for N(t)
+The probability mass function for N(t)
+Theorem 4
+For a Poisson process of rate λ, and for any t > 0, the PMF for N(t), i.e.,
+the number of arrivals in (0, t ], is given by the Poisson PMF,
+PN(t)(n) = (λt)n exp(−λt)
+n! .
+proof 1: Use {N(t) ⩾ n} = {Sn ⩽ t}, then
+∞X
+i=n
+PN(t)(i) =
+Z t
+0
+fSn (τ)dτ.
+PN(t)(n) =
+Z t
+0
+fSn (τ) − fSn+1 (τ)dτ
+=λn
+n!
+Z t
+0
+exp(−λτ)d(τn) + τnd(exp(−λτ)) = (λt)n exp(−λt)
+n! .
+马啸 (SYSU) 随机过程 2022 年秋 19 / 31
+
+=== p20 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The probability mass function for N(t)
+The probability mass function for N(t)
+proof 2: For some vanishingly small δ,
+P{t < Sn+1 < t + δ} =
+Z t+δ
+t
+fSn+1 (τ)dτ = fSn+1 (t)(δ + o(δ)).
+The second way to calculate Pr{t < Sn+1 < t + δ} is to first observe that
+more than one arrival in (t, t + δ] is o(δ).
+P{t < Sn+1 < t + δ} = P{t < Sn+1 < t + δ|N(t) = n}PN(t)(n) + o(δ)
+= PN(t)(n)(λδ + o(δ)) + o(δ).
+Thus, PN(t)(n)(λδ + o(δ)) + o(δ) = fSn+1 (t)(δ + o(δ)). Dividing by δ and
+taking the limit δ → 0, we get
+λPN(t)(n) = fSn+1 (t).
+马啸 (SYSU) 随机过程 2022 年秋 20 / 31
+
+=== p21 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The probability mass function for N(t)
+注：
+马啸 (SYSU) 随机过程 2022 年秋 21 / 31
+
+=== p22 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The probability mass function for N(t)
+马啸 (SYSU) 随机过程 2022 年秋 22 / 31
+
+=== p23 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The probability mass function for N(t)
+马啸 (SYSU) 随机过程 2022 年秋 23 / 31
+
+=== p24 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process Alternate definition of Poisson processes
+Alternate definition of Poisson processes
+Definition 2 of Poisson processes
+If an arrival process has the stationary and independent increment
+properties and if N(t) has the Poisson PMF for given λ and all t > 0, then
+the process is Poisson.
+Definition 3 of Poisson processes
+If an arrival process has the stationary and independent increment
+properties and satisfies
+Pr{eN(t, t + δ) = n} ≈
+8
+<
+:
+1 − λδ + o(δ) for n = 0 ,
+λδ + o(δ) for n = 1 ,
+o(δ) for n ⩾ 2.
+then it is Poisson.
+马啸 (SYSU) 随机过程 2022 年秋 24 / 31
+
+=== p25 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The Poisson process as a limit of shrinking Bernoulli processes
+The Poisson process as a limit of shrinking Bernoulli
+processes
+We can view a Bernoulli process as an arrival process, an arrival occurs at
+discrete time n if and only if Yn = 1 . Thus Sn = Y1 + · · · + Yn is the
+number of arrivals up to and including time n.
+PN(t)(k) =
+⌊t⌋
+k
+
+pk(1 − p)⌊t⌋−k, for k < ⌊t⌋
+.
+Now we “shrink” the time scale of the process so that for some integer
+j > 0, Y(j)
+i is an arrival or no arrival at time i2−j.
+马啸 (SYSU) 随机过程 2022 年秋 25 / 31
+
+=== p26 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The Poisson process as a limit of shrinking Bernoulli processes
+In order to keep the arrival rate constant, we let p = λ2−j for the j-th
+process.
+The expected number of arrivals per unit time is then λ.
+Theorem 7 (Poisson’s theorem)
+Consider the sequence of shrinking Bernoulli processes with arrival
+probability λ2−j and time-slot size 2−j. Then for every fixed time t > 0
+and fixed number of arrivals n, the counting PMF PNj (t)(n) approaches
+the Poisson PMF (of the parameter λt) with increasing j,
+lim
+j→∞
+PNj (t)(n) = (λt)ne−λt
+n! .
+马啸 (SYSU) 随机过程 2022 年秋 26 / 31
+
+=== p27 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The Poisson process as a limit of shrinking Bernoulli processes
+Proof.
+For each j, the jth Bernoulli process has an associated Bernoulli counting
+process
+Nj(t) =
+⌊t2j ⌋X
+i=1
+Y(j)
+i
+PNj (t)(n) =
+⌊t2j⌋
+n
+
+pn(1 − p)⌊t2j ⌋−n, for n < ⌊t⌋
+where p = λ2−j.
+Thus,
+lim
+j→∞
+PNj (t)(n) = lim
+j→∞
+⌊t2j⌋
+n
+
+(λ2−j)n(1 − λ2−j)⌊t2j ⌋−n
+= lim
+j→∞
+⌊t2j⌋
+n
+ λ2−j
+1 − λ2−j
+n
+exp[⌊t2j⌋ ln(1 − λ2−j)]
+马啸 (SYSU) 随机过程 2022 年秋 27 / 31
+
+=== p28 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Definition and properties of a Poission process The Poisson process as a limit of shrinking Bernoulli processes
+lim
+j→∞
+PNj (t)(n) = lim
+j→∞
+⌊t2j⌋
+n
+ λ2−j
+1 − λ2−j
+n
+exp[⌊t2j⌋ ln(1 − λ2−j)]
+(use ln(1 − λ2−j) = −λ2−j + o(2−j).)
+= lim
+j→∞
+⌊t2j⌋
+n
+ λ2−j
+1 − λ2−j
+n
+exp(−λt)
+= limj→∞
+⌊t2j ⌋·⌊t2j −1⌋···⌊t2j −n+1⌋
+n!
+
+λ2−j
+1−λ2−j
+n
+exp(−λt)
+(for 0 ⩽ i ⩽ n − 1, limj→∞⌊t2j − i⌋
+
+λ2−j
+1−λ2−j
+
+= λt.)
+= (λt)n
+n! exp(−λt).
+马啸 (SYSU) 随机过程 2022 年秋 28 / 31
+
+=== p29 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercises
+Exercises
+马啸 (SYSU) 随机过程 2022 年秋 29 / 31
+
+=== p30 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercises
+4. 假设光临某商店的顾客数服从参数为 4 人每小时的 Poisson 过程。已
+知商店早上 9:00 开业，求：
+(a) 到 9:30 为止恰好一位顾客光临的概率？
+(b) 到 11:30 为止总共到达 5 位顾客的概率？
+5. 令 N = ( N(t), t ≥ 0) 是参数为 2 的 Poisson 过程，求：
+(a) P(N(1) = 2)
+(b) P(N(1) = 2 , N(3) = 6)
+(c) P(N(1) = 2 |N(3) = 6)
+(d) P(N(3) = 6 |N(1) = 2)
+6. 令 N = ( N(t), t ≥ 0) 是参数为 2 的 Poisson 过程，求：
+(a) P(N(1) ≤ 2)
+(b) P(N(1) = 1 , N(2) = 3)
+(c) P(N(1) ≥ 2|N(1) ≥ 1)
+马啸 (SYSU) 随机过程 2022 年秋 30 / 31
+
+=== p31 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercises
+7. 令 N = ( N(t), t ≥ 0) 是参数为 2 的 Poisson 过程，求：
+(a) EN(2)
+(b) EN(1)2
+(c) EN(1)N(2)
+(d)EN(1)N(2)N(3)
+8.
+马啸 (SYSU) 随机过程 2022 年秋 31 / 31
+

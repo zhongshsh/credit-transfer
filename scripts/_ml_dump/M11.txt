@@ -1,0 +1,371 @@
+# M11  Causal_Models（III)-_Counterfactuals
+# Source: 11-Causal_Models（III)-_Counterfactuals.pptx    Slides: 81
+
+=== s1 ===
+Causal Models--Counterfactuals
+
+=== s2 ===
+Counterfactuals Basics
+Important Application: Mediation
+Representative Works
+Outline
+
+=== s3 ===
+Fundamental Problem of Causal Inference
+
+=== s4 ===
+Fundamental Problem of Causal Inference
+Counterfactual
+Factual
+
+=== s5 ===
+Fundamental Problem of Causal Inference
+Factual
+Counterfactual
+
+=== s6 ===
+We can compute counterfactuals using a parametric SCM.
+
+=== s7 ===
+Counterfactuals
+
+=== s8 ===
+Counterfactuals
+observation
+
+=== s9 ===
+Counterfactuals
+observation
+hypothetical condition
+
+=== s10 ===
+Counterfactuals
+observation
+hypothetical condition
+
+=== s11 ===
+Counterfactuals
+observation
+hypothetical condition
+Cannot express counterfactuals using do-notation
+
+=== s12 ===
+Roadmap for Computing Counterfactuals
+Given: Observation of (T,Y) (observation of potential outcome Y(t) where t is the observed value of T)
+
+=== s13 ===
+Roadmap for Computing Counterfactuals
+Given: Observation of (T,Y) (observation of potential outcome Y(t) where t is the observed value of T)
+Main ingredient necessary: correct  parametric model for the structural equation for Y
+
+=== s14 ===
+Roadmap for Computing Counterfactuals
+
+=== s15 ===
+Computing Counterfactuals: Simple Example
+
+=== s16 ===
+Computing Counterfactuals: Simple Example
+
+=== s17 ===
+Computing Counterfactuals: Simple Example
+
+=== s18 ===
+Computing Counterfactuals: Simple Example
+
+=== s19 ===
+Computing Counterfactuals: Simple Example
+
+=== s20 ===
+Computing Counterfactuals: Simple Example
+
+=== s21 ===
+From Chapter 4 of Pearl et al. (2016)’s Primer:
+Abduction: Use an observation to determine the value of U
+Action: Modify the SCM, by replacing the structural equation for T with T := t
+Prediction: Use the value of U from step 1 and the modified SCM from step 2 to compute the value of Y(t)
+General Steps for Deterministic Counterfactuals
+
+=== s22 ===
+Question:
+
+=== s23 ===
+Even when we have the structural equation for Y, we can’t always determine counterfactuals with probability 1
+Can’t Always Determine Counterfactual
+
+=== s24 ===
+Can’t Always Determine Counterfactual
+
+=== s25 ===
+Can’t Always Determine Counterfactual
+
+=== s26 ===
+Non-Invertible Example
+
+=== s27 ===
+Non-Invertible Example
+
+=== s28 ===
+Non-Invertible Example
+
+=== s29 ===
+From Chapter 4 of Pearl et al. (2016)’s Primer:
+Abduction: Use an observation Z to update the distribution of U: P(U | Z)
+General Steps for Probabilistic Counterfactuals
+
+=== s30 ===
+From Chapter 4 of Pearl et al. (2016)’s Primer:
+Abduction: Use an observation Z to update the distribution of U: P(U | Z)
+Action: Modify the SCM, by replacing the structural equation for T with T := t
+General Steps for Probabilistic Counterfactuals
+
+=== s31 ===
+From Chapter 4 of Pearl et al. (2016)’s Primer:
+Abduction: Use an observation Z to update the distribution of U: P(U | Z)
+Action: Modify the SCM, by replacing the structural equation for T with T := t
+Prediction: Use the updated distribution of U step 1 and the modified SCM from step 2 to compute the distribution of Y(t)
+General Steps for Probabilistic Counterfactuals
+
+=== s32 ===
+Main ingredient necessary for computing counterfactuals: parametric model for the structural equation for Y
+Having such a parametric model is a strong assumption.
+Without it, we are stuck with the fundamental problem of causal inference.
+No Unit-level Counterfactuals without Parametric Model
+
+=== s33 ===
+Question
+
+=== s34 ===
+Population-level Doesn’t Require a Parametric Model
+
+=== s35 ===
+Population-level Doesn’t Require a Parametric Model
+
+=== s36 ===
+Counterfactuals Basics
+Important Application: Mediation
+Representative Works
+Outline
+
+=== s37 ===
+Mediation
+Happiness
+Get dog
+
+=== s38 ===
+Mediation
+Happiness
+Get dog
+Walk more
+Direct effect
+Indirect effect
+
+=== s39 ===
+Mediation
+Happiness
+Get dog
+Walk more
+Direct effect
+Indirect effect
+More
+friends
+
+=== s40 ===
+Mediation
+Happiness
+Get dog
+Walk more
+Direct effect
+Indirect effect
+More
+friends
+How can we measure the direct effect?
+
+=== s41 ===
+Controlled Direct Effect (CDE)
+
+=== s42 ===
+Controlled Direct Effect (CDE)
+Condition on m
+
+=== s43 ===
+Controlled Direct Effect (CDE)
+Condition on m could open up other paths
+intervene on m
+
+=== s44 ===
+Controlled Direct Effect (CDE)
+We do m then we remove all incoming edges to m
+And then we’ve effectively isolated the flow of causation from t to y in this graph
+This is known as controlled direct effect
+intervene on m
+
+=== s45 ===
+Controlled Direct Effect (CDE)
+Problems:
+CDE is specific to the arbitrary choice of m
+How do we get the indirect effect? Can’t just subtract the CDE from the total effect?
+
+=== s46 ===
+Natural Direct and Indirect Effects
+
+=== s47 ===
+Natural Direct and Indirect Effects
+
+=== s48 ===
+Natural Direct and Indirect Effects
+Recall problems with CDE:
+CDE is specific to the arbitrary choice of m
+How do we get the indirect effect? Can’t just subtract the CDE from the total effect
+
+=== s49 ===
+Question
+
+=== s50 ===
+CDE can always be measured via experiments (do-operator), but it has no clear undirect effect since there is no decomposition
+NDE cannot always be measured via experiments since it is counterfactual, but it allows for complete decomposition of the total effect into the NDE and NIE, which is what we’d like in mediation analysis
+Comparison of Controlled vs. Natural Mediation
+
+=== s51 ===
+When We Can Measure NDE and NIE
+
+=== s52 ===
+When We Can Measure NDE and NIE
+
+=== s53 ===
+When We Can Measure NDE and NIE
+
+=== s54 ===
+When We Can Measure NDE and NIE
+
+=== s55 ===
+When We Can Measure NDE and NIE
+
+=== s56 ===
+When We Can Measure NDE and NIE
+
+=== s57 ===
+Come up with your own example of mediation and the corresponding graph. Then, determine whether you can identify the NDE and NIE from observation data.
+Question:
+
+=== s58 ===
+Measure causal effects along arbitrary path or set of paths in the causal graph
+See “Identifiability of Path-Specific Effects” (Avin et al.,2015)
+Path-Specific Effects
+
+=== s59 ===
+Counterfactuals Basics
+Important Application: Mediation
+Representative Works
+Outline
+
+=== s60 ===
+CV
+Counterfactual VQA: A Cause-Effect Look at Language Bias (CVPR 2021)
+Counterfactual Attention Learning for Fine-Grained Visual Categorization and Re-identification (ICCV 2021)
+Counterfactual zero-shot and open-set visual recognition (CVPR 2021)
+Counterfactual samples synthesizing for robust visual question answering (CVPR 2020)
+Cycle-Consistent Counterfactuals by Latent Transformations (CVPR 2022)
+Towards robust classification model by counterfactual and invariant data generation (CVPR 2021)
+Representative Works
+
+=== s61 ===
+NLP
+Counterfactual inference for text classification debiasing (ACL 2021)
+DoCoGen: Domain Counterfactual Generation for Low Resource Domain Adaptation (ACL 2022)
+Debiasing NLU models via Causal Intervention and Counterfactual Reasoning (AAAI 2022)
+Counterfactuals to Control Latent Disentangled Text Representations for Style Transfer (ACL 2021)
+Polyjuice: Generating counterfactuals for explaining, evaluating, and improving models (ACL 2021)
+Representative Works
+
+=== s62 ===
+Representative Work1: Counterfactual VQA: A Cause-Effect Look at Language Bias
+Motivation: 1) VQA models may rely on spurious linguistic correlations rather than multi-modal reasoning. 2) It will fail to generalize well if they simply memorize the strong language priors in the training data. 3) the goal is to mitigate language bias in VQA
+
+=== s63 ===
+Representative Work1: Counterfactual VQA: A Cause-Effect Look at Language Bias
+SCM and Method: capture the language bias as the direct causal effect of questions on answers and reduce the language bias by subtracting the direct language effect from the total causal effect
+
+=== s64 ===
+Representative Work1: Counterfactual VQA: A Cause-Effect Look at Language Bias
+Experimental Performance
+
+=== s65 ===
+Representative Work2: Counterfactual Attention Learning for Fine-Grained Visual Categorization and Re-identification
+Motivation: there are biases for both attributes and environment, which indicates either background and single part are not reliable clues for classification.
+
+=== s66 ===
+Representative Work2: Counterfactual Attention Learning for Fine-Grained Visual Categorization and Re-identification
+Motivation: biases on the training and testing sets
+
+=== s67 ===
+Representative Work2: Counterfactual Attention Learning for Fine-Grained Visual Categorization and Re-identification
+SCM and Method: Adopt counterfactual intervention to investigate the effects of the learned visual attention
+
+=== s68 ===
+Representative Work3: Counterfactual zero-shot and open-set visual recognition
+Motivation: 1) the common challenge of Both Zero-Shot Learning (ZSL) and Open-Set Recognition (OSR) is generalizing to the unseen-classes by only training on the seen-classes.  2) the generated samples for unseen-classes are often out of the true distribution, which causes severe recognition rate imbalance between the seen-class (high) and unseen-class (low).
+
+=== s69 ===
+Representative Work3: Counterfactual zero-shot and open-set visual recognition
+
+=== s70 ===
+We want that the above counterfactual sample lies in the true distribution of the seen or unseen samples.
+This allows us to build a binary classifier on seen/unseen by applying the Consistency Rule
+Representative Work3: Counterfactual zero-shot and open-set visual recognition
+
+=== s71 ===
+Representative Work3: Counterfactual zero-shot and open-set visual recognition
+Method: apply the Consistency Rule to perform unseen/seen binary classification and make the generation is not Counterfactual Faithful
+
+=== s72 ===
+Motivation:
+CounterFactual (CF) visual explanations try to find images similar to the query image that change the decision of a vision system to a specified outcome.
+Existing methods either require inference-time optimization or joint training with a generative adversarial model which makes them time-consuming and difficult to use in practice.
+Representative Work4: Cycle-Consistent Counterfactuals by Latent Transformations
+
+=== s73 ===
+Representative Work4: Cycle-Consistent Counterfactuals by Latent Transformations
+Method: 1) It learns a latent transformation that automatically generates visual CFs by steering in the latent space of generative models. 2) It uses cycle consistency between the query and CF latent representations which helps training to find better solutions.
+
+=== s74 ===
+Representative Work5: Counterfactual inference for text classification debiasing
+Motivation: Today’s text classifiers inevitably suffer from unintended dataset biases, especially the document-level label bias and word-level keyword bias, which may hurt models’ generalization.
+
+=== s75 ===
+Representative Work5: Counterfactual inference for text classification debiasing
+SCM and Method: In inference, given a factual input document, CORSAIR imagines its two counterfactual counter-parts to distill and mitigate the two biases captured by the poisonous model.
+Similar to representative work 1
+
+=== s76 ===
+Representative Work6: DoCoGen: Domain Counterfactual Generation for Low Resource Domain Adaptation
+Motivation: Natural language processing (NLP) algorithms have become very successful, but they still struggle when applied to out-of-distribution examples.
+
+=== s77 ===
+Representative Work6: DoCoGen: Domain Counterfactual Generation for Low Resource Domain Adaptation
+Method: Given an input text example, the algorithm generates a domain-counterfactual textual example (D-CON) – that is similar to the original in all aspects, including the task label, but its domain is changed to a desired one
+Similar to representative work3
+
+=== s78 ===
+Representative Work7: Debiasing NLU models via Causal Intervention and Counterfactual Reasoning
+Motivation: Natural Language Understanding (NLU) models are prone to relying on annotation biases of the datasets as a shortcut, which goes against the underlying mechanisms of the task of interest
+
+=== s79 ===
+Representative Work7: Debiasing NLU models via Causal Intervention and Counterfactual Reasoning
+SCM and Method: 1) To remove confounder, the backdoor adjustment with causal intervention is utilized to find the true causal effect during training 2) In inference process, we formulate the bias as the direct causal effect and remove it by pursuing the indirect causal effect with counterfactual reasoning.
+
+=== s80 ===
+Counterfactuals Basics
+Roadmap for Computing Deterministic Counterfactuals
+General Steps for Probabilistic Counterfactuals
+Important Application: Mediation
+CDE、NDE、NIE
+When We Can Measure NDE and NIE
+Representative Works
+Summary
+
+=== s81 ===
+Causal Inference
+参考：https://www.bradyneal.com/causal-inference-course
+https://www.inference.vc/causal-inference-3-counterfactuals/
+

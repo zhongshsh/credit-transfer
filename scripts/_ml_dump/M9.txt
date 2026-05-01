@@ -1,0 +1,516 @@
+# M9  Causal_Models（I)-Backdoor_Adjustment
+# Source: 9-Causal_Models（I)-Backdoor_Adjustment.pptx    Slides: 71
+
+=== s1 ===
+Causal Models--Backdoor adjustment
+
+=== s2 ===
+The do-operator
+Backdoor adjustment
+Representative works
+Outline
+
+=== s3 ===
+The do-operator
+Backdoor adjustment
+Representative works
+Outline
+
+=== s4 ===
+The do-operator
+Conditioning vs. intervening
+
+=== s5 ===
+The do-operator
+Conditioning vs. intervening
+Population
+
+=== s6 ===
+The do-operator
+Conditioning vs. intervening
+Population
+Subpopulations
+T=0
+T=1
+
+=== s7 ===
+The do-operator
+Conditioning vs. intervening
+Population
+Subpopulations
+T=0
+T=1
+Conditioning
+
+=== s8 ===
+The do-operator
+Conditioning vs. intervening
+Population
+Subpopulations
+T=0
+T=1
+Conditioning
+Intervening
+do(T=1)
+do(T=0)
+
+=== s9 ===
+The do-operator
+Some notation and terminology
+
+=== s10 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+
+=== s11 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+
+=== s12 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+
+=== s13 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+Average treatment effect (ATE):
+
+=== s14 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+Average treatment effect (ATE):
+Observational
+Interventional
+
+=== s15 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+Average treatment effect (ATE):
+Observational
+Interventional
+
+=== s16 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+Average treatment effect (ATE):
+Observational
+Interventional
+
+=== s17 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+Average treatment effect (ATE):
+Observational
+Interventional
+
+=== s18 ===
+The do-operator
+Some notation and terminology
+Interventional distributions:
+Average treatment effect (ATE):
+Observational
+Interventional
+
+=== s19 ===
+The do-operator
+Backdoor adjustment
+Representative works
+Outline
+
+=== s20 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+
+=== s21 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+
+=== s22 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+
+=== s23 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+C
+T
+M
+Y
+Causal association
+
+=== s24 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+C
+T
+M
+Y
+Causal association
+
+=== s25 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+C
+T
+M
+Y
+Causal association
+
+=== s26 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+C
+T
+M
+Y
+Causal association
+
+=== s27 ===
+Backdoor adjustment
+Blocking backdoor paths
+C
+T
+M
+Y
+Causal association
+C
+T
+M
+Y
+Causal association
+
+=== s28 ===
+Backdoor adjustment
+Backdoor criterion and backdoor adjustment
+
+=== s29 ===
+Backdoor adjustment
+Backdoor criterion and backdoor adjustment
+
+=== s30 ===
+Backdoor adjustment
+Backdoor criterion and backdoor adjustment
+
+=== s31 ===
+Backdoor adjustment
+Backdoor criterion and backdoor adjustment
+
+=== s32 ===
+Backdoor adjustment
+Backdoor criterion and backdoor adjustment
+
+=== s33 ===
+Backdoor adjustment
+Proof of backdoor adjustment
+
+=== s34 ===
+Backdoor adjustment
+Proof of backdoor adjustment
+W
+T
+Y
+Example graph:
+
+=== s35 ===
+Backdoor adjustment
+Proof of backdoor adjustment
+W
+T
+Y
+Example graph:
+
+=== s36 ===
+Backdoor adjustment
+Proof of backdoor adjustment
+W
+T
+Y
+Example graph:
+
+=== s37 ===
+Backdoor adjustment
+Proof of backdoor adjustment
+W
+T
+Y
+Example graph:
+
+=== s38 ===
+The do-operator
+Backdoor adjustment
+Representative works
+Outline
+
+=== s39 ===
+Visual commonsense r-cnn (CVPR 2020)
+Long-tailed classification by keeping the good and removing the bad momentum causal effect (NeurlPS 2020)
+Cross-domain empirical risk minimization for unbiased long-tailed classification (AAAI 2022)
+Causal intervention for weakly-supervised semantic segmentation (NeurlPS 2020)
+Interventional few-shot learning (NeurlPS 2020)
+Two causal principles for improving visual dialog (CVPR 2020)
+Deconfounded visual grounding (AAAI 2022)
+Class Is Invariant to Context and Vice Versa: On Learning Invariance for Out-Of-Distribution Generalization (ECCV 2022)
+Deconfounded Video Moment Retrieval with Causal Intervention. (SIGIR 2021)
+Equivariance and Invariance Inductive Bias for Learning from Insufficient Data (ECCV 2022)
+Representative Works
+
+=== s40 ===
+Representative works
+Wang T, Huang J, Zhang H, et al. Visual commonsense r-cnn[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+Challenge:
+“dataset bias”: When there is bias, e.g., there are more person than leg regions co-occur with the word “ski”, the visual attention is thus more likely to focus on the person region.
+Representative work 1: Unsupervised Visual Feature Learning
+
+=== s41 ===
+Representative works
+Wang T, Huang J, Zhang H, et al. Visual commonsense r-cnn[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+P(Y|do(X))
+“borrow” objects from other images and “put” them into the local image, to perform further justifications if X truly causes Y regardless of the unobserved confounders.
+Representative work 1: Unsupervised Visual Feature Learning
+
+=== s42 ===
+Representative works
+Wang T, Huang J, Zhang H, et al. Visual commonsense r-cnn[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+Representative work 1: Unsupervised Visual Feature Learning
+
+=== s43 ===
+Representative works
+Wang T, Huang J, Zhang H, et al. Visual commonsense r-cnn[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+Causal Graph:
+X, Y: objects
+Z: confounders that affects either  X or Y.
+Representative work 1: Unsupervised Visual Feature Learning
+
+=== s44 ===
+Representative works
+Representative work 1: Unsupervised Visual Feature Learning
+Wang T, Huang J, Zhang H, et al. Visual commonsense r-cnn[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
+
+=== s45 ===
+Representative works
+Representative work 2: Long-Tailed Classification
+Tang K, Huang J, Zhang H. Long-tailed classification by keeping the good and removing the bad momentum causal effect[J]. Advances in Neural Information Processing Systems.
+SGD momentum is essentially a confounder in long-tailed classification
+
+=== s46 ===
+Representative works
+Representative work 2: Long-Tailed Classification
+Tang K, Huang J, Zhang H. Long-tailed classification by keeping the good and removing the bad momentum causal effect[J]. Advances in Neural Information Processing Systems.
+Causal Graph:
+X: image
+Y: labels
+M: momentum
+D: projection on head
+
+=== s47 ===
+Representative works
+Representative work 2: Long-Tailed Classification
+Tang K, Huang J, Zhang H. Long-tailed classification by keeping the good and removing the bad momentum causal effect[J]. Advances in Neural Information Processing Systems.
+The proposed solution:
+
+=== s48 ===
+Representative works
+Zhu B, Niu Y, Hua X S, et al. Cross-domain empirical risk minimization for unbiased long-tailed classification[C]//Proceedings of the AAAI Conference on Artificial Intelligence.
+Challenge: when the test is as imbalanced as the long-tailed training data, the “tail” bias is no longer beneficial overall because it hurts the “head” majorities.
+Representative work 3: Long-Tailed Classification
+
+=== s49 ===
+Representative works
+Zhu B, Niu Y, Hua X S, et al. Cross-domain empirical risk minimization for unbiased long-tailed classification[C]//Proceedings of the AAAI Conference on Artificial Intelligence.
+Causal Graph:
+S: selection variable
+X: image
+Y: prediction
+Representative work 3: Long-Tailed Classification
+
+=== s50 ===
+Representative works
+Representative work 3: Long-Tailed Classification
+Zhu B, Niu Y, Hua X S, et al. Cross-domain empirical risk minimization for unbiased long-tailed classification[C]//Proceedings of the AAAI Conference on Artificial Intelligence.
+Step 1: Learn an imbalanced and a balanced model
+Step 2: Estimate the adjustment weights
+Step 3: Minimize the cross-domain empirical risk
+
+=== s51 ===
+Representative works
+Three basic problems in existing pseudo-masks: (a). Object Ambiguity (b). Incomplete Background (c). Incomplete Foreground.
+Goal: generate better pixel-level pseudo-masks by using only image-level labels
+Zhang D, Zhang H, Tang J, et al. Causal intervention for weakly-supervised semantic segmentation[J]. Advances in Neural Information Processing Systems.
+Representative work 4: Weakly-supervised Semantic Segmentation
+
+=== s52 ===
+Representative works
+Zhang D, Zhang H, Tang J, et al. Causal intervention for weakly-supervised semantic segmentation[J]. Advances in Neural Information Processing Systems.
+Causal Graph:
+X: Image
+Y: Labels
+C: Context prior
+M: image-specific representation
+Representative work 4: Weakly-supervised Semantic Segmentation
+
+=== s53 ===
+Representative works
+Zhang D, Zhang H, Tang J, et al. Causal intervention for weakly-supervised semantic segmentation[J]. Advances in Neural Information Processing Systems.
+Representative work 4: Weakly-supervised Semantic Segmentation
+
+=== s54 ===
+Representative works
+Representative work 4: Weakly-supervised Semantic Segmentation
+Zhang D, Zhang H, Tang J, et al. Causal intervention for weakly-supervised semantic segmentation[J]. Advances in Neural Information Processing Systems.
+
+=== s55 ===
+Representative works
+Representative work 5: Few-Shot Learning
+Yue Z, Zhang H, Sun Q, et al. Interventional few-shot learning[J]. Advances in neural information processing systems.
+Though stronger backbone improves the performance on average, it indeed degrades that of samples in Query set dissimilar to Support Set.
+
+=== s56 ===
+Representative works
+Representative work 5: Few-Shot Learning
+Yue Z, Zhang H, Sun Q, et al. Interventional few-shot learning[J]. Advances in neural information processing systems.
+Causal Graph:
+X: image
+Y: labels
+D: pre-trained dataset
+C: transformed representation of X in the low-dimensional manifold
+
+=== s57 ===
+Representative works
+Representative work 6: Visual Dialog
+Qi J, Niu Y, Huang J, et al. Two causal principles for improving visual dialog[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition.
+Motivations of the two causal principles:
+
+=== s58 ===
+Representative works
+Representative work 6: Visual Dialog
+Qi J, Niu Y, Huang J, et al. Two causal principles for improving visual dialog[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition.
+Principle 1: we should remove the direct input ofthe dialog history to the answer model;
+Principle 2 says: there is an unobserved confounder for history, question, and answer, leading to spurious correlations from training data.
+
+=== s59 ===
+Representative works
+Representative work 6: Visual Dialog
+Qi J, Niu Y, Huang J, et al. Two causal principles for improving visual dialog[C]//Proceedings of the IEEE/CVF conference on computer vision and pattern recognition.
+
+=== s60 ===
+Representative works
+Representative work 7: Visual Grounding
+Huang J, Qin Y, Qi J, et al. Deconfounded visual grounding[C] //Proceedings of the AAAI Conference on Artificial Intelligence.
+
+=== s61 ===
+Representative works
+Representative work 7: Visual Grounding
+Huang J, Qin Y, Qi J, et al. Deconfounded visual grounding[C] //Proceedings of the AAAI Conference on Artificial Intelligence.
+Causal Graph:
+X: image
+R: language query
+G: unobserved confounder
+L: the location for the query
+
+=== s62 ===
+Representative works
+Representative work 7: Visual Grounding
+Huang J, Qin Y, Qi J, et al. Deconfounded visual grounding[C] //Proceedings of the AAAI Conference on Artificial Intelligence.
+
+=== s63 ===
+Representative works
+Representative work 8: Out-Of-Distribution Generalization
+Qi J, Tang K, Sun Q, et al. Class Is Invariant to Context and Vice Versa: On Learning Invariance for Out-Of-Distribution Generalization //ECCV 2022.
+Principle 1: If a feature is not invariant to context, it is not class but context;
+Principle 2: Context is also invariant to class.
+
+=== s64 ===
+Representative works
+Representative work 8: Out-Of-Distribution Generalization
+Qi J, Tang K, Sun Q, et al. Class Is Invariant to Context and Vice Versa: On Learning Invariance for Out-Of-Distribution Generalization //ECCV 2022.
+
+=== s65 ===
+Representative works
+Representative work 8: Out-Of-Distribution Generalization
+Qi J, Tang K, Sun Q, et al. Class Is Invariant to Context and Vice Versa: On Learning Invariance for Out-Of-Distribution Generalization //ECCV 2022.
+
+=== s66 ===
+Representative works
+Representative work 9: Video Moment Retrieval
+Yang X, Feng F, Ji W, et al. Deconfounded video moment retrieval with causal intervention[C]//SIGIR 2021.
+Current models mostly exploit dataset biases while ignoring the video content. The issue is caused by the hidden con- founder in VMR, i.e., temporal location of moments, that spuriously correlates the model input and prediction.
+
+=== s67 ===
+Representative works
+Representative work 9: Video Moment Retrieval
+Yang X, Feng F, Ji W, et al. Deconfounded video moment retrieval with causal intervention[C]//SIGIR 2021.
+Causal Graph:
+V: video moment
+Y: prediction
+L: moment location
+Q: query
+
+=== s68 ===
+Representative works
+Representative work 9: Video Moment Retrieval
+Yang X, Feng F, Ji W, et al. Deconfounded video moment retrieval with causal intervention[C]//SIGIR 2021.
+
+=== s69 ===
+Representative works
+Representative work 10: Out-Of-Distribution Generalization
+Wang T, Sun Q, Pranata S, et al. Equivariance and Invariance Inductive Bias for Learning from Insufficient Data.// ECCV 2022.
+Equivariance. This prior requires that the feature representation of a sample should be equivariant to its semantic changes.
+Invariance. Removes the environmental bias by imposing the environmental invariance prior.
+
+=== s70 ===
+Representative works
+Representative work 10: Out-Of-Distribution Generalization
+Wang T, Sun Q, Pranata S, et al. Equivariance and Invariance Inductive Bias for Learning from Insufficient Data.// ECCV 2022.
+
+=== s71 ===
+Summary
+The do-operator
+Conditioning vs. intervening
+Some notation and terminology
+Backdoor adjustment
+Blocking backdoor paths
+Backdoor criterion and backdoor adjustment
+Representative Works
+

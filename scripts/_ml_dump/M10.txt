@@ -1,0 +1,333 @@
+# M10  Causal_Models（II)-Frontdoor_Adjustment
+# Source: 10-Causal_Models（II)-Frontdoor_Adjustment.pptx    Slides: 57
+
+=== s1 ===
+Causal Models--Frontdoor Adjustment
+
+=== s2 ===
+Frontdoor adjustment
+Representative works
+Outline
+
+=== s3 ===
+Goal: Identify the causal effect of X on Y
+Frontdoor Adjustment: Goal
+U
+X
+Z
+Y
+
+=== s4 ===
+Step 1: Identify the causal effect of X on Z
+Frontdoor Adjustment: Big Picture
+U
+X
+Z
+Y
+Step 1
+
+=== s5 ===
+Step 1: Identify the causal effect of X on Z
+Step 2: Identify the causal effect of Z on Y
+Frontdoor Adjustment: Big Picture
+U
+X
+Z
+Y
+Step 1
+Step 2
+
+=== s6 ===
+Step 1: Identify the causal effect of X on Z
+Step 2: Identify the causal effect of Z on Y
+Step 3: Combine the above steps to identify the causal effect of 		     X on Y
+Frontdoor Adjustment: Big Picture
+
+=== s7 ===
+Identify the causal effect of X on Z
+Frontdoor Adjustment: Step 1
+U
+X
+Z
+Y
+Step 1
+
+=== s8 ===
+Identify the causal effect of X on Z
+Frontdoor Adjustment: Step 1
+U
+X
+Z
+Y
+Step 1
+
+=== s9 ===
+Frontdoor Adjustment: Step 2
+U
+X
+Z
+Y
+Step 2
+
+=== s10 ===
+Frontdoor Adjustment: Step 2
+U
+X
+Z
+Y
+Step 2
+
+=== s11 ===
+Combine the above steps to identify the causal effect of 		     X on Y
+Frontdoor Adjustment: Step 3
+U
+X
+Z
+Y
+Step 3
+
+=== s12 ===
+Combine the above steps to identify the causal effect of 		     X on Y
+Frontdoor Adjustment: Step 3
+U
+X
+Z
+Y
+Step 1
+Step 3
+
+=== s13 ===
+Combine the above steps to identify the causal effect of 		     X on Y
+Frontdoor Adjustment: Step 3
+U
+X
+Z
+Y
+Step 1
+Step 2
+Step 3
+
+=== s14 ===
+Combine the above steps to identify the causal effect of 		     X on Y
+Frontdoor Adjustment: Step 3
+U
+X
+Z
+Y
+Step 1
+Step 2
+Step 3
+
+=== s15 ===
+Combine the above steps to identify the causal effect of 		     X on Y
+Frontdoor Adjustment: Step 3
+U
+X
+Z
+Y
+Step 1
+Step 2
+Step 3
+
+=== s16 ===
+A set of variables Z satisfies the frontdoor criterion relative to an ordered pair of variables (X, Y) in a DAG G if
+Z intercepts all directed paths from X to Y;
+there is no unblocked backdoor path from X to Z; and
+all backdoor paths from Z to Y are blocked by X.
+Frontdoor Criterion
+U
+X
+Z
+Y
+
+=== s17 ===
+Frontdoor Adjustment
+
+=== s18 ===
+According to genotype theory, the observed correlation between smoking(X) and lung cancer(Y) could be explained by some sort of carcinogenic genotype(U) that involves inborn craving for nicotine.
+Example: Smoking and the Genotype Theory
+U
+Genotype
+X
+Smoking
+Z
+Tar deposits
+Y
+Lung cancer
+
+=== s19 ===
+A hypothetical data set
+Example: Smoking and the Genotype Theory
+
+=== s20 ===
+It seems that smoking increases one’s risk of lung cancer: 95% of smokers and only 5% of non-smokers have developed high levels of tar deposits; moreover, 81% of subjects with tar deposits have developed lung cancer, compared to only 9% among those with no tar deposits.
+Example: Smoking and the Genotype Theory
+
+=== s21 ===
+However, genotype theory tells a different story that smoking actually decreases one’s risk of lung cancer.
+Example: Smoking and the Genotype Theory
+
+=== s22 ===
+If you decide to smoke, then your chances of building tar deposits are 95%, compared to 5% if you decide not to smoke.
+Example: Smoking and the Genotype Theory
+
+=== s23 ===
+In order to evaluate the effect of tar deposits, we look separately at two groups, smokers and non-smokers. In smokers, tar deposits lower cancer rates from 90% to 85%; in non-smokers, they lower cancer rates from 10% to 5%.
+Example: Smoking and the Genotype Theory
+
+=== s24 ===
+Thus, regardless of whether I have a natural craving for nicotine, I should be seeking the protective effect of tar deposits in my lungs, and smoking offers a very effective means of acquring those deposits.
+Example: Smoking and the Genotype Theory
+
+=== s25 ===
+We now apply the frondoor adjustment formula to the hypothetical data set to prove that smoking actually decreases one’s risk of lung cancer.
+Example: Smoking and the Genotype Theory
+
+=== s26 ===
+Example: Smoking and the Genotype Theory
+
+=== s27 ===
+Example: Smoking and the Genotype Theory
+
+=== s28 ===
+Example: Smoking and the Genotype Theory
+
+=== s29 ===
+Frontdoor adjustment
+Representative works
+Outline
+
+=== s30 ===
+Deconfounded image captioning: A causal retrospect†
+Causal graph
+Frontdoor adjustment
+†Yang X, Zhang H, Cai J. Deconfounded image captioning: A causal retrospect[J]. IEEE Transactions on Pattern Analysis and Machine Intelligence, 2021.
+
+=== s31 ===
+Deconfounded image captioning: A causal retrospect
+The intervention distribution after applying backdoor adjustment and frontdoor adjustment is
+Applying Normalized Weighted Geometric Mean(NWGM) to absorb the expectations into the network
+
+=== s32 ===
+Deconfounded image captioning: A causal retrospect
+Sketch of DIC(Deconfouned Image Captioning)
+
+=== s33 ===
+Causal graph
+Frontdoor adjustment
+Causal attention for vision-language tasks†
+†Yang X, Zhang H, Qi G, et al. Causal attention for vision-language tasks[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021: 9847-9857.
+
+=== s34 ===
+Specifically, by NWGM approximation, IS-Sampling and CS-Sampling in can be absorbed into the network as follows
+Causal attention for vision-language tasks
+g is a network
+
+=== s35 ===
+Illustration for causal attention
+Causal attention for vision-language tasks
+
+=== s36 ===
+Causal graph
+Causal Transportability for Visual Recognition†
+†Mao C, Xia K, Wang J, et al. Causal Transportability for Visual Recognition[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 7521-7531.
+
+=== s37 ===
+Expanded causal graph
+Frontdoor adjustment
+Causal Transportability for Visual Recognition
+
+=== s38 ===
+Training algorithm
+Causal Transportability for Visual Recognition
+
+=== s39 ===
+Testing algorithm
+Causal Transportability for Visual Recognition
+
+=== s40 ===
+Model-Agonstic Meta-Learning(MAML)
+Inner loop
+Outer loop
+The Role of Deconfounding in Meta-learning†
+†Jiang Y, Chen Z, Kuang K, et al. The Role of Deconfounding in Meta-learning[C]//International Conference on Machine Learning. PMLR, 2022: 10161-10176.
+
+=== s41 ===
+Workflow and causal graph
+The Role of Deconfounding in Meta-learning
+
+=== s42 ===
+Simplified causal graph
+Deconfouding MAML
+The Role of Deconfounding in Meta-learning
+
+=== s43 ===
+Frontdoor adjustment
+The Role of Deconfounding in Meta-learning
+
+=== s44 ===
+MAML-Dropout
+MAML-Bins
+The Role of Deconfounding in Meta-learning
+
+=== s45 ===
+Causal graph
+Causal Class Activation Maps for Weakly-Supervised Semantic Segmentation†
+†Wang Y. Causal Class Activation Maps for Weakly-Supervised Semantic Segmentation[C]//UAI 2022 Workshop on Causal Representation Learning.
+
+=== s46 ===
+Frontdoor adjustment
+Causal Class Activation Maps for Weakly-Supervised Semantic Segmentation
+
+=== s47 ===
+Causal graph
+Disentangled Graph Recurrent Network for Document Ranking†
+†Dong Q, Niu S, Yuan T, et al. Disentangled Graph Recurrent Network for Document Ranking[J]. Data Science and Engineering, 2022, 7(1): 30-43.
+
+=== s48 ===
+Frontdoor adjustment
+Appyling Weighted Geometric Mean
+Disentangled Graph Recurrent Network for Document Ranking
+
+=== s49 ===
+The kidney stone example contains three variables: stone size (KS), treatment type(T), and Recovery (R).
+Causal graph
+Frontdoor adjustment
+Estimating causal effects with the neural autoregressive density estimator†
+†Garrido S, Borysov S, Rich J, et al. Estimating causal effects with the neural autoregressive density estimator[J]. Journal of Causal Inference, 2021, 9(1): 211-218.
+
+=== s50 ===
+Variables description and causal graph
+Evaluating the Causal Effect of Multimedia and AffectiveTemperament in Felt Emotion and Liking†
+†Silva R A B, Pereira E T. Evaluating the Causal Effect of Multimedia and Affective Temperament in Felt Emotion and Liking[J]. Revista de Informática Teórica e Aplicada, 2022, 29(2): 35-47.
+
+=== s51 ===
+Frontdoor adjustment
+Evaluating the Causal Effect of Multimedia and AffectiveTemperament in Felt Emotion and Liking
+
+=== s52 ===
+Causal graph
+Confounder Identification-free Causal VisualFeature Learning†
+†Li X, Zhang Z, Wei G, et al. Confounder Identification-free Causal Visual Feature Learning[J]. arXiv preprint arXiv:2111.13420, 2021.
+
+=== s53 ===
+Frontdoor adjustment
+A gradient-based instantiation
+Confounder Identification-free Causal VisualFeature Learning
+
+=== s54 ===
+Algorithm
+Confounder Identification-free Causal VisualFeature Learning
+
+=== s55 ===
+Mitigating Hidden Confounding Effects forCausal Recommendation†
+†Zhu X, Zhang Y, Feng F, et al. Mitigating Hidden Confounding Effects for Causal Recommendation[J]. arXiv preprint arXiv:2205.07499, 2022.
+
+=== s56 ===
+Mitigating Hidden Confounding Effects forCausal Recommendation
+
+=== s57 ===
+When confounder is unobservable, we can use frontdoor adjustment to identify causal effect with the help of mediator.
+Frontdoor adjustment can be applied to various domains like statistics, machine learning, and recommendation system.
+Summary
+

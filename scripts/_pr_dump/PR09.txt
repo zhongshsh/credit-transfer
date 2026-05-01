@@ -1,0 +1,778 @@
+# PR9 Generalized Weakly Supervised Learning
+# Pages: 144
+
+=== p1 ===
+1
+广义弱监督学习
+马锦华、郑伟诗
+中山大学
+机器智能与先进计算教育部重点实验室
+中山大学计算机学院研究生人工智能应用基础系列课程
+声明：该PPT只供非商业使用，也不可视为任何出版物。由于历史原因，许多图片尚没有标注出处，如果你知道图片的出处，欢迎告诉我们at wszheng@ieee.org.
+
+=== p2 ===
+广义弱监督类型❑不完全监督（incomplete supervision）o只有少量有标注数据，有大量未标注数据❖主动学习、半监督学习、自监督学习等❑不确切监督（inexact supervision）o监督信息不够精确，仅有粗粒度的标签信息o狭义弱监督学习❑不准确监督（inaccurate supervision）o标签信息不总是ground-truthZhou, Zhi-Hua. "A brief introduction to weakly supervised learning."National science review5.1 (2018): 44-53. 2
+
+=== p3 ===
+概览❑半监督学习❑迁移学习❑自监督学习❑弱监督学习❑主动学习
+3
+
+=== p4 ===
+𝐗=(𝑥!,𝑦!)!"#$𝑥!∈𝑅% }𝑦!∈{+1,−1
+在传统的分类学习中，每个数据样本都给定类别标签指导分类学习，因此称为有监督分类学习（supervised classification）
+寻找分类函数f(x)
+有监督学习
+4
+
+=== p5 ===
+INTRODUCTION OF SSC收集数据样本容易，但获得样本类别标记相对困难•计算机辅助医学图像分析•垃圾邮件检测•web网页推荐获得样本类别标记需要人力、物力、财力
+BIG DATA
+有监督学习的局限
+如何同时利用无标记样本？
+5
+
+=== p6 ===
+半监督分类(semi-supervised classification)：同时利用大量无标记样本和少量有标记样本进行分类学习，以获得比仅利用少量有标记样本的有监督分类学习更好的分类性能
+Xu=(𝑥!")!#$%!,𝑛"≫𝑛&
+Xl=(𝑥!&,𝑦!)!#$%"
+𝑥!∈𝑅' }𝑦!∈{+1,−1
+综述论文或书籍：•O. Chapelleet al. Semi-supervised learning. MIT Press Cambridge, 2006. •X. Zhu and A. Goldberg. Introduction to semi-supervised learning. Morgan & Claypool Publishers, 2009.•Z.-H. Zhou and M. Li. Semi-supervised learning by disagreement. Knowledge and Information Systems, 24(3):415–439, 2010. •Z.-H. Zhou. Disagreement-based semi-supervised learning. ActaAutomaticaSinica. Invited Survey. Nov. 2013.
+半监督分类
+6
+
+=== p7 ===
+u现有半监督分类方法可大致分为四大类：–生成式方法–大间隔半监督分类方法–基于图的半监督分类方法–基于差异性的方法
+学习方法
+7
+
+=== p8 ===
+•生成式（generative）方法−假设有标记和未标记数据由同一概率模型生成，以生成式模型作为分类模型，利用期望最大化(Expectation-Maximization，EM)算法估计模型参数以及样本属于每类的概率−不同方法的区别在于所采用的生成式模型不同，如混合高斯模型(mixture Gaussian model)，朴素贝叶斯模型(naïve Bayes model)等•Shahshahani, B. & Landgrebe, D. (1994). The effect of unlabeled samples in reducing the small sample size problem and mitigating the hughesphenomenon. IEEE Transactions on Geoscience and Remote Sensing, 32(5): 1087-1095.•Nigam, K., McCallum, A. K., Thrun, S. & Mitchell, T. (2000). Text classification from labeled and unlabeled documents using EM. Machine Learning, 39(2):103-134.
+生成式方法
+8
+
+=== p9 ===
+生成式方法❑假设样本由高斯混合模型生成, 且每个类别对应一个高斯混合成分：
+其中,
+9
+
+=== p10 ===
+生成式方法❑由最大化后验概率可知：
+10
+
+=== p11 ===
+生成式方法❑假设样本独立同分布，且由同一个高斯混合模型生成，则对数似然函数是：
+11
+
+=== p12 ===
+生成式方法❑高斯混合模型的参数估计可以采用EM算法求解，迭代更新式如下：lE步：根据当前模型参数计算未标记样本属于各高斯混合成分的概率
+12
+
+=== p13 ===
+生成式方法lM步：基于更新模型参数
+13
+
+=== p14 ===
+混合高斯模型
+生成式方法
+14
+
+=== p15 ===
+•XiaojinZhu, Semi-supervised learning Tutorial, Univ. Wisconsin, Madison, ICML, 2007. 
+生成式方法
+15
+
+=== p16 ===
+生成式方法❑将上述过程中的高斯混合模型换成混合专家模型、朴素贝叶斯模型等即可推导出其他的生成式半监督学习算法❑此类方法简单、易于实现, 在有标记数据极少的情形下往往比其他方法性能更好❑然而, 此类方法有一个关键: 模型假设必须准确, 即假设的生成式模型必须与真实数据分布吻合; 否则利用未标记数据反而会显著降低泛化性能•F. Cozmanand I. Cohen. Unlabeled data can degrade classification performance of generative classifiers. In Proceedings of The 15th International Florida Artificial Intelligence Society Conference, Pensacola, Florida, United States, 327-331, 2002•T. Yang and C.E. Priebe. The Effect of Model Misspecification on SemisupervisedClassification. IEEE Transactions on Pattern Analysis and Machine Intelligence, 33 (10): 2093 -2103, 201116
+
+=== p17 ===
+•最大化所有样本的类间间隔，从而引导分类边界穿越数据分布的低密度区域•直推式SVM (TransductiveSVM, TSVM)、半监督SVM (Semi-Supervised Support Vector Machine, S3VM)等•Bennett, K.P., & Demiriz, A. (1999). Semi-supervised support vector machines. In Kearns, M. J., Solla, S. A. & Cohn, D. A. editors, Advances in Neural Information Processing Systems 11, MIT Press, Cambridge, MA. 368-374.•Joachims, T. (1999). Transductiveinference for text classification using support vector machines. In: Proceedings of the 16th International Conference on Machine Learning, Bled, Slovenia, 200-209.•Yu-Feng Li, James T. Kwok, and Zhi-Hua Zhou. Semi-supervised learning using label mean. In: Proceedings of the 26th International Conference on Machine Learning (ICML'09), Montreal, Canada, 2009, pp.633-640
+大间隔半监督分类方法
+17
+
+=== p18 ===
+SVM分类函数𝑓(𝑥)=𝑤&𝑥+𝑏
+𝑤&𝑥+𝑏=0𝑤&𝑥+𝑏=1
+𝑤&𝑥+𝑏=−1
+⁄2‖𝑤‖
+优化目标2
+1,
+1
+min   
+2
+. .     ( ) 1-
+          0
+n
+iiwb
+T
+ii i
+i
+wC
+st y w x b
+x
+x
+x
+=
++
++³
+³
+å
+大间隔半监督分类方法
+18
+
+=== p19 ===
+最大化有标记样本上的类间间隔
+大间隔半监督分类方法
+19
+
+=== p20 ===
+最大化有标记样本上的类间间隔最大化所有样本上的类间间隔
+优化目标
+无标记样本的分类损失
+半监督S3VM [Joachims, ICML99]工作获得ICML’09十年最佳论文奖
+大间隔半监督分类方法
+20
+
+=== p21 ===
+半监督SVM同时寻找分类函数和无标记样本的类别标签，优化目标非凸
+重点难点：如何设计出高效的优化求解策略？•O.Chapelle,V.Sindhwani,andS.S.Keerthi.Optimizationtechniquesforsemi-supervisedsupportvectormachines.JournalofMachineLearningResearch,9:203–233,2008•O.Chapelle,M.Chi,andA.Zien.Acontinuationmethodforsemi-supervisedSVMs.InProceedingsofthe23rdInternationalConferenceonMachineLearning,pages185–192,Pittsburgh,PA,2006•O.Chapelle,V.Sindhwani,andS.S.Keerthi.Branchandboundforsemi-supervisedsupportvectormachines.InB.Scholkopf,J.Platt,andT.Hoffman,editors,¨AdvancesinNeuralInformationProcessingSystems19,pages217–224.MITPress,Cambridge,MA,2007•Y.-F.Li,J.T.Kwok,andZ.-H.Zhou.Semi-supervisedlearningusinglabelmean.InProceedingsofthe26thInternationalConferenceonMachineLearning,pages633–640,Montreal,Canada,2009
+大间隔半监督分类方法
+21
+
+=== p22 ===
+基于有标记和未标记数据间的相似性构建一个流形结构图，然后利用结构图和有标记样本的类别标签获取无标记样本的类别标签−mincut、harmonic和流形正则化（Manifold Regularization）等
+•X Zhu，Z Ghahramani，J Lafferty (2003). Semi-supervised learning using Gaussian fields and harmonic functions. Twentieth International Conference on International Conference on Machine Learning, Washington, DC, USA, 912-919•Wang, F., & Zhang, C. (2006). Label propagation through linear neighborhoods. In: Proceedings of the 23rd International Conference on Machine Learning, Pittsburgh, PA, 985-992.•Belkin, M., Niyogi, P., & Sindhwani, V. (2006). Manifold regularization: A geometric framework for learning from labeled and unlabeled examples. Journal of Machine Learning Research, 7: 2399-2434.
+基于图的半监督分类方法
+22
+
+=== p23 ===
++-?
+•在所有样本上构建一个流形结构图，图结点代表数据样本，边权刻画样本之间的相似性或距离•假设在图上相似的样本共享相同的类标签•推断无标记样本的类标签
+基于图的半监督分类方法
+23
+
+=== p24 ===
+基于图的半监督分类方法[Zhu et al., ICML03]工作获得ICML’13十年最佳论文奖
+最小化能量函数流形图边权•设置f(xi)=yi, i=1…nl, f(xj) 为任意值，j=1…nu•重复更新f(xj) 直至收敛min
+基于图的半监督分类方法
+流形结构图的构建，K近邻？热核权？
+•Yu-Feng Li, Shao-Bo Wang, Zhi-Hua Zhou. Graph quality judgement: A large margin expedition. In: Proceedings of the 25th International Joint Conference on Artificial Intelligence (IJCAI'16), New York, NY, 2016, pp.1725-173124
+
+=== p25 ===
+利用两个或多个视图训练分类器，在学习过程中，各分类器挑选若干置信度高的无标记样本进行相互标记，然后更新分类模型•Co-EM、Tri-training等•为了使用此类方法, 需能生成具有显著差异（分歧）、性能尚可的多个学习器, 但当有标记样本很少、尤其是数据不具有多视图时, 要做到这一点并不容易
+•Nigam, K. & Ghani, R. (2000). Analyzing the effectiveness and applicability of co-training. In: Proceedings of the 9th ACM International Conference on Information and Knowledge Management, Mclean, VA, 86-93.•Zhou, Z.-H., & Li, M. (2005). Tri-training: Exploiting unlabeled data using three classifiers. IEEE Transactions on Knowledge and Data Engineering, 17(11):1529-1541.
+基于差异性的方法
+25
+
+=== p26 ===
+基于差异性的方法
+26
+co-training示意图
+
+=== p27 ===
+学习原理❑半监督分类利用无标记样本帮助提升学习性能•试图挖掘隐藏在无标记样本中的数据分布信息，并利用该信息指导分类；•为挖掘数据分布信息，必须采用某种数据分布假设；•最常用的数据分布假设为聚类假设(cluster assumption)和流形假设(manifold assumption)27
+
+=== p28 ===
+?
+Cluster Assumption
+Manifold Assumption
+学习原理
+28
+
+=== p29 ===
+数据分布假设❑聚类假设•假定属于同一聚类的样本有较大可能共享相同的类标签•等价表述：分类边界应穿越数据分布的低密度区域，从而使聚类内（高密度区域中）样本被划分在分类边界两侧，也被称为低密度分割假设(low-density separation assumption)❑流形假设•假定数据分布在低维流形上，流形结构可由无向图表示，图中结点代表样本，边权代表样本间相似性•在流形结构上相似的样本具有相似类标签
+学习原理
+29
+
+=== p30 ===
+❑大部分现有的半监督分类方法都直接或间接地利用了上述两种假设：o生成式方法：直接采用聚类假设o基于支持向量机的方法：直接采用低密度分割假设o基于图的方法：直接采用流形假设o基于差异性的方法：间接利用聚类或流形假设
+学习原理
+30
+
+=== p31 ===
+半监督降维方法线性降维问题的一般定义：给定一个在𝑹!中的数据集合𝒙",...,𝒙#，求一个变换矩阵𝐴将这𝑚个数据点映射到𝑹$(𝑙≪𝑛)中的点𝒚",...,𝒚#，使得𝒚%代表𝒙%，且𝒚%=𝐴&𝒙%。LPP算法（局部保留投影，Locality Preserving Projections）是一种经典的半监督线性降维方法，算法步骤分为三个部分。
+31
+
+=== p32 ===
+半监督降维方法（1）构建邻接图。𝒙!与𝒙(很接近(close)时，我们在这两个点之间放置一条边。有两种选择标准：o(a) ϵ-邻居(ϵ∈R).在𝑹#空间的欧几里得范数的条件下，当𝒙$−𝒙%&<𝜖时，我们记作节点i和j被一条边相连。❖优点：来源于几何学的方法，相互间的关系是天然对称的。❖缺点：经常导致图中只有很少的部分相连，选择一个合适的ϵ很难。o(b) n最近邻(n∈R).如果𝑖是𝑗的𝑘近邻且𝑗是𝑖的𝑘近邻，那么我们就记作𝑖和𝑗被一条边相连。❖优点：容易选择；不会导致图不连通。❖缺点：缺少几何学上的直观性。
+（2）选择权重。给边加权重也有两种方法：o(a) 热核法(t∈R).如果节点i和j相连，那么𝑊$%=𝑒'𝒙!'𝒙"#)
+o(b) 简单法. i与j相连，𝑊$%=1，否则，𝑊$%=0 32
+
+=== p33 ===
+半监督降维方法（3）求以下问题的特征值与特征向量:𝑋𝐿𝑋)𝒂=𝜆𝑋𝐷𝑋)𝒂(1)𝐷是一个对角矩阵，𝐷!!=∑(𝑊!(，𝐿=𝐷−𝑊，称为拉普拉斯矩阵。且令列向量𝒂*,...,𝒂&+$是方程(1)的解向量,这些向量按照特征值由小到大排列,对应的特征值为𝜆*<...<𝜆&+$于是,嵌入映射可以表示如下: 
+𝑥!→𝑦!=𝐴)𝑥!,𝐴=𝒂*,𝒂$,...,𝒂&+$
+33
+
+=== p34 ===
+半监督降维方法
+34
+
+=== p35 ===
+有标记数据
+无标记数据
+分类精度80%分类精度85%
+监督学习半监督学习
+分类精度78%半监督学习
+有时，同时利用无标记样本进行半监督分类学习不会带来性能提升，甚至可能造成性能下降。------------不安全半监督分类（unsafe semi-supervised classification）
+研究挑战
+35
+
+=== p36 ===
+如何实现安全半监督分类学习，使利用无标记样本不会造成性能的显著下降？•Yu-Feng Li and Zhi-Hua Zhou. Improving semi-supervised support vector machines through unlabeled instances selection. In: Proceedings of the 25th AAAI Conference on Artificial Intelligence (AAAI'11), San Francisco, CA, 2011, pp.386-391. •YunyunWang and SongcanChen. Safety-Aware Semi-Supervised Classification.IEEE Trans. Neural Netw. Learning Syst.24(11):1763-1772(2013)•Yu-Feng Li and Zhi-Hua Zhou. Towards making unlabeled data never hurt. IEEE Transactions on Pattern Analysis and Machine Intelligence, 37(1):175-188, 2015
+研究挑战
+36
+
+=== p37 ===
+37
+近期研究进展❑经典方法：oMean Teacher [NeurIPS2017]oFixMatch[NeurIPS2020]❑任务延伸：o目标检测o语义分割
+
+=== p38 ===
+概览❑半监督学习❑迁移学习❑自监督学习❑弱监督学习❑主动学习
+38
+
+=== p39 ===
+迁移学习将会是引领下一次机器学习热潮的驱动力。——吴恩达,NIPS201639
+迁移学习简介
+
+=== p40 ===
+•什么是迁移学习？–心理学角度：人们利用之前的经验和知识进行推理和学习的能力。–机器学习角度：一个系统将别的相关领域中的知识应用到本应用中的学习模式。[DARPA]–举例：C++→Java；骑自行车→骑摩托车–关键词：举一反三
+•迁移学习要解决的问题：–给定一个研究领域和任务，如何利用相似领域进行知识的迁移，从而达成目标？
+迁移学习简介
+40
+
+=== p41 ===
+•为什么要进行迁移学习？–数据的标签很难获取–从头建立模型是复杂和耗时的
+对已有知识的重用是必要的
+迁移学习简介
+41
+
+=== p42 ===
+•迁移学习vs传统机器学习
+传统机器学习迁移学习数据分布训练和测试数据同分布训练和测试数据不需要同分布数据标签足够的数据标注不需要足够的数据标注建模每个任务分别建模可以重用之前的模型
+传统机器学习迁移学习
+迁移学习简介
+42
+
+=== p43 ===
+迁移学习简介
+43
+
+=== p44 ===
+迁移学习
+迁移学习的应用领域
+44
+
+=== p45 ===
+•领域自适应：–domain adaptation; cross-domain learning–问题定义：有标签的源域和无标签的目标域共享相同的特征和类别，但是特征分布不同，如何利用源域标定目标域
+领域自适应
+45
+
+=== p46 ===
+–基于特征的迁移方法：•Transfer component analysis [Pan,TKDE-11]•Geodesic flow kernel [Duan,CVPR-12]•Transfer kernel learning [Long,TKDE-15]•TransEMDT [Zhao,IJCAI-11]–基于实例的迁移方法：•Kernel mean matching [Huang,NIPS-06]•Covariate Shift Adaptation [Sugiyama,JMLR-07]–基于模型的迁移方法：•Adaptive SVM (ASVM) [Yang et al, ACMMultimedia-07]•Multiple Convex Combination (MCC) [Schweikert,NIPS-09]•Domain Adaptation Machine (DAM) [Duan,TNNLS-12]
+领域自适应
+46
+
+=== p47 ===
+•迁移成分分析(TCA,transfercomponent  analysis) [Pan,TKDE-11]–将源域和目标域变换到相同空间，最小化它们的距离
+领域自适应
+47
+
+=== p48 ===
+•迁移成分分析：–优化目标：
+–Maximum mean discrepancy(MMD)
+领域自适应
+48
+
+=== p49 ===
+•Covariate Shift Adaptation [Sugiyama,JMLR-07]–采用自然估计法估计源域和目标域的密度比例，然后进行实例权重的分配，最后迁移–优化目标：
+领域自适应
+49
+
+=== p50 ===
+•Adaptive SVM (ASVM) [Yang et al,ACM  Multimedia-07]–使用SVM模型，在适配和原始模型之间学习“数据函数”,  达到模型迁移效果–优化目标：
+领域自适应
+50
+
+=== p51 ===
+•深度迁移学习–利用深度神经网络的结构进行迁移学习–神经网络学习非线性的特征表示–层次性–使得数据具有不可解释性–表明在数据中具有某些不可变的成分，可以用来迁移•代表方法–Joint CNN [Tzeng, ICCV-15]–DANN [ICML-15, JMLR-16]–Deep Adaptation Network (DAN) [Long,ICML-15]–Joint Adaptation Networks [Long,ICML-17]
+领域自适应
+51
+
+=== p52 ===
+•Joint CNN [Tzeng,ICCV-15]–针对有稀疏标记的目标域数据，用CNN同时优化域之间的距离和迁移学习任务的损失
+领域自适应
+52
+𝜽𝐫𝐞𝐩𝐫
+𝜽𝑫
+
+=== p53 ===
+领域自适应❑域对抗神经网络（Domain-Adversarial Neural Networks，DANN）[ICML-15, JMLR-16]
+53
+
+=== p54 ===
+•Deep Adaptation Network (DAN) [Long,ICML-15]–将CNN中与学习任务相关的隐藏层映射到再生核希尔伯特空间中，通过多核优化的方法最小化不同域之间的距离
+领域自适应
+54
+
+=== p55 ===
+•Joint Adaptation Networks [Long,ICML-17]–提出一种新的联合分布距离度量关系，利用这种关系泛化深度模型的迁移学习能力，从而适配不同领域的数据分布–基于AlexNet和GoogLeNet重新优化了网络结构
+领域自适应
+55
+
+=== p56 ===
+领域自适应❑总结o通常假设源域和目标域的数据有相同的条件分布，或者在高维空间里有相同的条件分布o这个假设是有一定局限性的，无法衡量源域和目标域之间相似性，可能发生负迁移❑任务延伸：语义分割、目标检测、动作识别等❑设定拓展：开集、多源域、无源域、通用等
+56
+
+=== p57 ===
+领域自适应❑从不同的角度放宽闭集领域自适应的假设
+部分集领域自适应
+开集领域自适应
+通用领域自适应
+57
+
+=== p58 ===
+领域自适应
+私有类共有类通用领域自适应
+l通用领域自适应的目的是对目标域上的共有进行正确判别，并将所有未知类进行识别。
+l现有的方法通过在域对抗训练学习域相关特征并进行对齐从而达到知识迁移的目的。
+l其难点在于，除了领域自适应存在的域差异外，还额外引入了类差异。
+l该设定下，域相关特征包含两部分，一部分是域差异相关的特征，另一部分是类差异相关的特征。
+私有类
+58
+
+=== p59 ===
+领域自适应层次特征分解网络（Hierarchical Feature Disentangling Network，HFDN）
+第一层
+第二层
+Gao, Yuan, et al. "Hierarchical feature disentangling network for universal domain adaptation." Pattern Recognition 127 (2022): 108616.59
+
+=== p60 ===
+概览❑半监督学习❑迁移学习❑自监督学习❑弱监督学习❑主动学习
+60
+
+=== p61 ===
+有监督vs 自监督学习❑有监督学习–learning with labeled datao机器学习的主要方式o通过大规模数据集预训练模型，学习特征表示方法用于小规模目标任务❑无监督学习–learning with unlabeled datao发现数据中的模式规律，例如聚类、概率估计、降维等❑自监督学习–representation learning with unlabeled datao从unlabeled data中通过pretext tasks学习可泛化的特征表示方法o“自监督”表示创造自己的监督信息(i.e., without supervision, without labels)o自监督学习是无监督学习的一种
+61
+
+=== p62 ===
+自监督学习❑自监督学习例子oPretext task: train a model to predict the rotation degree of rotated images with cats and dogs (we can collect million of images from internet, labeling is not required)
+oDownstream task: use transfer learning and fine-tune the learned model from the pretext task for classificationof cats vs dogs with very few labeled examples
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning62
+
+=== p63 ===
+自监督学习❑自监督学习示意图oFor the downstream task, re-use the trained ConvNetbase model, and fine-tune the top layers on a small labeled dataset
+Picture from: Jing and Tian (2019) Self-supervised Visual Feature Learning with Deep Neural Networks: A Survey63
+
+=== p64 ===
+自监督学习❑Why 自监督学习?o为每一个任务收集有标签数据需要昂贵的时间人力成本o自监督学习可以充分利用大量无标签数据(images, videos, text)o自监督学习可能会使特征更好地泛化到下游任务❑自监督学习的挑战o针对具体问题，如何选择合适的pretext task？oThere is no gold standard for comparison of learned feature representationsoSelecting a suitable loss functions, since there is no single objective as the test set accuracy in supervised learning
+64
+
+=== p65 ===
+基于图像的方法❑识别几何变换oImage rotation❑基于Patches的方法oRelative patch position, image jigsaw puzzle❑生成模型oContext encoders, image colorization, cross-channel prediction, image super-resolution❑自动标签生成oDeep clustering, synthetic imagery❑对比学习oContrastive predictive coding (CPC), SimCLR, and other contrastive approaches
+65
+
+=== p66 ===
+Image Rotation❑识别几何变换oGidaris(2018) -Unsupervised Representation Learning by Predicting Image Rotations❑Training data: 图像随机旋转90度的倍数oThis corresponds to four rotated images at 0°, 90°, 180°, and 270°❑Pretext task: 通过预测所旋转的角度预训练模型oTherefore, it is a 4-class classification problem
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning66
+
+=== p67 ===
+Image Rotation❑通过预测旋转角度，所学习的模型需要理解图像中的物体位置和种类
+67
+
+=== p68 ===
+Relative Patch Position❑Relative patch position for context predictionoDorsch(2015) Unsupervised Visual Representation Learning by Context Prediction❑Training data: 图像中提取多个patches❑Pretext task: 通过预测patches之间的关系预训练模型oE.g., predict the relative position of the selected patch below (i.e., position # 7)❖For the center patch, there are 8 possible neighbor patches (8 possible classes)
+68
+
+=== p69 ===
+Relative Patch Position❑通过预测patches之间的相对位置，所学习的模型需要理解图像中的空间关系
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning69
+
+=== p70 ===
+Image Jigsaw Puzzle❑Predict patches position in a jigsaw puzzleoNoroozi(2016) Unsupervised Learning of Visual Representations by Solving Jigsaw Puzzles❑Training data: 9 patches extracted in images (similar to the previous approach) ❑Pretext task: predict the positions of all 9 patchesoInstead of predicting the relative position of only 2 patches, this approach uses the grid of 3×3 patches and solves a jigsaw puzzle
+70
+
+=== p71 ===
+Image Jigsaw Puzzle❑所学习的模型需要理解物体的局部相对位置和形状
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning71
+
+=== p72 ===
+Context Encoders❑Predict missing pieces, also known as context encoders, or inpaintingoPathak (2016) Context Encoders: Feature Learning by Inpainting❑Training data: 随机去除图像的某一区域❑Pretext task: 填入图像中的缺失部分oThe model needs to understand the content of the entire image, and produce a plausible replacement for the missing piece
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning72
+
+=== p73 ===
+Context Encoders❑The joint loss function ℒ=𝜆;<=ℒ;<=+𝜆>?@ℒ>?@resulted in improved prediction of the missing piece
+Input imageEncoder-decoder with reconstruction loss ℒ+,-
+GAN with loss ℒ./0Joint loss ℒ=𝜆+,-ℒ+,-+𝜆./0ℒ./0
+73
+
+=== p74 ===
+Context Encoders❑Additional examples comparing the used loss functionsoThe joint loss produces the most realistic images
+Input imageReconstruction loss ℒ%&'GAN loss ℒ()*Joint loss
+74
+
+=== p75 ===
+Context Encoders❑The removed regions can have different shapesoRandom region and random block masks outperformed the central region features
+Central regionRandom blockRandom region
+75
+
+=== p76 ===
+Image Colorization❑Image colorizationoZhang (2016) Colorful Image Colorization❑Training data: pairs of color and grayscale images❑Pretext task: predict the colors of the objects in grayscale imagesoThe model needs to understand the objects in images and paint them with a suitable color oRight image: learn that the sky is blue, cloud is white, mountain is green
+Sky is blueCloud is whiteMountain is green
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning76
+
+=== p77 ===
+Image Colorization❑Input examples
+77
+
+=== p78 ===
+Image Colorization❑An encoder-decoder architecture with convolutional layers is used oloss between the actual color image and the predicted colorized image is used for training
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning78
+
+=== p79 ===
+Image Super-Resolution❑Image Super-ResolutionoLedig(2017) Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network❑Training data: pairs of regular and downsampledlow-resolution images❑Pretext task: predict a high-resolution image that corresponds to a downsampledlow-resolution image
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning79
+
+=== p80 ===
+Image Super-Resolution❑SRGAN (Super-Resolution GAN) is a variant of GAN for producing super-resolution imagesoThe generatortakes a low-resolution image and outputs a high-resolution image using a fully convolutional networkoThe discriminatoruses a loss function that combines L2and content loss to distinguish between the actual (real) and generated (fake) super-resolution images❖Content loss compares the feature content between the actual and predicted images
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning80
+
+=== p81 ===
+Deep Clustering❑Deep clustering of imagesoCaron (2019) Deep Clustering for Unsupervised Learning of Visual Features❑Training data: clusters of images based on the contentoE.g., clusters on mountains, temples, etc. ❑Pretext task: predict the clusterto which an image belongs
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning81
+
+=== p82 ===
+Deep Clustering❑The architecture for SSL is called deep clusteringoThe model treats each cluster as a separate classoThe output is the number of the cluster (i.e., cluster label) for an input imageoThe authors used k-means for clustering the extracted feature maps❑The model needs to learn the content in the images in order to assign them to the corresponding cluster
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning82
+
+=== p83 ===
+Synthetic Imagery❑Synthetic imageryoRen (2017) Cross-Domain Self-supervised Multi-task Feature Learning using Synthetic Imagery❑Training data: synthetic images generated by game engines and real imagesoGraphics engines in games can produce realistically looking synthetic images❑Pretext task: predict whether an input image is synthetic or real, based on predicted depth, surface normal, and instance contour mapsoThe learned features are useful for segmentation and classification downstream tasks
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning83
+
+=== p84 ===
+Synthetic Imagery❑The model has weight-shared ConvNetsthat are trained on both real and synthetic images oThe discriminator learns to distinguish real from synthetic images, based on the surface normal, depth, and edge mapsoThe model is trained in an adversarial manner (as in GANs), by simultaneously improving both the generator and discriminator
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning84
+
+=== p85 ===
+Synthetic Imagery❑Learned depth, surface normal, and instance contour maps, and the corresponding ground truth in synthetic images
+85
+
+=== p86 ===
+Contrastive Predictive Coding❑Contrastive Predictive Coding (CPC)oVan der Oord (2018) Representation Learning with Contrastive Predictive Coding❑Training data: extracted patches from input images❑Pretext task: predict the order for a sequence of patches using contrastive learningoE.g., how to predict the next (future) patches based on encoded information of previous (past) patches in the image ❑The approach was implemented in different domains: speech audio, images, natural language, and reinforcement learning
+Picture from: William Falcon –A Framework for Contrastive Self-Supervised Learning and Designing a New Approach86
+
+=== p87 ===
+Contrastive Predictive Coding❑Contrastive learning is based on grouping similar examples togetheroE.g., cluster the shown images into groups of similar images❑Noise-Contrastive Estimation (NCE) loss is commonly used in contrastive learningoThe NCE loss minimizes the distance between similar images (positive examples) and maximizes the distance to dissimilar images (negative examples)oOther used terms are InfoNCEloss, or contrastive cross-entropy loss
+Maximize distance
+Picture from: William Falcon –A Framework for Contrastive Self-Supervised Learning and Designing a New Approach87
+
+=== p88 ===
+SimCLR❑SimCLR, a Simple framework for Contrastive Learning of RepresentationsoChen (2020) A Simple Framework for Contrastive Learning of Visual Representations❑SimCLRis an approach for contrastive learning, similar to CPC❑It achieved state-of-the-art in SSL, surpassing the Top-1 accuracy by a supervised ResNet-50 on ImageNet
+88
+
+=== p89 ===
+SimCLR❑Approach:oRandomly sample a mini-batchof ninputs𝒙, and apply two different data augmentation operations 𝑡and 𝑡′, resulting in 2𝑛samples ,𝒙!=𝑡𝒙and ,𝒙𝒋=𝑡′𝒙❖Data augmentation includes random crop, resize with random flip, color distortions, and Gaussian blur (data augmentation is crucial for contrastive learning)oApply a base encoder 𝑓/to ,𝒙!and ,𝒙𝒋to obtain the code representations 𝒉!=𝑓,𝒙!and 𝒉𝒋=𝑓,𝒙𝒋oApply another prediction head encoder 𝑔/(one fully-connected layer) to 𝒉!and 𝒉𝒋to obtain the code representations 𝒛!=𝑔𝒉!and 𝒛#=𝑔𝒉#
+Base encoder f: ResNet+ global average pooling
+Prediction head g:One fully-connected layer
+89
+
+=== p90 ===
+SimCLR❑For one positive pair of samples 𝒛!and 𝒛"and for the remaining 2𝑛−1samples treated as negative, a cosine similarity is calculated as sim𝒛!,𝒛"=𝒛!#𝒛"𝒛!𝒛!❑The contrastive prediction task aims for a given sample 0𝒙!to identify a positive pairing sample 0𝒙𝒋❑The NCE loss for the instances 0𝒙!and 0𝒙𝒋is calculated as:ℒ!,"=−logexpsim𝒛!,𝒛"/𝜏∑&'()*𝟏&+!expsim𝒛!,𝒛"/𝜏o𝟏&+!has a value of 1 if 𝑘≠𝑖and 0 otherwise, 𝜏is a temperature hyperparameter❑The overall loss ∑!,"ℒ!,"is calculated across all positive pairs 0𝒙!and 0𝒙𝒋in a mini-batch❑For downstream tasks, the head 𝑔Ais discarded and only the representation 𝒉!is used
+90
+
+=== p91 ===
+SimCLR❑Data augmentation
+91
+
+=== p92 ===
+SimCLR❑Experimental results on 10 image datasetsoSimCLRoutperformed supervised models on most datasets
+92
+
+=== p93 ===
+Other Contrastive SSL Approaches❑Other recent self-supervised approaches based on contrastive learning include:oAugmented Multiscale Deep InfoMaxorAMDIM❖Bachman (2019) Learning Representations by Maximizing Mutual Information Across ViewsoMomentum Contrast or MoCo❖He (2019) Momentum Contrast for Unsupervised Visual Representation LearningoBootstrap Your Own Latent or BYOL❖Grill (2020) Bootstrap your own latent: A new approach to self-supervised LearningoSwapping Assignments between multiple Views of the same image or SwAV❖Caron (2020) Unsupervised Learning of Visual Features by Contrasting Cluster AssignmentsoYet Another DIM or YADIM❖Falcon (2020) A Framework for Contrastive Self-Supervised Learning and Designing a New ApproachoAnd more …❖ViTbased
+93
+
+=== p94 ===
+Video-based Approaches❑Videos provide richer visual information than imagesoThe consistency of spatial and temporal information across video frames lend them suitable for learning from raw videos without labelsoFrame ordering, tracking moving objects, video colorization, etc.
+94
+
+=== p95 ===
+Frame Ordering❑Frame ordering also known as shuffle and learnoMisra(2016) Shuffle and Learn: Unsupervised Learning using Temporal Order Verification❑Training data: videos of objects in motion with shuffled order of the frames❑Pretext task: predict if the frames are in the correct temporal orderoThe frames are shuffled, and pairs of videos with correct and shuffled order are used for training the modeloThe model needs to learn the object classes, as well as it needs to learn the temporal ordering of the objects’ positions across the frames
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning95
+
+=== p96 ===
+Frame Ordering❑The model employs ConvNetswith shared weightsoThe output is a binary prediction on whether the frames are in the correct order or not
+Picture from: Amit Chaudhary –The Illustrated Self-Supervised Learning96
+
+=== p97 ===
+Frame Ordering❑Example
+Picture from: Andrew Zisserman –Self-Supervised Learning97
+
+=== p98 ===
+Tracking Moving Objects❑Tracking moving objectsoWang (2015) Unsupervised Learning of Visual Representations using Videos❑Training data: videos of moving objects❑Pretext task: predict the location of a patch with a moving object across framesoAn optical flow approach based on a SURF feature extractor is used for matching feature points across video framesoA ConvNetmodel is designed for predicting the patch location in the next framesoThe model learns representations by minimizing the distance (in the latent space) to the tracked patch across the frames
+98
+
+=== p99 ===
+Video Colorization❑Video colorization or temporal coherence of coloroVondrick(2018) Tracking Emerges by Colorizing Videos❑Training data: pairs of color and grayscale videos of moving objects❑Pretext task: predict the color of moving objects in other framesoThe learned representations are useful for downstream segmentation, object tracking, and human pose estimation tasks
+Picture from: Andrew Zisserman –Self-Supervised Learning99
+
+=== p100 ===
+Video Colorization❑Inputs and predicted outputs for video segmentation and human skeleton pose prediction in videos
+100
+
+=== p101 ===
+Video Colorization❑The goal is to copy colors from a reference frame in color to another target frame in grayscale❑The model needs to employ the temporal consistency of the objects across frames in order to learn how to apply colors to the grayscale framesoThis includes tracking correlated pixels in different framesoThe reference and target frames should not be too far apart in time
+101
+
+=== p102 ===
+Video Colorization❑Video colorization examples
+102
+
+=== p103 ===
+Background Robust Method
+Wang, Jinpeng, et al. "Removing the background by adding the background: Towards background robust self-supervised video representation learning."CVPR. 2021.103
+
+=== p104 ===
+Suppressing Static Visual Cues
+Zhang, M., Wang, J. and Ma, A.J., 2022, June. Suppressing Static Visual Cues via Normalizing Flows for Self-Supervised Video Representation Learning. InProceedings of the AAAI Conference on Artificial Intelligence(Vol. 36, No. 3, pp. 3300-3308).104
+
+=== p105 ===
+Channel Aliasing Video Perception
+Lin, Yiqi, et al. "Learning Spatio-temporal Representation by Channel Aliasing Video Perception."Proceedings of the 29th ACM International Conference on Multimedia. 2021.
+105
+
+=== p106 ===
+概览❑半监督学习❑迁移学习❑自监督学习❑弱监督学习❑主动学习
+106
+
+=== p107 ===
+Manual supervision for objectrecognition2
+1 sec  perclass
+{motorbike (pixel labels),  person (pixellabels)}
+78 sec  perinstance
+{motorbike (b-box),  person(b-box)}
+10 sec  perinstance
+WeaksupervisionLower degree (or cheaper) annotation at train time than the required output at testtime
+{motorbike (image-{motorbike (point),  label),personperson (point)}  (image-level)}2.4 sec  perinstance
+annotationtimeBerman et al., What’s the Point: Semantic Segmentation with Point Supervision, ECCV16
+107
+
+=== p108 ===
+Challenges –part/wholeWeakly SupervisedLearningParts vsobject“The same features are only present in the (whole) target objectinstances”
+Question: What is aperson?a)Faceb)Face + upperbodyc)Face + whole body
+☺
+11
+108
+
+=== p109 ===
+Challenges -CooccurrenceWeakly SupervisedLearningContext vsobject“The same features are only present in the (whole) target objectinstances”
+Question: What is atrain?a)Railb)Train +Railc)Train
+☺
+12
+109
+
+=== p110 ===
+Challenges -CooccurrenceWeakly SupervisedLearningMultiple vs singleinstance“The same features are only present in the (whole) target objectinstances”
+Question: What is asheep?a)2sheepsb)3 sheeps +grassc)1 sheep
+☺
+13
+110
+
+=== p111 ===
+Multiple-instance learning(MIL)17
+PositivebagsNegativebagsbags =imagesinstances =windows
+Goals:•find true positive instances•train window classifier
+MIL: [Dietterich 1997AI]MIL-WSOD: [Blaschko NIPS 10, Deselaers ECCV 10, Nguyen ICCV 09, Russakovsky ECCV 12, Siva ICCV 11, Siva ECCV12]Slide credit: VittorioFerrari111
+
+=== p112 ===
+Standard MILpipeline
+Two step alternatingoptimization•Re-train•Re-localizeChallenges•Sensitive to initialization (localminimum)•Overfitting to predictedwindows
+19
+Object  detection  model
+Re-localize
+Re-train
+Initialize
+112
+
+=== p113 ===
+How to generatebags?Windowspace20
+Slidingwindows•>100k perimage•dense•translations, scales and aspect-ratios  (4Dspace)
+[Chum CVPR 07, Nguyen ICCV 09, Pandey ICCV11]
+…
+Objectproposals•Selective Search and EdgeBoxes[van de Sande ICCV 11, Dollar ECCV14]•~2k per image•Commonly used inWSOD[Deselaers ECCV 10, Siva ICCV 11, RussakovskyECCV12, …]
+Slide credit: VittorioFerrari113
+
+=== p114 ===
+Standard MILpipeline21
+Objectdetection  model
+Re-localize
+Re-train
+Initialize
+114
+
+=== p115 ===
+Initialization22
+[Song ICML 14] constructs a graph tofind  initialboxes:1.relevant (occur in manypositiveimages)2.discriminative (dissimilar to the boxes in  the negativeimages)3.complementary (capture multiplemodes)
+Simplestrategies:•Wholeimage[Nguyen ICCV 09, Bilen BMVC14]•Whole image minus amargin[Pandey ICCV11, RussakovskyECCV12]
+115
+
+=== p116 ===
+Standard MILpipeline23
+Object  detection  model
+Re-localize
+Re-train
+Initialize
+116
+
+=== p117 ===
+𝑏argmax𝐴𝑥𝑏
+•Pick the highest scoring window as  positive•Only one positive instance perimage
+Standard maxformulationRe-localize 24
+ProposalFeatures  Appearancemodel
+[Nguyen ICCV 09, Bilen CVPR 14, Cinbis CVPR 14, Papadopoulos CVPR16] 117
+
+=== p118 ===
+Re-train 25
+[Nguyen ICCV 09, Bilen CVPR 14, Cinbis CVPR 14, Papadopoulos CVPR16]
+ 118
+Hinge and cross-entropy loss
+
+=== p119 ===
+𝑏log	σ𝑏exp	𝐴(𝑥+)	>ΔFor negativeimages𝑏log	σ𝑏exp	𝐴(𝑥−)	<−Δ
+•Less sensitive toinitialization•Leverages multiple positivesamplesduringtraining
+Re-localization andRe-trainingMore robust optimization: Relaxing maxoperatorHedge your bets on multipleproposals
+Re-trainFor positiveimages
+26
+Max
+Soft-max
+[Bilen BMVC14] 119
+
+=== p120 ===
+Re-localization andRe-trainingMore robust optimization: Self-pacedlearning•Inspired from CurriculumLearning[Bengio ICML09]•Start with easy samples,thenconsider hard ones intraining
+•Easiness measures forWSOD:•Selection of samples via  confidence of max scoringwindow[Kumar NIPS10]•Selection of window space by  allowing smallerwindows[Bilen IJCV 14, Shi ECCV14]•Selection of samples via inter-categorycompetition[Sangineto PAMI17]
+27
+Image credit: [Sangineto PAMI17]
+Image credit: [Bilen IJCV14]
+120
+
+=== p121 ===
+Re-localization andRe-training28Re-localization andRe-training
+121
+
+=== p122 ===
+Re-localization andRe-training29
+Image credits: [Deselaers ECCV10][Chum CVPR 07, Deselaers ECCV 10, Siva ICCV 11, Bilen CVPR15]
+ 122
+
+=== p123 ===
+Re-localization andRe-training30
+Image credit: [Bilen CVPR15][Chum CVPR 07, Bilen CVPR15]
+ 123
+
+=== p124 ===
+Re-localization andRe-trainingAdditional cues:context•Background provides contextual cues forrecognition[Russakovsky ECCV 12, Bilen CVPR 14, Kantorov ECCV16]•Better separation of foreground andbackground•Additive: select a ROI that is semantically compatible with itscontext•Contrastive: select a ROI that is outstanding from itscontext
+32
+[Russakovsky ECCV12]
+FGBG
+[Kantorov ECCV16]
+ 124
+
+=== p125 ===
+Re-localization andRe-trainingAdditional cues:ObjectnessQuantify how likely a window is to contain an object of anyclass[Alexe CVPR 10, Uijlings IJCV 13, Zitnick&Dollar ECCV14]•Generates a small set of accurate objectproposals•Steers re-localization towards objects and away frombackground•Pushes towards whole objects instead ofsub-regions𝑎𝑟𝑔𝑚𝑎𝑥𝑏𝜆𝐴𝑥𝑏+1	−	𝜆Obj𝑏Commonly used for weakly supervised object  Localization[Deselaers ECCV 10, Khan OAGMW 11, Siva ICCV11,Guillaumin CVPR 12, Prest CVPR12,Shapovalova ECCV 12, Shi BMVC 12, Tang CVPR14,Wang ECCV 14, Jerripothula ECCV16,Cinbis PAMI 16, Bilen CVPR16]
+33
+Slide credit: VittorioFerrari125
+
+=== p126 ===
+Re-localization andRe-trainingPriors:EquivarianceThe predicted output should be equivariant to imagetransformations
+34
+Before After[Bilen BMVC14] 126
+
+=== p127 ===
+Re-localization andRe-trainingPriors: Scale [Shi ECCV16]•Curriculum learning (bigger objects down to smallerones)•Weight object proposals according to estimatedsize•Requires training a size estimator from a smallset
+35
+[Shi ECCV16] 127
+
+=== p128 ===
+Re-localization andRe-training36
+Image credit: [Prest CVPR12][Prest CVPR 12, Tang CVPR 13, Joulin ECCV 14, Kuznetsova  CVPR 15, Liang ICCV 15, Liang ICCV 15, Kalogeiton PAMI15]
+ 128
+
+=== p129 ===
+Standard MILpipeline37
+Object  detection  model
+Re-localize
+Re-train
+Initialize
+129
+
+=== p130 ===
+End-to-endWSOD39
+Weakly Supervised Deep Detection Network (WSDDN) [Bilen CVPR16]•Previous work uses CNN as black-box featureextractor•First end-to-end WSOD method, finetunes a pre-trained deepnetwork•Uses RoI-Pooling [Girshick ICCV15]•Two streamarchitecture•Classification: Associates each region with a classscore•Localization: Compares regions for eachclass
+Convlayers
+Region  ProposalsRoIPooling
+𝑹𝟏𝑹𝟐𝑹𝟑𝑹𝟒horseperson
+𝑹𝟏𝑹𝟐𝑹𝟑𝑹𝟒horseperson
+classification
+localizationhorseperson
+130
+
+=== p131 ===
+End-to-endWSOD40
+[Bilen CVPR16]
+ 131
+
+=== p132 ===
+Incorporating instanceclassificationOnline Instance Classifier Refinement (OICR) [Tang CVPR17]WSDDN learns to classify images based on implicit instancescoringOICR learns to classifyinstances•Initially uses WSDDN to set instancelabels•Iteratively refines them by using an instanceclassifier
+41
+132
+
+=== p133 ===
+Incorporating instanceclassificationProposal Cluster Learning (PCL) for WSOD [Tang PAMI18]Observation: There can bemultiplepositive instances in animage
+OICRconsidersonlythehighestscoringproposal+surroundingonesaspositives
+PCL•builds an undirected graph of  top-rankingproposals•iteratively selects vertices  which have most connections  to be the clustercentres
+42
+133
+
+=== p134 ===
+Instance-Aware, Context-Focused, and Memory-Efficient WSOD [Ren CVPR20]Regularizing DiscriminativeParts
+•Builds on WSDDN andOICR•Picks top p % of the highest scoring proposals and surrounding ones aspositives•Introduces ConcreteDropBlock: a data-driven and parametric drop-out to dropthemost relevantregions•Adversarial optimization
+43
+134
+
+=== p135 ===
+Summary on weakly supervised objectdetection46
+•WSOD is an ill-posed problem and ambiguous due topart/whole andco-occurrenceissues.•WSOD training is sensitive to initialization and prone tooverfitting.•Remarkable progress dueto•objectnessand regionproposals,•incorporating prior knowledge and additionalcues,•end-to-end learning.•Addressing the inherent ambiguity requires better objectnessmeasures andstrongeradditionalcues.135
+
+=== p136 ===
+Weak Supervised Saliency detection❑针对像素级图像标注问题，提出了一种多源弱监督视觉显著性检测模型，他们设计了一个分类网络（CNet）和一个标题生成网络（PNet），分别学习预测对象以及生成图像标题。
+Zeng, Yu, et al. Multi-source weak supervision for saliency detection. 2019.136
+
+=== p137 ===
+Weakly Supervised Action Localization❑作者提出了一种基于弱监督方法的时序行为检测，即不需要具体的行为动作的时间定位信息，只通过视频类别信息进行训练而得到人体动作行为间隔信息。
+Nguyen, Phuc, et al."WeaklySupervised Action Localization by Sparse Temporal Pooling Network."(2017). 137
+
+=== p138 ===
+概览❑半监督学习❑迁移学习❑自监督学习❑弱监督学习❑主动学习
+138
+
+=== p139 ===
+主动学习❑假设有一个oracle，比如人类专家，可以向专家查询所选未标注数据的真值标签，让专家为估计模型最有价值的数据点打上标签。
+139
+
+=== p140 ===
+主动学习❑主动学习的模型如下:o𝐴=(𝐶,𝑄,𝑆,𝐿,𝑈)o其中𝐶为一组或者一个分类器，𝐿是用于训练已标注的样本，𝑄是查询函数，用于从未标注样本池𝑈中查询信息量大的信息，𝑆是督导者，可以为𝑈中样本标注正确的标签。
+140
+
+=== p141 ===
+主动学习❑主动学习算法主要分为两阶段:l第一阶段为初始化阶段，随机从未标注样本𝑈中选取小部分，由督导者𝑆标注，为训练集建立初始分类器模型；l第二阶段为循环查询阶段，𝑆从未标注样本集𝑈中,按照某种查询标准𝑄，选取一定的未标注样本进行标注,并加到训练样本集𝐿中, 重新训练分类器，直至达到训练停止标准为止。
+141
+
+=== p142 ===
+主动学习❑查询函数𝑄的设计最常用的策略是：不确定性准则和差异性准则。l不确定性：信息熵是衡量信息量的概念，也是衡量不确定性的概念。信息熵越大，就代表不确定性越大，包含的信息量也就越丰富。所以，不确定性策略就是要想方设法地找出不确定性高的样本，因为这些样本所包含的丰富信息量，对我们训练模型来说就是有用的。l差异性：查询函数每次迭代中查询一个或者一批样本。我们当然希望各个样本提供的信息不重复不冗余，即样本之间具有一定的差异性。在每轮迭代抽取单个信息量最大的样本加入训练集的情况下，每一轮迭代中模型都被重新训练，以新获得的知识去参与对样本不确定性的评估可以有效地避免数据冗余。142
+
+=== p143 ===
+主动学习例子
+Zhou Z, Shin J, Zhang L, et al.Fine-Tuning Convolutional Neural Networks for Biomedical Image Analysis: Actively and Incrementally[C]// IEEE Conference on Computer Vision and Pattern Recognition. IEEE Computer Society, 2017:4761-4772. 143
+
+=== p144 ===
+主动学习例子
+144
+

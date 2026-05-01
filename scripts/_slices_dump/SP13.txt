@@ -1,0 +1,807 @@
+# SP13  Approximate Dynamic Programming and Reinforcement Learning
+# Pages: 45
+
+=== p1 ===
+Stochastic Processes
+Approximate Dynamic Programming and Reinforcement Learning
+Jie Gong
+Autumn, 2022
+J. Gong (SYSU) ADP and RL Autumn, 2022 1 / 45
+
+=== p2 ===
+Introduction
+Outline
+1 Introduction
+2 Approximate Dynamic Programming
+3 Reinforcement Learning
+J. Gong (SYSU) ADP and RL Autumn, 2022 2 / 45
+
+=== p3 ===
+Introduction
+Sequential Decision Problem
+Lecture 1: Introduction to Reinforcement Learning
+The RL Problem
+Environments
+Agent and Environment
+state
+ukxk
+action
+cost gk
+At each step t the agent:
+Executes action At
+Receives observation Ot
+Receives scalar reward Rt
+Receives action At
+Emits observation Ot+1
+Emits scalar reward Rt+1
+t increments at env. step
+Agent
+Environment
+w k
+Agent: take an action uk depending on observation
+Environment: generate a cost gk and transit to a new state xk+1
+with some randomness wk
+J. Gong (SYSU) ADP and RL Autumn, 2022 3 / 45
+
+=== p4 ===
+Introduction
+MDP - Planning Problem
+Lecture 1: Introduction to Reinforcement Learning
+The RL Problem
+Environments
+Agent and Environment
+state
+ukxk
+action
+cost gk
+At each step t the agent:
+Executes action At
+Receives observation Ot
+Receives scalar reward Rt
+Receives action At
+Emits observation Ot+1
+Emits scalar reward Rt+1
+t increments at env. step
+Agent
+Environment
+w k
+A model of the environment is known ( gk,fk, distribution of wk)
+The agent optimizes its policy based on the model (without any
+external interaction), and carry out the policy
+J. Gong (SYSU) ADP and RL Autumn, 2022 4 / 45
+
+=== p5 ===
+Introduction
+RL - Learning Problem
+Lecture 1: Introduction to Reinforcement Learning
+The RL Problem
+Environments
+Agent and Environment
+state
+ukxk
+action
+cost gk
+At each step t the agent:
+Executes action At
+Receives observation Ot
+Receives scalar reward Rt
+Receives action At
+Emits observation Ot+1
+Emits scalar reward Rt+1
+t increments at env. step
+Agent
+Environment
+w k
+The environment is initially (partially) unknown
+The agent interacts with the environment and improves its policy
+Or the model is known but overcomplex (a.k.a. ADP)
+J. Gong (SYSU) ADP and RL Autumn, 2022 5 / 45
+
+=== p6 ===
+Approximate Dynamic Programming
+Outline
+1 Introduction
+2 Approximate Dynamic Programming
+3 Reinforcement Learning
+J. Gong (SYSU) ADP and RL Autumn, 2022 6 / 45
+
+=== p7 ===
+Approximate Dynamic Programming Overview
+Finite Horizon DP Problems
+System model
+xk+1 = fk(xk,uk,wk), k = 0,1,...,N −1
+Objective
+min
+π
+E
+{N−1∑
+k=0
+gk(xk,µk(xk),wk) + gN(xN)
+}
+where π= {µ0,µ1,...,µ N−1}
+J. Gong (SYSU) ADP and RL Autumn, 2022 7 / 45
+
+=== p8 ===
+Approximate Dynamic Programming Overview
+DP Algorithm
+Start with
+JN(xN) = gN(xN),
+and go backwards using
+Jk(xk) = min
+uk
+Ewk {gk(xk,uk,wk) + Jk+1 (fk(xk,uk,wk))},
+where k= 0,1,...,N −1.
+The curse of dimensionality
+▶ Exponential growth of the computational and storage requirements
+as the number of state variables and control variables increases
+▶ Quick explosion of the number of states in combinatorial problems
+J. Gong (SYSU) ADP and RL Autumn, 2022 8 / 45
+
+=== p9 ===
+Approximate Dynamic Programming Overview
+Value Function Approximation
+Use a policy computed from the DP equation where the optimal
+cost-to-go function Jk+1 is replaced by an approximation ˜Jk+1
+Apply ¯µk(xk), which attains the minimum in
+min
+uk
+Ewk
+{
+gk(xk,uk,wk) + ˜Jk+1 (fk(xk,uk,wk))
+}
+,
+Diﬀerent ways to compute ˜Jk+1
+▶ Oﬀ-line approximation: The entire function ˜Jk+1 is computed for
+every k, before the control process begins.
+▶ On-line approximation: Only the values ˜Jk+1(xk + 1) at the
+relevant next states xk + 1 are computed and used to compute uk
+just after the current state xk becomes known.
+▶ Simulation-based methods: Oﬄine or online methods based on
+Monte-Carlo simulation
+J. Gong (SYSU) ADP and RL Autumn, 2022 9 / 45
+
+=== p10 ===
+Approximate Dynamic Programming Certainty equivalent control
+Certainty Equivalent Control (CEC)
+Idea: Replace the stochastic problem with a deterministic problem
+At each time k, the future uncertain quantities are ﬁxed at some
+“typical” values
+Oﬀ-line implementation:
+- Let {µd
+0,...,µ d
+N−1}be an optimal controller obtained from the
+DP algorithm for the deterministic problem
+minimize
+N−1∑
+k=0
+gk(xk,µk(xk), ¯wk) + gN(xN)
+subject to xk+1 = fk(xk,µk(xk), ¯wk),
+- The CEC applies at time k the control µd
+k(xk)
+J. Gong (SYSU) ADP and RL Autumn, 2022 10 / 45
+
+=== p11 ===
+Approximate Dynamic Programming Certainty equivalent control
+CEC: On-line Implementation
+On-line implementation. At each time k:
+- Fix the wi,i ≥k, at some ¯wi. Solve the deterministic problem
+min
+ui∈Ui
+N−1∑
+i=k
+gi(xi,ui, ¯wi) + gN(xN)
+for given xk, where xi+1 = fi(xi,ui, ¯wi)
+- Use the ﬁrst control ¯µk(xk) in the optimal control sequence
+found.
+J. Gong (SYSU) ADP and RL Autumn, 2022 11 / 45
+
+=== p12 ===
+Approximate Dynamic Programming Limited lookahead
+Limited Lookahead Policies
+One-step lookahead (1SL) policy
+▶ Use a policy computed from the DP equation where the optimal
+cost-to-go function Jk+1 is replaced by an approximation ˜Jk+1
+▶ Apply ¯µk(xk), which attains the minimum in
+min
+uk
+Ewk
+{
+gk(xk,uk,wk) + ˜Jk+1 (fk(xk,uk,wk))
+}
+,
+▶ Given the approximated cost-to-go ˜Jk(xk), the 1SL policy is
+implemented online
+Two-step lookahead policy
+▶ At each k and xk, use the control ˜µk(xk) attaining the minimum
+above, where the function ˜Jk+1 is obtained using a 1SL
+approximation (solve a 2-step DP problem)
+J. Gong (SYSU) ADP and RL Autumn, 2022 12 / 45
+
+=== p13 ===
+Approximate Dynamic Programming Limited lookahead
+Approximation Function Design
+Problem Approximation: Approximate the optimal cost-to-go with
+some cost derived from a related but simpler problem
+Parametric Cost-to-Go Approximation: Approximate the optimal
+cost-to-go with a function of a suitable parametric form, whose
+parameters are tuned by some heuristic or systematic scheme
+(Neuro-Dynamic Programming)
+Rollout Approach: Approximate the optimal cost-to-go with the
+cost of some suboptimal policy, which is calculated either
+analytically or by simulation
+J. Gong (SYSU) ADP and RL Autumn, 2022 13 / 45
+
+=== p14 ===
+Approximate Dynamic Programming Problem Approximation
+Enforced decomposition
+The approximation is problem-dependent
+Example: Enforced decomposition for routing problem
+▶ Route mvehicles that move over a graph. Each node has a “value”.
+First vehicle that passes through the node collects its value.
+▶ Objective: max the total collected value, subject to the constraints
+on beginning nodes and destination nodes
+▶ Usually the 1-vehicle version of the problem is much simpler. This
+motivates an approximation obtained by solving single vehicle
+problems.
+▶ 1SL scheme: At time k and state xk (position of vehicles and
+“collected value nodes”), consider all possible k-th moves by the
+vehicles, and at the resulting states we approximate the optimal
+value-to-go with the value collected by optimizing the vehicle routes
+one-at-a-time
+J. Gong (SYSU) ADP and RL Autumn, 2022 14 / 45
+
+=== p15 ===
+Approximate Dynamic Programming Problem Approximation
+Aggregation
+Introduce “aggregate” states S1,...,S m, viewed as the states of
+an “aggregate” system
+Deﬁne transition probabilities and costs of the aggregate system,
+by relating original system states with aggregate states (using so
+called “aggregation and disaggregation probabilities”)
+Solve (exactly or approximately) the “aggregate” problem by any
+kind of method (including simulation-based)
+Use the optimal cost of the aggregate problem to approximate the
+optimal cost of each original problem state as a linear combination
+of the optimal aggregate state costs
+Discretization of continuous state spaces can be interpreted in
+terms of aggregation
+J. Gong (SYSU) ADP and RL Autumn, 2022 15 / 45
+
+=== p16 ===
+Approximate Dynamic Programming Problem Approximation
+Representative Subsets
+The aggregate states Sj are disjoint “representative” subsets of
+original system states
+AN EXAMPLE: REPRESENTATIVE SUBSETS
+• The aggregate statesSj are disjoint “represen-
+tative” subsets of original system states
+• Common case: Each Sj is a group of states with
+“similar characteristics”
+• Compute a “cost” rj for each aggregate state
+Sj (using some method)
+• Approximate the optimal cost of each original
+system state x with m φxj rjj=1
+• For each x,t h eφ
+[
+xj , j =1 ,...,m , are the “ag-
+gregation probabilities” ... roughly the degrees of
+membership of statex in the aggregate statesSj
+• Each φxj is prespeciﬁed and can be viewed as
+the jth feature of statex
+15
+Original State Space
+Aggregate States/Subsets
+x
+φx1
+φx2
+S1 S2
+S3S4
+S5
+S6
+S7 S8
+φx6
+Each Sj is a group of states with “similar characteristics”
+Compute a “cost” ˆJ(j) for each aggregate state Sj
+Approximate the optimal cost of each original system state x with
+˜J(x) = ∑
+j wxj ˆJ(j)
+For each x, the wxj,j = 1,...,m , are the “aggregation
+probabilities” ... roughly the degrees of membership of state x in
+the aggregate states Sj
+J. Gong (SYSU) ADP and RL Autumn, 2022 16 / 45
+
+=== p17 ===
+Approximate Dynamic Programming Problem Approximation
+Hard Aggregation v.s. Soft Aggregation
+Hard aggregation: each original state belongs to one and only one
+Sj, i.e., wxj ∈{0,1}
+Soft aggregation: 0 ≤wxj ≤1,∑
+j wxj = 1
+J. Gong (SYSU) ADP and RL Autumn, 2022 17 / 45
+
+=== p18 ===
+Approximate Dynamic Programming Problem Approximation
+Example: Discretization
+Consider a problem with the state space being a bounded region of
+a Euclidean space
+Discretize using some ﬁnite grid {x1,··· ,xM}
+Any nongrid state can be expressed as
+x=
+M∑
+m=1
+wm(x)xm
+with aggregation probability wm(x) satisfying 0 ≤wm(x) ≤1,∑M
+m=1 wm(x) = 1
+The costs-to-go of any state is approximated by
+˜J(x) =
+M∑
+m=1
+wm(x) ˆJ(xm)
+J. Gong (SYSU) ADP and RL Autumn, 2022 18 / 45
+
+=== p19 ===
+Approximate Dynamic Programming Parametric Cost-to-Go
+Parametric Cost-to-Go Approximation
+Use a cost-to-go approximation from a parametric class ˜J(x,r)
+where x is the current state and r= (r1,...,r m) is a vector of
+“tunable” scalars (weights)
+By adjusting the weights, one can change the “shape” of the
+approximation ˜J so that it is reasonably close to the true optimal
+cost-to-go function
+Two key issues:
+- The choice of parametric class ˜J(x,r) (the approximation
+architecture)
+- Method for tuning the weights (“training” the architecture)
+Successful application strongly depends on how these issues are
+handled, and on insight about the problem.
+J. Gong (SYSU) ADP and RL Autumn, 2022 19 / 45
+
+=== p20 ===
+Approximate Dynamic Programming Parametric Cost-to-Go
+Approximation Architecture
+Linear or nonlinear approximation w.r.t. the dependence of ˜J(x,r)
+on r
+Linear architectures are easier to train, but non-linear ones (e.g.,
+neural networks) are richer
+Linear feature-based architecture: φ= (φ1,...,φ n)
+˜J(x,r) = φ′r=
+∑
+j
+φj(x)rj
+Feature Extraction
+Mapping Mapping
+Linear
+Linear Cost
+State x Feature Vectorφ(x) Approximator φ(x)′r
+Ideally, the features will encode much of the nonlinearity that is
+inherent in the cost-to-go approximated, and the approximation
+may be quite accurate without a complicated architecture
+J. Gong (SYSU) ADP and RL Autumn, 2022 20 / 45
+
+=== p21 ===
+Approximate Dynamic Programming Parametric Cost-to-Go
+Computer Chess Example
+Chess programs use a feature-based position evaluator that assigns
+a score to each move/position
+Feature
+Extraction
+Weighting
+of Features
+Features:
+Material balance,
+Mobility,
+Safety, etc
+Score
+Position Evaluator
+/g44/g80/g68/g74/g72/g3/g69/g92/g3/g48/g44/g55
+/g50/g83/g72/g81/g38/g82/g88/g85/g86/g72/g58/g68/g85/g72/g17
+Many context-dependent special features
+Most often the weighting of features is linear but multistep
+lookahead is involved
+Most often the training is done “manually”, by trial and error
+J. Gong (SYSU) ADP and RL Autumn, 2022 21 / 45
+
+=== p22 ===
+Approximate Dynamic Programming Rollout Approach
+Rollout Algorithms
+Rollout algorithm: When ˜Jk is the cost-to-go of some heuristic
+policy (called the base policy)
+Policy iteration for inﬁnite horizon problem is rollout
+Policy improvement property: The rollout algorithm achieves no
+worse (and usually much better) cost than the base heuristic
+starting from the same state
+Main diﬃculty: Calculating ˜Jk(xk) maybe computationally
+intensive if the cost-to-go of the base policy cannot be analytically
+calculated
+▶ May involve Monte Carlo simulation if the problem is stochastic
+J. Gong (SYSU) ADP and RL Autumn, 2022 22 / 45
+
+=== p23 ===
+Approximate Dynamic Programming Rollout Approach
+Example: The Quiz Problem
+A list of N questions
+If question i is answered correctly (with prob. pi), we receive a
+reward Ri; if not, the quiz terminates.
+Objective: choose order of questions to maximize expected reward
+Optimal policy (index policy): Questions should be answered in
+decreasing order of piRi/(1 −pi)
+J. Gong (SYSU) ADP and RL Autumn, 2022 23 / 45
+
+=== p24 ===
+Approximate Dynamic Programming Rollout Approach
+Example: The Quiz Problem
+With minor changes in the problem, the index policy need not be
+optimal
+Example: A limit ( <N ) on the maximum number of questions
+that can be answered
+▶ If only one question can be answered, it is optimal to answer the
+one that oﬀers the maximum expected reward piRi
+Use index policy as the base policy for rollout: easy to calculate
+J. Gong (SYSU) ADP and RL Autumn, 2022 24 / 45
+
+=== p25 ===
+Reinforcement Learning
+Outline
+1 Introduction
+2 Approximate Dynamic Programming
+3 Reinforcement Learning
+J. Gong (SYSU) ADP and RL Autumn, 2022 25 / 45
+
+=== p26 ===
+Reinforcement Learning Problem Formulation
+RL Problem
+Lecture 1: Introduction to Reinforcement Learning
+The RL Problem
+Environments
+Agent and Environment
+state
+ukxk
+action
+cost gk
+At each step t the agent:
+Executes action At
+Receives observation Ot
+Receives scalar reward Rt
+Receives action At
+Emits observation Ot+1
+Emits scalar reward Rt+1
+t increments at env. step
+Agent
+Environment
+w k
+The environment is initially (partially) unknown
+The agent interacts with the environment and improves its policy
+Or the model is known but overcomplex (a.k.a. ADP)
+J. Gong (SYSU) ADP and RL Autumn, 2022 26 / 45
+
+=== p27 ===
+Reinforcement Learning Problem Formulation
+RL Problem
+Objective
+min
+π
+lim
+N→∞
+E(xk,uk)∼pθ(xk,uk)
+{N−1∑
+k=0
+αkgk(xk,uk)
+}
+where 0 <α ≤1
+The policy can be randomized π(uk|xk) ∈[0,1]
+Parametric policy representation πθ(uk|xk)
+xk
+p(xk+1|xk, uk)
+uk
+▶ Learn the parameter θ instead of π (Deep Reinforcement Learning)
+J. Gong (SYSU) ADP and RL Autumn, 2022 27 / 45
+
+=== p28 ===
+Reinforcement Learning Problem Formulation
+RL Problem
+Objective
+min
+π
+lim
+N→∞
+E(xk,uk)∼pθ(xk,uk)
+{N−1∑
+k=0
+αkgk(xk,uk)
+}
+where 0 <α ≤1
+The expectation is taken over all possible state-action pair
+transitions with prob. p(xk+1|xk,uk) under policy πθ(xk,uk)
+▶ Calculate the expectation without knowledge of p(xk+1|xk,uk)
+▶ Transition probability changes as policy changes
+State xk maybe not known, only some observation ok, a.k.a.,
+partially observed Markov decision process (POMDP)
+Cost function gk maybe hard to model, or not explicitly additive
+▶ E.g., go game
+J. Gong (SYSU) ADP and RL Autumn, 2022 28 / 45
+
+=== p29 ===
+Reinforcement Learning Algorithms
+Framework
+Basic idea: iteratively improve policy like DP
+A key issue: estimate expectations based on samples
+Tradeoﬀ: accuracy v.s. eﬃciency
+The anatomy of a reinforcement learning algorithm
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy
+J. Gong (SYSU) ADP and RL Autumn, 2022 29 / 45
+
+=== p30 ===
+Reinforcement Learning Algorithms
+Example - Model-based
+Generate N samples with πθ, each with suﬃciently long stages
+Fit a model fφ such that xk+1 ≈fφ(xk,uk)
+Improve Policy: train πθ(xk) = uk based on the model fφ and g
+The anatomy of a reinforcement learning algorithm
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy
+J. Gong (SYSU) ADP and RL Autumn, 2022 30 / 45
+
+=== p31 ===
+Reinforcement Learning Algorithms
+Example - Model-free
+Generate N samples with πθ, each with suﬃciently long stages
+Estimate return as J(θ) = Eπθ
+[∑
+kαkgk
+]
+≈ 1
+N
+∑N
+i=1
+∑
+kαkgk
+Improve Policy: θ←θ+ γ▽θ J(θ)
+The anatomy of a reinforcement learning algorithm
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy
+J. Gong (SYSU) ADP and RL Autumn, 2022 31 / 45
+
+=== p32 ===
+Reinforcement Learning Algorithms
+Model-based v.s. Model-free
+Model-based RL
+▶ Learn the model p(xk+1|xk,uk),gk(xk,uk) from experience
+▶ Plan value/policy from model (solve an MDP)
+▶ Advantage: Can explicitly describe model uncertainty
+▶ Disadvantage:
+Two-fold estimation errors
+Unapplicable if the model is too large
+Model-free RL
+▶ Directly learn value/policy from experience
+▶ Application cases:
+MDP model is unknown, but experience can be sampled
+MDP model is known, but to big to use
+J. Gong (SYSU) ADP and RL Autumn, 2022 32 / 45
+
+=== p33 ===
+Reinforcement Learning Algorithms
+Deﬁnitions
+Q-function: total cost from taking u in x following π
+Qπ(x,u) =
+N−1∑
+k=0
+Eπ[αkgk(xk,uk)|x0 = x,u0 = u]
+Value function: total cost starting from x following π
+Vπ(x) =
+N−1∑
+k=0
+Eπ[αkgk(xk,uk)|x0 = x]
+Vπ(x) = Eu∼π(u|x)[Qπ(x,u)]
+RL problem: minπEx∼p(x)[Vπ(x)]
+J. Gong (SYSU) ADP and RL Autumn, 2022 33 / 45
+
+=== p34 ===
+Reinforcement Learning Algorithms
+Ways to Improve Policy
+Idea 1: if we know Qπ(x,u) for policy π, we can improve π:
+set π′(u|x) = 1 if u= arg minuQπ(x,u)
+this policy is at least as good as π (and probably better)!
+and it doesn’t matter what π is
+Idea 2: compute gradient to increase probability of good actions u:
+recall that Vπ(x) = Eu∼π(u|x)[Qπ(x,u)] under policy π(u|a)
+if Qπ(x,u) <Vπ(x), u is better than average
+modify π(u|x) to increase probability of u if Qπ(x,u) <Vπ(x)
+J. Gong (SYSU) ADP and RL Autumn, 2022 34 / 45
+
+=== p35 ===
+Reinforcement Learning Algorithms
+Types of Reinforcement Learning
+Value-based: estimate value function or Q-function of the optimal
+policy (no explicit policy)
+Policy-based: directly diﬀerentiate the objective with policy
+gradient
+Actor-critic: estimate value function or Q-function of the current
+policy, use it to improve policy
+Model-based: estimate the transition model, and then use it for
+planning
+J. Gong (SYSU) ADP and RL Autumn, 2022 35 / 45
+
+=== p36 ===
+Reinforcement Learning Algorithms
+Value-based Algorithms
+Generate samples with π
+Fit V(x) or Q(x,u)
+Set π(x) = arg minuQ(x,u)
+Another example: RL by backprop
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy
+(x,u)
+ Q(x,u)
+J. Gong (SYSU) ADP and RL Autumn, 2022 36 / 45
+
+=== p37 ===
+Reinforcement Learning Algorithms
+Policy-based Algorithms
+Generate samples with πθ
+Evaluate returns J(θ) = ∑
+kαkgk(xk,uk)
+Improve policy θ←θ+ γ▽θ J(θ)
+Another example: RL by backprop
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy  
+x
+ u
+J. Gong (SYSU) ADP and RL Autumn, 2022 37 / 45
+
+=== p38 ===
+Reinforcement Learning Algorithms
+Actor-Critic Algorithms
+Generate samples with πθ
+Fit V(x) or Q(x,u)
+Improve policy θ←θ+ γ▽θ E[Q(x,u)]
+Another example: RL by backprop
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy  
+x
+ u
+J. Gong (SYSU) ADP and RL Autumn, 2022 38 / 45
+
+=== p39 ===
+Reinforcement Learning Algorithms
+Examples of Speciﬁc Algorithms
+Value-based
+▶ Q-learning, DQN
+▶ Temporal diﬀerence learning
+▶ Fitted value iteration
+Policy-based
+▶ Policy gradient
+▶ Trust region policy optimization
+Actor-critic
+▶ Asynchronous advantage actor-critic (A3C)
+▶ Soft actor-critic (SAC)
+Model-based
+▶ Dyna
+▶ Guided policy search
+J. Gong (SYSU) ADP and RL Autumn, 2022 39 / 45
+
+=== p40 ===
+Reinforcement Learning Algorithms
+Q-learning
+Collect dataset {(xi,ui,x′
+i,gi)}using policy π
+Set ˜Qi ←gi(xi,ui) + αmaxu′ Qφ(x′
+i,u′
+i)
+Set φ←arg minφ
+∑
+i||Qφ(xi,ui) −˜Qi||2
+Another example: RL by backprop
+generate samples 
+(i.e. run the policy)
+fit a model/ 
+estimate the return
+improve the policy
+(x,u)
+J. Gong (SYSU) ADP and RL Autumn, 2022 40 / 45
+
+=== p41 ===
+Reinforcement Learning Algorithms
+Replay Buﬀer
+Problem: sequential states are strongly correlated
+Observation: Data from any policy will work!
+Solution: replay buﬀer
+Another solution: replay buffers
+special case with K = 1, and one gradient step
+any policy will work! (with broad support)
+just load data from a buffer here
+dataset of transitions
+still use one gradient step
+Q-iteration
+J. Gong (SYSU) ADP and RL Autumn, 2022 41 / 45
+
+=== p42 ===
+Reinforcement Learning Algorithms
+Q-learning with Replay Buﬀer
+Collect dataset {(xi,ui,x′
+i,gi)}using policy π, add to replay buﬀer
+Load data from buﬀer, set ˜Qi ←gi(xi,ui) + αmaxu′ Qφ(x′
+i,u′
+i)
+Set φ←arg minφ
+∑
+i||Qφ(xi,ui) −˜Qi||2
+Another solution: replay buffers
+dataset of transitions
+(“replay buffer”)
+off-policy
+Q-learning
++ samples are no longer correlated
++ multiple samples in the batch (low-variance gradient)
+but where does the data come from?
+need to periodically feed the replay buffer…
+J. Gong (SYSU) ADP and RL Autumn, 2022 42 / 45
+
+=== p43 ===
+Reinforcement Learning Algorithms
+Exploration v.s. Exploitation
+Reinforcement learning is like trial-and-error learning
+Tradeoﬀ between exploration and exploitation
+▶ Restaurant Selection: go to your favourite restaurant, or try a new
+restaurant
+Exploitation exploits known information to minimize cost
+π(x) = arg min
+u
+Q(x,u)
+Exploration ﬁnds more information about the environment
+▶ Example: randomly select a policy
+The agent should discover a good policy from its experiences of
+the environment without losing too much reward along the way
+J. Gong (SYSU) ADP and RL Autumn, 2022 43 / 45
+
+=== p44 ===
+Reinforcement Learning Algorithms
+ϵ-greedy
+With probability 1 −ϵ to update policy by
+π(x) = arg min
+u
+Q(x,u)
+With probability ϵ to randomly select a policy
+Another solution: replay buffers
+dataset of transitions
+(“replay buffer”)
+off-policy
+Q-learning
++ samples are no longer correlated
++ multiple samples in the batch (low-variance gradient)
+but where does the data come from?
+need to periodically feed the replay buffer…
+J. Gong (SYSU) ADP and RL Autumn, 2022 44 / 45
+
+=== p45 ===
+Reinforcement Learning Discussions
+RL v.s. ML
+Two fundamental problems in learning
+Reinforcement Learning
+▶ Data (rewards) maybe sparse, noisy and delayed
+▶ Data samples are highly correlated
+▶ Data distribution changes as new behaviours are learned
+Machine Learning
+▶ Require large amount labelled training data
+▶ Data samples are assumed independent
+▶ Data distribution is ﬁxed
+J. Gong (SYSU) ADP and RL Autumn, 2022 45 / 45
+

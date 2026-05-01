@@ -1,0 +1,637 @@
+# PR1 Overview of Artificial Intelligence
+# Pages: 127
+
+=== p1 ===
+1
+人工智能应用基础
+郑伟诗http://www.isee-ai.cn/~zhwshi/中山大学
+机器智能与先进计算教育部重点实验室
+中山大学计算机学院研究生人工智能应用基础系列课程
+声明：该PPT只供非商业使用，也不可视为任何出版物。由于历史原因，许多图片尚没有标注出处，如果你知道图片的出处，欢迎告诉我们at wszheng@ieee.org.课程主页：https://csai-sysu.net/modern_architecture/HTML/home.html
+
+=== p2 ===
+2
+世界主要国家把人工智能提升到国家战略高度•美国：注重科技领先优势•欧洲：注重安全、隐私等•日本：注重智能改变社会•中国：注重智能提升产业
+背景
+
+=== p3 ===
+3
+背景2017年7月，国务院印发了《新一代人工智能发展规划》，规划提出了面向2030年我国新一代人工智能发展的指导思想、战略目标、重点任务
+2018年4月，教育部印发了《高等学校人工智能创新行动计划》，提出高校要不断推动人工智能与实体经济深度融合，鼓励建立人工智能学院/研究院，多种方式开展高层次人才培养
+2017年12月，工业和信息化部印发了《促进新一代人工智能产业发展三年行动计划（2018-2020年）》，以新一代人工智能技术的产业化和集成应用为重点，加快制造强国和网络强国建设
+
+=== p4 ===
+4
+背景
+
+=== p5 ===
+5
+背景
+5
+第一个寒冬期经费缺乏
+感知机神经网络支持向量机深度学习
+工业机器人等专家系统深蓝机器人等无人驾驶Alpha Go/Zero/Fold
+推理期知识期学习期AI诞生
+19561974198019871993第二个寒冬期应用缺乏
+核心技术
+典型应用
+
+=== p6 ===
+6
+背景
+
+=== p7 ===
+7
+机器学习的算法框架
+
+=== p8 ===
+8
+人工神经网络❑许多问题复杂，我们难以直接确定模型的形式（譬如，使用二次函数，三次函数，还是十次函数？）❑如果使用一个线性函数表示一个神经元，一个函数的输出与另一个函数的输入模拟神经网络的连接，能否模拟出一个复杂的模型？❑此时便有了神经网络模型，它最基本的神经元是一种线性模型。
+
+=== p9 ===
+9
+人工神经网络❑神经网络模型将多个线性模型（及更复杂的模型）层层叠加，构成了一个复杂的假设模型。
+
+=== p10 ===
+10
+深度学习❑深度学习已被应用计算机视觉、语音识别、自然语言处理、音频识别与生物信息学等领域并获取了极好的效果。
+
+=== p11 ===
+11
+卷积神经网络
+Yi Sun,XiaogangWang, Xiaoou Tang. Deep Learning Face Representation by Joint Identification-Verification. NIPS 2014.
+
+=== p12 ===
+12
+自动驾驶❑计算机视觉在无人驾驶中应用❑可行驶区域（free space）检测o利用深度学习做场景理解o绿色为可行驶区域
+场景理解可行驶区域检测
+
+=== p13 ===
+13
+超分辨率
+Christian Ledig et al. Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network. CVPR 2017
+
+=== p14 ===
+14
+梦想成真
+
+=== p15 ===
+15
+逼真生成
+Robin Rombachet. al. High-Resolution Image Synthesis with Latent Diffusion Models. CVPR 2022
+
+=== p16 ===
+16
+智能视频监控系统：你去过哪里
+Surveillance System
+Detecting PersonsAutomatically
+……
+Tracking the Detected Person
+MatchingSearching Certain Persons (e.g., criminal suspect) by PersonMatching
+？Searching Certain Persons (e.g., criminal suspect) by Face Recognition
+……
+……
+……
+……
+Surveillance Network
+
+=== p17 ===
+17
+智能视频监控系统：你做啥？
+……
+……
+……
+……
+Surveillance System
+DetectionTrackingMatching
+Collective Activity, crowd Recognition and Event Classification
+Abnormal ActivityDetection (e.g.,  violence, larceny and etc.)
+Surveillance Network
+Action Recognition
+
+=== p18 ===
+18
+❑双通道神经网络
+18
+行为识别
+Karen Simonyan, Andrew Zisserman. Two-Stream Convolutional Networks for Action Recognition in Videos. NIPS 2014.JianFang Hu, Wei-Shi Zheng, Jian-Huang Lai, and Jianguo Zhang. Jointly Learning Heterogeneous Features for RGB-D Activity Recognition. IEEE Transactions on Pattern Analysis and Machine Intelligence (PAMI), 2017
+
+=== p19 ===
+19
+群体行为识别
+T. Lan, Y. Wang, W. Yang, and G. Mori. Beyond actions: Discriminative models for contextual group activities. In Ad-vances in neural information processing systems, 2010. Yongyi Tang (student), Peizhen Zhang (student), Jian-Fang Hu, Wei-Shi Zheng*. Latent Embeddings for Collective Activity Recognition. IEEE AVSS, 2017.
+
+=== p20 ===
+20
+群体行为识别❑用图卷积模型，把不同视觉对象关联起来，形成推理网络
+Peizhen Zhang, Yongyi Tang, Jian-Fang Hu, and Wei-Shi Zheng. Fast Collective Activity Recognition Under Weak Supervision. IEEE Transactions on Image Processing, vol. 29, no. 1, pp. 29-43, 2020
+
+=== p21 ===
+21
+行为评估❑用图卷积模型，把不同视觉对象关联起来，形成推理网络
+Jia-Hui Pan, Jibin Gao, Wei-Shi Zheng. Action Assessment by Joint Relation Graphs.  In IEEE Conference on Computer Vision (ICCV), 2019
+
+=== p22 ===
+22
+Interpret the Assessment ProcessBetter
+Worse
+A Failed Landing
+Whole-SceneOurs
+Whole-SceneOurs
+A Good Landing
+行为评估
+
+=== p23 ===
+23
+通过行为分析发现焦点人物
+Wei-Hong Li, Fa-Ting Hong, Wei-Shi Zheng. Learning to Learn Relation for Important People Detection in Still Images. In IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2019
+
+=== p24 ===
+24
+暴力行为检测
+
+=== p25 ===
+25
+智慧医疗
+
+=== p26 ===
+26
+智慧医疗
+Hongwei Li, Gongfa Jiang, Jianguo Zhang, Ruixuan Wang, Zhaolei Wang, Wei-Shi Zheng, Bjoern H. Menze. Fully convolutional network ensembles for white matter hyperintensities segmentation in MR images. NeuroImage, 183: 650-665, 2018.
+
+=== p27 ===
+27
+AI模型关注的区域与病变区域一致！
+智慧医疗如何增加AI辅助诊断的可解释性/透明性
+
+=== p28 ===
+28
+AlphaGo
+
+=== p29 ===
+29
+AlphaGo围棋的搜索空间太大o过于复杂（甚至难以求解，譬如求解一个多元不可导函数的最小值），用搜索或者动态规划等常规方法很难在多项式时间中求解出问题的解。
+
+=== p30 ===
+30
+AlphaGo
+https://deepmind.google/technologies/alphago/
+
+=== p31 ===
+31
+强化学习
+现实中我们往往没有办法对每个时刻做出的动作的好坏进行标注，但是我们却知道我们想要的结果，强化学习告诉我们有这些就够了。
+
+=== p32 ===
+32
+强化学习
+环境（environment）策略（policy）
+接收环境信息
+根据环境信息，策略做出动作作用于环境
+
+=== p33 ===
+33
+机器学习打游戏
+训练一种策略（policy），这种策略能够根据当前游戏画面（state），做出动作（action：up or down）
+
+=== p34 ===
+34
+让机器学习我们
+
+=== p35 ===
+35
+人机互动
+
+=== p36 ===
+第一部分：基础方法介绍
+
+=== p37 ===
+37
+技术路线❑贝叶斯建模❑线性分类❑非线性分类❑深度神经网络❑集成学习❑无监督学习❑泛弱监督学习❑数据降维与模型压缩
+
+=== p38 ===
+38
+分类的本质是贝叶斯建模❑贝叶斯定理通常事件A在事件B已发生的条件下发生的概率,与B在A已发生的条件下发生的概率是不一样的。然而两者是有确定关系的，贝叶斯定理就是这种确定关系的描述。
+其中P(A|B)称作A的后验概率，P(B)称作B的先验概率。P(A｜B)=!(#,%)!(%)
+
+=== p39 ===
+39
+其中独立变量C有若干类别，条件依赖于若干特征变量
+分类的本质是贝叶斯建模❑分类模型——朴素贝叶斯(Naïve Bayes)理论上，概率分类器是一个条件概率模型：
+
+=== p40 ===
+40
+分类的本质是贝叶斯建模❑分类模型——朴素贝叶斯(Naïve Bayes)根据贝叶斯公式可以得到：
+即是：
+分类结果可表示为：
+
+=== p41 ===
+41
+线性分类是最直观的❑线性判别分析(Linear Discriminant Analysis, LDA)将数据在低维度上进行投影，投影后希望每一种类别数据的投影点尽可能的接近，而不同类别数据的类别中心之间的距离尽可能的大
+
+=== p42 ===
+42
+线性分类是最直观的❑支持向量机（support vector machines, SVM）是一种二分类模型,基本想法是求解能够正确划分训练数据集并且几何间隔最大的分离超平面
+
+=== p43 ===
+43
+非线性分类是普遍现象❑大部分时候数据并不是线性可分的，这个时候不存在满足条件的超平面。非线性SVM 通过使用核函数，将数据映射到高维空间，来解决在原始空间中线性不可分的问题
+
+=== p44 ===
+44
+非线性分类是普遍现象❑核函数是计算两个向量在隐式映射过后的空间中的内积的函数，将特征进行从低维到高维的转换，避免了直接在高维空间中的复杂计算。❑常用核函数：高斯核（Gaussian Kernel），指数核（Exponential Kernel）等
+
+=== p45 ===
+45
+非线性分类是普遍现象❑决策树（decision tree）是一个树结构，它从根节点开始，测试待分类项中相应的特征属性，并按照其值选择输出分支，直到到达叶子节点，将叶子节点存放的类别作为决策结果
+
+=== p46 ===
+46
+非线性函数建模利器-深度神经网络典型的神经元结构
+•当只有一层这样的神经元存在时，它被称为感知机。•单层感知机有一个严重的问题，即它对稍复杂一些的函数都无能为力（比如最为典型的“异或”操作）。
+
+=== p47 ===
+47
+非线性函数建模利器-深度神经网络
+多层感知机
+多层感知机解决了之前无法模拟异或逻辑的缺陷，同时更多的层数也让网络更能够刻画现实世界中的复杂情形。
+
+=== p48 ===
+48
+非线性函数建模利器-深度神经网络全连接层和卷积层对比
+•全连接DNN的结构里下层神经元和所有上层神经元都能够形成连接，带来的潜在问题是参数数量的膨胀。•CNN通过“卷积核”作为中介。同一个卷积核在所有图像内是共享的，图像通过卷积操作后仍然保留原先的位置关系。
+
+=== p49 ===
+49
+非线性函数建模利器-深度神经网络
+卷积神经网络隐含层
+
+=== p50 ===
+50
+非线性函数建模利器-深度神经网络
+卷积特征提取过程
+
+=== p51 ===
+51
+非线性函数建模利器-深度神经网络
+循环神经网络
+按时间展开
+
+=== p52 ===
+52
+三个臭皮匠顶一个诸葛亮-集成学习❑集成学习（ensemble learning）通过构建并结合多个学习器来完成学习任务。
+
+=== p53 ===
+53
+三个臭皮匠顶一个诸葛亮-集成学习❑Boosting方法基于串行策略，每一次迭代时训练集的选择与前面各轮的学习结果有关，而且每次是通过更新各个样本权重的方式来改变数据分布。
+
+=== p54 ===
+54
+三个臭皮匠顶一个诸葛亮-集成学习❑AdaBoost算法通过给基学习器预测错误的样本更高的权重，使得基学习器误判的训练样本在后续受到更多关注的方式来弥补已有模型的不足。
+
+=== p55 ===
+55
+三个臭皮匠顶一个诸葛亮-集成学习❑Bagging方法基于并行策略，基学习器之间不存在依赖关系，可实现并行训练。每一次迭代前，采用有放回的随机抽样来获取训练数据。
+
+=== p56 ===
+56
+三个臭皮匠顶一个诸葛亮-集成学习❑随机森林（Random Forest）算法构造多棵相互独立的CART决策树，形成一个森林，利用这些决策树共同决策输出类别。
+
+=== p57 ===
+57
+没有标注不可怕-无监督学习❑主成分分析（Principal Component Analysis，PCA）是最常用的降维方法之一，通过正交变换将一组可能存在相关性的变量数据转换为一组线性不相关的变量（即主成分）。
+
+=== p58 ===
+58
+没有标注不可怕-无监督学习❑独立成分分析（Independent Components Analysis，ICA）是一种线性变换，它把混合的数据或信号分离成统计独立的非高斯的信号源的线性组合。
+
+=== p59 ===
+59
+没有标注不可怕-无监督学习❑聚类（Clustering）是将无标签样本集合中相似的样本分配到相同的类，不相似的样本分配到不同的类。
+
+=== p60 ===
+60
+没有标注不可怕-无监督学习❑常用的聚类方法有层级聚类（Agglomerative clustering），K均值聚类（K-means），基于密度的聚类（DBSCAN）等。
+不同聚类算法的比较：https://scikit-learn.org/stable/modules/clustering.html#clustering
+
+=== p61 ===
+61
+没有标注不可怕-无监督学习❑话题模型（Topic Models）是对文本数据进行分析建模的一种技术。话题分析旨在发现文本中的话题，而话题则由单词的集合表示。
+
+=== p62 ===
+62
+没有标注不可怕-无监督学习❑经典的TopicModels：❑LSA：潜在语义分析模型，LatentSemanticAnalysis❑PLSA：概率潜在语义分析模型，ProbabilisticLatentSemanticAnalysis❑LDA：隐狄利克雷分布模型，LatentDirichletAllocation
+
+=== p63 ===
+63
+藏龙卧虎-泛弱监督学习❑半监督学习（Semi-supervised learning）是指让学习器不依赖外界交互（与主动学习不同），自动地利用未标记样本提升学习性能的方法，即训练集同时包含标记数据和未标记数据。
+开放世界
+封闭世界，未标记数据即待测数据，测试数据事先可见只是不知
+道标签，学习目的就是在这些未标记数据上获得最优泛化性能
+
+=== p64 ===
+64
+藏龙卧虎-泛弱监督学习❑弱监督学习（Weakly-supervised learning）是指让学习器使用粗粒度标签信息进行学习。❑For example: Weakly supervised object localizationoFind the object location in a single-label image only via image-level labels.oMapping 𝐹:𝑋∈𝑅!×#×$→𝑌∈𝑅%×#×$, K is the number of classes
+
+=== p65 ===
+65
+藏龙卧虎-泛弱监督学习❑弱监督学习（Weakly-supervised learning）是指让学习器使用粗粒度标签信息进行学习。❑For example: Weakly supervised segmentationoFind the class-specific object localization maps as pseudo labels  via image-level label.
+
+=== p66 ===
+66
+藏龙卧虎-泛弱监督学习❑多示例学习（Multiple-Instance learning）针对数据只有粗粒度的标记信息的时候。将数据（图片，标签已知）看成一个包含多个示例（图中的物体，标签未知）的包。多示例学习的过程就是通过模型对包及其包含的多个实例进行分析预测得出包的标签。
+
+=== p67 ===
+67
+藏龙卧虎-泛弱监督学习❑自监督学习（Self-supervised learning）自监督学习是没有人工标注标签的监督学习，可以将它看作没有人类参与的监督学习。标签仍然存在（需要有东西来监督学习过程），但它们是从输入数据中生成的，通常使用启发式算法生成的。
+
+=== p68 ===
+68
+藏龙卧虎-泛弱监督学习❑迁移学习(Transfer Learning)目标是将某个领域或任务上学习到的知识或模式应用到不同但相关的领域或问题中。主要思想是从相关领域中迁移标注数据或者知识结构、完成或改进目标领域或任务的学习效果。
+
+=== p69 ===
+71
+边缘智能-数据降维与模型压缩❑数据降维降维（dimension reduction）是通过某种数学变换将原始高维属性空间转变为一个低维“子空间”（subspace）。如下图所示，原始高维空间中的样本点，在这个低维嵌入子空间中更容易学习。
+（a）三维空间中观察到的样本点（b）二维空间中的曲面低维嵌入示意图
+
+=== p70 ===
+72
+边缘智能-数据降维与模型压缩❑流形学习流形学习（manifold learning）是一类借鉴了拓扑流形概念的降维方法。流形（manifold）在局部具有欧式空间的性质，能用欧式距离来进行距离计算，这给降维方法带来了很大的启发。
+示意图：三维空间的数据与其对应的二维流形
+
+=== p71 ===
+73
+边缘智能-数据降维与模型压缩❑稀疏编码稀疏编码（sparse coding）是一个线性因子模型，已作为一种无监督特征学习和特征提取机制得到了广泛研究。稀疏编码用于表示的形象描述如下：
+Representas: 
+https://cse.msu.edu/%7Ecse902/S14/ppt/Sparse%20Coding%20and%20Dictionary%20Learning.pdf
+
+=== p72 ===
+74
+边缘智能-数据降维与模型压缩❑模型压缩模型压缩的主要目的是降低网络模型存储和计算成本。综合现有的深度模型压缩方法，它们主要分为四类：方法名称描述应用场景参数修剪和共享(parameter pruning and sharing)删除对准确率影响不大的参数卷积层和全连接层低秩因子分解(low-rank factorization)使用矩阵对参数进行分解估计卷积层和全连接层转移/紧凑卷积滤波器(transferred/compact convolutional filters)设计特别的卷积核来保存参数只有卷积层知识蒸馏(knowledge distillation)训练一个更紧凑的网络来从大的模型蒸馏知识卷积层和全连接层
+
+=== p73 ===
+75
+边缘智能-数据降维与模型压缩❑四种模型压缩方法简略示意图
+Teacher network（a）剪枝和共享（b）压缩2D卷积层的典型低秩方法
+（c）紧凑卷积滤波器（d）知识蒸馏Student networkTransfer knowledge
+
+=== p74 ===
+76
+边缘智能
+
+=== p75 ===
+77
+边缘智能
+
+=== p76 ===
+78
+新的机器示范学习❑模仿学习算法
+
+=== p77 ===
+79
+新的机器示范学习❑基于视觉的机器人抓取算法
+Wang et al.. 6-PACK: Category-level 6D Pose Tracker with Anchor-Based Keypoints. ICRA 2020
+
+=== p78 ===
+80
+新的机器示范学习❑抽象理解与精细操作：从“特定抓”到“基于理解抓”
+ShridharM,ManuelliL,FoxD.Cliport:Whatandwherepathwaysforroboticmanipulation.ConferenceonRobotLearning.PMLR,2022:894-906.
+
+=== p79 ===
+81
+具身视觉❑具身AI学习如何通过多个步骤执行复杂的类人任务
+•ChenWang,DanfeiXu,LiFei-Fei.Generalizable task planning through representation pretraining.Arxiv2022•Zhaoetal.P3IV:Probabilisticprocedureplanningfrominstructionalvideoswithweaksupervision.CVPR2022.
+
+=== p80 ===
+82
+AutoML❑Network Architecture Search (NAS)
+https://www.automl.org/nas-overview/
+
+=== p81 ===
+83
+Transformer
+
+=== p82 ===
+84
+Transformer: Detector (DETR)
+Nicolas Carionetal. End-to-End Object Detection with Transformers. ECCV 2020
+
+=== p83 ===
+85
+Transformer: ViT and DeiT
+An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale，ICLR2021.
+Data-Efficient Image Transformers, ICML 2021
+
+=== p84 ===
+86
+Transformer: PVT
+Pyramid vision transformer: A versatile backbone for dense prediction without convolutions, ICCV2021.
+PVTViT
+将多阶段的结构引入到transformer中，为了降低attention的计算复杂度，引入了一个SR模块来减少KV的数目
+
+=== p85 ===
+87
+Transformer:  Swin
+Swin Transformer: Hierarchical Vision Transformer using Shifted Windows,ICCV2021.
+•将token进行固定的分组，分组内部进行attention。•通过Shifted Windows 的方式，使相邻的组（patch）进行信息交互，增加不同组之间的信息交流
+
+=== p86 ===
+88
+活到老，学到老-持续学习❑持续学习/终身学习（Continual/Lifelong Learning）l作为人类，我们饱受遗忘的困扰：“学了忘,忘了学,学了还得忘。”l机器学习过程中也会有严重的遗忘问题：灾难性遗忘（catastrophic forgetting）
+（i）CUB-200上各方法的准确率随着数据量增加而下降——“遗忘”（ii）常见方法：网络正则化、网络静态拓展、自适应选择性拓展ParisiG I, KemkerR, Part J L, et al. Continual lifelong learning with neural networks: A review[J]. Neural Networks, 2019, 113: 54-71.
+
+=== p87 ===
+89
+活到老，学到老-持续学习❑Learning without Forgettingl新任务使用真实标签训练，同时保持在旧分支输出与以前任务一致（即，知识蒸馏）。
+Li Z, HoiemD. Learning without forgetting[J]. IEEE transactions on pattern analysis and machine intelligence, 2017, 40(12): 2935-2947.
+
+=== p88 ===
+90
+活到老，学到老-持续学习❑Dynamically Expandable Representation Learningl动态可扩展的网络：每一个新的任务到来，增加一路新网络处理，输出时融合各个网络结果，以缓解遗忘。
+DER模型框架图Yan S, XieJ, He X. Der: Dynamically expandable representation for class incremental learning[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2021: 3014-3023.
+
+=== p89 ===
+91
+活到老，学到老-持续学习❑Learning to Prompt for Continual Learningl构造一个“提示池”，让每一个输入的数据选择出最适合的提示，用以“提醒网络”旧知识。
+模型框架图Wang Z, Zhang Z, Lee C Y, et al. Learning to prompt for continual learning[C]//Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022: 139-149.
+
+=== p90 ===
+92
+深度神经网络当前已经广泛应用到了各类显示场景上。深度学习模型不仅要具有较高的准确率，还需要应对潜在的攻击者。
+•常见攻击方式Ø数据投毒攻击：通过攻击模型训练使用的数据进而攻击模型。当前市面上的生成式人工智能，它们通过庞大的语料库来学习，还会将用户和它的对话数据收纳进自己的语料库里。攻击者通过特定对话达到影响人工智能的性能的目的。Ø逃逸攻击：通过构造对抗样本对模型进行攻击。如上图所示，攻击者在图片上添加很少的噪声，却可以改变模型判别的分类。
+•对抗攻击的应用人工智能安全
+
+=== p91 ===
+93
+人工智能安全1、对抗样本生成
+•算法的训练目标是最大化损失函数以获取对抗样本，让对抗样本不再属于类。•在整个优化过程中，需，让人眼无法感知到真实样本和攻击样本的区别。
+FGSD是一种基于梯度生成对抗样本的方法。
+防御性蒸馏是利用知识蒸馏进行防御•如果攻击者无法获取到模型架构和参数，攻击者可以训练一个模型F的近似生成对抗样本•通过知识蒸馏原模型的知识到一个相对简单模型之中，来防御针对原模型的梯度攻击。
+2、对抗防御
+
+=== p92 ===
+94
+人工智能安全
+
+=== p93 ===
+95
+隐私保护下机器学习❑在保护隐私的前提下，完成各项机器学习任务。❑For example: Privacy preserving action recognition.oImportant for AI at Home
+Zhenyu Wu, Haotao Wang, Zhaowen Wang, Hailin Jin, and Zhangyang Wang. Privacy-preserving deep action recognition: An adversarial learning framework and a new dataset. IEEE Transactions on Pattern Analysis and Machine Intelli-gence,2020
+
+=== p94 ===
+96
+隐私保护下机器学习❑在保护隐私的前提下，完成各项机器学习任务。lFor example: Anonymize faces with the selected semantic attributes manipulation. Trade-off between Privacy and Utility. 
+https://arxiv.org/pdf/2104.01753v2.pdf (Perceptual Indistinguishability-Net (PI-Net): Facial Image Obfuscation with Manipulable Semantics, by Chen et al.)
+
+=== p95 ===
+第二部分：应用建模
+
+=== p96 ===
+98
+计算机视觉❑检测检测-Detection：解决“是什么？在哪里？”的问题，即定位出感兴趣的物体的位置并判定目标的类别。
+
+=== p97 ===
+99
+计算机视觉❑分割分割-Segmentation：分为语义分割（SemanticSegmentation）和实例分割（Instance-level），解决“每个像素属于哪个目标物或者场景”的问题。o语义分割：语义分割在语义上理解图像中每个像素的角色
+
+=== p98 ===
+100
+计算机视觉❑分割o实例分割
+实例分割将不同的实例进行分类。
+
+=== p99 ===
+101
+计算机视觉❑追踪o追踪-Tracking：在给定的视频序列初始帧的目标大小和位置的情况下，标注出后续帧中该目标的大小和位置。
+
+=== p100 ===
+102
+计算机视觉❑识别和检索识别-Recognition：即判断给定图像中物体的类别。检索-Retrieval：即从图像检索数据库中检索出与查询图片相似的图片。
+
+=== p101 ===
+103
+数据挖掘❑异常检测（Anomaly detection）o识别不寻常的数据记录，错误数据需要进一步调查。
+
+=== p102 ===
+104
+数据挖掘❑推荐系统（Recommend System）o推荐系统是一种信息过滤系统，用于预测用户对物品的“评分”或“偏好”。
+
+=== p103 ===
+105
+数据挖掘❑聚类（Cluster）o是在未知数据的结构下，发现数据的类别与结构。
+
+=== p104 ===
+106
+数据挖掘❑用户画像（User Profile）o“男，姓名苏萌，互联网行业，已婚，收入1万以上，爱美食，团购达人，喜欢红酒配香烟”，这一串描述可以用一幅图来展示。
+
+=== p105 ===
+107
+数据挖掘❑预测（Prediction）o交通流量预测
+
+=== p106 ===
+108
+自然语言处理❑机器翻译
+机器翻译，从一种语言到另一种语言的文本或语音的自动翻译，是NLP最重要的应用之一。
+
+=== p107 ===
+109
+自然语言处理❑信息检索
+信息检索的基本原理是将用户输入的检索关键词与数据库中的标引词进行对比，当二者匹配成功时，检索成功。
+
+=== p108 ===
+110
+自然语言处理❑自动问答
+自动问答是指利用计算机自动回答用户所提出的问题以满足用户知识需求的任务。自动问答系统在回答用户问题时，首先要正确理解用户所提出的问题，抽取其中关键的信息，在已有的语料库或者知识库中进行检索、匹配，将获取的答案反馈给用户。
+
+=== p109 ===
+111
+自然语言处理❑评论观点抽取
+自动分析评论关注点和评论观点，并输出评论观点标签及评论观点极性，包括美食、酒店、汽车、景点等，可帮助商家进行产品分析，辅助用户进行消费决策。
+
+=== p110 ===
+112
+自然语言处理❑情感倾向分析
+情感分析又称意见挖掘，是指通过计算技术对文本的主客观性、观点、情绪、极性的挖掘和分析，对文本的情感倾向做出分类判断。
+
+=== p111 ===
+第三部分：基础模型
+
+=== p112 ===
+114
+基础模型❑基础模型是一类通过大量数据，尤其是没有标签的数据，训练出来的机器学习模型。它最大的特点在于其能被应用到许多不同的场合上。
+https://blogs.nvidia.com/blog/2023/03/13/what-are-foundation-models/
+
+=== p113 ===
+115
+基础模型:LLM❑大语言模型(LLM)是一类能理解并且生成人类语言的人工智能模型。它们通常是一些拥有数亿参数的神经网络，并且是在大量的文本数据上训练出来的。
+https://thelowdown.momentum.asia/the-emergence-of-large-language-models-llms/
+
+=== p114 ===
+116
+基础模型:SAM
+imageencoder
+https://segment-anything.com/
+Segment Anything Model（SAM）是一种先进的图像分割模型，它基于Facebook AI在2020年发布的Foundation Model3，能够根据简单的输入提示（如点或框）准确地分割图像中的任何对象，并且无需额外训练就能适应新场景中未见过的对象和图像。它利用了传统的计算机视觉技术和深度学习算法，在一个涵盖1100万张图片和11亿个掩码的庞大数据集上进行了训练，展现出了卓越的零样本迁移的性能。
+
+=== p115 ===
+117
+基础模型：Stable Diffusion
+❑Stable Diffusion是继DALLE-2之后，一个相对轻量级，面向大众的高质量，多模态，高自由度图像生成模型。由于其强大的语义提取能力以及自由的输入选择，Stable Diffusion推动了计算机视觉许多领域的发展，甚至在日常生活中被广为应用。
+Robin Rombachet. al. High-Resolution Image Synthesis with Latent Diffusion Models. CVPR 2022
+
+=== p116 ===
+118
+CLIP:多模态大模型CLIP（Contrastive Language-Image Pre-training）是OpenAI提出的多模态深度学习模型，其独特之处在于它可以同时处理文本和图像特征，并能够深入理解文本与图像之间的关联，这使得CLIP能够在文本图像预训练、多模态理解以及零样本学习等多种视觉和文本的任务上表现出色。
+https://openai.com/research/clip
+
+=== p117 ===
+119
+ChatGPTChatGPT是OpenAI开发的一款聊天机器人程序，它在预训练之后，能够基于预训练阶段所学习到的知识生成回答，并且可以根据对话的上下文进行交互，与人类自然交流。目前ChatGPT已经成为了一个多功能的自然语言处理工具，能够翻译文章，润色论文，编写代码等等。
+https://openai.com/chatgpt
+
+=== p118 ===
+120
+百度文心一言文心一言（英文名：ERNIE Bot）是百度全新一代知识增强大语言模型，文心大模型家族的新成员，能够与人对话互动，回答问题，协助创作，高效便捷地帮助人们获取信息、知识和灵感。文心一言是知识增强的大语言模型，基于飞桨深度学习平台和文心知识增强大模型，持续从海量数据和大规模知识中融合学习具备知识增强、检索增强和对话增强的技术特色
+https://yiyan.baidu.com/welcome
+
+=== p119 ===
+121
+书生模型（INTERN）❑80 亿多模态样本训练，参数量200 亿。突破了光标指令交互、利用语言定义任意任务和轻量级自适应融合等多项关键技术，实现了开放世界理解、多模态交互和跨模态生成三大能力，支持350 万种语义标签。
+https://intern-ai.org.cn/home
+
+=== p120 ===
+122
+PaLM-E: An Embodied Multimodal Language Model
+https://palm-e.github.io
+
+=== p121 ===
+第四部分：AI+X
+
+=== p122 ===
+127
+AI for Science
+
+=== p123 ===
+128
+AI for Science
+Large-scale neuromorphic optoelectronic computing with a reconfigurable diffractive processing unit, Nature Photonics (2021)
+提出了一种光电可重构计算模式，通过构造一个衍射处理器(DPU)，它可以有效地支持不同的神经网络，并实现数百万个神经元的高模型复杂度
+
+=== p124 ===
+129
+AI for Science
+Photonic machine learning with on-chipdiffractive optics, Nature Communication(2023)
+提出了一种基于亚波长结构的集成衍射光子神经网络（DONN），克服了空间衍射光子神经网络的体积限制，不仅大大提高了计算单元的集成度，同时减少了由于庞大的体光学元件和系统校准而产生的误差
+
+=== p125 ===
+130
+人工智能未来发展可以期待
+
+=== p126 ===
+132
+我们面临的压力：巧妇难为无米之炊
+
+=== p127 ===
+133
+拥抱未来
+如发现PPT观点和事实错误，请发我邮箱告知：wszheng@ieee.org
+

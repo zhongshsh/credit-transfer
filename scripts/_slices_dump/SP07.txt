@@ -1,0 +1,1994 @@
+# SP07  Stochastic Matrices
+# Pages: 36
+
+=== p1 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+随机过程
+马啸
+中山大学计算机学院
+2022 年秋
+马啸 (SYSU) 随机过程 2022 年秋 1 / 36
+
+=== p2 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Finite-state Markov Chains
+Review
+§ Eigenvalues and Eigenvectors of Stochastic Matrices
+§ Markov chains with rewards
+§ Exercise
+马啸 (SYSU) 随机过程 2022 年秋 2 / 36
+
+=== p3 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Definitions of Markov Chains
+Definition 1
+A Markov chain is an integer-time process, {Xn, n ⩾ 0}, for which the
+sample values for each r.v. Xn, n ⩾ 1, lie in a countable set S and depend
+on the past only through the most recent r.v. Xn−1.
+Pr{Xn|Xn−1, . . . , X0} = Pr{Xn|Xn−1}.
+马啸 (SYSU) 随机过程 2022 年秋 3 / 36
+
+=== p4 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Relative Concepts
+walks, paths, cycles;
+states which are accessible, states which communicate;
+classes;
+recurrent states/classes, transient states/classes;
+periodic states/classes, aperiodic states/classes;
+ergodic classes, ergodic chains;
+unichains, ergodic unichains;
+马啸 (SYSU) 随机过程 2022 年秋 4 / 36
+
+=== p5 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Classification of States
+Theorem 1
+For finite-state Markov chains, either all states in a class are transient or
+all are recurrent.
+Theorem 2
+For any Markov chain (with either a finite or countably-infinite number of
+states), all states in the same class have the same period.
+马啸 (SYSU) 随机过程 2022 年秋 5 / 36
+
+=== p6 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Classification of States
+Theorem 3
+If a class C in a finite-state Markov chain has period d, then the states in
+C can be partitioned into d subsets, S0, S1, . . . , Sd−1, in such a way that
+all transitions from Sℓ go to Sℓ+1 for ℓ < d − 1, and go to S0 for ℓ = d − 1.
+For a unichain with transition matrix [P], the d-step transition (with
+transition matrix [Pd]) has exactly d recurrent classes.
+马啸 (SYSU) 随机过程 2022 年秋 6 / 36
+
+=== p7 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Classification of States
+Theorem 4
+For an ergodic M state Markov chain, Pm
+ij > 0 for all i, j, and all
+m ⩾ (M − 1)2 + 1.
+Definition 2
+A steady-state vector (or a steady-state distribution) for an M-state
+Markov chain with transition matrix [P] is a row vector π that satisfies
+π = π[P],
+where ∑
+i πi = 1 and πi ⩾ 0 for 1 ⩽ i ⩽ M.
+马啸 (SYSU) 随机过程 2022 年秋 7 / 36
+
+=== p8 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices
+Finite-state Markov Chains
+Review
+§ Eigenvalues and Eigenvectors of Stochastic Matrices
+§ Markov chains with rewards
+§ Exercise
+马啸 (SYSU) 随机过程 2022 年秋 8 / 36
+
+=== p9 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices
+Eigenvalues and Eigenvectors of Stochastic Matrices
+A matrix [A] is singular ⇔ there is a vector v ̸= 0 such that [A]v = 0 ;
+⇔ the columns of [A] are linearly dependent;
+⇔ the rows of [A] are linearly dependent;
+⇔ the determinant det[A] of [A] is 0.
+Thus λ is an eigenvalue of [P] if and only if [P − λI] is singular.
+Definition 3
+A row vector π is a left eigenvector of [P] of eigenvalue λ if π ̸= 0 and
+π[P] = λπ, i.e.,∑
+i πiPij = λπj for all j.
+A column vector ν is a right eigenvector of [P] of eigenvalue λ if ν ̸= 0
+and [P]ν = λν, i.e.,∑
+j Pijνj = λνj for all i.
+For every stochastic matrix [P], [P]e = e and thus [P − I] is singular and
+there is an eigenvalue λ = 1 .
+马啸 (SYSU) 随机过程 2022 年秋 9 / 36
+
+=== p10 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M = 2States
+Eigenvalues and eigenvectors for M = 2states
+The left and right eigenvector equations can be written out as
+{π1P11 + π2P21 = λπ1
+π1P12 + π2P22 = λπ2
+,
+{P11ν1 + P12ν2 = λν1
+P21ν1 + P22ν2 = λν2
+.
+Each set of equations has a non-zero solution if and only if the matrix
+[P − λI] is singular, i.e.,
+(P11 − λ)(P22 − λ) − P12P21 = 0 .
+λ1 = 1 , λ 2 = 1 − P12 − P21.
+If P12 = P21 = 0 (the chain has 2 recurrent classes), then λ = 1 has
+multiplicity 2. Otherwise λ = 1 has multiplicity 1.
+If P12 = P21 = 1 (the chain is periodic), then λ2 = −1.
+Otherwise |λ2| < 1.
+马啸 (SYSU) 随机过程 2022 年秋 10 / 36
+
+=== p11 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Case with M distinct eigenvalues:
+Suppose λ1, . . . , λ M are all distinct. The matrix [P − λiI] is singular
+for each i, so there must be a right eigenvector ν(i) and a left
+eigenvector π(i) for each eigenvalue λi.
+The right eigenvectors span M-dimensional space and thus the matrix
+[U] with column (ν(1), . . . , ν(M)) is non-singular.
+For i ̸= j,
+(λi − λj)ν(i) · π(j) = ν(i)[P]π(j) − ν(i)[P]π(j) = 0 .
+Thus, if we normalize the left eigenvectors to satisfy ν(i) · π(i) = 1 for
+each i, it turn out to be the rows of [U−1].
+马啸 (SYSU) 随机过程 2022 年秋 11 / 36
+
+=== p12 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+We can express [Pn] as
+[Pn] = [ U][Λn][U−1].
+where [Λ] is the diagonal matrix with entries λ1, . . . , λ M.
+Break [Λn] into M terms,
+[Λn] =
+M∑
+i=1
+[Λn
+i ]
+where [Λn
+i ] has λn
+i in position (i, i) and has zeros elsewhere. Then
+[Pn] =
+M∑
+i=1
+λn
+i ν(i)π(i).
+马啸 (SYSU) 随机过程 2022 年秋 12 / 36
+
+=== p13 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Theorem 1
+The transition matrix [P] has a left eigenvector π of eigenvalue λ1 = 1
+which is a steady-state vector if it is normalized to π · e = 1 , where
+e = (1 , . . . , 1)T.
+Proof: [P] is a stochastic matrix, [P]e = e. Therefore, There must be a
+left eigenvector π for eigenvalue 1. For every j, 1 ⩽ j ⩽ M,
+πj =
+M∑
+k=1
+πkPkj.
+T aking magnitudes,
+|πj| ⩽
+M∑
+k=1
+|πk|Pkj.
+with equality iff. πj = |πj|eiϕ for all j and some ϕ.
+马啸 (SYSU) 随机过程 2022 年秋 13 / 36
+
+=== p14 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Summing over j,
+M∑
+j=1
+|πj| ⩽
+M∑
+j=1
+M∑
+k=1
+|πk|Pkj =
+M∑
+k=1
+|πk|.
+This is satisfied with equality .
+Thus, (|π1|, . . . , |πM|) is a nonnegative vector satisfying the steady-state
+vector equation. Normalizing to ∑
+j |πj| = 1 , we have a steady-state
+vector.
+Theorem 2
+Every eigenvalue λk of a stochastic matrix [P] satisfies |λk| ⩽ 1.
+Remark: These two theorems are valid for all finite-state Markov chains.
+马啸 (SYSU) 随机过程 2022 年秋 14 / 36
+
+=== p15 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Thus, For the case with M distinct eigenvalues, [Pn] can be written as
+[Pn] = eπ +
+M∑
+i=2
+λn
+i ν(i)π(i)
+For ergodic unichains, limn→∞[Pn] = eπ. This implies that |λi| < 1
+for i = 2 , . . . , M. In this case, we see that the rate at which [Pn]
+approaches steady state is given by the second largest eigenvalue in
+magnitude.
+If a recurrent chain is periodic with period d, it turns out that there
+are d eigenvalues of magnitude 1, and these are uniformly spaced
+around the unit circle in the complex plane and [Pn] does not
+converge.
+马啸 (SYSU) 随机过程 2022 年秋 15 / 36
+
+=== p16 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Case with repeated eigenvalues and M independent eigenvectors:
+Since the number of linearly-independent eigenvectors of each distinct
+eigenvalue is equal to the multiplicity of that eigenvalue. We can still
+choose the left eigenvectors of a given eigenvalue to be orthonormal to the
+right eigenvectors of that eigenvalue.
+After doing this and defining [U] as the matrix with columns
+ν(1), . . . , ν(M), we see [U] is invertible and that [U−1] is the matrix with
+rows π(1), . . . , π(M). We then again have
+[Pn] =
+M∑
+i=1
+λn
+i ν(i)π(i).
+马啸 (SYSU) 随机过程 2022 年秋 16 / 36
+
+=== p17 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Example
+Consider a Markov chain consisting of κ > 1 ergodic sets of states.
+It is easy to see that there are κ different steady-state vectors. Each
+ergodic set will have an eigenvalue equal to 1 with a right eigenvector
+equal to 1 on the states of that set and 0 elsewhere. Then the
+steady-state vector for each recurrent class is strictly positive for each
+state of the same recurrent class and is zero for all other states.
+Then [Pn] will converge to a block diagonal matrix where for each ergodic
+set, the rows within that set are the same.
+马啸 (SYSU) 随机过程 2022 年秋 17 / 36
+
+=== p18 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+The Jordan form case: There are cases in which one or more eigenvalues
+of [P] are repeated but the number of linearly independent right
+eigenvectors for a given repeated eigenvalue is less than the multiplicity of
+that eigenvalue. Thus [P] cannot be expressed as [U][Λ][U−1], where Λ is
+the diagonal matrix of the eigenvalues, repeated according to their
+multiplicity . Linear algebra says that there exist an invertible matrix [U]
+and a Jordan form such as
+[P] = [ U][J][U−1].
+where [J] is a block diagonal matrix with Jordan blocks [Js] with respect
+to the eigenvalue λi.
+[J] =
+
+
+[J1]
+. . .
+[Jl]
+
+, [Js] =
+
+
+λs 1
+λs
+. . .
+. . . 1
+λs
+
+
+.
+马啸 (SYSU) 随机过程 2022 年秋 18 / 36
+
+=== p19 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Eigenvalues and Eigenvectors of Stochastic Matrices Eigenvalues and Eigenvectors for M > 2 States
+Eigenvalues and eigenvectors for M > 2 states
+Theorem 3
+The transition matrix of a finite-state unichain has a single eigenvalue
+λ = 1 with an accompanying left eigenvector π satisfying π[P] = π and a
+right eigenvector e = (1 , . . . , 1)T.
+The other eigenvalues λi all satisfy |λi| ⩽ 1.
+The inequality is strict unless the unichain is periodic, say with period d,
+and then there are d eigenvalues of magnitude 1 spaced equally around the
+unit circle.
+If the unichain is ergodic, then [Pn] converges to steady state eπ with an
+error in each component that goes to 0 at least as nkλn
+s , where λs is the
+eigenvalue of largest magnitude less than 1 and k is the size of the largest
+Jordan block for the eigenvalue λs.
+马啸 (SYSU) 随机过程 2022 年秋 19 / 36
+
+=== p20 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards
+Finite-state Markov Chains
+Review
+§ Eigenvalues and Eigenvectors of Stochastic Matrices
+§ Markov chains with rewards
+§ Exercise
+马啸 (SYSU) 随机过程 2022 年秋 20 / 36
+
+=== p21 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards
+Markov chains with rewards
+Suppose that each state i of a Markov chain is associated with a given
+reward,ri.
+Letting the rv. Xn be the state at time n, the reward at time n is the rv.
+R(Xn) that maps Xn = i into ri for each i.
+We will be interested only in expected rewards, so that, for example,the
+expected reward at time n, given that X0 = i is
+E[R(Xn)|X0 = i] =
+∑
+j
+Pn
+ijrj.
+The expected aggregate reward over the n steps from m to m + n − 1,
+conditional on Xm = i is
+vi(n) = E[R(Xm) + · · · + R(Xm+n−1)|Xm = i]
+= ri +
+∑
+j
+Pijrj + · · · +
+∑
+j
+Pn−1
+ij rj.
+马啸 (SYSU) 随机过程 2022 年秋 21 / 36
+
+=== p22 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+Suppose, for some arbitrary unichain, that we want to find the expected number
+of steps, starting from a given state i until some given recurrent state, say state
+1, is first entered. Assume i ̸= 1 .
+This can be viewed as a reward problem by assigning one unit of reward to each
+successive state until state 1 is entered.
+Thus we can modify the chain to convert the final state 1 into a trapping state:
+P11 = 1 .
+r1 = 0 , ri = 1 for i ̸= 1 .
+马啸 (SYSU) 随机过程 2022 年秋 22 / 36
+
+=== p23 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+For each sample path starting from state i ̸= 1 , the probability of the
+initial segment until 1 is entered is unchanged, so the expected
+first-passage time is unchanged.
+The modified Markov chain is now an ergodic unichain with a single
+recurrent state.
+For the chain in Figure (b), we
+have:
+
+
+
+v2 = 1 + P23v3 + P24v4
+v3 = 1 + P32v2 + P33v3 + P34v4
+v4 = 1 + P42v2 + P43v3
+.
+马啸 (SYSU) 随机过程 2022 年秋 23 / 36
+
+=== p24 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+The expected first-passage time to state 1 from state i ̸= 1 is then
+vi = 1 +
+∑
+j
+Pijvj with v1 = 0 .
+This can be expressed in vector form as
+v = r + [P]v,
+where r = (0 , 1, . . . , 1)⊤, v1 = 0 and P11 = 1 . Note that if v satisfies
+v = r + [P]v, then v + αe also satisfies it, so that v1 = 0 is necessary to
+resolve the ambiguity .
+Also, since [P] has 1 as a simple eigenvalue, this equation has a unique
+solution with v1 = 0 .
+马啸 (SYSU) 随机过程 2022 年秋 24 / 36
+
+=== p25 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+Example 1: Finding a string in a binary sequence
+Assume a Bernoulli process {Xi : i ⩾ 0}
+Pr{Xi = 1 } = p1 and Pr {Xi = 0 } = p0 = 1 − p1.
+A binary string a = ( a1, . . . , ak) is said to occur at time n if
+(Xn−k+1, . . . , Xn) = ( a1, . . . , ak).
+We want to find the expected time n until this first occurrence.
+马啸 (SYSU) 随机过程 2022 年秋 25 / 36
+
+=== p26 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+The string is a single binary digit, say 1.
+Then it occurs at time n with probability pn−1
+0 p1. The expect value is
+then ∞∑
+n=1
+npn−1
+0 p1 = 1
+p1
+.
+Posed as an expected first-passage time problem:
+v0 = 1 + p0v0 ⇒ v0 = 1
+p1
+.
+马啸 (SYSU) 随机过程 2022 年秋 26 / 36
+
+=== p27 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+A slightly less trivial case occurs with the string a = (1 , 0).
+Solution 1 : The expected time until the first 1 appears is 1/p1 as
+before. There is a subsequent delay of zero or more subsequent 1 ’s
+until the next 0 appears. At this point, the string (1, 0) has just
+occurred and the additional expected delay is 1/p0. Thus the overall
+delay is
+1
+p1
++ 1
+p0
+= 1
+p0p1
+马啸 (SYSU) 随机过程 2022 年秋 27 / 36
+
+=== p28 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+A slightly less trivial case occurs with the string a = (1 , 0).
+Solution 2 : Let Zn = ( Xn−1, Xn), initializing Z0 = (0 , 0). The
+expected first-passage time.
+马啸 (SYSU) 随机过程 2022 年秋 28 / 36
+
+=== p29 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+A slightly less trivial case occurs with the string a = (1 , 0).
+Solution 3 : construct a Markov chain with k + 1 states. We define
+the Markov chain to be in state i < k at time n if (a1, . . . , ak) has not
+yet occurred and if (Xn−i+1, . . . , Xn) is the longest suﬀix of
+X1, . . . , Xn that forms a proper frefix of (a1, . . . , ak).
+{ v0 = 1 + p0v0 + p1v1
+v1 = 1 + p1v1
+⇒ v0 = 1
+p0p1
+.
+马啸 (SYSU) 随机过程 2022 年秋 29 / 36
+
+=== p30 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards Expected first-passage times
+Expected First-passage Times
+A more general case with the string a = (1 , 0, 1, 0, 0).
+State 4, for example, indicates that the string 10100 will occur if the
+next bit is 0. If the next bit is 1, then the most recent five bits will be
+10101, and the final three of these are the first three bits of 10100,
+leading to state 3.
+马啸 (SYSU) 随机过程 2022 年秋 30 / 36
+
+=== p31 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Markov chains with rewards The expected aggregate reward over multiple transitions
+4.5.1 Expected First-passage Times
+Example 2
+Assume that a Markov chain has M states {0, . . . , M − 1} and that the
+state represents the number of customers in an integer-time queueing
+system.
+Suppose we wish to find the expected sum of the customer waiting times,
+starting with i customers in the system at some given integer time t and
+ending at the first integer time at which the system becomes idle. For
+each new customer entering before the system next becomes idle, the
+waiting time is counted from entry to exit.
+We take ri = i as the ’reward’ in state i, and vi as the expected aggregate
+reward until the trapping state is entered. Thus
+vi = ri +
+∑
+j⩾1
+Pijvj for i ⩾ 1, and v0 = 0 .
+马啸 (SYSU) 随机过程 2022 年秋 31 / 36
+
+=== p32 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercise
+Finite-state Markov Chains
+Review
+§ Eigenvalues and Eigenvectors of Stochastic Matrices
+§ Markov chains with rewards
+§ Exercise
+马啸 (SYSU) 随机过程 2022 年秋 32 / 36
+
+=== p33 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercise
+Exercise
+1. 在瓮中总含有两个球。球的颜色有红色与蓝色。每个时期随机地取出
+一个球，并且放回一个新球，新球的颜色以 0.8 的概率与取的球同色，
+而以 0.2 的概率为相反的颜色。如果开始时两个球都是红色，求第五次
+取到的球是红色的概率。
+2. 假定球逐个地被分配到 8 个瓮中，各球以相等的可能放到其中任意
+一个瓮中。问在分配 9 次后，其中恰有 3 个瓮不是空的概率是多少？
+3. 在一系列独立抛掷一个公平硬币的试验中，以 N 记直至出现连续 3
+次正面时的抛掷次数。求
+P(N ≤ 8)
+P(N = 8)
+马啸 (SYSU) 随机过程 2022 年秋 33 / 36
+
+=== p34 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercise
+Exercise
+4. 考虑 4 状态 Markov 链，转移概率矩阵为
+P =
+
+
+1/2 1/4 1/4 0
+1/3 0 1/3 1/3
+1/3 1/3 0 1/3
+0 1/6 1/3 1/2
+
+
+计算从各状态出发到状态 1 的平均首次到达时间，及从状态 1 出发到各
+状态的平均首次到达时间。
+马啸 (SYSU) 随机过程 2022 年秋 34 / 36
+
+=== p35 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercise
+5. 甲，乙，丙三人玩游戏。试讨论规则的公平性：丙是仲裁，掷一均匀
+硬币多次。
+1 若第一次出现正面，则甲胜；否则，乙胜。
+2 若前三次出现的是“正正反” ，则甲胜；若前三次出现的是“正正
+正” ，则乙胜；其他情形，和。
+3 依次记录掷硬币结果，若“正正反”先出现，则甲胜；若“正正正”
+先出现则乙胜。
+4 依次记录掷硬币结果，若“正正反”先出现，则甲胜；若“正反反”
+先出现，则乙胜。
+马啸 (SYSU) 随机过程 2022 年秋 35 / 36
+
+=== p36 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Exercise
+Thank you for your attention!
+马啸 (SYSU) 随机过程 2022 年秋 36 / 36
+

@@ -1,0 +1,1635 @@
+# N2  Chapter_8_V7.0-PPT2
+# Source: PPT2-Chapter_8_V7.0-PPT2.pptx    Slides: 138
+
+=== s1 ===
+Computer Networking: A Top Down Approach
+A note on the use of these Powerpoint slides:
+We’re making these slides freely available to all (faculty, students, readers). They’re in PowerPoint form so you see the animations; and can add, modify, and delete slides  (including this one) and slide content to suit your needs. They obviously represent a lot of work on our part. In return for use, we only ask the following:
+If you use these slides (e.g., in a class) that you mention their source (after all, we’d like people to use our book!)
+If you post any slides on a www site, that you note that they are adapted from (or perhaps identical to) our slides, and note our copyright of this material.
+Thanks and enjoy!  JFK/KWR
+All material copyright 1996-2016
+J.F Kurose and K.W. Ross, All Rights Reserved
+7th edition Jim Kurose, Keith RossPearson/Addison WesleyApril 2016
+Chapter 8Security
+8-
+Security
+
+=== s2 ===
+Chapter 8: Network Security
+Chapter goals:
+understand principles of network security:
+cryptography and its many uses beyond “confidentiality”
+authentication
+message integrity
+security in practice:
+firewalls and intrusion detection systems
+security in application, transport, network, link layers
+8-
+Security
+
+=== s3 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity, authentication
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s4 ===
+What is network security?
+confidentiality: only sender, intended receiver should “understand” message contents
+sender encrypts message
+receiver decrypts message
+authentication: sender, receiver want to confirm identity of each other
+message integrity: sender, receiver want to ensure message not altered (in transit, or afterwards) without detection
+access and availability: services must be accessible and available to users
+8-
+Security
+
+=== s5 ===
+Friends and enemies: Alice, Bob, Trudy
+well-known in network security world
+Bob and Alice want to communicate “securely”
+Trudy (intruder) may intercept, delete, add messages
+secure
+sender
+s
+secure
+receiver
+channel
+data, control messages
+data
+data
+Alice
+Bob
+Trudy
+8-
+Security
+
+=== s6 ===
+Who might Bob, Alice be?
+… well, real-life Bobs and Alices!
+Web browser/server for electronic transactions (e.g., on-line purchases)
+on-line banking client/server
+DNS servers
+routers exchanging routing table updates
+other examples?
+8-
+Security
+
+=== s7 ===
+There are bad guys (and girls) out there!
+Q: What can a “bad guy” do?
+A: A lot! See section 1.6
+eavesdrop: intercept messages
+actively insert messages into connection
+impersonation: can fake (spoof) source address in packet (or any field in packet)
+hijacking: “take over” ongoing connection by removing sender or receiver, inserting himself in place
+denial of service: prevent service from being used by others (e.g.,  by overloading resources)
+8-
+Security
+
+=== s8 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity, authentication
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s9 ===
+The language of cryptography
+m plaintext message
+KA(m) ciphertext, encrypted with key KA
+m = KB(KA(m))
+8-
+Security
+
+=== s10 ===
+Breaking an encryption scheme
+cipher-text only attack: Trudy has ciphertext she can analyze
+two approaches:
+brute force: search through all keys
+statistical analysis
+known-plaintext attack: Trudy has plaintext corresponding to ciphertext
+e.g., in monoalphabetic cipher, Trudy determines pairings for a,l,i,c,e,b,o,
+chosen-plaintext attack: Trudy can get ciphertext for chosen plaintext
+8-
+Security
+
+=== s11 ===
+Symmetric key cryptography
+symmetric key crypto: Bob and Alice share same (symmetric) key: K
+e.g., key is knowing substitution pattern in mono alphabetic substitution cipher (单字母替换密码)
+Q: how do Bob and Alice agree on key value?
+plaintext
+ciphertext
+encryption
+algorithm
+decryption
+algorithm
+S
+plaintext
+message, m
+K    (m)
+S
+m = KS(KS(m))
+8-
+Security
+
+=== s12 ===
+Simple encryption scheme
+substitution cipher: substituting one thing for another
+monoalphabetic cipher: substitute one letter for another
+中文：单字母（替代式）密码
+plaintext:  abcdefghijklmnopqrstuvwxyz
+ciphertext:  mnbvcxzasdfghjklpoiuytrewq
+Plaintext: bob. i love you. alice
+ciphertext: nkn. s gktc wky. mgsbc
+e.g.:
+Encryption key: mapping from set of 26 letters
+to set of 26 letters
+8-
+Security
+
+=== s13 ===
+Simple encryption scheme
+substitution cipher: substituting one thing for another
+monoalphabetic cipher: substitute one letter for another
+中文：单字母（替代式）密码
+plaintext:  abcdefghijklmnopqrstuvwxyz
+ciphertext:  mnbvcxzasdfghjklpoiuytrewq
+Plaintext: bob. i love you. alice
+ciphertext: nkn. s gktc wky. mgsbc
+e.g.:
+Breaking the encryption: 26! possible pairs to try using brute-force – easy!
+8-
+Security
+
+=== s14 ===
+A more sophisticated encryption approach
+n substitution ciphers, M1,M2,…,Mn
+cycling pattern:
+e.g., n=4: M1,M3,M4,M3,M2;   M1,M3,M4,M3,M2; ..
+for each new plaintext symbol, use subsequent substitution pattern in cyclic pattern
+dog: d from M1, o from M3, g from M4
+Encryption key: n substitution ciphers, and cyclic             pattern
+key need not be just n-bit pattern
+8-
+Security
+
+=== s15 ===
+A recap of the previous lesson
+10/12/2022
+
+=== s16 ===
+What is network security?
+confidentiality: only sender, intended receiver should “understand” message contents
+sender encrypts message
+receiver decrypts message
+authentication: sender, receiver want to confirm identity of each other
+message integrity: sender, receiver want to ensure message not altered (in transit, or afterwards) without detection
+access and availability: services must be accessible and available to users
+8-
+Security
+
+=== s17 ===
+The language of cryptography
+m plaintext message
+KA(m) ciphertext, encrypted with key KA
+m = KB(KA(m))
+8-
+Security
+
+=== s18 ===
+Block cipher: A 3-bit block example
+# of permutations: (2^3)!=40320, which is within (2^15, 2^16) – the key needs 16 bits
+
+=== s19 ===
+
+
+=== s20 ===
+# of permutations = # of possible code books that you can choose
+# of keys (2^k) is much much smaller than # of permutations (2^b !)
+Choosing a key means choosing 1 out of the 2^b ! code books
+
+=== s21 ===
+Symmetric key crypto: DES
+DES: Data Encryption Standard
+US encryption standard [NIST 1993]
+56-bit symmetric key, 64-bit plaintext input
+block cipher with cipher block chaining
+how secure is DES?
+DES Challenge: 56-bit-key-encrypted phrase  decrypted (brute force) in less than a day
+no known good analytic attack
+making DES more secure:
+3DES: encrypt 3 times with 3 different keys
+8-
+Security
+
+=== s22 ===
+Symmetric key crypto: DES
+initial permutation
+16 identical “rounds” of function application, each using a randomly selected distinct 48-bit key
+final permutation
+8-
+Security
+
+=== s23 ===
+AES: Advanced Encryption Standard
+symmetric-key NIST standard, replaced DES (Nov 2001)
+processes data in 128 bit blocks
+128, 192, or 256 bit keys
+brute force decryption (try each key) taking 1 sec on DES, takes 149 trillion years for AES
+8-
+Security
+
+=== s24 ===
+Cipher Block Chaining (CBC)
+
+=== s25 ===
+Public Key Cryptography
+symmetric key crypto
+requires sender, receiver know shared secret key
+Q: how to agree on key in first place (particularly if never “met”)?
+8-
+Security
+
+=== s26 ===
+Public key cryptography
+plaintext
+message, m
+ciphertext
+encryption
+algorithm
+decryption
+algorithm
+Bob’s public
+key
+plaintext
+message
+K
+B
++
+Bob’s private
+key
+K
+B
+-
+8-
+Security
+
+=== s27 ===
+Public key encryption algorithms
+need K  ( ) and K  ( ) such that
+B
+B
+.
+.
+given public key K  , it should be impossible to compute private key K
+B
+B
+requirements:
+1
+RSA: Rivest, Shamir, Adleson algorithm
++
+-
++
+-
+8-
+Security
+
+=== s28 ===
+Prerequisite: modular arithmetic
+x mod n = remainder of x when divide by n
+facts:
+[(a mod n) + (b mod n)] mod n = (a+b) mod n
+[(a mod n) - (b mod n)] mod n = (a-b) mod n
+[(a mod n) * (b mod n)] mod n = (a*b) mod n
+thus
+(a mod n)d mod n = ad mod n
+example: x=14, n=10, d=2:  (x mod n)d mod n = 42 mod 10 = 6  xd = 142 = 196   xd mod 10  = 6
+8-
+Security
+
+=== s29 ===
+RSA: getting ready
+message: just a bit pattern
+bit pattern can be uniquely represented by an integer number
+thus, encrypting a message is equivalent to encrypting a number
+example:
+m= 10010001 . This message is uniquely represented by the decimal number 145.
+to encrypt m, we encrypt the corresponding number, which gives a new number (the ciphertext).
+8-
+Security
+
+=== s30 ===
+RSA: Creating public/private key pair
+1. choose two large prime numbers p, q.
+(e.g., 1024 bits each)
+2. compute n = pq,  z = (p-1)(q-1)
+3. choose e (with e<n) that has no common factors
+with z (e, z are “relatively prime”).
+4. choose d such that ed-1 is  exactly divisible by z.
+(in other words: ed mod z  = 1 ).
+5. public key is (n,e).  private key is (n,d).
+8-
+Security
+
+=== s31 ===
+RSA: encryption, decryption
+0.  given (n,e) and (n,d) as computed above
+2. to decrypt received bit pattern, c, compute
+magic
+happens!
+c
+8-
+Security
+
+=== s32 ===
+RSA example:
+Bob chooses p=5, q=7.  Then n=35, z=24.
+e=5  (so e, z  relatively prime).
+d=29 (so ed-1 exactly divisible by z).
+bit pattern
+m
+m
+e
+0000l000
+12
+24832
+17
+encrypt:
+encrypting 8-bit messages.
+8-
+Security
+
+=== s33 ===
+Why does RSA work?
+must show that cd mod n = m where c = me mod n
+fact: for any x and y: xy mod n = x(y mod z) mod n
+where n= pq and z = (p-1)(q-1)
+thus,  cd mod n = (me mod n)d mod n
+= med mod n
+= m(ed mod z) mod n
+= m1 mod n
+= m
+8-
+Security
+
+=== s34 ===
+RSA: another important property
+The following property will be very useful later:
+use public key first, followed by private key
+use private key first, followed by public key
+result is the same!
+8-
+Security
+
+=== s35 ===
+follows directly from modular arithmetic:
+(me mod n)d mod n = med mod n
+= mde mod n
+= (md mod n)e mod n
+8-
+Security
+
+=== s36 ===
+Why is RSA secure?
+suppose you know Bob’s public key (n,e). How hard is it to determine d?
+essentially need to find factors of n without knowing the two factors p and q
+fact: factoring a big number is hard
+8-
+Security
+
+=== s37 ===
+RSA in practice: session keys
+exponentiation in RSA is computationally intensive
+DES is at least 100 times faster than RSA
+use public key crypto to establish secure connection, then establish second key – symmetric session key – for encrypting data
+session key, KS
+Bob and Alice use RSA to exchange a symmetric key KS
+once both have KS, they use symmetric key cryptography
+8-
+Security
+
+=== s38 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity, authentication
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s39 ===
+Authentication
+Goal: Bob wants Alice to “prove” her identity to him
+Protocol ap1.0:  Alice says “I am Alice”
+Failure scenario??
+“I am Alice”
+8-
+Security
+
+=== s40 ===
+in a network,
+Bob can not “see” Alice, so Trudy simply declares
+herself to be Alice
+“I am Alice”
+Authentication
+Goal:  Bob wants Alice to “prove” her identity to him
+Protocol ap1.0:  Alice says “I am Alice”
+8-
+Security
+
+=== s41 ===
+Authentication: another try
+Protocol ap2.0: Alice says “I am Alice” in an IP packet
+containing her source IP address
+Failure scenario??
+8-
+Security
+
+=== s42 ===
+Trudy can create
+a packet “spoofing”
+Alice’s address
+Authentication: another try
+Protocol ap2.0: Alice says “I am Alice” in an IP packet
+containing her source IP address
+8-
+Security
+
+=== s43 ===
+Protocol ap3.0:  Alice says “I am Alice” and sends her
+secret password to “prove” it.
+Failure scenario??
+Authentication: another try
+8-
+Security
+
+=== s44 ===
+playback attack: Trudy records Alice’s packet
+and later
+plays it back to Bob
+“I’m Alice”
+Alice’s
+IP addr
+Alice’s
+password
+Protocol ap3.0:  Alice says “I am Alice” and sends her
+secret password to “prove” it.
+Authentication: another try
+8-
+Security
+
+=== s45 ===
+Authentication: yet another try
+Protocol ap3.1:  Alice says “I am Alice” and sends her
+encrypted secret password to “prove” it.
+Failure scenario??
+8-
+Security
+
+=== s46 ===
+record
+and
+playback
+still works!
+“I’m Alice”
+Alice’s
+IP addr
+encrypted
+password
+Authentication: yet another try
+Protocol ap3.1:  Alice says “I am Alice” and sends her
+encrypted secret password to “prove” it.
+8-
+Security
+
+=== s47 ===
+Goal: avoid playback attack
+Failures, drawbacks?
+nonce: number (R) used only once-in-a-lifetime
+ap4.0: to prove Alice “live”, Bob sends Alice nonce, R.  Alice
+must return R, encrypted with shared secret key
+Authentication: yet another try
+8-
+Security
+
+=== s48 ===
+Authentication: ap5.0
+ap4.0 requires shared symmetric key
+can we authenticate using public key techniques?
+ap5.0: use nonce, public key cryptography
+“I am Alice”
+R
+Bob computes
+“send me your public key”
+and knows only Alice could have the private key, that encrypted R such that
+8-
+Security
+
+=== s49 ===
+ap5.0: security hole
+man (or woman) in the middle attack: Trudy poses as Alice (to Bob) and as Bob (to Alice)
+I am Alice
+I am Alice
+R
+Send me your public key
+Send me your public key
+Trudy gets
+sends m to Alice encrypted with Alice’s public key
+R
+8-
+Security
+
+=== s50 ===
+difficult to detect:
+Bob receives everything that Alice sends, and vice versa. (e.g., so Bob, Alice can meet one week later and recall conversation!)
+problem is that Trudy receives all messages as well!
+ap5.0: security hole
+man (or woman) in the middle attack: Trudy poses as Alice (to Bob) and as Bob (to Alice)
+8-
+Security
+
+=== s51 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity, authentication
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s52 ===
+Digital signatures
+cryptographic technique analogous to hand-written signatures:
+sender (Bob) digitally signs document,  establishing he is document owner/creator.
+verifiable, nonforgeable: recipient (Alice) can prove to someone that Bob, and no one else (including Alice), must have signed document
+8-
+Security
+
+=== s53 ===
+simple digital signature for message m:
+Bob signs m by encrypting with his private key KB, creating “signed” message, KB(m)
+-
+-
+Dear Alice
+Oh, how I have missed you. I think of you all the time! …(blah blah blah)
+Bob
+Bob’s message, m
+Public key
+encryption
+algorithm
+Bob’s private
+key
+Bob’s message, m, signed (encrypted) with his private key
+m,K
+B
+-
+(m)
+Digital signatures
+8-
+Security
+
+=== s54 ===
+-
+Alice thus verifies that:
+Bob signed m
+no one else signed m
+Bob signed m and not m‘
+non-repudiation:
+Alice can take m, and signature KB(m) to court and prove that Bob signed m
+-
+Digital signatures
+suppose Alice receives msg m, with signature: m, KB(m)
+Alice verifies m signed by Bob by applying Bob’s public key KB to KB(m) then checks KB(KB(m) ) = m.
+If KB(KB(m) ) = m, whoever signed m must have used Bob’s private key.
+-
+-
+-
++
++
++
+8-
+Security
+
+=== s55 ===
+Message digests
+computationally expensive to public-key-encrypt long messages
+goal: fixed-length, easy- to-compute digital “fingerprint”
+apply hash function H to m, get fixed size message digest, H(m).
+Hash function properties:
+many-to-1
+produces fixed-size msg digest (fingerprint)
+given message digest x, computationally infeasible to find m such that x = H(m)
+large
+message
+m
+H: Hash
+Function
+H(m)
+8-
+Security
+
+=== s56 ===
+Internet checksum: poor crypto hash function
+Internet checksum has some properties of hash function:
+produces fixed length digest (16-bit sum) of message
+is many-to-one
+But given message with given hash value, it is easy to find another message with same hash value:
+I O U 1
+0 0 . 9
+9 B O B
+49 4F 55 31
+30 30 2E 39
+39 42 D2 42
+message
+ASCII format
+B2 C1 D2 AC
+I O U 9
+0 0 . 1
+9 B O B
+49 4F 55 39
+30 30 2E 31
+39 42 D2 42
+message
+ASCII format
+B2 C1 D2 AC
+different messages
+but identical checksums!
+8-
+Security
+
+=== s57 ===
+H(m)
+Bob’s
+private
+key
+Bob sends digitally signed message:
+Alice verifies signature, integrity of digitally signed message:
+Bob’s
+public
+key
+equal
+?
+Digital signature = signed message digest
+8-
+Security
+
+=== s58 ===
+Hash function algorithms
+MD5 hash function widely used (RFC 1321)
+computes 128-bit message digest in 4-step process.
+arbitrary 128-bit string x, appears difficult to construct msg m whose MD5 hash is equal to x
+SHA-1 is also used
+US standard [NIST, FIPS PUB 180-1]
+160-bit message digest
+8-
+Security
+
+=== s59 ===
+Recall: ap5.0 security hole
+man (or woman) in the middle attack: Trudy poses as Alice (to Bob) and as Bob (to Alice)
+I am Alice
+I am Alice
+R
+Send me your public key
+Send me your public key
+Trudy gets
+sends m to Alice encrypted with Alice’s public key
+R
+8-
+Security
+
+=== s60 ===
+Public-key certification
+motivation: Trudy plays pizza prank on Bob
+Trudy creates e-mail order: Dear Pizza Store, Please deliver to me four pepperoni pizzas. Thank you, Bob
+Trudy signs order with her private key
+Trudy sends order to Pizza Store
+Trudy sends to Pizza Store her public key, but says it’s Bob’s public key
+Pizza Store verifies signature; then delivers four pepperoni pizzas to Bob
+Bob doesn’t even like pepperoni
+8-
+Security
+
+=== s61 ===
+Certification authorities
+certification authority (CA): binds public key to particular entity, E.
+E (person, router) registers its public key with CA.
+E provides “proof of identity” to CA.
+CA creates certificate binding E to its public key.
+certificate containing E’s public key digitally signed by CA – CA says “this is E’s public key”
+Bob’s
+public
+key
+Bob’s
+identifying information
+CA
+private
+key
+-
+certificate for Bob’s public key, signed by CA
+8-
+Security
+
+=== s62 ===
+when Alice wants Bob’s public key:
+gets Bob’s certificate (Bob or elsewhere).
+apply CA’s public key to Bob’s certificate, get Bob’s public key
+Bob’s
+public
+key
+CA
+public
+key
++
+Certification authorities
+8-
+Security
+
+=== s63 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity, authentication
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s64 ===
+Secure e-mail
+Alice:
+generates random symmetric private key, KS
+encrypts message with KS  (for efficiency)
+also encrypts KS with Bob’s public key
+sends both KS(m) and KB(KS) to Bob
+Alice wants to send confidential e-mail, m, to Bob.
+8-
+Security
+
+=== s65 ===
+Secure e-mail
+Bob:
+uses his private key to decrypt and recover KS
+uses KS to decrypt KS(m) to recover m
+Alice wants to send confidential e-mail, m, to Bob.
+8-
+Security
+
+=== s66 ===
+Secure e-mail (continued)
+Alice wants to provide sender authentication message integrity
+Alice digitally signs message
+sends both message (in the clear) and digital signature
+8-
+Security
+
+=== s67 ===
+Secure e-mail (continued)
+Alice wants to provide secrecy, sender authentication,  message integrity.
+Alice uses three keys: her private key, Bob’s public key, newly created symmetric key
+8-
+Security
+
+=== s68 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s69 ===
+SSL: Secure Sockets Layer
+widely deployed security protocol
+supported by almost all browsers, web servers
+https
+billions $/year over SSL
+mechanisms: [Woo 1994], implementation: Netscape
+variation -TLS: transport layer security, RFC 2246
+provides
+confidentiality
+integrity
+authentication
+original goals:
+Web e-commerce transactions
+encryption (especially credit-card numbers)
+Web-server authentication
+optional client authentication
+minimum hassle in doing business with new merchant
+available to all TCP applications
+secure socket interface
+8-
+Security
+
+=== s70 ===
+SSL and TCP/IP
+SSL provides application programming interface (API) to applications
+C and Java SSL libraries/classes readily available
+8-
+Security
+
+=== s71 ===
+Could do something like PGP:
+but want to send byte streams & interactive data
+want set of secret keys for entire connection
+want certificate exchange as part of protocol: handshake phase
+m
+m
+KS
+Internet
+KS
+8-
+Security
+
+=== s72 ===
+Toy SSL: a simple secure channel
+handshake: Alice and Bob use their certificates, private keys to authenticate each other and exchange shared secret
+key derivation: Alice and Bob use shared secret to derive set of keys
+data transfer: data to be transferred is broken up into series of records
+connection closure: special messages to securely close connection
+8-
+Security
+
+=== s73 ===
+Toy: a simple handshake
+MS: master secret
+EMS: encrypted master secret
+hello
+public key certificate
+KB+(MS) = EMS
+8-
+Security
+
+=== s74 ===
+Toy: key derivation
+considered bad to use same key for more than one cryptographic operation
+use different keys for message authentication code (MAC) and encryption
+four keys:
+Kc = encryption key for data sent from client to server
+Mc = MAC key for data sent from client to server
+Ks = encryption key for data sent from server to client
+Ms = MAC key for data sent from server to client
+keys derived from key derivation function (KDF)
+takes master secret and (possibly) some additional random data and creates the keys
+8-
+Security
+
+=== s75 ===
+Toy: data records
+why not encrypt data in constant stream as we write it to TCP?
+where would we put the MAC? If at end, no message integrity until all data processed.
+e.g., with instant messaging, how can we do integrity check over all bytes sent before displaying?
+instead, break stream in series of records
+each record carries a MAC
+receiver can act on each record as it arrives
+issue: in record, receiver needs to distinguish MAC from data
+want to use variable-length records
+length
+data
+MAC
+8-
+Security
+
+=== s76 ===
+Toy: sequence numbers
+problem: attacker can capture and replay record or re-order records
+solution: put sequence number into MAC:
+MAC = MAC(Mx, sequence||data)
+note: no sequence number field
+problem: attacker could replay all records
+solution: use nonce
+8-
+Security
+
+=== s77 ===
+Toy: control information
+problem: truncation attack:
+attacker forges TCP connection close segment
+one or both sides thinks there is less data than there actually is.
+solution: record types, with one type for closure
+type 0 for data; type 1 for closure
+MAC = MAC(Mx, sequence||type||data)
+length
+type
+data
+MAC
+8-
+Security
+
+=== s78 ===
+Toy SSL: summary
+encrypted
+bob.com
+8-
+Security
+
+=== s79 ===
+Toy SSL isn’t complete
+how long are fields?
+which encryption protocols?
+want negotiation?
+allow client and server to support different encryption algorithms
+allow client and server to choose together specific algorithm before data transfer
+8-
+Security
+
+=== s80 ===
+SSL cipher suite
+cipher suite
+public-key algorithm
+symmetric encryption algorithm
+MAC  algorithm
+SSL supports several cipher suites
+negotiation: client, server agree on cipher suite
+client offers choice
+server picks one
+common SSL symmetric ciphers
+DES – Data Encryption Standard: block
+3DES – Triple strength: block
+RC2 – Rivest Cipher 2: block
+RC4 – Rivest Cipher 4: stream
+SSL Public key encryption
+RSA
+8-
+Security
+
+=== s81 ===
+Real SSL: handshake (1)
+Purpose
+server authentication
+negotiation: agree on crypto algorithms
+establish keys
+client authentication (optional)
+8-
+Security
+
+=== s82 ===
+Real SSL: handshake (2)
+client sends list of algorithms it supports, along with client nonce
+server chooses algorithms from list; sends back: choice + certificate + server nonce
+client verifies certificate, extracts server’s public key, generates pre_master_secret, encrypts with server’s public key, sends to server
+client and server independently compute encryption and MAC keys from pre_master_secret and nonces
+client sends a MAC of all the handshake messages
+server sends a MAC of all the handshake messages
+8-
+Security
+
+=== s83 ===
+Real SSL: handshaking (3)
+last 2 steps protect handshake from tampering
+client typically offers range of algorithms, some strong, some weak
+man-in-the middle could delete stronger algorithms from list
+last 2 steps prevent this
+last two messages are encrypted
+8-
+Security
+
+=== s84 ===
+Real SSL: handshaking (4)
+why two random nonces?
+suppose Trudy sniffs all messages between Alice & Bob
+next day, Trudy sets up TCP connection with Bob, sends exact same sequence of records
+Bob (Amazon) thinks Alice made two separate orders for the same thing
+solution: Bob sends different random nonce for each connection. This causes encryption keys to be different on the two days
+Trudy’s messages will fail Bob’s integrity check
+8-
+Security
+
+=== s85 ===
+SSL record protocol
+record header:  content type; version; length
+MAC:  includes sequence number, MAC key Mx
+fragment:  each SSL fragment 214 bytes (~16 Kbytes)
+8-
+Security
+
+=== s86 ===
+SSL record format
+data and MAC encrypted (symmetric algorithm)
+8-
+Security
+
+=== s87 ===
+Real SSLconnection
+TCP FIN follows
+everything
+henceforth
+is encrypted
+8-
+Security
+
+=== s88 ===
+Key derivation
+client nonce, server nonce, and pre-master secret input into pseudo random-number generator.
+produces master secret
+master secret and new nonces input into another random-number generator: “key block”
+because of resumption: TBD
+key block sliced and diced:
+client MAC key
+server MAC key
+client encryption key
+server encryption key
+client initialization vector (IV)
+server initialization vector (IV)
+8-
+Security
+
+=== s89 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s90 ===
+What is network-layer confidentiality ?
+between two network entities:
+sending entity encrypts datagram payload, payload could be:
+TCP or UDP segment, ICMP message, OSPF message ….
+all data sent from one entity to other would be hidden:
+web pages, e-mail, P2P file transfers, TCP SYN packets …
+“blanket coverage”
+8-
+Security
+
+=== s91 ===
+Virtual Private Networks (VPNs)
+motivation:
+institutions often want private networks for security.
+costly: separate routers, links, DNS infrastructure.
+VPN: institution’s inter-office traffic is sent over public Internet instead
+encrypted before entering public Internet
+logically separate from other traffic
+8-
+Security
+
+=== s92 ===
+headquarters
+branch office
+salespersonin hotel
+laptop
+w/ IPsec
+router w/
+IPv4 and IPsec
+router w/
+IPv4 and IPsec
+publicInternet
+Virtual Private Networks (VPNs)
+8-
+Security
+
+=== s93 ===
+IPsec services
+data integrity
+origin authentication
+replay attack prevention
+confidentiality
+two protocols providing different service models:
+AH
+ESP
+8-
+Security
+
+=== s94 ===
+IPsec transport mode
+IPsec datagram emitted and received by end-system
+protects upper level protocols
+IPsec
+IPsec
+8-
+Security
+
+=== s95 ===
+IPsec – tunneling mode
+edge routers IPsec-aware
+IPsec
+IPsec
+IPsec
+IPsec
+hosts IPsec-aware
+8-
+Security
+
+=== s96 ===
+Two IPsec protocols
+Authentication Header (AH) protocol
+provides source authentication & data integrity but not confidentiality
+Encapsulation Security Protocol (ESP)
+provides source authentication, data integrity, and confidentiality
+more widely used than AH
+8-
+Security
+
+=== s97 ===
+Four combinations are possible!
+most common andmost important
+8-
+Security
+
+=== s98 ===
+Security associations (SAs)
+before sending data, “security association (SA)”  established from sending to receiving entity
+SAs are simplex: for only one direction
+ending, receiving entitles maintain state information about SA
+recall: TCP endpoints also maintain state info
+IP is connectionless; IPsec is connection-oriented!
+how many SAs in VPN w/ headquarters, branch office, and n traveling salespeople?
+8-
+Security
+
+=== s99 ===
+Example SA from R1 to R2
+R1 stores for SA:
+32-bit SA identifier: Security Parameter Index (SPI)
+origin SA interface (200.168.1.100)
+destination SA interface (193.68.2.23)
+type of encryption used (e.g., 3DES with CBC)
+encryption key
+type of integrity check used (e.g., HMAC with MD5)
+authentication key
+8-
+Security
+
+=== s100 ===
+Security Association Database (SAD)
+endpoint holds SA state in security association database (SAD), where it can locate them during processing.
+with n salespersons, 2 + 2n SAs in R1’s SAD
+when sending IPsec datagram, R1 accesses SAD to determine how to process datagram.
+when IPsec datagram arrives to R2, R2 examines SPI in IPsec datagram, indexes SAD with SPI, and processes datagram accordingly.
+8-
+Security
+
+=== s101 ===
+IPsec datagram
+focus for now on tunnel mode with ESP
+8-
+Security
+
+=== s102 ===
+What happens?
+8-
+Security
+
+=== s103 ===
+R1: convert original datagram to IPsec datagram
+appends to back of original datagram (which includes original header fields!) an “ESP trailer” field.
+encrypts result using algorithm & key specified by SA.
+appends to front of this encrypted quantity the “ESP header, creating “enchilada”(墨西哥辣肉馅玉米卷).
+creates authentication MAC over the whole enchilada, using algorithm and key specified in SA;
+appends MAC to back of enchilada, forming payload;
+creates brand new IP header, with all the classic IPv4 header fields, which it appends before payload
+8-
+Security
+
+=== s104 ===
+Inside the enchilada:
+ESP trailer: Padding for block ciphers
+ESP header:
+SPI, so receiving entity knows what to do
+Sequence number, to thwart replay attacks
+MAC in ESP auth field is created with shared secret key
+8-
+Security
+
+=== s105 ===
+IPsec sequence numbers
+for new SA, sender initializes seq. # to 0
+each time datagram is sent on SA:
+sender increments seq # counter
+places value in seq # field
+goal:
+prevent attacker from sniffing and replaying a packet
+receipt of duplicate, authenticated IP packets may disrupt service
+method:
+destination checks for duplicates
+doesn’t keep track of all received packets; instead uses a window
+8-
+Security
+
+=== s106 ===
+Security Policy Database (SPD)
+policy: For a given datagram, sending entity needs to know if it should use IPsec
+needs also to know which SA to use
+may use: source and destination IP address; protocol number
+info in SPD indicates “what” to do with arriving datagram
+info in SAD indicates “how” to do it
+8-
+Security
+
+=== s107 ===
+Summary: IPsec services
+suppose Trudy sits somewhere between R1 and R2. she doesn’t know the keys.
+will Trudy be able to see original contents of datagram? How about source, dest IP address, transport protocol, application port?
+flip bits without detection?
+masquerade as R1 using R1’s IP address?
+replay a datagram?
+8-
+Security
+
+=== s108 ===
+IKE: Internet Key Exchange
+previous examples: manual establishment of IPsec SAs in IPsec endpoints:
+Example SA
+SPI: 12345
+Source IP: 200.168.1.100
+Dest IP: 193.68.2.23
+Protocol: ESP
+Encryption algorithm: 3DES-cbc
+HMAC algorithm: MD5
+Encryption key: 0x7aeaca…
+HMAC key:0xc0291f…
+manual keying is impractical for VPN with 100s of endpoints
+instead use IPsec IKE (Internet Key Exchange)
+8-
+Security
+
+=== s109 ===
+IKE: PSK and PKI
+authentication (prove who you are) with either
+pre-shared secret (PSK) or
+with PKI (pubic/private keys and certificates).
+PSK: both sides start with secret
+run IKE to authenticate each other and to generate IPsec SAs (one in each direction), including encryption, authentication keys
+PKI: both sides start with public/private key pair, certificate
+run IKE to authenticate each other, obtain IPsec SAs (one in each direction).
+similar with handshake in SSL.
+8-
+Security
+
+=== s110 ===
+IKE phases
+IKE has two phases
+phase 1: establish bi-directional IKE SA
+note: IKE SA different from IPsec SA
+aka ISAKMP security association
+phase 2: ISAKMP is used to securely negotiate IPsec pair of SAs
+phase 1 has two modes: aggressive mode and main mode
+aggressive mode uses fewer messages
+main mode provides identity protection and is more flexible
+8-
+Security
+
+=== s111 ===
+IPsec summary
+IKE message exchange for algorithms, secret keys, SPI numbers
+either AH or ESP protocol  (or both)
+AH provides integrity, source authentication
+ESP protocol (with AH) additionally provides encryption
+IPsec peers can be two end systems, two routers/firewalls, or a router/firewall and an end system
+8-
+Security
+
+=== s112 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s113 ===
+WEP design goals
+symmetric key crypto
+confidentiality
+end host authorization
+data integrity
+self-synchronizing: each packet separately encrypted
+given encrypted packet and key, can decrypt; can continue to decrypt packets when preceding packet was lost (unlike Cipher Block Chaining (CBC) in block ciphers)
+Efficient
+implementable in hardware or software
+8-
+Security
+
+=== s114 ===
+Review: symmetric stream ciphers
+combine each byte of keystream with byte of plaintext to get ciphertext:
+m(i) = ith unit of message
+ks(i) = ith unit of keystream
+c(i) = ith unit of ciphertext
+c(i) = ks(i)  m(i)   ( = exclusive or)
+m(i) = ks(i)  c(i)
+WEP uses RC4
+8-
+Security
+
+=== s115 ===
+Stream cipher and packet independence
+recall design goal: each packet separately encrypted
+if for frame n+1, use keystream from where we left off for frame n, then each frame is not separately encrypted
+need to know where we left off for packet n
+WEP approach: initialize keystream with key + new IV for each packet:
+keystream
+generator
+Key+IVpacket
+keystreampacket
+8-
+Security
+
+=== s116 ===
+WEP encryption (1)
+sender calculates Integrity Check Value (ICV, four-byte hash/CRC over data
+each side has 104-bit shared key
+sender creates 24-bit initialization vector (IV), appends to key: gives 128-bit key
+sender also appends keyID (in 8-bit field)
+128-bit key inputted into pseudo random number generator to get keystream
+data in frame + ICV is encrypted with RC4:
+bytes of keystream are XORed with bytes of data & ICV
+IV & keyID are appended to encrypted data to create payload
+payload inserted into 802.11 frame
+8-
+Security
+
+=== s117 ===
+WEP encryption (2)
+new IV for each frame
+8-
+Security
+
+=== s118 ===
+WEP decryption overview
+receiver extracts IV
+inputs IV, shared secret key into pseudo random generator, gets keystream
+XORs keystream with encrypted data to decrypt data + ICV
+verifies integrity of data with ICV
+note: message integrity approach used here is different from MAC (message authentication code) and signatures (using PKI).
+8-
+Security
+
+=== s119 ===
+End-point authentication w/ nonce
+Nonce: number (R) used only once –in-a-lifetime
+How to prove Alice “live”:  Bob sends Alice nonce, R.  Alice
+must return R, encrypted with shared secret key
+“I am Alice”
+R
+Alice is live, and only Alice knows key to encrypt nonce, so it must be Alice!
+8-
+Security
+
+=== s120 ===
+WEP authentication
+authentication request
+nonce (128 bytes)
+nonce encrypted shared key
+success if decrypted value equals nonce
+Notes:
+not all APs do it, even if WEP is being used
+AP indicates if authentication is necessary in beacon frame
+done before association
+8-
+Security
+
+=== s121 ===
+Breaking 802.11 WEP encryption
+security hole:
+24-bit IV, one IV per frame, -> IV’s eventually reused
+IV transmitted in plaintext -> IV reuse detected
+attack:
+Trudy causes Alice to encrypt known plaintext d1 d2 d3 d4 …
+Trudy sees: ci = di XOR  kiIV
+Trudy knows ci di, so can compute  kiIV
+Trudy knows encrypting key sequence k1IV k2IV k3IV …
+Next time IV is used, Trudy can decrypt!
+8-
+Security
+
+=== s122 ===
+802.11i: improved security
+numerous (stronger) forms of encryption possible
+provides key distribution
+uses authentication server separate from access point
+8-
+Security
+
+=== s123 ===
+AP: access point
+AS:
+Authentication
+server
+wired
+network
+STA:
+client station
+802.11i: four phases of operation
+8-
+Security
+
+=== s124 ===
+EAP TLS
+EAP
+EAP over LAN (EAPoL)
+IEEE 802.11
+RADIUS
+UDP/IP
+EAP: extensible authentication protocol
+EAP: end-end client (mobile) to authentication server protocol
+EAP sent over separate “links”
+mobile-to-AP (EAP over LAN)
+AP to authentication server (RADIUS over UDP)
+wired
+network
+8-
+Security
+
+=== s125 ===
+Chapter 8 roadmap
+8.1 What is network security?
+8.2 Principles of cryptography
+8.3 Message integrity
+8.4 Securing e-mail
+8.5 Securing TCP connections: SSL
+8.6 Network layer security: IPsec
+8.7 Securing wireless LANs
+8.8 Operational security: firewalls and IDS
+8-
+Security
+
+=== s126 ===
+Firewalls
+isolates organization’s internal net from larger Internet, allowing some packets to pass, blocking others
+administered
+network
+public
+Internet
+firewall
+trusted “good guys”
+untrusted “bad guys”
+8-
+Security
+
+=== s127 ===
+Firewalls: why
+prevent denial of service attacks:
+SYN flooding: attacker establishes many bogus TCP connections, no resources left for “real” connections
+prevent illegal modification/access of internal data
+e.g., attacker replaces CIA’s homepage with something else
+allow only authorized access to inside network
+set of authenticated users/hosts
+three types of firewalls:
+stateless packet filters
+stateful packet filters
+application gateways
+8-
+Security
+
+=== s128 ===
+Stateless packet filtering
+internal network connected to Internet via router firewall
+router filters packet-by-packet, decision to forward/drop packet based on:
+source IP address, destination IP address
+TCP/UDP source and destination port numbers
+ICMP message type
+TCP SYN and ACK bits
+8-
+Security
+
+=== s129 ===
+Stateless packet filtering: example
+example 1: block incoming and outgoing datagrams with IP protocol field = 17 and with either source or dest port = 23
+result: all incoming, outgoing UDP flows and telnet connections are blocked
+example 2: block inbound TCP segments with ACK=0.
+result: prevents external clients from making TCP connections with internal clients, but allows internal clients to connect to outside.
+8-
+Security
+
+=== s130 ===
+Stateless packet filtering: more examples
+8-
+Security
+
+=== s131 ===
+Access Control Lists
+ACL: table of rules, applied top to bottom to incoming packets: (action, condition) pairs: looks like OpenFlow forwarding (Ch. 4)!
+8-
+Security
+
+=== s132 ===
+Stateful packet filtering
+stateless packet filter: heavy handed tool
+admits packets that “make no sense,” e.g., dest port = 80, ACK bit set, even though no TCP connection established:
+stateful packet filter: track status of every TCP connection
+track connection setup (SYN), teardown (FIN): determine whether incoming, outgoing packets “makes sense”
+timeout inactive connections at firewall: no longer admit packets
+8-
+Security
+
+=== s133 ===
+Stateful packet filtering
+ACL augmented to indicate need to check connection state table before admitting packet
+8-
+Security
+
+=== s134 ===
+Application gateways
+filter packets on application data as well as on IP/TCP/UDP fields.
+example: allow select internal users to telnet outside
+1. require all telnet users to telnet through gateway.
+2. for authorized users, gateway sets up telnet connection to dest host. Gateway relays data between 2 connections
+3. router filter blocks all telnet connections not originating from gateway.
+8-
+Security
+
+=== s135 ===
+Limitations of firewalls, gateways
+IP spoofing: router can’t know if data “really” comes from claimed source
+if multiple app’s. need special treatment, each has own app. gateway
+client software must know how to contact gateway.
+e.g., must set IP address of proxy in Web browser
+filters often use all or nothing policy for UDP
+tradeoff:  degree of communication with outside world, level of security
+many highly protected sites still suffer from attacks
+8-
+Security
+
+=== s136 ===
+Intrusion detection systems
+packet filtering:
+operates on TCP/IP headers only
+no correlation check among sessions
+IDS: intrusion detection system
+deep packet inspection: look at packet contents (e.g., check character strings in packet against database of known virus, attack strings)
+examine correlation among multiple packets
+port scanning
+network mapping
+DoS attack
+8-
+Security
+
+=== s137 ===
+Web
+server
+FTP
+server
+DNS
+server
+Internet
+demilitarized
+zone
+firewall
+IDS
+sensors
+Intrusion detection systems
+multiple IDSs: different types of checking at different locations
+internal
+network
+8-
+Security
+
+=== s138 ===
+Network Security (summary)
+basic techniques…...
+cryptography (symmetric and public)
+message integrity
+end-point authentication
+…. used in many different security scenarios
+secure email
+secure transport (SSL)
+IP sec
+802.11
+operational security: firewalls and IDS
+8-
+Security
+

@@ -1,0 +1,346 @@
+# PR11 Basics of NLP
+# Pages: 74
+
+=== p1 ===
+1
+自然语言处理基础
+杨猛https://cse.sysu.edu.cn/content/2970中山大学
+机器智能与先进计算教育部重点实验室
+中山大学计算机学院研究生人工智能应用基础系列课程
+声明：该PPT只供非商业使用，也不可视为任何出版物。由于历史原因，许多图片尚没有标注出处，如果你知道图片的出处，欢迎告诉我们at wszheng@ieee.org.
+
+=== p2 ===
+2
+
+=== p3 ===
+图灵测试❑如何知道一个系统是否具有智能？❑1950年计算机科学家图灵提出了著名的“图灵测试”。❑通过人和机器之间的自然语言对话来判断机器是否具有智能
+3
+
+=== p4 ===
+B对话系统
+ANLP基础
+4
+目录
+CChatGPT
+
+=== p5 ===
+第一部分：NLP基础
+5
+
+=== p6 ===
+人工智能发展
+运算智能感知智能认知智能
+掌握知识、进行推
+理
+能理解会思考
+知识引导
++
+数据智能
+6
+
+=== p7 ===
+专家系统DENDRAL知识表示逻辑语义网知识图谱知识角度
+统计学习
+7
+人工智能发展
+
+=== p8 ===
+NLP是认知智能的核心
+刘挺，哈工大，中文信息处理前沿技术进展8
+
+=== p9 ===
+什么是NLP❑自然语言处理（Natural Language Processing，NLP）是指用计算机对语言信息进行处理的方法和技术。❑NLP是一门交叉学科。o计算机科学o人工智能o逻辑学❑目标是让计算机能够处理和理解自然语言并实现一些有用的任务。o智能助理（Siri，Google Assistant，FacebookM，Cortana...）o机器翻译o… 9
+
+=== p10 ===
+NLP发展
+1948-19501950-197070年代-200020012003-20082013至今
+发源规则统计网络PGM深度
+信息熵图灵测试语法规则乔姆斯基文法规则马尔可夫性质语言模型隐马可科夫tfidfBM25PageRank
+神经语言模型条件随机场概率图模型分布式假设Word2vecseq2seqAttentionTransformerBERTGPT
+10
+
+=== p11 ===
+NLP的层次
+语音分析文字识别/分词形态分析语义分析情感分析对话处理
+语音文本
+11
+
+=== p12 ===
+NLP的层次❑（文字识别）百度OCR中文识别API：https://console.bce.baidu.com/ai/?fromai=1#/ai/ocr/overview/index
+12
+
+=== p13 ===
+NLP的层次❑（语音识别）科大讯飞语音识别API：https://www.xfyun.cn/services/voicedictation❑TTS(语音合成) http://speech.diotek.com/en/text-to-speech-demonstration.php❑（形态分析）NLTK工具包的词干提取：http://www.nltk.org/>>>from nltk.stem.porterimport PorterStemmer>>>stem = PorterStemmer()>>>word = ‘playing’>>>stem.stem(word)‘play’ 13
+
+=== p14 ===
+NLP的层次❑（分词、句法分析）哈工大NLP平台LTP：http://ltp.ai/
+14
+
+=== p15 ===
+NLP的层次❑（情感分析）讯飞的情感分析API：https://www.xfyun.cn/services/emotion-analysis
+15
+
+=== p16 ===
+NLP的层次❑（对话处理）任务导向型（task-oriented)对话系统（智能客服、助理）：
+16
+
+=== p17 ===
+NLP技术的一些应用❑拼写检查（Word自动拼写检查）❑机器翻译（Google、Baidu翻译）❑自动摘要（Text rank抽取式方法、end to end的生成式方法）❑文本分类和信息过滤（特征提取的方法、深度学习的方法）❑信息检索（Google学术搜索）❑信息抽取和文本挖掘（机器阅读理解、LDA主题分析）❑情感分析（基于情感词典的方法、深度学习的方法）❑问答系统（各类智能客服、助理,）17
+
+=== p18 ===
+NLP的主要任务❑语言分析：分析语言表达的结构和含义o词法分析：形态还原、词性标注、命名实体识别、分词等o句法分析：组块分析、结构分析、依存分析o语义分析：词义、句意（逻辑关系）、上下文（指代、实体关系）❑语言生成：从某种内部表示生成语言表达❑多语言处理：语言之间的对应、转换（机器翻译、跨语言检索）❑不同的应用对以上任务有不同需求18
+
+=== p19 ===
+NLP的主要实现方法❑基于规则的理性方法o基于规则的知识表示和推理（符号计算）o强调人对语言知识的理性整理（知识工程）o受计算语言学理论指导❑基于语料库的经验方法o以大规模语料库为语言知识基础o利用统计学习和基于神经网络的深度学习方法自动获取和运用隐含在语料库中的知识o学习到的知识体现为一系列模型参数❑混合方法o理性方法处理效率比较高，但是鲁棒性差、知识扩充困难o经验方法鲁棒性较好，但是缺乏对语言学知识的深入描述和应用、处理效率低o结合两种方法的优点19
+
+=== p20 ===
+NLP的难点❑歧义o有限的词汇和规则表达复杂、多样的对象❑语言知识的表示、获取和运用❑成语和惯用语的处理❑对语言的灵活性和动态性的处理o同一个意图的不同表达，包括包含错误语法的习惯用语o语言在不断地变化，新词的出现❑上下文和世界知识（常识）的利用和处理20
+
+=== p21 ===
+词向量❑为了使计算机能够处理自然语言符号，引入词向量的方法。❑one-hot表示：把每个词表示为一个长向量。这个向量的维度是词表大小，向量中只有一个维度的值为1，其余维度为0，这个维度就代表了当前的词。
+❑one-hot表示相当于给每个词分配一个ID，这就导致这种表示方式不能展示词与词之间的关系。并且有维度过高的问题。
+苹果->(0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,…)香蕉->  (0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,…)
+21
+
+=== p22 ===
+词向量❑分布式表示：将词表示成一个定长的连续的稠密向量。❑Word2Vec是流行的分布式表示方法，它的思想是利用中心词来预测上下文（skip-gram）或者利用上下文来预测中心词（CBOW）。❑分布式表示很好地解决了维度过高的问题，并且可以一定程度上反映词语之间的关联。苹果->𝑥!香蕉->𝑥"风扇->𝑥#
+22
+
+=== p23 ===
+词向量❑Word2Vec的skip-gram方法
+❑使用滑动窗口遍历语料，用中心词来预测上下文的词（词表中每个词都计算出现概率），不断更新词向量从而使预料中出现的词概率最大化。
+《Efficient Estimation of Word Representation in Vector Space》23
+
+=== p24 ===
+词向量
+❑PCA降维后的Word2Vcec向量。
+Word2Vec源码地址：https://code.google.com/archive/p/word2vec/source/default/source常用Python实现：https://github.com/RaRe-Technologies/gensim24
+
+=== p25 ===
+深度学习：目前NLP所采用的主要技术手段
+刘挺，哈工大，中文信息处理前沿技术进展25
+
+=== p26 ===
+第二部分：对话系统
+26
+
+=== p27 ===
+27
+QA问答系统❑什么是问答系统？o问答系统是对话系统的子集，主要指人需要从对话中获取知识的一类对话系统。划分不绝对，有时会与对话系统混用。
+
+=== p28 ===
+28
+QA问答系统❑对话系统目标：o用自然语言给系统一句话, 系统能够用自然语言给出合理的回应❑对话系统分类：o任务型对话系统❖智能音箱❖……o问答系统获取知识o闲聊型
+
+=== p29 ===
+29
+QA问答系统❑任务型对话系统：o识别用户派遣的任务，然后完成相应的任务。需要对接并调用外部系统接口。❖语音助手/智能音箱：Siri、Cortana、亚马逊Echo、Google Home、❖智能客服
+
+=== p30 ===
+30
+QA问答系统❑任务型对话系统：o对用户向系统输入的自然语言进行目标性的理解，（有时还需要在用户给定信息不明确时对用户进行引导。）o实现技术：❖流水线(pipeline):–将整个系统划分为多个独立的模块，单独设计各模块，模块之间协作完成任务型对话。❖端到端(end-to-end):–由输入到输出整体构建和训练
+
+=== p31 ===
+31
+QA问答系统❑任务型对话系统——流水线方法(pipeline)：o主要包含四个部分：自然语言理解NLU，对话状态追踪DST，对话策略学习DPL，自然语言生成NLG。
+❖Natrual Langurage Understading: NLU自然语言理解。。❖Dialogue State Tracking：DST对话状态追踪。❖Dialogue Policy Learning：DPL对话策略❖Natrual Langurage Generation：NLG 自然语言生成。
+
+=== p32 ===
+32
+QA问答系统❑任务型对话系统——流水线方法(pipeline)：o1. 自然语言理解：将自然语言映进行识别意图和信息抽取（语义槽，semantic slots）。
+❖意图识别就是将用户的话分类到预定义好的类别中。使用深度学习、CNN进行意图识别和分类。类似的方法同样适用于类别和领域的分类。❖槽填充（slot filling）是将用户的话中的词打上语义标签（例如，日期、地点等）。打标签方法有深度信念网络（DBNs），RNN等。❖NLU的结果（intent和slot）会进一步被对话管理器（dialogue management component）进行处理，主要包括对话状态追踪和策略学习。
+
+=== p33 ===
+33
+QA问答系统❑任务型对话系统——流水线方法(pipeline)：o2. 对话状态追踪：在每一轮对话中估计用户的目标。常用的状态结构是槽填充(slot filling)或语义框架(semantic frame)。❖传统方法是使用人工定义的规则来选择最有可能的结果。❖还有一些方法通过概论分布和条件随机场来做对话状态追踪❖在深度学习流行起来后有学者提出了基于深度学习、RNN的单领域或多领域的追踪模型；17年有学者提出了神经信念跟踪器neural belief tracker（NBT）来检测slot-value pairs。o3. 对话策略学习：对话策略基于上一步对话状态的表示来生成系统的下一步动作(action)。可以使用监督学习和强化学习。2、3 构成对话控制部分
+
+=== p34 ===
+Dialog System Technology Challenge (DSTC)❑对话系统技术挑战赛是一项对话系统的顶尖学术竞赛，由来自微软研究院、卡耐基梅隆大学、本田研究院的科学家于2013年发起。
+34
+
+=== p35 ===
+❑推荐型对话系统中的DM就是进行用户兴趣的匹配以及推荐内容评分、排序和筛选等，以便于NLG阶段生成更好的给用户推荐的内容
+对话管理DM
+35
+❑闲聊型对话中的DM就是对上下文进行序列建模、对候选回复进行评分、排序和筛选等，以便于NLG阶段生成更好的回复；❑知识问答型对话中的DM就是在问句的类型识别与分类的基础上，进行文本的检索以及知识库的匹配，以便于NLG阶段生成用户想要的文本片段或知识库实体
+
+=== p36 ===
+❑任务型对话中的DM就是在NLU(领域分类和意图识别、槽填充)的基础上，进行对话状态的追踪（DST）以及对话策略的学习（DPL），以便于DPL阶段策略的学习以及NLG阶段澄清需求、引导用户、询问、确认、对话结束语等。
+任务型对话机器人：对话管理DM
+36
+
+=== p37 ===
+DST状态追踪❑DST涉及到两方面内容：状态表示、状态追踪。❑对话状态追踪DST：作用是根据领域(domain)/意图(intention) 、曹植对(slot-value pairs)、之前的状态以及之前系统的Action等来追踪当前状态。它的输入是Un（n时刻的意图和槽值对，也叫用户Action）、An-1（n-1时刻的系统Action）和Sn-1（n-1时刻的状态），输出是Sn（n时刻的状态）。❑S = {Gn,Un,Hn}，Gn是用户目标、Un同上、Hn是聊天的历史，Hn= {U0, A0, U1, A1, ... , U −1, A −1}，S =f(S −1,A −1,U )。37
+
+=== p38 ===
+DST技术发展
+Lee, Sigdial 2013Kim et al. 2014
+CRF Mrksic ACL 2015Willams 2013
+TransferLearningMrksic ACL 2017
+Neural Belieftracker
+Mrksic ACL 2015Henderson et al. 2013
+NN-BasedShi et al. 2016
+Multichanneltracker单击此处添加文本具体内容
+End-to-end20142015201620172017
+38
+
+=== p39 ===
+DST-NN❑Zilka el al., 2015，基于增量LSTM在DSTC2做对话状态追踪，具体思想如下：
+39
+
+=== p40 ===
+DST-Multichannel 
+40
+
+=== p41 ===
+Neural Belief Tracker ❑包含语义解码和上下文建模两部分：语义解码：判断槽值对是否出现在当前query；上下文建模：解析上一轮系统Act，系统询问（tq）+ 系统确认（ts+tv）
+41
+
+=== p42 ===
+42
+DPL的输入和输出
+
+=== p43 ===
+43
+基于强化学习的DPL的发展
+
+=== p44 ===
+❑Wen et al. 2016b❑Su et al. 2016Policy based DPL
+44
+
+=== p45 ===
+45
+QA问答系统❑任务型对话系统——流水线方法(pipeline)：o4. 自然语言生成：根据上一步产生的动作生成自然语言。可以基于LSTM，seq2seq等模型进行自然语言生成。
+
+=== p46 ===
+46
+QA问答系统❑任务型对话系统——流水线方法(pipeline)：o缺点：❖基于流水线方法的系统，有很多在具体领域的人工设计，难以应用到其他领域，并且还有两点局限：一是用户的反馈难以传给模型，二是各个模块间相互依赖（一个模块的输出是另一个模块的输入），适应新环境时修改起来需要很多人力。
+
+=== p47 ===
+47
+QA问答系统❑任务型对话系统——端到端方法(end-to-end)：o[network-based end-to-end trainable task-oriented dialogue system. In Proceedings of the 15th Conference of the European Chapter of the Association for ComputationalLinguistics: Volume 1, Long Papers, pages 438–449, Valencia, Spain, April 2017. Association for ComputationalLinguistics.]提出了基于神经网络的、端到端的、可训练的任务型对话系统，将对话系统的学习看作是一个从历史对话记录的匹配过程的学习，使用Encoder-Decoder模型来训练整个网络。缺点是监督学习需要大量数据，并且不够健壮。o[T. Zhao and M. Eskenazi. Towards end-to-end learning for dialog state tracking and management using deep reinforcement learning. In Proceedings of the 17th Annual Meeting of the Special Interest Group on Discourse and Dialogue, pages 1–10, Los Angeles, September 2016. Association for Computational Linguistics.]首先提出了端到端的强化学习方法来训练DM（包括对话状态追踪和策略学习），优化系统的鲁棒性（系统问用户一系列Yes/No问题来确定答案）。o[ X. Li, Y.-N. Chen, L. Li, and J. Gao. End-to-end taskcompletion neural dialogue systems. arXiv preprint arXiv:1703.01008, 2017.]将端到端系统训练为taskcompletion neural dialogue，最终目的是完成一项任务，例如，订电影票
+
+=== p48 ===
+48
+QA问答系统❑任务型对话系统——端到端方法(end-to-end)：o端到端的方法中也存在一些方法单独设计模型的各个部件，不同部件解决Pipeline方法中的某个或多个模块。❖E2E Task-Completion Bot (TC-Bot) (Li et al., 2017)
+
+=== p49 ===
+49
+QA问答系统❑问答系统目标：o用自然语言给出一个问题, 问答系统能够用自然语言给出合理的回答o获取知识❑分类：o按用户问题数据域：限定领域、开放领域、FAQo按答案知识来源：基于知识图谱、基于文本、基于问答对o按获取答案方式划分：检索式，生成式o按交互方式：单轮对话、多轮对话o……
+
+=== p50 ===
+50
+QA问答系统❑基于知识图谱的问答系统：o知识图谱❖知识图谱旨在描述世界上各种实体（entity）或概念（concept）及其关系，可被看作是一张巨大的图，节点表示实体或概念，边表示属性或关系。本质上是一种语义网络，边代表了实体/概念之间的各种语义关系。
+o目标：给出问题，系统从知识图谱中推理得到答案
+
+=== p51 ===
+51
+QA问答系统❑基于知识图谱的问答系统：
+
+=== p52 ===
+52
+QA问答系统❑基于知识图谱的问答系统：o知识图谱一般用RDF形式存储数据oRDF：英语全称为Resource Description Framework，中文名称为资源描述框架。RDF是一种描述数据文件储存的数据模型，该数据模型通常描述由三个部分组成的事实，被称为三元组（triples）。三元组由主语（subject）、谓语（predicate）和宾语（object）组成，看上去很像一个简单的句子。比如：subject predicate objectrichard homeTel (229)276-5135cindy email cindym@gmail.com
+
+=== p53 ===
+53
+QA问答系统❑基于知识图谱的问答系统：o用RDF构建的知识图谱一般用SPARQL进行查询oSPARQL的英文全称为SPARQL Protocol and RDF Query Language，是为RDF开发的一种查询语言和数据获取协议，它是为W3C所开发的RDF数据模型所定义，但是可以用于任何可以用RDF来表示的信息资源。
+
+=== p54 ===
+54
+QA问答系统❑基于知识图谱的问答系统：o传统方法：❖基于语义解析–构建语义解析器，将自然语言转化为结构化形式，如逻辑形式。以此在知识图谱上查询和推理❖基于信息检索和信息抽取–基于问题给出的信息（实体）在知识图谱中检索，得到以实体为中心的子图，子图中每个节点和边都可以作为答案。通过观察问题依据某些规则或模板进行信息抽取，得到问题特征向量，建立分类器通过输入问题特征向量对候选答案进行筛选，从而得出最终答案。
+https://zhuanlan.zhihu.com/p/25735572
+
+=== p55 ===
+55
+QA问答系统❑基于知识图谱的问答系统：o传统方法：❖向量建模（Vector Modeling）: –该方法思想和信息抽取的思想比较接近，根据问题得出候选答案，把问题和候选答案都映射为分布式表达（Distributed Embedding），通过训练数据对该分布式表达进行训练，使得问题和正确答案的向量表达的得分（通常以点乘为形式）尽量高。❖……
+https://zhuanlan.zhihu.com/p/25735572
+
+=== p56 ===
+56
+QA问答系统❑基于知识图谱的问答系统：o深度学习加持：❖使用卷积神经网络对向量建模方法进行提升❖使用卷积神经网络对语义解析方法进行提升❖使用长短时记忆网络（Long Short-Term Memory，LSTM），卷积神经网络（Convolutional Neural Networks，CNNs）进行实体关系分类❖使用记忆网络（Memory Networks），注意力机制（Attention Mechanism）进行KB-QA：
+https://zhuanlan.zhihu.com/p/25735572
+
+=== p57 ===
+57
+QA问答系统❑基于知识图谱的问答系统：o深度学习加持：❖自中科院刘康老师在知识图谱与问答系统前沿技术研讨会中的报告
+https://zhuanlan.zhihu.com/p/25735572
+
+=== p58 ===
+58
+QA问答系统❑基于文本的问答系统（阅读理解）：o对于每个问题，会给定几段文本作为参考，这些文本通常根据问题检索得到，每段文本中可能包含有答案，也可能只与问题描述相关，而不含有答案。我们需要从这些文本中抽取出一个词或几个词作为答案。o人工合成阅读理解任务示例
+https://blog.csdn.net/malefactor/article/details/52832134/
+萨姆走进了厨房萨姆捡起了一个苹果萨姆走进了卧室萨姆丢下了苹果问：苹果在哪？答：卧室
+
+=== p59 ===
+59
+QA问答系统❑基于文本的问答系统（阅读理解）：o问答系统模型
+https://blog.csdn.net/malefactor/article/details/52832134/
+
+=== p60 ===
+60
+QA问答系统❑基于文本的问答系统（阅读理解）：o阅读理解中的推理在理解阅读文章内容的时候，推理过程无处不在。没有推理几乎可以判断其是无法完全理解内容的。比起一阶逻辑，自然语言做推理是很困难的（模糊性）。并且用嵌入的方法表示后的自然语言更难以控制其推理过程。
+https://blog.csdn.net/malefactor/article/details/52832134/
+
+=== p61 ===
+61
+QA问答系统❑基于文本的问答系统（阅读理解）：o阅读理解中的推理❖加深网络层数，对单层处理堆叠以期其在不同层做推理不同阶段。
+https://blog.csdn.net/malefactor/article/details/52832134/
+
+=== p62 ===
+62
+QA问答系统❑基于问答对的问答系统：o构建常用问答对集合(可以即时构建)，在集合范围内寻找给定问题的答案。o问题与答案之间字面意义关联性可能很弱(比如在某些专业性较强领域)，不能或很难利用问题答案的关联性。问题：如何开启Win10笔记本电脑热点答案：首先XXXX其次XXX……❖系统在集合中寻找与该问题语义最相近的问句，然后返回该问句对应的答案❖这种情况下可以用反向索引/倒排索引(inverted index)保存问题的语义向量，做初步过滤，减少相似度计算量。o问题和答案关联性较强式还可以利用问题和答案的关联性o通常与检索式问答系统关联
+
+=== p63 ===
+63
+QA问答系统❑参考ohttps://blog.csdn.net/sinat_33231573/article/details/83473741ohttps://wyydsb.xin/other/chatbot.htmlohttps://zhuanlan.zhihu.com/p/25735572ohttps://zhuanlan.zhihu.com/p/83825070o其他论文及博客o……
+
+=== p64 ===
+第三部分：CHAT-GPT
+64
+
+=== p65 ===
+Instruction finetuning❑Collectexamplesof(instruction, output) pairs across many tasks and finetune an LM❑Evaluate on unseentasks
+65
+
+=== p66 ===
+Instruction finetuning
+66
+
+=== p67 ===
+Reinforcement Learning from Human Feedback (RLHF)
+67
+
+=== p68 ===
+How do we model human preferences?
+68
+
+=== p69 ===
+How do we model human preferences?
+69
+
+=== p70 ===
+RLHF: Putting it all together[Christiano et al., 2017; Stiennon et al., 2020]
+70
+
+=== p71 ===
+InstructGPT
+71
+Scaling up RLHF to tens of thousands of tasks
+
+=== p72 ===
+ChatGPT
+72
+68https://openai.com/blog/chatgpt/(Instructionfinetuning!)
+Instruction Finetuning + RLHF for dialog agents
+
+=== p73 ===
+ChatGPT
+73
+(RLHF!)
+Instruction Finetuning + RLHF for dialog agents
+
+=== p74 ===
+ChatGPT
+74
+Instruction Finetuning + RLHF for dialog agents
+

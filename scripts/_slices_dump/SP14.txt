@@ -1,0 +1,2845 @@
+# SP14  Renewal Processes
+# Pages: 50
+
+=== p1 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+随机过程
+马啸
+中山大学计算机学院
+2022 年秋
+马啸 (SYSU) 随机过程 2022 年秋 1 / 50
+
+=== p2 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5 Renewal Processes
+Chapter 5. Renewal processes
+§ 5.1 Introduction
+§ 5.2 The strong law of large numbers and convergence WP1
+§ 5.3 Strong law for renewal processes
+§ 5.4 Renewal–reward processes; time averages
+马啸 (SYSU) 随机过程 2022 年秋 2 / 50
+
+=== p3 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+回顾以下概念。
+设概率空间 (Ω, F, P), 其中 Ω 是样本空间，F 是事件类，而 P 是概率。
+概率是从事件类到实数的一个映射，满足
+规范性：P(Ω) = 1 .
+非负性：P(A) ≥ 0 for all A ∈ F .
+可列可加性：设 Ai ∈ F , i ≥ 0 是一列两两不相交的事件，则
+P(S
+i≥0 Ai) = P
+i≥0 P(Ai).
+马啸 (SYSU) 随机过程 2022 年秋 3 / 50
+
+=== p4 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+随机变量是从样本空间到实数轴的映射，即
+X : Ω → R
+任意 ω ∈ Ω, 有唯一的 X(ω) ∈ R 与之对应，满足对于任意 x,
+{X ≤ x} ∈ F (是一个事件)。
+多维随机变量是从样本空间到多维实空间的映射，即
+X : Ω → Rn
+马啸 (SYSU) 随机过程 2022 年秋 4 / 50
+
+=== p5 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+一维随机变量可以用累积分布函数
+FX(x) = P{X ≤ x}, x ∈ R
+来刻画。
+n 维随机变量可以用联合累积分布函数
+FX1,X2,···,Xn (x1, x2, · · · , xn) = P{X1 ≤ x1, X2 ≤ x2, · · · , Xn ≤ xn}, xn
+1 ∈ Rn
+来刻画。
+马啸 (SYSU) 随机过程 2022 年秋 5 / 50
+
+=== p6 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+思考题：
+随机变量序列是怎样的映射？
+随机过程是怎样的映射？
+二者什么关系？如何刻画它们？
+马啸 (SYSU) 随机过程 2022 年秋 6 / 50
+
+=== p7 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+随机变量序列是从样本空间到数列空间的一个映射；
+Xn(ω), n ∈ Z, ω ∈ Ω;
+随机过程是从样本空间到函数空间的一个映射；X(t; ω), t ∈ R, ω ∈ Ω;
+对于随机过程而言，需要用任意有限维的联合分布函数来描述，即，对
+于任意 n, 任意 −∞ < t1 < t2 < · · · < tn < ∞, 我们需要掌握
+(X(t1), X(t2), · · · , X(tn)) 的联合累积分布函数。这对于一般化的随机过
+程是不可能的。
+思考题：你认为比较简单的随机过程是什么？
+马啸 (SYSU) 随机过程 2022 年秋 7 / 50
+
+=== p8 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Recall that an arrival process can be specified by either one of the joint
+distributions
+of the arrival epochs , S1, S2, · · · , Sn, · · ·
+of the interarrival times, X1, X2, · · · , Xn, · · ·
+of the counting random variables , N(t), t ≥ 0.
+Xi = Si − Si−1 for i ⩾ 2 and X1 = S1; Sn = Pn
+i=1 Xi.
+{Sn ⩽ t} = {N(t) ⩾ n} for all n ⩾ 1, t > 0.
+马啸 (SYSU) 随机过程 2022 年秋 8 / 50
+
+=== p9 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Definition 1
+A renewal process is an arrival process for which the sequence of
+interarrival times X1, X2, . . . are i.i.d..
+马啸 (SYSU) 随机过程 2022 年秋 9 / 50
+
+=== p10 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Example 1
+Markov chains, for any given recurrent state, have renewals on successive
+visits to that state.
+Assume that a recurrent finite-state Markov chain with transition matrix
+[P] starts in state i at time 0. Then on the first return to state i, say at
+time n, the Markov chain, from time n on, is a probabilistic replica of the
+chain starting at time 0.
+Each subsequent return to state i at a given time n starts a new
+probabilistic replica of the Markov chain starting in state i at time 0. Thus
+the sequence of entry times to state i can be viewed as the arrival epochs
+of a renewal process.
+It is almost obvious that the intervals between visits to a given recurrent
+state are independent.
+马啸 (SYSU) 随机过程 2022 年秋 10 / 50
+
+=== p11 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+A non-obvious result that will arise from studying renewals is that the
+expected recurrence time between visits to state i is 1/πi. We could have
+derived that from Markov chains directly , but using renewals is cleaner.
+For example, suppose the Markov chain is given by the figure. Then we
+can calculate the expect first-passage recurrent time from state 1 to state
+1 using the trick of trapping state .
+马啸 (SYSU) 随机过程 2022 年秋 11 / 50
+
+=== p12 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+We have seen that the expect first-passage recurrent time
+v1 = 1 +
+X
+k̸=1
+P1,kvk,
+where for each j ̸= 1 , vj satisfies vj = 1 + P
+k̸=1 Pj,kvk.
+Multiplying πj on both sides of the equations and summing up, we have
+X
+j
+πjvj =1 +
+X
+j
+X
+k̸=1
+πjPj,kvk
+=1 +
+X
+k̸=1
+X
+j
+πjPj,kvk
+=1 +
+X
+k̸=1
+πkvk.
+Thus, π1v1 = 1 and v1 = 1/ π1.
+思考题：考虑有限状态 Markov 链 X1, X2, · · · , Xn, · · ·。设其是遍历的，
+稳态概率（也是极限概率）分布记作π。在n 长的序列中，状态“1”大
+致发生多少次呢？
+马啸 (SYSU) 随机过程 2022 年秋 12 / 50
+
+=== p13 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Example 2. 考虑掷一个硬币的 Bernoulli 试验，其中正面朝上（称之为成
+功）的概率是 p。定义随机变量 X,
+X = 1 , 如果正面朝上;
+X = 0 , 如果反面朝上
+则我们可以考虑如下分布的概率质量函数、均值、方差、矩生成函数等
+Bernoulli 分布（一次试验成功的次数）
+二项分布（n 次试验中成功的次数）
+几何分布（首次成功需要的次数；成功后再次成功所需要的次数）
+Pascal 分布, 又名负二项分布（第 r 次成功所需要的次数）
+马啸 (SYSU) 随机过程 2022 年秋 13 / 50
+
+=== p14 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Example 3. 以速率 λ > 0“到达”的泊松过程。
+则我们可以考虑如下分布的概率密度函数、均值、方差、矩生成函数等
+指数分布（ “首次到达” ，间隔分布） ：到达间隔X 服从指数分布
+Pr{X > t} = e−λt, t ≥ 0.
+泊松分布：(0, t] 到达次数
+Erlang 分布（第 n 次到达的时刻）
+马啸 (SYSU) 随机过程 2022 年秋 14 / 50
+
+=== p15 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Example 4. The G/G/m queue 顾客到达间隔服从一个一般分布，IID；
+服务时间也服从另一个一般分布，IID，有 m 个服务窗口。
+先到先服务。first-come-first-served
+若都在忙，就排队。
+到达的是一个到达过程 N(t) 表示 (0, t] 内到达的顾客数；而这个系统还
+嵌入一个更新过程，Nr(t), (0, t] 内有多少次顾客看到了空系统。
+马啸 (SYSU) 随机过程 2022 年秋 15 / 50
+
+=== p16 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§5.1 Introduction
+§ 5.1 Introduction
+Definition 2
+A renewal process is an arrival process for which the sequence of
+interarrival times X1, X2, . . . are i.i.d..
+Renewal processes are characterized by “starting over” at each arrival
+epoch.
+Throughout our study of renewal processes, we use X and E[X]
+interchangeably to denote the mean inter-renewal interval, and use
+σ2
+X or simply σ2 to denote the variance of the inter-renewal interval.
+We will usually assume that X is finite.
+Much of this chapter will be devoted to understanding the behavior of
+N(t) and N(t)/t as t becomes large.
+马啸 (SYSU) 随机过程 2022 年秋 16 / 50
+
+=== p17 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.2 The strong law of large numbers and convergence with
+probability 1
+Chapter 5. Renewal processes
+§ 5.1 Introduction
+§ 5.2 The strong law of large numbers and
+convergence WP1
+§ 5.3 Strong law for renewal processes
+§ 5.4 Renewal–reward processes; time averages
+马啸 (SYSU) 随机过程 2022 年秋 17 / 50
+
+=== p18 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.2 The strong law of large numbers and convergence with
+probability 1 Convergence with probability 1 (WP1)
+Convergence of random variables
+Recall that the four types of convergence of random variables.
+Definition 3
+A sequence X1, X2, ... of random variables is said to converge in distribution to
+a random variable X if
+lim
+n→∞
+Fn (x) = F(x), (1)
+for each x ∈ R at which F is continuous. Here Fn and F are the cumulative
+distribution functions of random variables Xn and X correspondingly .
+Definition 4
+A sequence Xn of random variables converges in probability towards X if for all
+ε > 0
+lim
+n→∞
+P{|Xn − X| > ε } = 0 . (2)
+马啸 (SYSU) 随机过程 2022 年秋 18 / 50
+
+=== p19 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.2 The strong law of large numbers and convergence with
+probability 1 Convergence with probability 1 (WP1)
+Convergence of random variables
+Definition 5
+T o say that the sequence Xn converges almost surely or almost everywhere
+or with probability 1 or strongly towards X means that
+P{ lim
+n→∞
+Xn = X} = 1 . (3)
+Definition 6
+A sequence X1, X2, ... of random variables is said to converge in mean
+square to X if
+lim
+n→∞
+E[(Xn − X)2] = 0 , (4)
+where the operator E denotes the expected value.
+马啸 (SYSU) 随机过程 2022 年秋 19 / 50
+
+=== p20 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.2 The strong law of large numbers and convergence with
+probability 1 Convergence with probability 1 (WP1)
+Convergence of random variables
+The relationship between these forms of convergence can be shown as
+e
+马啸 (SYSU) 随机过程 2022 年秋 20 / 50
+
+=== p21 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.2 The strong law of large numbers and convergence with
+probability 1 Convergence with probability 1 (WP1)
+Convergence of random variables
+Example 2: convergence in probability but not WP1
+For each n ⩾ 1, there exists a unique (k, i) such that
+n = 2 k + i, i ⩽ 2k − 1.
+Consider a series r.v.s {Xn ; n ⩾ 1} on the sample space Ω = [0 , 1], Xn is the
+indicator variable of the interval [ i
+2k , i+1
+2k ].
+Obviously , each sample path {Xn (ω)} for ω ∈ [0, 1] is not convergent. Therefore
+{Xn ; n ⩾ 1} does NOT converge WP1.
+However, for each n ⩾ 1, and ε < 1,
+P{|Xn − 0| > ε } = 1
+2k < 2
+n .
+Thus, limn→∞ P{|Xn − 0| > ε } = 0 , i.e., {Xn (ω)} converges in probability .
+马啸 (SYSU) 随机过程 2022 年秋 21 / 50
+
+=== p22 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.2 The strong law of large numbers and convergence with
+probability 1 Strong law of large numbers
+5.2.2 Strong law of large numbers
+Theorem 1 (SLLN)
+For each integer n ⩾ 1, let Sn = X1 + · · · + Xn, where X1, X2, . . . are i.i.d.
+r.v.s satisfying E[|X|] < ∞. Then
+P
+
+ω : lim
+n→∞
+Sn(ω)
+n = X
+
+= 1 .
+The strong law is quite different from the other forms of convergence. It
+focusses directly on sample paths from n = 1 to ∞.
+马啸 (SYSU) 随机过程 2022 年秋 22 / 50
+
+=== p23 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+Chapter 5. Renewal processes
+§ 5.1 Introduction
+§ 5.2 The strong law of large numbers and convergence WP1
+§ 5.3 Strong law for renewal processes
+§ 5.4 Renewal–reward processes; time averages
+马啸 (SYSU) 随机过程 2022 年秋 23 / 50
+
+=== p24 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Lemma 2
+Let {N(t); t > 0} be a renewal counting process with inter-renewal rv.s
+{Xn; n ⩾ 1}. Then (whether or not X < ∞), limt→∞ N(t) = ∞ WP1 and
+limt→∞ E[N(t)] = ∞.
+证明思路（作业） ：
+（1）论证每个样本函数都有极限，或有限，或无穷。 （因为样本函数是不
+减的）
+（2）论证 {N(t) < n} 这个事件应包含事件 {limt→∞ N(t) < n}
+所以，P{lim N(t) < n} ≤ P{N(t) < n} = P{Sn > t} → 0, 因为 Sn 是随
+机变量。
+马啸 (SYSU) 随机过程 2022 年秋 24 / 50
+
+=== p25 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Lemma 3
+Let {Zn; n ⩾ 1} be a sequence of rv.s such that limn→∞ Zn = α WP1. Let
+f be a real valued function of a real variable that is continuous at α. Then
+lim
+n→∞
+f(Zn) = f(α) WP1.
+马啸 (SYSU) 随机过程 2022 年秋 25 / 50
+
+=== p26 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Theorem 2 (Strong law for renewal processes)
+For a renewal process with mean inter-renewal interval X < ∞,
+lim
+t→∞
+N(t)/t = 1/ X WP1.
+i.e., P
+
+ω : limt→∞ N(t, ω)/t = 1/ X
+	
+= 1 .
+N(t)
+SN(t)+1
+< N(t)
+t ⩽ N(t)
+SN(t)
+.
+马啸 (SYSU) 随机过程 2022 年秋 26 / 50
+
+=== p27 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Proof:
+Let n = N(t), then from the lemmas, we have
+lim
+t→∞
+N(t)
+SN(t)
+= lim
+n→∞
+n
+Sn
+= 1
+X WP1.
+lim
+t→∞
+N(t)
+SN(t)+1
+= lim
+n→∞
+n
+Sn+1
+= lim
+n→∞
+n + 1
+Sn+1
+n
+n + 1 = 1
+X WP1.
+Since N(t)/t is between these two quantities with the same limit,
+lim
+t→∞
+N(t)/t = 1/ X WP1.
+马啸 (SYSU) 随机过程 2022 年秋 27 / 50
+
+=== p28 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+The time average at a sample point ω, the time and ensemble average from 0 to
+a given τ, and the ensemble average in an interval (t, t + δ].
+This equality of time averages and limiting ensemble averages for renewal
+processes carries over to a large number of stochastic processes, and forms the
+basis of ergodic theory .
+马啸 (SYSU) 随机过程 2022 年秋 28 / 50
+
+=== p29 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Note that in order to equate time averages and limiting ensemble
+averages, quite a few conditions are required.
+First, the time average must exist in the limit t → ∞ with probability
+1; that time average must also be the same for all sample points in a
+set of probability 1.
+Second, the ensemble average must approach a limit as t → ∞.
+Third, the time average and ensemble average must be the same.
+马啸 (SYSU) 随机过程 2022 年秋 29 / 50
+
+=== p30 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Counter example
+Let {Xi; i ⩾ 1} be a sequence of binary i.i.d. rv.s, each taking the value 0
+with probability 1/2 and 2 with probability 1/2. Let Mn = X1X2 · · ·Xn.
+We see that limn→∞ Mn = 0 WP1.
+Also E[Mn] = 1 for all n ⩾ 1.
+Thus the time average exists and equals 0 WP1 and the ensemble average
+exists and equals 1 for all n, but the two are different.
+马啸 (SYSU) 随机过程 2022 年秋 30 / 50
+
+=== p31 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Theorem 3 (CL T for N(t))
+Assume that the inter-renewal intervals for a renewal counting process
+{N(t); t > 0} have finite standard deviation σ > 0. Then
+lim
+t→∞
+P
+(
+N(t) − t/X
+σX
+−3/2√
+t
+< α
+)
+= Φ( α),
+where
+Φ(y) =
+Z y
+−∞
+1√
+2π exp(−x2/2)dx.
+This says that the cumulative distribution function (CDF) of N(t)
+tends to the Gaussian distribution with mean t/X and standard
+deviation σX
+−3/2√
+t.
+马啸 (SYSU) 随机过程 2022 年秋 31 / 50
+
+=== p32 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.3 Strong law for renewal processes
+§ 5.3 Strong law for renewal processes
+Idea of proof: For t suﬀiciently large,
+Sn 的均值是 n ¯X, 方差是 nσ2, 所以，Sn −n ¯X√nσ 可以用标准正态分布近似描
+述。{Sn ≤ t} 等价于 {N(t) ≥ n}.
+t = n ¯X + α√nσ
+n ≈ t/¯X − ασ
+p
+t/¯X/¯X
+马啸 (SYSU) 随机过程 2022 年秋 32 / 50
+
+=== p33 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+Chapter 5. Renewal processes
+§ 5.1 Introduction
+§ 5.2 The strong law of large numbers and convergence WP1
+§ 5.3 Strong law for renewal processes
+§ 5.4 Renewal–reward processes; time averages
+Time-average residual life
+Time-average age
+Time-average duration
+General Renewal-reward Processes
+马啸 (SYSU) 随机过程 2022 年秋 33 / 50
+
+=== p34 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+§ 5.4 Renewal–reward processes: time-average residual life
+Definition 7
+For a renewal process {N(t); t > 0}, the residual life Y(t) at time t is the
+remaining time until the next renewal, i.e., Y(t) = SN(t)+1 − t.
+It’s how long you have to wait for a bus (if bus arrivals were renewal
+processes).
+We can view residual life as a reward function on a renewal process. The
+sample reward at t is a function of the sample path of renewals.
+The residual life, as a function of t, is a random process, and we can look
+at its time-average value, [
+R t
+0 Y(τ)dτ]/t.
+马啸 (SYSU) 随机过程 2022 年秋 34 / 50
+
+=== p35 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+§ 5.4 Renewal–reward processes: time-average residual life
+Note that a residual-life sample function is a sequence of isosceles right
+triangles, with part of a final triangle at the end. Thus
+Z t
+0
+y(τ)dτ = 1
+2
+n(t)X
+i=1
+x2
+i +
+Z t
+τ=sn(t)
+y(τ)dτ,
+where {xi; 0 < i < ∞} is the set of sample values for the inter-renewal
+intervals.
+马啸 (SYSU) 随机过程 2022 年秋 35 / 50
+
+=== p36 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+§ 5.4 Renewal–reward processes: time-average residual life
+1
+2t
+N(t)X
+n=1
+X2
+n ⩽ 1
+t
+Z t
+0
+Y(τ)dτ ⩽ 1
+2t
+N(t)+1X
+n=1
+X2
+n .
+lim
+t→∞
+PN(t)
+n=1 X2
+n
+2t = lim
+t→∞
+PN(t)
+n=1 X2
+n
+N(t)
+N(t)
+2t = E[X2]
+2E[X] WP1.
+lim
+t→∞
+PN(t)+1
+n=1 X2
+n
+2t = lim
+t→∞
+PN(t)+1
+n=1 X2
+n
+N(t) + 1
+N(t) + 1
+N(t)
+N(t)
+2t = E[X2]
+2E[X] WP1.
+lim
+t→∞
+R t
+0 Y(τ)dτ
+t = E[X2]
+2E[X] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 36 / 50
+
+=== p37 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+§ 5.4 Renewal–reward processes: time-average residual life
+Time average residual life Yta = E[X2]
+2E[X] .
+If X is exponential (w.r.t. Poisson process), Yta = E[X].
+If X is almost deterministic, Yta ≈ E[X]
+2 .
+Example 1
+As an example of the effect of improbable but large inter-renewal intervals, let X
+take on the value ϵ with probability 1 − ϵ and value 1/ϵ with probability ϵ.
+马啸 (SYSU) 随机过程 2022 年秋 37 / 50
+
+=== p38 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+§ 5.4 Renewal–reward processes: time-average age
+Definition 8
+Let Z(t) be the age of a renewal process at time t where age is defined as
+the interval from the most recent arrival before (or at) t until t, i.e.,
+Z(t) = t − SN(t).
+lim
+t→∞
+R t
+0 Z(τ)dτ
+t = E[X2]
+2E[X] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 38 / 50
+
+=== p39 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes
+§ 5.4 Renewal–reward processes: time-average duration
+Definition 9
+Let eX(t) be the duration of the inter-renewal interval containing time t,
+i.e., eX(t) = XN(t)+1 = SN(t)+1 − SN(t).
+It is clear that eX(t) = Y(t) + Z(t).
+lim
+t→∞
+R t
+0
+eX(τ)dτ
+t = E[X2]
+E[X] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 39 / 50
+
+=== p40 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+5.4.1 General renewal-reward processes
+We now investigate the general class of reward functions for which the
+reward at time t depends at most on the age and the duration at t, i.e.,
+the reward R(t) at time t is given explicitly as a function R(Z(t), eX(t)) of
+the age and duration at t.
+We want to find the time-average value of R(t), namely ,
+limt→∞[
+R t
+0 R(τ)dτ]/t.
+We first define Rn as the accumulated reward in the nth renewal interval,
+Rn ≜
+Z Sn
+Sn−1
+R(τ)dτ =
+Z Sn
+Sn−1
+R(Z(τ), eX(τ))dτ
+=
+Z Sn
+Sn−1
+R(τ − Sn−1, Xn)dτ
+=
+Z Xn
+z=0
+R(z, Xn)dz.
+This is a function only of the r.v. Xn.
+马啸 (SYSU) 随机过程 2022 年秋 40 / 50
+
+=== p41 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+5.4.1 General renewal-reward processes
+In general, the expected value of Rn is given by
+E[Rn] =
+Z ∞
+x=0
+Z x
+z=0
+R(z, x)dz
+
+dFX(x).
+Theorem 1
+Let {R(t); t > 0} be a non-negative renewal-reward function for a renewal
+process with expected inter-renewal time E[X] = X < ∞. If each Rn is a
+r.v. with E[Rn] < ∞, then
+lim
+t→∞
+1
+t
+Z t
+τ=0
+R(τ)dτ = E[Rn]
+X WP1.
+Proof: PN(t)
+n=1 Rn
+t ⩽
+R t
+0 R(τ)dτ
+t ⩽
+PN(t)+1
+n=1 Rn
+t .
+马啸 (SYSU) 随机过程 2022 年秋 41 / 50
+
+=== p42 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+5.4.1 General renewal-reward processes
+PN(t)
+n=1 Rn
+t =
+PN(t)
+n=1 Rn
+N(t)
+N(t)
+t → E[Rn]
+X WP1.
+PN(t)+1
+n=1 Rn
+t =
+PN(t)+1
+n=1 Rn
+N(t) + 1
+N(t) + 1
+N(t)
+N(t)
+t → E[Rn]
+X WP1.
+The same result holds for non-positive reward functions.
+Corollary 1
+Let {R(t); t > 0} be a renewal-reward function for a renewal process with
+expected inter-renewal time E[X] = X < ∞. If each Rn is a rv. with
+E[|Rn|] < ∞, then
+lim
+t→∞
+1
+t
+Z t
+τ=0
+R(τ)dτ = E[Rn]
+X WP1.
+马啸 (SYSU) 随机过程 2022 年秋 42 / 50
+
+=== p43 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+5.4.1 General renewal-reward processes
+Example 2: Distribution of residual life
+We would like to find the time average CDF of Y(t), i.e., the fraction of time that
+Y(t) ⩽ y for any given y.
+R(t) =
+
+1, eX(t) − Z(t) ⩽ y,
+0, otherwise.
+Thus, Rn = min{y, Xn }.
+E[Rn ] = E[min{X, y}] =
+Z y
+x=0
+Pr{X > x}dx.
+FY (y) = E[Rn ]
+X = 1
+X
+Z y
+x=0
+Pr{X > x}dx WP1.
+马啸 (SYSU) 随机过程 2022 年秋 43 / 50
+
+=== p44 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+课后作业
+作业 1. 以下是否正确：
+(1) 是否 N(t) < n 当且仅当 Sn > t？
+(2) 是否 N(t) ≤ n 当且仅当 Sn ≥ t？
+(3) 是否 N(t) > n 当且仅当 Sn < t？
+作业 2：假设更新过程的到达间隔分布是均值为 µ 的泊松分布。即假设
+P{Xn = k} = e−µ µk
+k! , k = 0, 1, · · ·
+(1) 求 Sn 的分布.
+(2) 计算 P{N(t) = n}.
+马啸 (SYSU) 随机过程 2022 年秋 44 / 50
+
+=== p45 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+课后作业
+作业 3：设一个更新过程，间隔 X 服从分布 Pr{X = 1 } = 1/2 ,
+Pr{X = 2 } = 1/2 。画出 5 条计数样本 N(t), t ≤ 5. 试着讨论 S3 的分布
+律，N(3) 的分布律。
+作业 4：令 {N1(t), t ≥ 0} 和 {N2(t), t ≥ 0} 是独立的更新过程。令
+N(t) = N1(t) + N2(t).
+(1) {N(t), t ≥ 0} 的到达间隔时间是否独立？
+(2) 它们是否同分布？
+(3) {N(t), t ≥ 0} 是否是更新过程？
+马啸 (SYSU) 随机过程 2022 年秋 45 / 50
+
+=== p46 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+课后作业
+作业 5：以 Sn 记具有到达间隔分布函数 F 的更新过程 {N(t), t ≥ 0} 的
+第 n 个事件时刻。
+(1) 问 P{N(t) = n|Sn = y} 是什么？
+(2) 从 P{N(t) = n} =
+R ∞
+0 P {N (t) = n|Sn = y}fSn (y) dy 开始，利用 n
+个速率为 λ 的独立指数随机变量的和具有参数为 (n, λ) 的伽马分布，当
+F(y) = 1 − e−λy 时计算 P{N(t) = n}。
+马啸 (SYSU) 随机过程 2022 年秋 46 / 50
+
+=== p47 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+课后作业
+作业 6：考虑一个平均到达间隔时间为 µ 的更新过程。假设这个过程的
+每一个事件以概率 p 被记入。以 NC(t) 计到时刻 t(t > 0) 为止被计入的
+事件数。
+(1){NC(t), t ≥ 0} 是更新过程吗？
+(2)limt→∞
+NC (t)
+t 是多少？
+作业 7：令 U1, U2, . . . 是独立的 (0,1) 均匀随机变量，定义 N 为
+N =min{n : U1 + U2 + · · · + Un > 1}，E [N] 是多少？
+马啸 (SYSU) 随机过程 2022 年秋 47 / 50
+
+=== p48 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+课后作业
+作业 8： Let {N(t); t > 0} be a renewal counting process with
+inter-renewal rv.s {Xn; n ⩾ 1}. Then (whether or not X < ∞),
+limt→∞ N(t) = ∞ WP1 and limt→∞ E[N(t)] = ∞.
+（1）请论证每个样本函数都有极限，或有限，或无穷。 （因为样本函数是
+不减的）
+（2）请论证 {N(t) < n} 这个事件应包含事件 {limt→∞ N(t) < n} 所以，
+Pr{lim N(t) < n} ≤ P{N(t) < n} = P{Sn > t} → 0, 因为 Sn 是随机变
+量。
+（3）证明 limt→∞ E[N(t)] = ∞。
+马啸 (SYSU) 随机过程 2022 年秋 48 / 50
+
+=== p49 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+课后作业
+作业 9：假设乘客按照一个更新过程来到一火车站，其平均来到间隔时
+间为 µ。每当有 N 个人在车站上等待时，就开出一辆火车。若每当有 n
+个乘客等待时，车站就以每单位时间 nc 元的比率开支费用，且每开出
+一辆火车要多开支 K 元，那么此车站每单位时间的平均费用是多少？
+作业 10：科学研究是磨练心智的过程。一个研究生的情绪或有周期现
+象。周期是两天或四天的机会均等且互不影响。设一个周期内快乐指数
+h 是以区间中点为圆心的半圆曲线。
+(1) 画图示意一个快乐指数的样本。
+(2) 若一个研究生快乐指数大于 3/4，我们称他是快乐的。试求长时间
+观察，一个研究生平均快乐的时间的比例。
+马啸 (SYSU) 随机过程 2022 年秋 49 / 50
+
+=== p50 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.4 Renewal-reward Processes General Renewal-reward Processes
+Thank you for your attention!
+马啸 (SYSU) 随机过程 2022 年秋 50 / 50
+

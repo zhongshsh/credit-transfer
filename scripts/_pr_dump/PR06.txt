@@ -1,0 +1,351 @@
+# PR6 Deep Sequence Models
+# Pages: 69
+
+=== p1 ===
+1
+深度序列模型
+杨猛中山大学
+机器智能与先进计算教育部重点实验室
+中山大学计算机学院研究生人工智能应用基础系列课程
+声明：该PPT只供非商业使用，也不可视为任何出版物。由于历史原因，许多图片尚没有标注出处，如果你知道图片的出处，欢迎告诉我们at wszheng@ieee.org.
+
+=== p2 ===
+深度序列模型❑问题背景❑循环神经网络(RNN)❑循环神经网络的变体❑Attention和RNN❑RNN中的经典Attention❑Bi-Attention❑Self-Attention
+2
+
+=== p3 ===
+第一部分：问题背景
+3
+
+=== p4 ===
+4
+深度序列模型❑背景o许多场景会产生以序列形式存在的数据o不同时刻的数据具有某种相关性o输入输出的序列长度未定
+
+=== p5 ===
+5
+深度序列模型❑处理序列数据(时序)o普通的深度神经网络❖较难处理长度不定的序列数据o卷积神经网络❖参数共享：空间上❖将时间序列按空间展开可以处理，但通常只可以处理较短距离的信息依赖。o深度序列模型❖参数共享：时间(广义)上❖模型能够扩展到不同不同长度的样本上并进行泛化。（如果我们在每个时间点都有一个单独的参数，我们不但不能泛化到训练时没有见过序列长度，也不能在时间上共享不同序列长度和不同位置的统计强度。）
+
+=== p6 ===
+6
+深度序列模型❑场景o机器翻译o股票预测o空气质量预测
+
+=== p7 ===
+第二部分：循环神经网络
+7
+
+=== p8 ===
+深度序列模型——循环神经网络
+8
+
+=== p9 ===
+h1
+y1
+x1t= 1x2 x3t= 2t= 3
+深度序列模型——循环神经网络
+9
+
+=== p10 ===
+深度序列模型——循环神经网络
+h1
+y1
+x1t= 1
+h2
+y2
+x2 x3t= 2t= 3
+10
+
+=== p11 ===
+深度序列模型——循环神经网络
+h1
+y1
+x1t= 1
+h2
+y2
+x2
+h3
+y3
+x3t= 2t= 3
+11
+
+=== p12 ===
+深度序列模型——循环神经网络
+前向传播
+12
+
+=== p13 ===
+深度序列模型——循环神经网络
+反向传播x:输入，h:隐藏状态，o：输出结果，y：目标输出。L为输出结果与目标输出计算出损失。在这里简单假定只使用最后时刻的o需要更新的参数为U,V,W,b,c
+中间计算媒介
+13
+
+=== p14 ===
+深度序列模型——循环神经网络
+点积展开
+14
+
+=== p15 ===
+深度序列模型——循环神经网络长期依赖，梯度消失和爆炸循环网络涉及相同函数的多次组合，每个时间步一次。这些组合可以导致极端非线性行为。
+15
+重复组合函数。当组合许多非线性函数(如这里所示的线性tanh 层)时，结果是高度非线性的，通常大多数值与微小的导数相关联，也有一些具有大导数的值，以及在增加和减小之间的多次交替。此处，我们绘制从100维隐藏状态降到单个维度的线性投影，绘制于y轴上。x轴是100 维空间中沿着随机方向的初始状态的坐标。因此，我们可以将该图视为高维函数的线性截面。曲线显示每个时间步之后的函数，或者等价地，转换函数被组合一定次数之后。
+
+=== p16 ===
+深度序列模型——循环神经网络长期依赖，梯度消失和爆炸这里简单定性分析，忽略激活函数等非线性操作，隐藏状态的变化可以被变形为：
+再假定W 满足下述形式的特征分解
+其中Q正交 16
+
+=== p17 ===
+深度序列模型——循环神经网络长期依赖，梯度消失和爆炸
+循环性可以进一步变化为t 次计算后，导致不到1 的特征值衰减到零，而大于1 的就会激增（梯度爆炸）。任何不与最大特征向量对齐的h(0) 的部分将最终被丢弃（梯度消失）。
+17
+
+=== p18 ===
+深度序列模型——循环神经网络长期依赖，梯度消失和爆炸
+在计算机中，由于物理限制，梯度爆炸可能会导致超出数据表示范围而数值变为NAN。
+18
+
+=== p19 ===
+第三部分：循环神经网络变体及改进
+19
+
+=== p20 ===
+深度序列模型——循环神经网络改进及变体改进：双向循环神经网络前述简单RNN只有一种信息流通方式，从前向后。然而很多场景中，输出可能依赖于序列全局。一个简单方案是双向循环神经网络。
+20
+
+=== p21 ===
+深度序列模型——循环神经网络改进及变体改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+RNN
+LSTM
+21
+
+=== p22 ===
+深度序列模型——循环神经网络改进及变体改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+普通的RNN那样只有一种记忆叠加方式。LSTM通过门控状态来根据输入内容动态地控制传输状态，记住需要长时间记忆的重要信息，忘记不重要的信息；适合需要“长期记忆”的任务。
+22
+
+=== p23 ===
+深度序列模型——循环神经网络改进及变体改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+遗忘门
+23
+
+=== p24 ===
+深度序列模型——循环神经网络改进及变体
+输入门
+改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+24
+
+=== p25 ===
+深度序列模型——循环神经网络改进及变体
+细胞状态更新
+改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+25
+
+=== p26 ===
+深度序列模型——循环神经网络改进及变体
+输出门
+改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+26
+
+=== p27 ===
+深度序列模型——循环神经网络改进及变体
+LSTM的前向传播和后向传播可前往http://arunmallya.github.io/writeups/nn/lstm/index.html#/1
+改进：长短时记忆神经网络(LSTM)——较长的短时记忆神经网络
+27
+
+=== p28 ===
+深度序列模型——循环神经网络改进及变体扩展——递归神经网络(recursive neural network)
+网络的展开形式被构造为深的树状结构而不是RNN 的链状结构优势：具有相同长度τ 的序列，深度（通过非线性操作的组合数量来衡量）可以急剧地从τ 减小为O(logτ)。问题：树的构造方法某些应用领域，外部方法可以为选择适当的树结构提供借鉴。例如，处理自然语言的句子时，用于递归网络的树结构可以被固定为句子语法分析树的结构（可以由自然语言语法分析程序提供）
+28
+
+=== p29 ===
+深度序列模型——循环神经网络改进及变体改进：加速•循环神经网络作为序列模型，其t时刻的结果依赖于t-1时刻的输出，无法并行地将0-t时刻的输入并行处理，与卷积神经网络的处理速度相比相形见绌，难以满足大规模数据下的训练速度需求。•又因为某些场景中不需要过长的信息依赖，如自然语言处理n-gram假设下的语言模型，有些时候卷积神经网络比循环神经网络更适合或权衡之下更适合序列数据。•而且，循环神经网络及其部分变种，长距离依赖的处理能力并不强过卷积神经网络许多，更进一步限制了循环神经网络应用场景。•速度是循环神经网络的一个痛点。
+29
+
+=== p30 ===
+深度序列模型——循环神经网络改进及变体改进：加速Quasi RNN
+30
+
+=== p31 ===
+深度序列模型——循环神经网络改进及变体
+卷积聚合相邻两处输入的信息，可并行化
+改进：加速Quasi RNN
+31
+
+=== p32 ===
+深度序列模型——循环神经网络改进及变体
+序列信息依赖，无法并行，用元素点乘而不是矩阵乘法，降低计算量
+改进：加速Quasi RNN
+32
+
+=== p33 ===
+第四部分：ATTENTION和RNN
+33
+
+=== p34 ===
+什么是Attention？❑Attention模仿了生物观察行为的内部过程：❑例如，人在观察图片/文本时，会通过快速扫描全局图像/文本，获得需要重点关注的目标区域。
+34
+
+=== p35 ===
+什么是Attention？❑深度学习中的Attention受生物观察行为的启发，先观察全局计算每个区域的“重要程度”，然后再根据这个“重要程度”对各区域加权求和。❑在序列模型中，Attention对输入序列的各个元素（词）分别计算一个概率，然后以这个概率为权重，对各元素（词）加权求和，得到Attention的结果。
+35
+
+=== p36 ===
+❑RNN的Attention最初指Encoder-Decoder框架下的Attention：
+❑第一个角度：Encoder将边长序列压缩成固定维的embedding，造成信息损失；❑第二个角度：未引入Attention时，对输入序列的每个元素（词）同等对待，不符合人类机制。
+为什么RNN需要Attention？
+36
+
+=== p37 ===
+❑RNN中Attention的作用：❑1. 减少长输入序列的计算负担，不必将所有信息都存在一个固定维的embedding中；❑2. 去伪存真，让模型专注于找到与当前输出相关的有用信息，提高输出的质量；❑3. 多个元素之间的相互关系往往很难表达，所以很难有针对性地设计系统；而Attention不需要监督信号，对于这种缺少认知先验的问题十分有效。
+为什么RNN需要Attention？
+37
+
+=== p38 ===
+为什么RNN需要Attention？
+无Attention：
+有Attention：
+38
+
+=== p39 ===
+为什么RNN需要Attention？机器翻译任务，Attention的可视化：
+39
+
+=== p40 ===
+第五部分：RNN中的经典ATTENTION
+40
+
+=== p41 ===
+❑该Attention由Bahdanau在机器翻译的论文《NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE》中提出。❑Encoder-RNN每时刻的输入是单词的词向量；❑Decoder-RNN每时刻的输出是每个词库里各词的生成概率。
+Bahdanau Attention
+41
+
+=== p42 ===
+❑Step1：Decoder-RNN进行到第i位置时，计算第i位置输出和第j位置输入的“相关程度”：
+其中，α(·)可以是MLP层，和整个模型一起训练。
+Bahdanau Attention
+42
+
+=== p43 ===
+❑Step2：将这个“相关程度”，利用softmax转化成概率：
+❑Step3：根据这个概率，对输入序列加权求和：
+Bahdanau Attention
+43
+
+=== p44 ===
+❑Step4：加权求和得到的context vector，输入到Decoder-RNN的隐含状态中：
+❑利用了Attention的结果来影响Decoder-RNN的状态更新。
+Bahdanau Attention
+44
+
+=== p45 ===
+❑该Attention由Luong在论文《Effective Approaches to Attention-based Neural Machine Translation》中提出。❑该论文的任务与Bahdanau Attention的任务一样，都是机器翻译，但也可用于其他序列任务。
+Luong Attention
+45
+
+=== p46 ===
+❑Luong Attention与Bahdanau Attention整体类似。❑Luong Attention对原结构进行了一些调整，其中Attention向量计算方法：
+Luong Attention
+46
+
+=== p47 ===
+❑Luong Attention还尝试了不同的Attention得分计算方式：Luong Attention
+47
+
+=== p48 ===
+❑Bahdanau Attention 和Luong Attention
+❑二者性能上的区别不明显。
+48
+
+=== p49 ===
+第六部分：BI-ATTENTION
+49
+
+=== p50 ===
+❑前面介绍的Attention主要用于Encoder-Decoder框架的生成任务中；❑对于两个输入序列的任务（例如，阅读理解任务，输入[问题]和[段落] ），有无更合适的Attention？❑Bi-Attention是对两个输入序列的Attention，并且这两个序列往往是存在差异的。《Bi-Directional Attention Flow For Machine Comprehension》
+Bi-Attention简介
+50
+
+=== p51 ===
+Bi-Attention简介
+51
+
+=== p52 ===
+❑Context-to-query Attention：对于段落中的每一个词，问题中哪个词与它最接近。❑将问题中每个词与段落中的一个词计算相似度，经softmax归一化后，计算问题的向量加权和。结果作为对应于段落这个词的问题表示向量。
+Bi-Attention简介
+52
+
+=== p53 ===
+❑Query-to-context Attention：对于问题中的每一个词，段落中的哪一个词和它最相似（最重要）❑点击后，取每列最大值，然后将这些最大值经softmax归一化后，计算段落的向量加权和，将这个向量平铺T次（T为段落长度）。
+Bi-Attention简介
+53
+
+=== p54 ===
+第七部分：SELF-ATTENTION
+54
+
+=== p55 ===
+❑前面介绍的Attention都是在两个序列之间进行的Attention，能够反映序列之间的元素的重要程度差异。
+❑Self-Attention是对一个序列进行的Attention，能够反映该序列里各元素两两之间的重要程度差异。
+Self-Attention简介
+55
+
+=== p56 ===
+❑在Encoder-Decoder框架中，Q(Query)是Decoder-RNN的t时刻隐含状态，K(Key)和V(Value)均是Encoder的各时刻隐含状态。❑在Self-Attention中，Q、K、V都是输入序列。❑K是需要被翻译的语言经过Encoders之后的词向量表示❑Q是目标语言的所有单词的特征向量对应的矩阵
+Self-Attention简介
+56
+
+=== p57 ===
+❑基于RNN的Encoder-Decoder模型受限于RNN，无法并行，性能也不佳；❑Google提出Transformer模型：用Self-Attention的结构代替RNN。❑Transformer模型也对Attention本身做了一些改进，提出了Scaled Dot-Product Attention和Multi-Head Attention。
+Transformer简介
+57
+
+=== p58 ===
+❑Transformer由Encoder和Decoder组成。❑Encoder由N个Encoder-Block堆叠而成；Decoder由N个Decoder-Block堆叠而成。❑（堆叠的作用是获取更深层的语义信息）
+Transformer整体结构
+58
+
+=== p59 ===
+❑Transformer：Scaled Dot-Product Attention
+59
+
+=== p60 ===
+❑Multi-Head Attention将Q、K、V映射到h个不同的空间，再在这h个不同的空间里各自做Self-Attention，最后将它们的结果拼接起来：
+Transformer：Multi-Head Attention
+60
+
+=== p61 ===
+❑权重可视化：Transformer
+61
+
+=== p62 ===
+❑权重可视化（仅画出”making”的结果）：Transformer
+62
+
+=== p63 ===
+Pretraining based on Transformer
+63
+
+=== p64 ===
+Pretraining Decoders
+64
+
+=== p65 ===
+Generative Pretrained Transformer (GPT)❑2018’s GPT was a big success in pretraining a decoder!oTransformer decoder with 12 layers.o768-dimensional hidden states, 3072-dimensional feed-forward hidden layers.oByte-pair encoding with 40,000 mergesoTrained on BooksCorpus: over 7000 unique books.oContains long spans of contiguous text, for learning long-distance dependencies.
+65
+
+=== p66 ===
+Pretraining encoders❑What pretraining objective to use?
+66
+
+=== p67 ===
+BERT❑Bidirectional Encoder Representations from Transformers
+67
+
+=== p68 ===
+BERT
+68
+
+=== p69 ===
+《Deep learning》(花书)《Understanding-LSTMs》《QUASI-RECURRENT NEURAL NETWORKS》……
+参考书
+69
+

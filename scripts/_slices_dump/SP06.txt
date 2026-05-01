@@ -1,0 +1,2730 @@
+# SP06  Finite-state Markov Chains
+# Pages: 45
+
+=== p1 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+随机过程
+马啸
+中山大学计算机学院
+2022 年秋
+马啸 (SYSU) 随机过程 2022 年秋 1 / 45
+
+=== p2 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Introduction
+Finite-state Markov Chains
+§ Introduction
+§ Classification of States
+§ The Matrix Representation
+马啸 (SYSU) 随机过程 2022 年秋 2 / 45
+
+=== p3 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Introduction
+§ Introduction
+思考题
+设 X 是一个有限集，思考如下问题的描述复杂度：
+1 如何刻画 X 上的一个离散随机变量？
+2 如何刻画 Xn 上的离散随机向量？
+3 如何刻画 X∞ 上的离散随机序列？
+4 如何刻画一个独立随机向量？
+5 如何刻画一个独立同分布的随机向量？
+马尔可夫过程：
+P(X1 = x1, X2 = x2, ..., Xn = xn)
+= P(X1 = x1) · P(X2 = x2|X1 = x1) · P(X3 = x3|X1 = x1, X2 = x2) · · · ·
+= P(X1 = x1) · P(X2 = x2|X1 = x1) · P(X3 = x3|X2 = x2) · · · ·
+马啸 (SYSU) 随机过程 2022 年秋 3 / 45
+
+=== p4 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Introduction
+§ Introduction
+Definition 1
+A Markov chain is an integer-time process, {Xn, n ⩾ 0}, for which the
+sample values for each rv. Xn, n ⩾ 1, lie in a countable set S and depend
+on the past only through the most recent rv. Xn−1. More specifically , for
+all positive integers n, and for all choices of i, j, . . . , ℓ in S,
+P{Xn = j|Xn−1 = i, Xn−2 = k, . . . , X0 = ℓ} = P{Xn = j|Xn−1 = i}
+for all conditioning events Xn−1 = i, Xn−2 = k, . . . , X0 = ℓ of positive
+probability .
+马啸 (SYSU) 随机过程 2022 年秋 4 / 45
+
+=== p5 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Introduction
+§ Introduction
+Often we write the condition as follow
+P{Xn|Xn−1, . . . , X0} = P{Xn|Xn−1}.
+The possible values of Xn are called states. The state at a given time
+summarizes everything about the past that is relevant to the future .
+Furthermore, P{Xn = j|Xn−1 = i} depends only on i and j (not n) and is
+denoted by
+P{Xn = j|Xn−1 = i} = Pij.
+Some people call this a homogeneous Markov chain.
+For a non-homogeneous Markov chain, it satisfies
+P{Xn = j|Xn−1 = i} = Pij(n).
+马啸 (SYSU) 随机过程 2022 年秋 5 / 45
+
+=== p6 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Introduction
+§ Introduction
+A Markov chain is completely described by the transition probabilities
+{Pij : 1⩽ i, j ⩽ M} plus the initial probabilities PX0 (i).
+Sometimes we visualize {Pij} in terms of a directed graph and sometimes
+as a matrix.
+Remark:
+Pij ≥ 0 for 1 ≤ i, j ≤ M.
+and
+M∑
+ℓ=1
+Piℓ = 1 for 1 ≤ i ≤ M.
+行和 = 1，列和未必。
+马啸 (SYSU) 随机过程 2022 年秋 6 / 45
+
+=== p7 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States
+Finite-state Markov Chains
+§ Introduction
+§ Classification of States
+§ The Matrix Representation
+马啸 (SYSU) 随机过程 2022 年秋 7 / 45
+
+=== p8 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States
+Classification of States
+Definition 2
+An (n-step) walk is an ordered string of nodes, (i0, i1, . . . , in), n ⩾ 1,
+in which there is a directed arc from im−1 to im for each 1 ⩽ m ⩽ n.
+A path is a walk in which no nodes are repeated.
+A cycle is a walk in which the first and last nodes are the same and
+no other node is repeated.
+Remark: an edge from i to j explicitly means that Pij > 0.
+马啸 (SYSU) 随机过程 2022 年秋 8 / 45
+
+=== p9 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States
+§ Classification of States
+Definition 3
+A state j is accessible from i (abbreviated as i → j) if there is a walk in the graph
+from i to j.
+We denote Pr{Xn = j|X0 = i} by Pn
+ij . Then if i, k, j is a walk, Pik > 0 and
+Pkj > 0,
+P2
+ij ⩾ Pik Pkj > 0.
+Similarly , if there is an n-step walk from i to j, then Pn
+ij > 0.
+Thus,
+i → j: Pn
+ij > 0 for some integer n ⩾ 1.
+i ↛ j: Pn
+ij = 0 for all integer n ⩾ 1.
+Pn
+ik > 0 and Pm
+kj > 0 imply Pm+n
+ij > 0.
+i → k and k → j imply i → j.
+思考题：给定概率转移矩阵，Pn 表示的意义是什么？如何计算 Pn ?
+马啸 (SYSU) 随机过程 2022 年秋 9 / 45
+
+=== p10 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States
+§ Classification of States
+Definition 4
+T wo distinct statesi and j communicate (abbreviated i ↔ j) if i is accessible from
+j and j is accessible from i.
+if i ↔ j, then j ↔ i.
+if i ↔ j and j ↔ k, then i ↔ k.
+Definition 5
+A class C of states is a non-empty set of states such that for each i ∈ C, each
+state j ̸= i satisfies j ∈ C if i ↔ j and j /∈ C if j ↮ i.
+马啸 (SYSU) 随机过程 2022 年秋 10 / 45
+
+=== p11 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States
+§ Classification of States
+Definition 6
+For finite-state Markov chains, a recurrent state is a state i that is accessible from
+all states that are accessible from i (i is recurrent if i → j implies that j → i). A
+transient state is a state that is not recurrent.
+Remark: If a Markov chain ever enters a recurrent state, it returns to that state
+eventually with probability 1, and thus keeps returning infinitely often. In fact,
+this essentially serves as the definition of recurrence for Markov chains with
+countably-infinite state spaces.
+马啸 (SYSU) 随机过程 2022 年秋 11 / 45
+
+=== p12 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States
+§ Classification of States
+Theorem 1
+For finite-state Markov chains, either all states in a class are transient or
+all are recurrent.
+Proof:
+Assume that i is transient (i.e., for some j, i → j but j ↛ i) and
+suppose that i and m are in the same class (i.e., i ↔ m).
+Then m → i and i → j, so m → j.
+If j → m, then the walk from j to m could be extended to i; this is a
+contradiction, and therefore there is no walk from j to m, and m is
+transient.
+马啸 (SYSU) 随机过程 2022 年秋 12 / 45
+
+=== p13 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Periodic States and Classes
+Periodic States and Classes
+Definition 7
+The period of a state i, denoted d(i), is the greatest common divisor of
+those values of n for which Pn
+ii > 0.
+d(i) =gcd{n : Pn
+ii > 0}
+If d(i) = 1, the state i is aperiodic. If d(i) > 1, i is periodic with period
+d(i).
+马啸 (SYSU) 随机过程 2022 年秋 13 / 45
+
+=== p14 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Periodic States and Classes
+Periodic States and Classes
+设 m, n 是互素的正整数，则存在正整数T0, 使所有的正整数 T ≥ T0 都
+可以由 m, n 的非负组合表示，即，
+∀T ≥ T0, ∃u, v ∈ N, such that um + vn = T.
+证明：
+由 m, n 互素（不妨设 m > n） ，则存在正整数s, t，使得 sm − tn = 1.
+令 T0 = tn2，则对于所有 T ≥ T0，由欧几里得算法，得
+T = qn + r, q ≥ tn, 0 ≤ r < n.
+所以
+T = qn + r(sm − tn) = (q − rt) · n + rs · m
+马啸 (SYSU) 随机过程 2022 年秋 14 / 45
+
+=== p15 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Periodic States and Classes
+Periodic States and Classes
+Theorem 2
+For any Markov chain (with either a finite or countably-infinite number of states),
+all states in the same class have the same period.
+Proof: Let i and j be any distinct pair of states in a class C. Then i ↔ j and
+there is some n such that Pn
+ij > 0 and some m such that Pm
+ji > 0.
+Since there is a walk of length n + m going from i to j and back to i, n + m
+must be divisible by d(i).
+Let t be any integer such that Pt
+jj > 0. Since there is a walk of length
+n + t + m from i to j, then back to j, and then to i, n + t + m is divisible by
+d(i), and thus t is divisible by d(i).
+Since this is true for every t such that Pt
+jj > 0, d(j) is divisible by d(i).
+Reversing the roles of i and j, d(i) is divisible by d(j), so d(i) =d(j).
+马啸 (SYSU) 随机过程 2022 年秋 15 / 45
+
+=== p16 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Periodic States and Classes
+Periodic States and Classes
+Theorem 3
+If a class C in a finite-state Markov chain has period d, then the states in
+C can be partitioned into d subsets, S0, S1, . . . , Sd−1, in such a way that
+all transitions from Sℓ go to Sℓ+1 for ℓ < d − 1, and go to S0 for ℓ = d − 1.
+In other words, starting in a given subclass, the state cycles through the d
+subclasses.
+马啸 (SYSU) 随机过程 2022 年秋 16 / 45
+
+=== p17 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Ergodic Class of States
+Ergodic Class of States
+Definition 8
+For a finite-state Markov chain, an ergodic class of states is a class that is both
+recurrent and aperiodic. A Markov chain consisting entirely of one ergodic class is
+called an ergodic chain .
+Theorem 4
+For an ergodic M state Markov chain, Pm
+ij > 0 for all i, j, and all
+m ⩾ (M − 1)2 + 1.
+An ergodic chain with M = 6 states in which Pm
+ij > 0 for all m > (M − 1)2 and
+all i, j but P(M−1)2
+11 = 0.
+马啸 (SYSU) 随机过程 2022 年秋 17 / 45
+
+=== p18 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Ergodic Class of States
+Ergodic Class of States
+Theorem 4
+For an ergodic M state Markov chain, Pm
+ij > 0 for all i, j, and all
+m ⩾ (M − 1)2 + 1.
+Proof: a) Show that an ergodic Markov chain with M > 1 states must
+contain a cycle with τ < M states.
+A recurrent chain must contain cycles.
+The states in any cycle (not counting the initial state) are distinct
+and thus the number of steps in a cycle is at most M.
+If the chain only contained cycles with M states, then it would be
+periodic with period M.
+马啸 (SYSU) 随机过程 2022 年秋 18 / 45
+
+=== p19 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Ergodic Class of States
+Ergodic Class of States
+b) Let ℓ be a fixed state on a fixed cycle of length τ < M. Let T (m) be
+the set of states accessible from ℓ in m steps. Show that for each m ⩾ 1,
+T (m) ⊆ T (m + τ).
+For any state j ∈ T (m), we have
+Pm
+ℓj > 0.
+Therefore,
+Pm+τ
+ℓj ⩾ Pτ
+ℓℓPm
+ℓj > 0.
+c) Define T (0) to be the singleton set {ℓ} and show that
+T (0) ⊆ T (τ) ⊆ T (2τ) ⊆ · · · ⊆ T (nτ) ⊆ . . . .
+马啸 (SYSU) 随机过程 2022 年秋 19 / 45
+
+=== p20 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Ergodic Class of States
+Ergodic Class of States
+d) Show that if one of the inclusions above is satisfied with equality , then
+all subsequent inclusions are satisfied with equality . Show from this that at
+most the first M − 1 inclusions can be satisfied with strict inequality and
+that T (nτ) =T ((M − 1)τ) for all n ⩾ M − 1.
+It can be proved by induction that if T ((k + 1)τ) =T (kτ) for some k,
+then T (nτ) =T (kτ) for n ⩾ k.
+Let k be the smallest integer for which T ((k + 1)τ) =T (kτ). For
+n ⩽ k, the size of T (nτ) must increase as n increases. Since
+|T (0)| = 1, we have k + 1⩽ |T (kτ)| ⩽ M.
+马啸 (SYSU) 随机过程 2022 年秋 20 / 45
+
+=== p21 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Ergodic Class of States
+Ergodic Class of States
+e) Show that all states are included in T((M − 1)τ).
+Since ℓ is aperiodic, ∃λ > 0, such that
+Pλ
+ℓℓ > 0 and aλ = bτ + 1
+for some positive integer a, b.
+For any state j, ∃k > 0, Pk
+ℓj > 0. Let
+k′ = k mod τ.
+Then we have
+P(τ −k′)aλ+k
+ℓj ⩾ P(τ −k′)aλ
+ℓℓ Pk
+ℓj > 0,
+where τ|[(τ − k′)aλ + k], so j ∈ T((M − 1)τ).
+马啸 (SYSU) 随机过程 2022 年秋 21 / 45
+
+=== p22 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ Classification of States Ergodic Class of States
+Ergodic Class of States
+f ) Show that P(M−1)2+1
+ij > 0 for all i, j.
+For the state ℓ contained in a cycle with τ ⩽ M − 1 states:
+Let ℓ′ be the state that (ℓ, ℓ′) is a transition on this cycle, then
+T ((M − 1)τ + 1)⊇ T ′((M − 1)τ) =S.
+It can be proved by induction T (m) =S, for m ⩾ (M − 1)τ.
+(M − 1)2 + 1> (M − 1)τ, so P(M−1)2+1
+ℓj > 0.
+For the state ℓ∗ not contained in that cycle, it can reach the cycle at most
+in (M − τ) steps. We have
+T ∗((M − 1)2 + 1)⊇ T((M − 1)2 + 1− (M − τ)).
+Since (M − 1)2 + 1− (M − τ) − (M − 1)τ = M(M − 1 − τ) ⩾ 0, we have
+T ∗((M − 1)2 + 1) =S.
+马啸 (SYSU) 随机过程 2022 年秋 22 / 45
+
+=== p23 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation
+Finite-state Markov Chains
+§ Introduction
+§ Classification of States
+§ The Matrix Representation
+马啸 (SYSU) 随机过程 2022 年秋 23 / 45
+
+=== p24 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation
+§ The Matrix Representation
+§ Steady state and [Pn] for large n
+§ Steady state assuming [P] > 0
+§ Ergodic Markov chains
+§ Ergodic unichains
+§ Arbitrary finite-state Markov chains
+马啸 (SYSU) 随机过程 2022 年秋 24 / 45
+
+=== p25 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation
+§ The Matrix Representation
+The matrix [P] of transition probabilities of a Markov chain is called a
+stochastic matrix .
+M∑
+ℓ=1
+Piℓ = 1 for i = 1, 2, . . . , M.
+For 2-step walks, using the Markov property ,
+P2
+ij =
+M∑
+k=1
+Pik Pkj .
+The matrix of 2-step transition probabilities [P2] = [P][P] .
+The Chapman-Kolmogorov equation:
+[Pm+n ] = [Pm ][Pn ]
+Pm+n
+ij =
+M∑
+k=1
+Pm
+ik Pn
+kj .
+马啸 (SYSU) 随机过程 2022 年秋 25 / 45
+
+=== p26 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state and [Pn ] for large n
+Steady state and [Pn] for large n
+If memory of the past dies out with increasing n, then we would expect the
+dependence of Pn
+ij on both n and i to disappear as n → ∞,
+lim
+n→∞
+Pn
+ij = πj for 1 ⩽ i, j ⩽ M,
+where πj is a function only of j and not of i or n.
+we can multiply both sides by Pjk and sum over j, getting
+lim
+n→∞
+∑
+j
+Pn
+ijPjk =
+∑
+j
+πjPjk.
+The left side is limn→∞ Pn+1
+ik = πk. Thus if this limit exists, the vector π
+must satisfy
+πk =
+∑
+j
+πjPjk for each k.
+马啸 (SYSU) 随机过程 2022 年秋 26 / 45
+
+=== p27 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state and [Pn ] for large n
+Steady state and [Pn] for large n
+Definition 9
+A steady-state vector (or a steady-state distribution) for an M-state
+Markov chain with transition matrix [P] is a row vector π that satisfies
+π = π[P],
+where ∑
+i πi = 1 and πi ⩾ 0 for 1 ⩽ i ⩽ M.
+Remark: It is important to recognize that if π is a steady-state vector, it
+does NOT necessarily follow that [Pn] converges to π as n → ∞.
+Under what conditions does π = π[P] have a probability vector solution?
+Under what conditions does π = π[P] have a unique probability vector solution?
+Under what conditions does each row of [Pn ] converge to a probability vector π satisfying
+π = π[P]?
+马啸 (SYSU) 随机过程 2022 年秋 27 / 45
+
+=== p28 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state and [Pn ] for large n
+Steady state and [Pn] for large n
+Definition 10
+A unichain is a finite-state Markov chain that contains a single recurrent
+class plus, perhaps, some transient states.
+An ergodic unichain is a unichain for which the recurrent class is ergodic.
+First, π = π[P] always has a probability vector solution (although this
+is NOT necessarily true for infinite-state chains).
+Second, π = π[P] has a unique probability vector solution iff [P] is
+the transition matrix of a unichain.
+Third, each row of [Pn] converge to the unique solution of π = π[P]
+iff [P] is the transition matrix of an ergodic unichain.
+马啸 (SYSU) 随机过程 2022 年秋 28 / 45
+
+=== p29 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state and [Pn ] for large n
+Steady state and [Pn] for large n
+Lemma 1
+Let [P] be the transition matrix of a finite-state Markov chain and let [Pn ] be the
+nth power of [P]. Then for each state j and each integer n ⩾ 1,
+max
+i
+Pn+1
+ij ⩽ max
+ℓ
+Pn
+ℓj , min
+i
+Pn+1
+ij ⩾ min
+ℓ
+Pn
+ℓj .
+Proof: Use the Chapman–Kolmogorov equation, for any state i, j and any step n,
+we have
+Pn+1
+ij =
+∑
+k
+Pik Pn
+kj ⩽
+∑
+k
+Pik max
+ℓ
+Pn
+ℓj = max
+ℓ
+Pn
+ℓj .
+Maximizing i, so
+max
+i
+Pn+1
+ij ⩽ max
+ℓ
+Pn
+ℓj .
+Replacing maxima with minima and reversing inequalities,
+min
+i
+Pn+1
+ij ⩾ min
+ℓ
+Pn
+ℓj .
+马啸 (SYSU) 随机过程 2022 年秋 29 / 45
+
+=== p30 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state assuming [P] > 0
+Steady state assuming [P] > 0
+Lemma 2
+Let [P] > 0 be the transition matrix of a finite-state Markov chain and let
+α = mini,j Pij. Then for all states j and all n ⩾ 1:
+max
+i
+Pn+1
+ij − min
+i
+Pn+1
+ij ⩽
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+(1 − 2α).
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+⩽ (1 − 2α)n.
+lim
+n→∞
+max
+ℓ
+Pn
+ℓj = lim
+n→∞
+min
+ℓ
+Pn
+ℓj ⩾ α > 0.
+马啸 (SYSU) 随机过程 2022 年秋 30 / 45
+
+=== p31 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state assuming [P] > 0
+Steady state assuming [P] > 0
+Proof: We tighten the proof of Lemma 1 slightly . For a given n and j, let ℓmin be
+a state that minimizes Pn
+ij over i.
+Pn+1
+ij =
+∑
+k
+Pik Pn
+kj
+⩽
+∑
+k̸=ℓmin
+Pik max
+ℓ
+Pn
+ℓj + Piℓmin min
+ℓ
+Pn
+ℓj
+= (1− Piℓmin ) max
+ℓ
+Pn
+ℓj + Piℓmin min
+ℓ
+Pn
+ℓj
+= max
+ℓ
+Pn
+ℓj − Piℓmin
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+⩽ max
+ℓ
+Pn
+ℓj − α
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+.
+max
+i
+Pn+1
+ij ⩽ max
+ℓ
+Pn
+ℓj − α
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+.
+马啸 (SYSU) 随机过程 2022 年秋 31 / 45
+
+=== p32 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Steady state assuming [P] > 0
+Steady state assuming [P] > 0
+We have shown that
+max
+i
+Pn+1
+ij ⩽ max
+ℓ
+Pn
+ℓj − α
+(
+max
+ℓ
+Pn
+ℓj − min
+l
+Pn
+ℓj
+)
+.
+Interchanging max with min and ⩽ with ⩾, we get
+min
+i
+Pn+1
+ij ⩾ min
+ℓ
+Pn
+ℓj + α
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+.
+Subtracting these equations,
+max
+i
+Pn+1
+ij − min
+i
+Pn+1
+ij ⩽
+(
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj
+)
+(1 − 2α).
+Since minl Plj ⩾ α and maxl Plj ⩽ 1 − α,
+max
+i
+Pij − min
+i
+Pij ⩽ 1 − 2α.
+Iterating on n,
+max
+ℓ
+Pn
+ℓj − min
+ℓ
+Pn
+ℓj ⩽ (1 − 2α)n .
+马啸 (SYSU) 随机过程 2022 年秋 32 / 45
+
+=== p33 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Ergodic Markov chains
+Ergodic Markov chains
+Theorem 5
+Let [P] be the matrix of an ergodic finite-state Markov chain. Then there
+is a unique steady-state vector π satisfies
+lim
+n→∞
+Pn
+ij = πj for each i, j,
+with geometric convergence in n.
+The key to this theorem is the pair of statements that maxi Pn
+ij is
+non-increasing in n and mini Pn
+ij is non-decreasing in n.
+马啸 (SYSU) 随机过程 2022 年秋 33 / 45
+
+=== p34 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Ergodic Markov chains
+Ergodic Markov chains
+Proof:
+We have shown that [Ph] is positive for h = (M − 1)2 + 1, so we can apply
+Lemma 2 to [Ph], with α = minij Ph
+ij.
+We don’t much care about the value of α, but only that it is positive.
+Then
+lim
+m→∞
+max
+ℓ
+Phm
+ℓj = lim
+m→∞
+min
+ℓ
+Phm
+ℓj ≜ πl ⩾ α > 0.
+T o show that the limit applies for all n rather than than just multiples of
+h, we use Lemma 1, showing that maxℓ Pn
+ℓj is non-increasing in n, so it
+must have the same limit as maxℓ Phm
+ℓj . The same argument applies for
+the minima.
+马啸 (SYSU) 随机过程 2022 年秋 34 / 45
+
+=== p35 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Ergodic Markov chains
+Ergodic Markov chains
+Then we need to show that π is the unique steady-state vector.
+Since each row of [Pn] converges to this same vector π. This is
+represented most compactly by
+lim
+n→∞
+[Pn] =eπ
+where e = (1, 1, . . . , 1)T.
+Let µ be any steady-state vector, i.e., any probability vector solution to
+µ[P] =µ. Then
+µ = µ lim
+n→∞
+[Pn] =µeπ = π.
+using the fact that µe = 1.
+马啸 (SYSU) 随机过程 2022 年秋 35 / 45
+
+=== p36 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Ergodic Unichains
+Ergodic Unichains
+Let T denote the set of transient states (which might contain several
+transient classes), and assume the states of T are numbered 1, 2, . . . , t.
+Let R denote the recurrent class, assumed to be numbered t + 1, . . . , t + r.
+[P] =
+[[PT] [ PTR]
+[0] [ PR]
+]
+.
+The block of zeroes in the lower left corresponds to the absence of
+transitions from recurrent to transient states.
+We will show that Pn
+ij converges to 0 for i, j ∈ T.
+马啸 (SYSU) 随机过程 2022 年秋 36 / 45
+
+=== p37 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Ergodic Unichains
+Ergodic Unichains
+For each transient state, there must be a walk to some recurrent state and
+since there are only t transient states, there must be some walk of length
+at most t. For each i ∈ T, ∑
+j∈R Pt
+ij > 0, i.e. i ∈ T,∑
+j∈T Pt
+ij < 1.
+Thus,
+γ ≜ max
+i∈T
+∑
+j∈T
+Pt
+ij < 1.
+Lemma 3
+Let [P] be a unichain, T be the set of transient states, and let t = |T|.
+max
+ℓ∈T
+∑
+j∈T
+Pn
+ℓj ⩽ γ⌊n/t⌋.
+马啸 (SYSU) 随机过程 2022 年秋 37 / 45
+
+=== p38 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Ergodic Unichains
+Ergodic Unichains
+Theorem 6
+Let [P] be the transition matrix of a finite-state ergodic unichain. Then
+limn→∞[Pn] =eπ, where e = (1, 1, . . . , 1)T and π is the steady-state
+vector of the recurrent class of states, expanded by zeros for each transient
+state of the unichain. The convergence is geometric in n for all i, j.
+马啸 (SYSU) 随机过程 2022 年秋 38 / 45
+
+=== p39 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ The Matrix Representation Arbitrary Finite-state Markov Chains
+Arbitrary Finite-state Markov Chains
+First consider a Markov chain with several recurrent classes,
+R1, . . . , Rm. The classes don ’t communicate and should be
+considered separately .
+If one insists on analyzing the entire chain, [P] will have m
+independent steady state vectors, one nonzero on each class.
+Next consider a periodic recurrent chain of period d. This can be
+separated into d subclasses with a cyclic rotation between them.
+If we look at [Pd], we see that each subclass becomes an ergodic
+class, say C1, . . . , Cd. Thus limn→∞[Pdn] exists.
+马啸 (SYSU) 随机过程 2022 年秋 39 / 45
+
+=== p40 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+1. 假设 X = (Xn, n ≥ 0) 是一个状态空间为 {1, 2, 3} 的 Markov 链，转
+移矩阵为
+P =
+
+
+0.3 0 .2 0 .5
+0.5 0 .1 0 .4
+0.5 0 .2 0 .3
+
+
+如果 p0 = (0.5, 0.5, 0)，求
+（1）P(X0 = 2, X1 = 2, X2 = 1).
+（2）P(X1 = 2, X2 = 2, X3 = 1).
+马啸 (SYSU) 随机过程 2022 年秋 40 / 45
+
+=== p41 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+2. 假设 X = (Xn, n ≥ 0) 是 Markov 链，状态空间为 {1, 2, 3, 4}，转移概
+率矩阵为
+P =
+
+
+1
+2
+1
+2 0 0
+1 0 0 0
+0 1
+3
+2
+3 0
+1
+2 0 1
+2 0
+
+
+问：哪些状态是常返的，哪些是瞬时的？并求每个状态的周期。
+马啸 (SYSU) 随机过程 2022 年秋 41 / 45
+
+=== p42 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+3. 考虑下图马尔可夫链，问：
+（1）状态可以分为几类？
+（2）各类的周期分别是什么？
+（3）哪些状态是常返的，哪些状态是瞬时的？
+马啸 (SYSU) 随机过程 2022 年秋 42 / 45
+
+=== p43 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+4. 假设 X = (Xn, n ≥ 0) 是 Markov 链，请分别考虑以下两个转移矩阵
+P1 =
+
+
+1
+2
+1
+2 0 0 0
+1
+4
+3
+4 0 0 0
+0 0 0 1 0
+0 0 1
+2 0 1
+2
+0 0 0 1 0
+
+
+P2 =
+
+
+1
+2
+1
+2 0 0 0
+1
+4 0 3
+4 0 0
+0 0 0 1 0
+0 0 1
+2 0 1
+2
+0 0 0 1 0
+
+
+（1）分别对上述两个状态空间进行分类；
+（2）分别列出上述两个状态空间各自对应的连通类；
+（3）上述两个状态空间各自连通类之间互通吗？
+马啸 (SYSU) 随机过程 2022 年秋 43 / 45
+
+=== p44 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+5. 某地区的天气状况可分为多云和阴天两种，分别记为 1 和 2，并用
+Markov 链 X = (Xn, n ≥ 0) 描述，其转移概率矩阵为
+P =
+(1
+2
+1
+21
+3
+2
+3
+)
+如果已知今天是多云，求 3 天、5 天、10 天及更长时间以后天气状况的
+分布规律。
+马啸 (SYSU) 随机过程 2022 年秋 44 / 45
+
+=== p45 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+Thank you for your attention!
+马啸 (SYSU) 随机过程 2022 年秋 45 / 45
+

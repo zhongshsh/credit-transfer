@@ -1,0 +1,1411 @@
+# N4  Wireless-Chapter_7_v8.0
+# Source: PPT4-Wireless-Chapter_7_v8.0.pptx    Slides: 118
+
+=== s1 ===
+Computer Networking: A Top-Down Approach 8th edition Jim Kurose, Keith RossPearson, 2020
+Chapter 7Wireless and
+Mobile Networks
+A note on the use of these PowerPoint slides:
+We’re making these slides freely available to all (faculty, students, readers). They’re in PowerPoint form so you see the animations; and can add, modify, and delete slides  (including this one) and slide content to suit your needs. They obviously represent a lot of work on our part. In return for use, we only ask the following:
+If you use these slides (e.g., in a class) that you mention their source (after all, we’d like people to use our book!)
+If you post any slides on a www site, that you note that they are adapted from (or perhaps identical to) our slides, and note our copyright of this material.
+For a revision history, see the slide note for this page.
+Thanks and enjoy!  JFK/KWR
+All material copyright 1996-2020
+J.F Kurose and K.W. Ross, All Rights Reserved
+
+=== s2 ===
+Wireless and Mobile Networks: context
+Wireless and Mobile Networks: 7-
+more wireless (mobile) phone subscribers than fixed (wired) phone subscribers (10-to-1 in 2019)!
+more mobile-broadband-connected devices than fixed-broadband-connected devices devices (5-1 in 2019)!
+4G/5G cellular networks now embracing Internet protocol stack, including SDN
+two important (but different) challenges
+wireless: communication over wireless link
+mobility: handling the mobile user who changes point of attachment to network
+
+=== s3 ===
+Chapter 7 outline
+Introduction
+Wireless
+Wireless Links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+Wireless and Mobile Networks: 7-
+
+=== s4 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+
+=== s5 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+wireless hosts
+laptop, smartphone, IoT
+run applications
+may be stationary (non-mobile) or mobile
+wireless does not always mean mobility!
+
+=== s6 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+base station
+typically connected to wired network
+relay - responsible for sending packets between wired network and wireless host(s) in its “area”
+e.g., cell towers,  802.11 access points
+A base station has no obvious counterpart in a wired network.
+
+=== s7 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+base station
+typically connected to wired network
+relay - responsible for sending packets between wired network and wireless host(s) in its “area”
+e.g., cell towers,  802.11 access points
+Association: (1) the host is within the wireless communication distance of the base station, and (2) the host uses that base station to relay data between it (the host) and the larger network.
+
+=== s8 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+wireless link
+typically used to connect mobile(s) to base station, also used as backbone link
+multiple access protocol coordinates link access
+various transmission rates and distances, frequency bands
+
+=== s9 ===
+Characteristics of selected wireless links
+Wireless and Mobile Networks: 7-
+Indoor
+Outdoor
+Midrange
+outdoor
+Long range
+outdoor
+10-30m
+50-200m
+200m-4Km
+4Km-15Km
+2 Mbps
+4G LTE
+3.5 Gbps
+600 Mbps
+54 Mbps
+11 Mbps
+14 Gbps
+5G
+10 Gbps
+802.11 af,ah
+
+=== s10 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+infrastructure mode
+base station connects mobiles into wired network
+handoff or handover: mobile changes base station providing connection into wired network
+Q: If a host can move, how does one find the mobile host’s current location so that data can be forwarded to that mobile host? How is addressing performed, given that a host can be in one of many possible locations?  During a TCP connection or phone call, how is data routed so that the connection?
+
+=== s11 ===
+Elements of a wireless network
+Wireless and Mobile Networks: 7-
+ad hoc mode
+no base stations
+nodes can only transmit to other nodes within link coverage
+nodes organize themselves into a network: route among themselves
+
+=== s12 ===
+Wireless network taxonomy
+Wireless and Mobile Networks: 7-
+single hop
+multiple hops
+infrastructure
+(e.g., APs)
+no
+infrastructure
+host connects to  base station (WiFi, cellular) which connects to  larger Internet
+no base station, no connection to larger  Internet (Bluetooth, ad hoc nets)
+host may have to relay through several wireless nodes to connect to larger
+Internet: mesh net
+no base station, no connection to larger  Internet. May have to relay to reach other  a given wireless node MANET, VANET
+
+=== s13 ===
+Chapter 7 outline
+Introduction
+Link Layer: 6-
+Wireless
+Wireless links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+
+=== s14 ===
+Wireless link characteristics (1)
+Wireless and Mobile Networks: 7-
+important differences from wired link ….
+decreased signal strength: radio signal attenuates as it propagates through matter (path loss)
+interference from other sources: wireless network frequencies (e.g., 2.4 GHz) shared by many devices (e.g., WiFi, cellular, motors): interference
+multipath propagation: radio signal reflects off objects ground, arriving at destination at slightly different times
+…. make communication across (even a point to point) wireless link much more “difficult”
+
+=== s15 ===
+Wireless link characteristics (2)
+Wireless and Mobile Networks: 7-
+SNR: signal-to-noise ratio
+larger SNR – easier to extract signal from noise (a “good thing”)
+SNR versus BER tradeoffs
+given physical layer: increase power -> increase SNR->decrease BER
+given SNR: choose physical layer that meets BER requirement, giving highest throughput
+SNR may change with mobility: dynamically adapt physical layer (modulation technique, rate)
+10
+20
+30
+40
+QAM256 (8 Mbps)
+QAM16 (4 Mbps)
+BPSK (1 Mbps)
+SNR(dB)
+BER
+10-1
+10-2
+10-3
+10-5
+10-6
+10-7
+10-4
+
+=== s16 ===
+Wireless link characteristics (3)
+Wireless and Mobile Networks: 7-
+Multiple wireless senders, receivers create additional problems (beyond multiple access):
+A
+B
+C
+Hidden terminal problem
+B, A hear each other
+B, C hear each other
+A, C can not hear each other means A, C unaware of their interference at B
+A
+B
+C
+A’s signal
+strength
+space
+C’s signal
+strength
+Signal attenuation:
+B, A hear each other
+B, C hear each other
+A, C can not hear each other interfering at B
+
+=== s17 ===
+Code Division Multiple Access (CDMA)
+Wireless and Mobile Networks: 7-
+unique “code” assigned to each user; i.e., code set partitioning
+all users share same frequency, but each user has own “chipping” sequence (i.e., code) to encode data
+allows multiple users to “coexist” and transmit simultaneously with minimal interference (if codes are “orthogonal”)
+encoding: inner product: (original data) X (chipping sequence)
+decoding: summed inner-product: (encoded data) X (chipping sequence)
+
+=== s18 ===
+Code Division Multiple Access (CDMA)
+Wireless and Mobile Networks: 7-
+(In Chapters 1 and 6) Multiple access protocols:
+Channel partitioning protocols: FDM, TDM, CDMA (While TDM and FDM assign time slots and frequencies, respectively, to the nodes, CDMA assigns a different code to each node and is very important in wireless world. )
+Random Access Protocols: a transmitting node always transmits at the full rate of the channel, namely, R bps: when a node experiences a collision, it doesn’t necessarily retransmit the frame right away. Instead it waits a random delay before retrans- mitting the frame. Examples: ALOHA, CSMA/CD, CSMA/CA
+Taking-Turns Protocols:
+Polling protocol: The master node polls each of the nodes in a round-robin fashion. (drawbacks: polling delay, master failure)
+Token-passing protocol: If a node does have frames to transmit when it receives the token, it sends up to a maximum number of frames and then forwards the token to the next node. E.g., IEEE 802.5 token ring protocol
+
+=== s19 ===
+CDMA encode/decode
+Wireless and Mobile Networks: 7-
+slot 1
+slot 0
+Zi,m= di.cm
+slot 0
+channel
+output
+slot 1
+channel
+output
+channel output Zi,m
+sender
+code
+data
+bits
+Each bit being sent is encoded by multiplying the bit by a signal (the code) that changes at a much faster rate (known as the chipping rate)
+Each original data bit to be transmitted requires a one-bit slot time. Let di be the value of the data bit for the ith bit slot.
+Each bit slot is further subdivided into M mini-slots – chipping rate is M times of the orginal data rate
+E.g., the M-bit CDMA code being used by the sender is (1, 1, 1, -1, 1, -1, -1, -1), demoted by c1, c2, ..., cm, ..., cM
+
+=== s20 ===
+CDMA encode/decode
+Wireless and Mobile Networks: 7-
+slot 1
+slot 0
+Zi,m= di.cm
+slot 0
+channel
+output
+slot 1
+channel
+output
+channel output Zi,m
+sender
+code
+data
+bits
+slot 1
+slot 0
+slot 0
+channel
+output
+slot 1
+channel
+output
+receiver
+code
+received
+input
+… but this isn’t really useful yet!
+
+=== s21 ===
+CDMA works under the assumption that the interfering transmitted bit signals are additive. This means, for example, that if three senders send a 1 value, and a fourth sender sends a - 1 value during the same mini-slot, then the received signal at all receivers during that mini-slot is a 2 (since 1 + 1 + 1 - 1 = 2).
+CDMA: two-sender interference
+Wireless and Mobile Networks: 7-
+
+=== s22 ===
+CDMA: two-sender interference
+Wireless and Mobile Networks: 7-
+using same code as sender 1, receiver recovers sender 1’s original data from summed channel data!
+Sender 1
+Sender 2
+channel sums together transmissions by sender 1 and 2
+… now that’s useful!
+
+=== s23 ===
+CDMA works under the assumption that the interfering transmitted bit signals are additive. This means, for example, that if three senders send a 1 value, and a fourth sender sends a - 1 value during the same mini-slot, then the received signal at all receivers during that mini-slot is a 2 (since 1 + 1 + 1 - 1 = 2).
+CDMA: two-sender interference
+Wireless and Mobile Networks: 7-
+encoding at single sender         aggregated encoding over all senders               decoding
+
+=== s24 ===
+CDMA works under the assumption that the interfering transmitted bit signals are additive. This means, for example, that if three senders send a 1 value, and a fourth sender sends a - 1 value during the same mini-slot, then the received signal at all receivers during that mini-slot is a 2 (since 1 + 1 + 1 - 1 = 2).
+Key points:
+In order for the CDMA receivers to be able to extract a particular sender’s signal, the CDMA codes must be carefully chosen.
+Our discussion has assumed that the received signal strengths from various senders are the same; in reality, this can be difficult to achieve. There is a considerable body of literature addressing issues related to CDMA.
+CDMA: two-sender interference
+Wireless and Mobile Networks: 7-
+
+=== s25 ===
+Chapter 7 outline
+Introduction
+Link Layer: 6-
+Wireless
+Wireless links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+
+=== s26 ===
+IEEE 802.11 Wireless LAN
+Wireless and Mobile Networks: 7-
+all use CSMA/CA for multiple access, and have base-station and ad-hoc network versions
+
+=== s27 ===
+802.11 LAN architecture
+Wireless and Mobile Networks: 7-
+wireless host communicates with base station
+base station = access point (AP)
+Basic Service Set (BSS) (aka “cell”) in infrastructure mode contains:
+wireless hosts
+access point (AP): base station
+ad hoc mode: hosts only
+BSS 1
+BSS 2
+switch
+or router
+
+=== s28 ===
+802.11 LAN architecture
+Wireless and Mobile Networks: 7-
+each 802.11 wireless station has a 6-byte MAC address that is stored in the firmware of the station’s adapter (that is, 802.11 network interface card).
+each AP also has a MAC address for its wireless interface. As with Ethernet, these MAC addresses are administered by IEEE and are (in theory) globally unique.
+BSS 1
+BSS 2
+switch
+or router
+
+=== s29 ===
+802.11: Channels, association
+Wireless and Mobile Networks: 7-
+spectrum divided into channels at different frequencies
+AP admin chooses frequency for AP
+interference possible: channel can be same as that chosen by neighboring AP!
+arriving host: must associate with an AP
+scans channels, listening for beacon frames containing AP’s name (SSID) and MAC address
+selects AP to associate with
+then may perform authentication [Chapter 8]
+then typically run DHCP to get IP address in AP’s subnet
+BSS
+
+=== s30 ===
+A WiFi jungle is any physical location where a wireless station receives a sufficiently strong signal from two or more APs. E.g., in many cafés, a wireless station can pick up a signal from numerous nearby APs, located in a different IP subnet and would have been independently assigned a channel.
+To gain Internet access, your wireless device needs to join exactly one of the subnets and hence needs to associate with exactly one of the APs.
+An AP periodically send beacon frames, each of which includes the AP’s SSID and MAC address. Your device selects one of them. The process of scanning channels and listening for beacon frames is known as passive scanning.
+Signal strength is not the only AP characteristic that will determine the performance a device receives. In particular, it’s possible that the selected AP may have a strong signal, but may be overloaded with other affiliated devices (wireless bandwidth sharing), while an unloaded AP is not selected due to a slightly weaker signal.
+An interesting situation: A WiFi jungle
+Wireless and Mobile Networks: 7-
+
+=== s31 ===
+802.11: passive/active scanning
+Wireless and Mobile Networks: 7-
+AP 2
+AP 1
+H1
+BBS 2
+BBS 1
+passive scanning:
+beacon frames sent from APs
+association Request frame sent: H1 to selected AP
+association Response frame sent from  selected AP to H1
+
+=== s32 ===
+IEEE 802.11: multiple access
+Wireless and Mobile Networks: 7-
+avoid collisions: 2+ nodes transmitting at same time
+802.11: CSMA - sense before transmitting
+don’t collide with detected ongoing transmission by another node
+802.11: no collision detection!
+difficult to sense collisions: high transmitting signal, weak received signal due to fading
+can’t sense all collisions in any case: hidden terminal, fading
+goal: avoid collisions: CSMA/CollisionAvoidance
+space
+
+=== s33 ===
+Once a wireless device is associated with an AP, it can start sending and receiving data frames to and from the access point.
+But because multiple wireless devices, or the AP itself may want to transmit data frames at the same time over the same channel, a multiple access protocol is needed to coordinate the transmissions.
+Compared with Ethernet CSMA:
+First, instead of using collision detection, 802.11 uses collision-avoidance techniques. Second, because of the relatively high bit error rates of wireless channels, 802.11 (unlike Ethernet) uses a link-layer acknowledgment/retransmission (ARQ) scheme
+The 802.11 MAC Protocol
+Wireless and Mobile Networks: 7-
+
+=== s34 ===
+Why not CD (collision detection) like in the Ethernet?
+Costly to build hardware for collision detection. Collision detection requires the ability to send and receive (to determine whether another station is also transmitting) at the same time. Since received signal strength << transmitted signal strength at the 802.11 adapter.
+Unable to detect all the collisions due to hidden terminal problem and fading.
+Therefore, a station transmits the entire frame once beginning transmission.
+However, transmitting entire frames (particularly long frames) when collisions are prevalent can significantly degrade a multiple access protocol’s performance.
+The 802.11 MAC Protocol
+Wireless and Mobile Networks: 7-
+
+=== s35 ===
+IEEE 802.11 MAC Protocol: CSMA/CA
+Wireless and Mobile Networks: 7-
+802.11 sender
+sender
+receiver
+802.11 receiver
+802.11 Link-layer acknowledgement scheme: when the destination station receives a frame that passes the CRC, it waits a short period of time, i.e., Short Inter-frame Spacing (SIFS) and then sends back an acknowledgment frame.
+If no ACK, assumes error occurs, retransmits the frame, using CSMA/CA. With ACK not received after several retransmission, discard the frame
+
+=== s36 ===
+IEEE 802.11 MAC Protocol: CSMA/CA
+Wireless and Mobile Networks: 7-
+802.11 sender
+If the station senses the channel idle, transmits the frame after a Distributed Inter-Frame Space (DIFS)
+Otherwise, chooses a random backoff time using binary exponential backoff (Sec. 6.3.2) and counts down this value after DIFS when the channel is sensed idle. While the channel is sensed busy, the counter value remains frozen.
+When the counter reaches zero (note that this can only occur while the chan- nel is sensed idle), the station transmits the entire frame and then waits for an acknowledgment.
+If an ACK is received, the transmitting station knows that its frame has been correctly received at the destination station. If the station has another frame to send, it begins the CSMA/CA protocol at step 2. If the ACK isn’t received, re-enters the backoff phase in step 2, with the random value chosen from a larger interval.
+sender
+receiver
+
+=== s37 ===
+A recap of the previous lesson
+12/07/2022
+Wireless and Mobile Networks: 7-
+
+=== s38 ===
+Wireless link characteristics (2)
+Wireless and Mobile Networks: 7-
+SNR: signal-to-noise ratio
+larger SNR – easier to extract signal from noise (a “good thing”)
+SNR versus BER tradeoffs
+given physical layer: increase power -> increase SNR->decrease BER
+given SNR: choose physical layer that meets BER requirement, giving highest throughput
+SNR may change with mobility: dynamically adapt physical layer (modulation technique, rate)
+10
+20
+30
+40
+QAM256 (8 Mbps)
+QAM16 (4 Mbps)
+BPSK (1 Mbps)
+SNR(dB)
+BER
+10-1
+10-2
+10-3
+10-5
+10-6
+10-7
+10-4
+
+=== s39 ===
+Wireless link characteristics (3)
+Wireless and Mobile Networks: 7-
+Multiple wireless senders, receivers create additional problems (beyond multiple access):
+A
+B
+C
+Hidden terminal problem
+B, A hear each other
+B, C hear each other
+A, C can not hear each other means A, C unaware of their interference at B
+A
+B
+C
+A’s signal
+strength
+space
+C’s signal
+strength
+Signal attenuation:
+B, A hear each other
+B, C hear each other
+A, C can not hear each other interfering at B
+
+=== s40 ===
+Code Division Multiple Access (CDMA)
+Wireless and Mobile Networks: 7-
+(In Chapters 1 and 6) Multiple access protocols:
+Channel partitioning protocols: FDM, TDM, CDMA (While TDM and FDM assign time slots and frequencies, respectively, to the nodes, CDMA assigns a different code to each node and is very important in wireless world. )
+Random Access Protocols: a transmitting node always transmits at the full rate of the channel, namely, R bps: when a node experiences a collision, it doesn’t necessarily retransmit the frame right away. Instead it waits a random delay before retrans- mitting the frame. Examples: ALOHA, CSMA/CD, CSMA/CA
+Taking-Turns Protocols:
+Polling protocol: The master node polls each of the nodes in a round-robin fashion. (drawbacks: polling delay, master failure)
+Token-passing protocol: If a node does have frames to transmit when it receives the token, it sends up to a maximum number of frames and then forwards the token to the next node. E.g., IEEE 802.5 token ring protocol
+
+=== s41 ===
+CDMA works under the assumption that the interfering transmitted bit signals are additive. This means, for example, that if three senders send a 1 value, and a fourth sender sends a - 1 value during the same mini-slot, then the received signal at all receivers during that mini-slot is a 2 (since 1 + 1 + 1 - 1 = 2).
+CDMA: two-sender interference
+Wireless and Mobile Networks: 7-
+encoding at single sender         aggregated encoding over all senders               decoding
+
+=== s42 ===
+IEEE 802.11: multiple access
+Wireless and Mobile Networks: 7-
+avoid collisions: 2+ nodes transmitting at same time
+802.11: CSMA - sense before transmitting
+don’t collide with detected ongoing transmission by another node
+802.11: no collision detection!
+difficult to sense collisions: high transmitting signal, weak received signal due to fading
+can’t sense all collisions in any case: hidden terminal, fading
+goal: avoid collisions: CSMA/CollisionAvoidance
+space
+
+=== s43 ===
+IEEE 802.11 MAC Protocol: CSMA/CA
+Wireless and Mobile Networks: 7-
+802.11 sender
+1 if sense channel idle for DIFS then
+transmit entire frame (no CD)
+sender
+receiver
+802.11 receiver
+if frame received OK
+return ACK after SIFS (ACK needed due to hidden terminal problem)
+2 if sense channel busy then
+start random backoff time
+timer counts down while channel idle
+transmit when timer expires
+if no ACK, increase random backoff interval, repeat 2
+
+=== s44 ===
+Avoiding collisions (more)
+Wireless and Mobile Networks: 7-
+Collisions can still occur with 802.11: E.g., two stations are hidden from each other, or they choose random backoff values that are close enough that the transmission from the station starting first have yet to reach the second station.
+Idea: sender “reserves” channel use for data frames using small reservation packets
+sender first transmits small request-to-send (RTS) packet to BS using CSMA
+RTSs may still collide with each other (but they’re short and not costly)
+BS broadcasts clear-to-send clear-to-send (CTS) in response to RTS
+CTS heard by all nodes
+sender transmits data frame
+other stations defer transmissions
+
+=== s45 ===
+Collision Avoidance: RTS-CTS exchange
+Wireless and Mobile Networks: 7-
+AP
+A
+B
+time
+
+=== s46 ===
+https://ojs.aaai.org/index.php/AAAI/article/view/6187
+An ad..
+Wireless and Mobile Networks: 7-
+
+=== s47 ===
+We consider Cognitive Radio Networks (CRNs), where users can use wireless channels when they are unoccupied by primary users. In each round, a user can sense (pre-observe) some channels (arms) to check their availability (reward) before choosing a channel to transmit data (play). Sensing more arms leaves less time for data transmission, inducing a cost of making preobservations.
+If users try to use the same wireless channel, for instance, the users “collide” and all transmissions fail.
+In our problem, the users must instead learn ordered sequences of channels that they should pre-observe, minimizing overlaps in the sequences that might induce players to play the same arm.
+Summary
+Wireless and Mobile Networks: 7-
+
+=== s48 ===
+Goal: Distributed algorithm to mitigate collision and maximize the total transmitted traffic in T
+Wireless and Mobile Networks: 7-
+
+=== s49 ===
+Wireless and Mobile Networks: 7-
+
+=== s50 ===
+802.11 frame: addressing
+Wireless and Mobile Networks: 7-
+2
+2
+6
+6
+6
+2
+6
+0 - 2312
+4
+Address 1: MAC address of wireless host or AP  to receive this frame
+Address 4: used only in ad hoc mode
+frame
+control
+duration
+address
+1
+address
+2
+address
+4
+address
+3
+payload
+CRC
+seq
+control
+
+=== s51 ===
+802.11 frame: addressing
+Wireless and Mobile Networks: 7-
+H1
+R1
+
+=== s52 ===
+802.11 frame: addressing
+Wireless and Mobile Networks: 7-
+
+=== s53 ===
+802.11: mobility within same subnet
+Wireless and Mobile Networks: 7-
+H1 remains in same IP subnet: IP address can remain same
+H1
+BBS 2
+BBS 1
+switch: which AP is associated with H1?
+self-learning (Ch. 6): switch will see frame from H1 and “remember” which switch port can be used to reach H1
+
+=== s54 ===
+802.11: advanced capabilities
+Wireless and Mobile Networks: 7-
+Rate adaptation
+base station, mobile dynamically change transmission rate (physical layer modulation technique) as mobile moves, SNR varies
+1. SNR decreases, BER increase as node moves away from base station
+2. When BER becomes too high, switch to lower transmission rate but with lower BER
+
+=== s55 ===
+802.11: advanced capabilities
+Wireless and Mobile Networks: 7-
+power management
+node-to-AP: “I am going to sleep until next beacon frame”
+AP knows not to transmit frames to this node
+node wakes up before next beacon frame
+beacon frame: contains list of mobiles with AP-to-mobile frames waiting to be sent
+node will stay awake if AP-to-mobile frames to be sent; otherwise sleep again until next beacon frame
+
+=== s56 ===
+Personal area networks: Bluetooth
+Wireless and Mobile Networks: 7-
+less than 10 m diameter
+replacement for cables (mouse, keyboard, headphones)
+ad hoc: no infrastructure
+2.4-2.5 GHz ISM radio band, up to 3 Mbps
+master controller / clients devices:
+master polls clients, grants requests for client transmissions
+radius of
+coverage
+
+=== s57 ===
+Personal area networks: Bluetooth
+Wireless and Mobile Networks: 7-
+TDM, 625 msec sec. slot
+FDM: sender uses 79 frequency channels in known, pseudo-random order slot-to-slot (spread spectrum)
+other devices/equipment not in piconet only interfere in some slots
+parked mode: clients can “go to sleep” (park) and later wakeup (to preserve battery)
+bootstrapping: nodes self-assemble (plug and play) into piconet
+radius of
+coverage
+
+=== s58 ===
+Chapter 7 outline
+Introduction
+Link Layer: 6-
+Wireless
+Wireless links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+The term cellular refers to the fact that the region covered by a cellular network is partitioned into a number of geographic coverage areas, known as cells.
+
+=== s59 ===
+4G: differences from 3G
+all IP core: IP packets tunneled (through core IP network) from base station to gateway
+no separation between voice and data – all traffic carried over IP core to gateway
+Public
+Internet
+P-GW
+G
+S-GW
+G
+UE
+(user element)
+eNodeB
+(base station)
+Packet data
+network
+Gateway
+(P-GW)
+Serving
+Gateway
+(S-GW)
+data
+6-
+Wireless, Mobile Networks
+
+=== s60 ===
+4G/5G cellular networks
+Wireless and Mobile Networks: 7-
+the solution for wide-area mobile Internet
+widespread deployment/use:
+more mobile-broadband-connected devices than fixed-broadband-connected devices devices (5-1 in 2019)!
+4G availability: 97% of time in Korea (90% in US)
+transmission rates up to 100’s Mbps
+technical specifications (standards): 3rd Generation Partnership Project (3GPP https://www.3gpp.org/)
+4G: Long-Term Evolution (LTE) standard
+
+=== s61 ===
+4G/5G cellular networks
+Wireless and Mobile Networks: 7-
+transmission rates up to 100’s Mbps
+technical specifications (standards): 3rd Generation Partnership Project (3GPP https://www.3gpp.org/)
+4G: Long-Term Evolution (LTE) standard  LTE frequencies and bands (https://en.wikipedia.org/wiki/LTE_frequency_bands) differ from country to country, only multi-band phones can use LTE in all countries where it is supported.
+LTE is also called 3.95G and has been marketed as "4G LTE" and "Advanced 4G", but it does not meet the technical criteria of a 4G wireless service, as specified in the 3GPP Release 8 and 9 document series for LTE Advanced.
+
+=== s62 ===
+3GPP standard organization partners
+
+=== s63 ===
+4G/5G cellular networks
+Wireless and Mobile Networks: 7-
+similarities to wired Internet
+edge/core distinction, but both below to same carrier
+global cellular network: a network of networks
+widespread use of protocols we’ve studied: HTTP, DNS, TCP, UDP, IP, NAT, separation of data/control planes, SDN, Ethernet, tunneling
+interconnected to wired Internet
+differences from wired Internet
+different wireless link layer
+mobility as a 1st class service
+user “identity” (via SIM card)
+business model: users subscribe to a cellular provider
+strong notion of “home network” versus roaming on visited nets
+global access, with authentication infrastructure, and inter-carrier settlements
+
+=== s64 ===
+Elements of 4G LTE architecture
+Wireless and Mobile Networks: 7-
+radio access
+network
+…
+
+=== s65 ===
+Functional split of major LTE （4G） components
+holds idle UE info
+QoS enforcement
+handles idle/active UE transitions
+pages UE
+sets up eNodeB-PGW tunnel (aka bearer)
+Wireless, Mobile Networks
+
+=== s66 ===
+Elements of 4G LTE architecture
+Wireless and Mobile Networks: 7-
+Mobility Management Entity (MME)
+Serving Gateway (S-GW)
+Home Subscriber Service (HSS)
+PDN gateway (P-GW)
+…
+to
+Internet
+Mobile device
+(UE)
+Base station
+(eNode-B)
+
+=== s67 ===
+Elements of 4G LTE architecture
+Wireless and Mobile Networks: 7-
+Mobility Management Entity (MME)
+Serving Gateway (S-GW)
+Home Subscriber Service (HSS)
+PDN gateway (P-GW)
+…
+to
+Internet
+Mobile device
+(UE)
+Base station
+(eNode-B)
+
+=== s68 ===
+Elements of 4G LTE architecture
+Wireless and Mobile Networks: 7-
+Mobility Management Entity (MME)
+Serving Gateway (S-GW)
+Home Subscriber Service (HSS)
+PDN gateway (P-GW)
+…
+to
+Internet
+Mobile device
+(UE)
+Base station
+(eNode-B)
+
+=== s69 ===
+Elements of 4G LTE architecture
+Wireless and Mobile Networks: 7-
+Mobility Management Entity (MME)
+Serving Gateway (S-GW)
+Home Subscriber Service (HSS)
+PDN gateway (P-GW)
+…
+to
+Internet
+Mobile device
+(UE)
+Base station
+(eNode-B)
+
+=== s70 ===
+LTE: data plane control plane separation
+Wireless and Mobile Networks: 7-
+control plane
+new protocols for mobility management , security, authentication (later)
+MME
+HSS
+base station
+P-GW
+
+=== s71 ===
+Radio+Tunneling:  UE – eNodeB – PGW
+6-
+Wireless, Mobile Networks
+tunnel
+link-layer radio net
+UE
+eNodeB
+IP packet from UE encapsulated in GPRS Tunneling Protocol (GTP) message at ENodeB
+GTP message encapsulated in UDP, then encapsulated in IP.  large IP packet addressed to SGW
+
+=== s72 ===
+LTE data plane protocol stack: first hop
+Wireless and Mobile Networks: 7-
+data
+plane
+P-GW
+S-GW
+Application
+Transport
+IP
+Packet Data
+Convergence
+Radio Link
+Medium Access
+Physical
+Link
+base station
+LTE link layer protocols:
+Packet Data Convergence: header compression, encryption
+Radio Link Control (RLC) Protocol: fragmentation/reassembly, reliable data transfer
+Medium Access: requesting, use of radio transmission slots
+
+=== s73 ===
+LTE data plane protocol stack: first hop
+Wireless and Mobile Networks: 7-
+Application
+Transport
+IP
+Packet Data
+Convergence
+Radio Link
+Medium Access
+Physical
+Link
+base station
+LTE radio access network:
+downstream channel: FDM, TDM within frequency channel (OFDM - orthogonal frequency division multiplexing)
+“orthogonal”: minimal interference between channels
+upstream: FDM, TDM similar to OFDM
+each active mobile device allocated two or more 0.5 ms time slots over 12 frequencies
+scheduling algorithm not standardized – up to operator
+100’s Mbps per device possible
+
+=== s74 ===
+LTE data plane protocol stack:  packet core
+Wireless and Mobile Networks: 7-
+P-GW
+S-GW
+base station
+\
+tunneling:
+mobile datagram encapsulated using GPRS Tunneling Protocol (GTP), sent inside UDP datagram to S-GW
+S-GW re-tunnels datagrams to P-GW
+supporting mobility: only tunneling endpoints change when mobile user moves
+
+=== s75 ===
+LTE data plane: associating with a BS
+Wireless and Mobile Networks: 7-
+data
+plane
+P-GW
+S-GW
+base station
+
+=== s76 ===
+LTE mobiles: sleep modes
+Wireless and Mobile Networks: 7-
+data
+plane
+as in WiFi, Bluetooth: LTE mobile may put radio to “sleep” to conserve battery:
+light sleep: after 100’s msec of inactivity
+wake up periodically (100’s msec) to check for downstream transmissions
+deep sleep: after 5-10 secs of inactivity
+mobile may change cells while deep sleeping – need to re-establish association
+
+=== s77 ===
+Global cellular network: a network of IP networks
+Wireless and Mobile Networks: 7-
+…
+visited mobile
+carrier network
+…
+public Internet
+and
+inter-carrier IPX
+…
+home mobile
+carrier network
+all IP:
+carriers interconnect with each other, and public internet at exchange points
+legacy 2G, 3G: not all IP, handled otherwise
+
+=== s78 ===
+On to 5G!
+Wireless and Mobile Networks: 7-
+goal: 10x increase in peak bitrate, 10x decrease in latency, 100x increase in traffic capacity over 4G
+5G NR (new radio):
+two frequency bands: FR1 (450 MHz–6 GHz) and FR2 (24 GHz–52 GHz): millimeter wave frequencies
+capacity = celldensity * availablespectrum * spectralefficiency
+not backwards-compatible with 4G
+MIMO: multiple directional antennae
+millimeter wave frequencies: much higher data rates, but over shorter distances
+pico-cells: cells diameters: 10-100 m
+massive, dense deployment of new base stations required
+
+=== s79 ===
+On to 5G!
+Wireless and Mobile Networks: 7-
+Standards: not one cohesive standard, but three co-existing standards
+eMBB (Enhanced Mobile Broadband)
+URLLC (Ultra Reliable Low-Latency Communications).
+mMTC (Massive Machine Type Communications)
+5G  Core network -the data network that manages all of the 5G mobile voice, data and Internet connections.
+complete control and user-plane separation
+Pure virtualized software-based network functions
+Some new functions
+User-Plane Function (UPF)
+MME->AMF+ SMF
+Access and Mobility Management Function (AMF).
+Session Management Function (SMF)
+
+=== s80 ===
+Chapter 8 Revisit
+Security in mobile networks
+4G/5G
+Security: 8-
+
+=== s81 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+Visited network
+mobile
+Base station (BS)
+Mobility Management Entity (MME)
+Home network
+Home Subscriber Service (HSS)
+arriving mobile must:
+associate with BS: (establish) communication over 4G wireless link
+authenticate itself to network, and authenticate network
+notable differences from WiFi
+mobile’s SIMcard provides global identity, contains shared keys
+services in visited network depend on (paid) service subscription in home network
+
+=== s82 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+mobile, BS use derived session key KBS-M to encrypt communications over 4G link
+MME in visited network + HHS in home network, together play role of WiFi Authentication Server (AS)
+ultimate authenticator is HSS
+trust and business relationship between visited and home networks
+
+=== s83 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+
+=== s84 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+HSS use shared-in-advance secret key, KHSS-M, to derive authentication token, auth_token, and expected authentication response token, xresHSS
+auth_token contains info encrypted by HSS using KHSS-M , allowing mobile to know that whoever computed auth_token knows shared-in-advance secret
+mobile has authenticated network
+visited HSS keeps xresHSS for later use
+attach
+attach
+AUTH_REQ (IMSI, VN info)
+
+=== s85 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+attach
+attach
+AUTH_REQ (IMSI, VN info)
+
+=== s86 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+mobile is authenticated by network:
+MMS compares mobile-computed value of resM with the HSS-computed value of xresHSS . If they match, mobile is authenticated ! (why?)
+MMS informs BS that mobile is authenticated, generates keys for BS
+attach
+attach
+AUTH_REQ (IMSI, VN info)
+
+=== s87 ===
+Security: 8-
+Authentication, encryption in 4G LTE
+attach
+attach
+AUTH_REQ (IMSI, VN info)
+OK, keys
+OK
+key derivation
+
+=== s88 ===
+4G: MME in visited network makes authentication decision
+5G: home network provides authentication decision
+visited MME plays “middleman” role but can still reject
+Security: 8-
+Authentication, encryption: from 4G to 5G
+4G: uses shared-in-advance keys
+5G: keys not shared in advance for IoT
+4G: device IMSI transmitted in cleartext to BS
+5G: public key crypto used to encrypt IMSI
+
+=== s89 ===
+Chapter 8 Revisit
+Security in wireless networks
+802.11 (WiFi)
+Security: 8-
+
+=== s90 ===
+Security: 8-
+802.11: authentication, encryption
+Arriving mobile must:
+associate with access point: (establish) communication over wireless link
+authenticate to network
+AP
+AS
+Authentication Server
+mobile
+
+=== s91 ===
+Security: 8-
+802.11: authentication, encryption
+AP
+AS
+Authentication Server
+discovery of security capabilities:
+AP advertises its presence, forms of authentication and encryption provided
+device requests specific forms authentication, encryption desired
+although device, AP already exchanging messages, device not yet authenticated, does not have encryption keys
+mobile
+discovery of security capabilities
+
+=== s92 ===
+Security: 8-
+802.11: authentication, encryption
+AP
+AS
+Authentication Server
+mobile
+mutual authentication and shared symmetric key derivation:
+AS, mobile already have shared common secret (e.g., password)
+AS, mobile use shared secret, nonces (prevent relay attacks), cryptographic hashing (ensure message integrity) to authenticating each other
+AS, mobile derive symmetric session key
+discovery of security capabilities
+mutual authentication, key derivation
+
+=== s93 ===
+Initial shared secret
+Security: 8-
+802.11: WPA3 handshake
+AS generates NonceAS, sends to mobile
+mobile receives NonceAS
+generates NonceM
+generates symmetric shared session key KM-AP using NonceAS, NonceM, and initial shared secret
+sends NonceM, and HMAC-signed value using NonceAS and initial shared secret
+AS derives symmetric shared session key KM-AP
+derive session key KM-AP using  initial-shared-secret, NonceAS, NonceM
+Initial shared secret
+AS Authentication Server
+mobile
+
+=== s94 ===
+Security: 8-
+802.11: authentication, encryption
+AP
+AS
+Authentication Server
+mobile
+discovery of security capabilities
+mutual authentication, key derivation
+
+=== s95 ===
+Security: 8-
+802.11: authentication, encryption
+AP
+AS
+Authentication Server
+mobile
+discovery of security capabilities
+mutual authentication, key derivation
+shared symmetric key distribution
+encrypted communication between mobile and remote host via AP
+same key derived at mobile, AS
+AS informs AP of the shared symmetric session
+encrypted communication over WiFi
+
+=== s96 ===
+Security: 8-
+802.11: authentication, encryption
+AP
+AS
+Authentication Server
+mobile
+EAP TLS
+EAP
+EAP over LAN (EAPoL)
+IEEE 802.11
+RADIUS
+UDP/IP
+Extensible Authentication Protocol (EAP) [RFC 3748] defines end-to-end request/response protocol between mobile device, AS
+TLS: Transport Layer Security, SSL3.0-》TLS1.0~TLS1.3 （RFC8846）
+RADIUS：Remote Authentication Dial In User Service
+
+=== s97 ===
+Chapter 7 outline
+Introduction
+Link Layer: 6-
+Wireless
+Wireless links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+
+=== s98 ===
+spectrum of mobility, from the network perspective:
+What is mobility?
+Wireless and Mobile Networks: 7-
+
+=== s99 ===
+Mobility approaches
+Wireless and Mobile Networks: 7-
+let network (routers) handle it:
+routers advertise well-known name, address (e.g., permanent 32-bit IP address), or number (e.g., cell #) of visiting mobile node via usual routing table exchange
+Internet routing could do this already with no changes! Routing tables indicate where each mobile located via longest prefix match!
+
+=== s100 ===
+Mobility approaches
+Wireless and Mobile Networks: 7-
+let network (routers) handle it:
+routers advertise well-known name, address (e.g., permanent 32-bit IP address), or number (e.g., cell #) of visiting mobile node via usual routing table exchange
+Internet routing could do this already with no changes! Routing tables indicate where each mobile located via longest prefix match!
+let end-systems handle it: functionality at the “edge”
+indirect routing: communication from correspondent to mobile goes through home network, then forwarded to remote mobile
+direct routing: correspondent gets foreign address of mobile, send directly to mobile
+
+=== s101 ===
+Contacting a mobile friend:
+Wireless and Mobile Networks: 7-
+search all phone books?
+expect her to let you know where he/she is?
+I wonder where Alice moved to?
+Consider friend frequently changing locations, how do you find him/her?
+call his/her parents?
+Facebook!
+The importance of having a “home”:
+a definitive source of information about you
+a place where people can find out where you are
+
+=== s102 ===
+Home network, visited network: 4G/5G
+Wireless and Mobile Networks: 7-
+…
+visited mobile
+carrier network
+…
+public Internet
+and
+inter-carrier IPX
+…
+home mobile
+carrier network
+
+=== s103 ===
+Home network, visited network: ISP/WiFi
+Wireless and Mobile Networks: 7-
+…
+…
+public Internet
+…
+ISP/WiFi: no notion of global  “home”
+credentials from ISP (e.g., username, password) stored on device or with user
+ISPs may have national, international presence
+different networks: different credentials
+some exceptions (e.g., eduroam)
+architectures exist (mobile IP) for 4G-like mobility, but not used
+
+=== s104 ===
+Home network, visited network: generic
+Wireless and Mobile Networks: 7-
+Home gateway
+Home Network
+e.g.,: 128.119/16
+Home network  gateway
+Visited network  gateway
+Visited Network
+e.g.,: 79.129/16
+
+=== s105 ===
+Wireless and Mobile Networks: 7-
+Home gateway
+Home network  gateway
+Visited network  gateway
+end result:
+visited mobility manager knows about mobile
+home HSS knows location of mobile
+Registration: home needs to know where you are!
+Home Network
+e.g.,: 128.119/16
+Visited Network
+e.g.,: 79.129/16
+
+=== s106 ===
+Mobility with indirect routing
+Wireless and Mobile Networks: 7-
+Home gateway
+Home network  gateway
+Visited network  gateway
+Home Network
+e.g.,: 128.119/16
+Visited Network
+e.g.,: 79.129/16
+
+=== s107 ===
+triangle routing:
+inefficient when correspondent and mobile are in same network
+Mobility with indirect routing: comments
+Wireless and Mobile Networks: 7-
+mobile moves among visited networks: transparent to correspondent!
+registers in new visited network
+new visited network registers with home HSS
+datagrams continue to be forwarded from home network to mobile in new network
+on-going (e.g., TCP) connections between correspondent and mobile can be maintained!
+
+=== s108 ===
+Mobility with direct routing
+Wireless and Mobile Networks: 7-
+Home gateway
+Visited network  gateway
+Home Network
+e.g.,: 128.119/16
+Visited Network
+e.g.,: 79.129/16
+
+=== s109 ===
+Mobility with direct routing: comments
+Wireless and Mobile Networks: 7-
+overcomes triangle routing inefficiencies
+non-transparent to correspondent: correspondent must get care-of-address from home agent
+what if mobile changes visited network?
+can be handled, but with additional complexity
+
+=== s110 ===
+Chapter 7 outline
+Introduction
+Link Layer: 6-
+Wireless
+Wireless links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+
+=== s111 ===
+Mobility in 4G networks: major mobility tasks
+Wireless and Mobile Networks: 7-
+Visited network
+P-GW
+Streaming server
+Home
+network
+Internet
+base station
+MME
+S-GW
+P-GW
+
+=== s112 ===
+Mobile communicates with local MME via BS control-plane channel
+MME uses mobile’s IMSI info to contact mobile’s home HSS
+retrieve authentication, encryption, network service information
+home HHS knows mobile now resident in visited network
+BS, mobile select parameters for BS-mobile data-plane radio channel
+Configuring LTE control-plane elements
+Wireless and Mobile Networks: 7-
+Visited network
+P-GW
+Home
+network
+base station
+MME
+S-GW
+P-GW
+
+=== s113 ===
+Configuring data-plane tunnels for mobile
+Wireless and Mobile Networks: 7-
+P-GW
+Streaming server
+Internet
+base station
+MME
+S-GW
+P-GW
+Visited network
+Home
+network
+S-GW to BS tunnel: when mobile changes base stations, simply change endpoint IP address of tunnel
+S-GW to home P-GW tunnel: implementation of indirect routing
+tunneling via GTP (GPRS tunneling protocol): mobile’s datagram to streaming server encapsulated using GTP inside UDP, inside datagram
+
+=== s114 ===
+Handover between BSs in same cellular network
+Wireless and Mobile Networks: 7-
+P-GW
+S-GW
+MME
+source BS
+target BS
+
+=== s115 ===
+Handover between BSs in same cellular network
+Wireless and Mobile Networks: 7-
+P-GW
+S-GW
+MME
+source BS
+target BS
+
+=== s116 ===
+mobile IP architecture standardized ~20 years ago [RFC 5944]
+long before ubiquitous smartphones, 4G support for Internet protocols
+did not see wide deployment/use
+perhaps WiFi for Internet, and 2G/3G phones for voice were “good enough” at the time
+mobile IP architecture:
+indirect routing to node (via home network) using tunnels
+mobile IP home agent: combined roles of 4G HSS and home P-GW
+mobile IP foreign agent: combined roles of 4G MME and S-GW
+protocols for agent discovery in visited network, registration of visited location in home network via ICMP extensions
+Mobile IP
+Wireless and Mobile Networks: 7-
+
+=== s117 ===
+logically, impact should be minimal …
+best effort service model remains unchanged
+TCP and UDP can (and do) run over wireless, mobile
+… but performance-wise:
+packet loss/delay due to bit-errors (discarded packets, delays for link-layer retransmissions), and handover loss
+TCP interprets loss as congestion, will decrease congestion window un-necessarily
+delay impairments for real-time traffic
+bandwidth a scare resource for wireless links
+Wireless, mobility: impact on higher layer protocols
+Wireless and Mobile Networks: 7-
+
+=== s118 ===
+Chapter 7 summary
+Wireless
+Wireless Links and network characteristics
+WiFi: 802.11 wireless LANs
+Cellular networks: 4G and 5G
+Mobility
+Mobility management: principles
+Mobility management: practice
+4G/5G networks
+Mobile IP
+Mobility: impact on higher-layer protocols
+Wireless and Mobile Networks: 7-
+

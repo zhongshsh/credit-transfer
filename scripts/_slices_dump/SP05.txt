@@ -1,0 +1,2268 @@
+# SP05  Properties of the Poisson Process
+# Pages: 41
+
+=== p1 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+随机过程
+马啸
+中山大学计算机学院
+2022 年秋
+马啸 (SYSU) 随机过程 2022 年秋 1 / 40
+
+=== p2 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Poission processes
+Review
+§ Combining and splitting Poisson processes
+§ Non-homogeneous Poisson processes
+§ Conditional arrival densities and order statistics
+马啸 (SYSU) 随机过程 2022 年秋 2 / 40
+
+=== p3 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+到达过程：
+1. 随机变量序列 0 < S1 < S2 < . . . < Sn < . . . (到达时刻)；
+2. X1, X2, . . . , Xn , . . . (间隔过程), 其中 X1 = S1, X2 = S2 − S1, . . . ,
+Xn = Sn − Sn−1；
+3. N(t), t ≥ 0, 表示 (0, t] 时间区间内的到达数 (计数过程)。
+更新过程：一种到达过程，满足：X1, X2, . . . , Xn , . . . 是 i.i.d. 的。
+泊松过程：一种更新过程，间隔变量满足：P{X > t} = e−λt , t ≥ 0, 其中
+λ 是到达速率。
+马啸 (SYSU) 随机过程 2022 年秋 3 / 40
+
+=== p4 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+为刻画泊松过程，我们可以给出
+S1, S2, . . . , Sn 或 X1, X2, . . . , Xn 或 N(t1), N(t2), . . . , N(tn)
+的联合分布。我们的定义是从 X 出发的，而 X 是 i.i.d. 的，所以刻画一
+维分布即可。X 的分布函数为
+FX(t) ≜ P{X ≤ t} = 1− P{X > t} = 1− e−λt,
+密度函数为
+fX(t) =λe−λt,
+其数学期望是 1
+λ 。
+马啸 (SYSU) 随机过程 2022 年秋 4 / 40
+
+=== p5 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+S1, S2, . . . , Sn 的联合分布确定如下，其密度函数
+fS1,S2,...,Sn (s1, s2, . . . , sn) =λe−λs1 ·λe−λ(s2−s1) · · · λe−λ(sn −sn−1) = λne−λsn ,
+0 < s1 < s2 < . . . < sn, 其边缘密度函数是 Erlang 分布
+fSn (s) = λnsn−1 exp(−λs)
+(n − 1)! , s > 0.
+N(t) 表示 (0, t] 中的到达数目，其服从泊松分布，分布律是
+PN(t)(n) = (λt)n
+n! e−λt, n = 0, 1, 2, . . .
+马啸 (SYSU) 随机过程 2022 年秋 5 / 40
+
+=== p6 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Review
+泊松过程有三种定义：
+Definition 1
+到达时间间隔服从独立同分布的指数分布 P{X > t} = e−λt, t ≥ 0。
+Definition 2
+计数过程是平稳独立增量过程，且 (0, t] 之间的到达数目服从泊松分布
+P{N(t) =n} = (λt)n
+n! e−λt, n ≥ 0。
+Definition 3
+计数过程是平稳独立增量过程，且满足：
+P{˜N(t, t + δ) = 0} ≈ 1 − λδ + o(δ)
+P{˜N(t, t + δ) = 1} ≈ λδ + o(δ)
+P{˜N(t, t + δ) = 2} ≈ o(δ)
+马啸 (SYSU) 随机过程 2022 年秋 6 / 40
+
+=== p7 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes
+Poission processes
+Review
+§ Combining and splitting Poisson processes
+§ Non-homogeneous Poisson processes
+§ Conditional arrival densities and order statistics
+马啸 (SYSU) 随机过程 2022 年秋 7 / 40
+
+=== p8 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes
+Combining Independent Poisson Processes
+Definition 4
+T wo Poisson processes{N1(t) :t > 0} and {N2(t) :t > 0} are
+independent if for all t1, . . . , tn, the r.v.s N1(t1), . . . , N1(tn) are
+independent of N2(t1), . . . , N2(tn).
+Theorem 1
+If {N1(t) :t > 0} and {N2(t) :t > 0} are independent Poisson processes
+of rates λ1 and λ2 and N(t) =N1(t) +N2(t) for all t > 0, then
+{N(t) :t > 0} is a Poisson process of rate λ = λ1 + λ2.
+马啸 (SYSU) 随机过程 2022 年秋 8 / 40
+
+=== p9 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes
+Combining Independent Poisson Processes
+Definition 4
+T wo Poisson processes{N1(t) :t > 0} and {N2(t) :t > 0} are
+independent if for all t1, . . . , tn, the r.v.s N1(t1), . . . , N1(tn) are
+independent of N2(t1), . . . , N2(tn).
+Theorem 1
+If {N1(t) :t > 0} and {N2(t) :t > 0} are independent Poisson processes
+of rates λ1 and λ2 and N(t) =N1(t) +N2(t) for all t > 0, then
+{N(t) :t > 0} is a Poisson process of rate λ = λ1 + λ2.
+马啸 (SYSU) 随机过程 2022 年秋 8 / 40
+
+=== p10 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes
+Combining Independent Poisson Processes
+Idea of proof (using Definition 3): In any increment (t, t + δ],
+eN(t, t + δ) = eN1(t, t + δ) +eN2(t, t + δ)
+has the stationary and independent increment property properties.
+P eN(t,t+δ)(0) =P eN1(t,t+δ)(0)P eN2(t,t+δ)(0)
+=[1 − δλ1 + o(δ)][1 − δλ2 − o(δ)]
+=1 − δ(λ1 + λ2) +o(δ).
+P eN(t,t+δ)(1) =P eN1(t,t+δ)(1)P eN2(t,t+δ)(0) +P eN1(t,t+δ)(0)P eN2(t,t+δ)(1)
+=[δλ1 + o(δ)][1 − δλ2 − o(δ)] + [1− δλ1 + o(δ)][δλ2 + o(δ)]
+=δ(λ1 + λ2) +o(δ).
+马啸 (SYSU) 随机过程 2022 年秋 9 / 40
+
+=== p11 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes
+Combining Independent Poisson Processes
+Idea of proof (using Definition 2): N(t) =N1(t) +N2(t) is a Poisson
+rv., since for any given t, the sum of two independent Poisson rv.s is also a
+Poisson rv.. It can be derived by discrete convolution of the two PMF’s.
+PN(t)(n) =
+nX
+i=0
+PN1(t)(i)PN2(t)(n − i) =
+nX
+i=0
+λi
+1λn−i
+2
+i!(n − i)!tn exp(−λ1t − λ2t)
+=
+nX
+i=0
+n
+i
+λi
+1λn−i
+2
+n! tn exp(−(λ1 + λ2)t) = (λt)n exp(−λt)
+n! .
+More elegantly , one can observe that we have already implicitly shown this
+fact. That is, if we break an interval I into disjoint subintervals, I1 and I2,
+then the number of arrivals in I (which is Poisson) is the sum of the
+number of arrivals in I1 and I2 (which are independent Poisson).
+马啸 (SYSU) 随机过程 2022 年秋 10 / 40
+
+=== p12 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes
+Combining Independent Poisson Processes
+Idea of proof (using Definition 1): The first interarrival interval for the
+sum process, is the minimum of X11 and X21, the first interarrival interval
+for the two independent processes.
+P{X1 > t} = P{X11 > t}P{X21 > t} = exp(−λ1t − λ2t) =exp(−λt).
+Remark. when many independent counting processes (even not Poisson)
+are added together, the sum process often tends to be approximately
+Poisson if the individual processes have small rates compared to the sum.
+马啸 (SYSU) 随机过程 2022 年秋 11 / 40
+
+=== p13 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Splitting a Poisson Process
+Subdividing a Poisson Process
+Each arrival is switched to {N1(t) :t > 0} with probability p and otherwise
+goes to {N2(t) :t > 0}. View the switch as a Bernoulli process
+independent of {N(t) :t > 0}. A p biased coin is flipped independently at
+each arrival.
+We shall show that the resulting processes are independent Poisson rv.s
+with rates λ1 = λp and λ1 = λ(1 − p) respectively .
+马啸 (SYSU) 随机过程 2022 年秋 12 / 40
+
+=== p14 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Splitting a Poisson Process
+Subdividing a Poisson Process
+Each new process has the stationary and independent increment property
+and each satisfies the small increment property . Thus each is Poisson.
+T o demonstrate the independence of these two processes,
+calculate the joint PMF for N1(t), N2(t) for arbitrary t conditioning on
+a given number of arrivals N(t) for the original process
+P{N1(t) =m, N2(t) =k|N(t) =m + k} = (m + k)!
+m!k! pm (1 − p)k .
+calculate the joint PMF for N1(t), N2(t) for arbitrary t
+P{N1(t) =m, N2(t) =k} = P{N1(t) =m, N2(t) =k, N(t) =m + k}
+=P{N1(t) =m, N2(t) =k|N(t) =m + k}P{N(t) =m + k}
+= (m + k)!
+m!k! pm (1 − p)k (λt)m+k e−λt
+(m + k)! = P{N1(t) =m}P{N2(t) =k}.
+This shows that N1(t) and N2(t) are independent.
+马啸 (SYSU) 随机过程 2022 年秋 13 / 40
+
+=== p15 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Splitting a Poisson Process
+Subdividing a Poisson Process
+T o show that the processes are independent, we must show that for
+any k > 1 and any set of times 0 ⩽ t1 ⩽ · · · ⩽ tk, the sets
+{N1(ti) : 1⩽ i ⩽ k} and {N2(tj) : 1⩽ j ⩽ k} are independent of each
+other.
+It is equivalent to show that the sets {eN1(ti−1, ti) : 1⩽ i ⩽ k} and
+{eN2(tj−1, tj) : 1⩽ j ⩽ k} (where t0 is 0) are independent.
+The argument that N1(t) and N2(t) are independent shows this
+independence for i = j.
+for i ̸= j the independence follows from the independent increment
+property of {N(t) :t > 0}.
+Remark: any two independent Poisson processes can be viewed as being
+generated from a single process in this way .
+马啸 (SYSU) 随机过程 2022 年秋 14 / 40
+
+=== p16 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Examples using independent Poisson processes
+Examples using independent Poisson processes
+Example 1
+Consider a last-come first-serve queue with Poisson arrivals, rate λ and
+independent exponential services, rate µ. A new arrival starts service
+immediately , but is interrupted if a new arrival occurs before service
+completion.
+View services as a Poisson process. We can either ignore this process when
+there is nothing to serve, or visualize a low priority task that is served at
+rate µ when there is nothing else to do. The arrival process plus the
+service process is Poisson, rate λ + µ.
+马啸 (SYSU) 随机过程 2022 年秋 15 / 40
+
+=== p17 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Examples using independent Poisson processes
+Examples using independent Poisson processes
+Example 1
+Consider a last-come first-serve queue with Poisson arrivals, rate λ and
+independent exponential services, rate µ. A new arrival starts service
+immediately , but is interrupted if a new arrival occurs before service
+completion.
+The probability an arrival completes service before being interrupted is
+µ/(λ + µ).
+Given that you are interrupted, what is the probability of no further
+interruption? T wo services (the interrupting job and you) must finish
+before the next interruption, so Answer: µ2
+(λ+µ)2 .
+马啸 (SYSU) 随机过程 2022 年秋 16 / 40
+
+=== p18 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Examples using independent Poisson processes
+Examples using independent Poisson processes
+Example 2
+Given independent Poisson processes N1(t) and N2(t) with the rate λ and
+µ relatively , find the probabilities Pr{S1k < S2j} where S1k is the epoch of
+the kth arrival to the first process and S2j is the epoch of the jth arrival to
+the second process.
+The problem can be rephrased in terms of a combined process to ask: out
+of the first k + j − 1 arrivals to the combined process, what is the
+probability that k or more of them are switched to the first process?
+P{S1k < S2j} =
+k+j−1X
+i=k
+k + j − 1
+i
+
+pi(1 − p)k+j−1−i.
+马啸 (SYSU) 随机过程 2022 年秋 17 / 40
+
+=== p19 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Combining and splitting Poisson processes Examples using independent Poisson processes
+Examples using independent Poisson processes
+Example 3 (the M/M/1 queue)
+Consider an M/M/1 queue, i.e., a queueing system with interarrival times
+are exponential with parameter λ and service times are exponential with
+parameter µ.
+We see that if j or more customers are waiting at a given time, then
+Example 2 gives the probability that the kth subsequent arrival comes
+before the jth departure.
+马啸 (SYSU) 随机过程 2022 年秋 18 / 40
+
+=== p20 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Non-homogeneous Poisson Processes
+Poission processes
+Review
+§ Combining and splitting Poisson processes
+§ Non-homogeneous Poisson processes
+§ Conditional arrival densities and order statistics
+马啸 (SYSU) 随机过程 2022 年秋 19 / 40
+
+=== p21 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Non-homogeneous Poisson Processes
+Non-homogeneous Poisson Processes
+A non-homogeneous Poisson process with time-varying arrival rate λ(t) is
+defined as a counting process {N(t) :t > 0} which has the independent
+increment property and, for all t ⩾ 0, δ > 0, also satisfies:
+P{eN(t, t + δ) =n} =
+8
+<
+:
+1 − λ(t)δ + o(δ) for n = 0,
+λ(t)δ + o(δ) for n = 1,
+o(δ) for n ⩾ 2,
+where eN(t, t + δ) =N(t + δ) − N(t).
+The non-homogeneous Poisson process does NOT have the stationary
+increment property .
+马啸 (SYSU) 随机过程 2022 年秋 20 / 40
+
+=== p22 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Chapter 2. Poission processes
+Review
+§ Combining and splitting Poisson processes
+§ Non-homogeneous Poisson processes
+§ Conditional arrival densities and order statistics
+马啸 (SYSU) 随机过程 2022 年秋 21 / 40
+
+=== p23 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+There are many interesting and useful results about the increment (0, t] of
+a Poisson process conditional on N(t). First condition on N(t) = 1.
+fS1|N(t)(s1|1) = lim
+δ→0
+PN(s1)(0)P eN(s1,s1+δ)(1)P eN(s1+δ,t)(0)
+δPN(t)(1)
+= lim
+δ→0
+[e−λs1 ][λδe−λδ][e−λ(t−s1−δ)]
+δλte−λt = 1
+t .
+It does NOT depend on s1 or λ. It is uniform over (0, t].
+马啸 (SYSU) 随机过程 2022 年秋 22 / 40
+
+=== p24 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Case N(t) = 2.
+fS1,S2|N(t)(s1, s2|2) = lim
+δ→0
+[e−λs1 ][λδe−λδ][e−λ(s2−s1−δ)][λδe−λδ][e−λ(t−s2−δ)]
+δ2PN(t)(2)
+= 2
+t2 .
+Again, this does not depend on s1, s2, or λ for 0 < s1 < s2 < t, i.e., it is
+uniform over the given region of s1, s2.
+马啸 (SYSU) 随机过程 2022 年秋 23 / 40
+
+=== p25 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Theorem 2
+Let fS(n)|N(t)(s(n)|n) be the joint density of S(n) conditional on N(t) =n.
+This density is constant over the region 0 < s1 < · · · < sn < t and has the
+value
+fS(n)|N(t)(s(n)|n) = n!
+tn .
+This is ’uniform’ over 0 < s1 < · · · < sn < t.
+It is a uniform n dimensional probability density over the volume tn/n!
+corresponding to the constraint region 0 < s1 < · · · < sn < t.
+马啸 (SYSU) 随机过程 2022 年秋 24 / 40
+
+=== p26 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Let U1, . . . , Un be n i.i.d. r.v.s, each uniform over (0, t]. Let S1, . . . , Sn be
+the order statistics for U(n), i.e.,
+S1 = min{U1, . . . , Un}, . . . , Sk = k-th smallest, . . .
+The region of volume tn where the density of U(n) is nonzero partitions
+into n! regions, one in which u1 < u2 < · · · < un and one for each other
+ordering of u1, . . . , un. From symmetry , each volume is the same, and thus
+each is tn/n!.
+马啸 (SYSU) 随机过程 2022 年秋 25 / 40
+
+=== p27 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Another example of using order statistics: consider finding the distribution
+function of S1 conditional on N(t) =n.
+Fc
+S1|N(t)(s1|n) =Pr{ min
+1⩽i⩽n
+Ui > s1}
+=
+nY
+i=1
+Pr{Ui > s1}
+=
+nY
+i=1
+
+1 − s1
+t
+
+=
+
+1 − s1
+t
+n
+for s1 ⩽ t.
+Thus, E[S1|N(t) =n] can be found by integration,
+E[S1|N(t) =n] =
+Z t
+0
+Fc
+S1|N(t)(τ|n)dτ
+= t
+n + 1.
+马啸 (SYSU) 随机过程 2022 年秋 26 / 40
+
+=== p28 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+For S2 to Sn, it is slightly simpler to find fSi |N(t)(si|n).
+Look at n uniformly distributed r.v.s in (0, t]
+The probability that one of these lies in the interval (si, si + dt] is n
+t dt.
+Out of the remaining n − 1, the probability that i − 1 lie in the
+interval (0, si] is given by the binomial distribution with probability of
+success si/t. Thus the desired density is
+fSi |N(t)(si|n)dt =
+n − 1
+i − 1
+si
+t
+i−1 
+1 − si
+t
+n−i n
+t dt,
+fSi |N(t)(si|n) = si−1
+i (t − si)n−in!
+tn(n − i)!(i − 1)! for si ⩽ t.
+马啸 (SYSU) 随机过程 2022 年秋 27 / 40
+
+=== p29 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Return to N(t) = 2and look at fX1,X2|N(t)(x1, x2|2). Note that the area in
+the s1, s2 space where 0 < s1 < s2 < t is t2/2, explaining why the density
+is 2/t2.
+Note that a δ2 box in the s1, s2 space maps into a parallelepided of the
+same area in the x1, x2 space. The area in the x1, x2 space where
+0 < x1 + x2 < t is again t2/2 and fX1,X2|N(t)(x1, x2|2) = 2/t2.
+马啸 (SYSU) 随机过程 2022 年秋 28 / 40
+
+=== p30 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Order Statistics
+fX1,X2|N(t)(x1, x2|2) = 2
+t2 for x1, x2, x∗
+3 > 0; x1 + x2 + x∗
+3 = t.
+From symmetry , any 2 of the variablesX1, X2, X∗
+3 can replace X1, X2
+above.
+Also, since X1 = S1, X1 has density and expected value
+Fc
+X1|N(t)(x1|2) =
+
+1 − x1
+t
+2
+, E[X1|N(t) = 2] =t
+3.
+We see that X2 and X∗
+3 can be substituted for X1 in the above formulas.
+马啸 (SYSU) 随机过程 2022 年秋 29 / 40
+
+=== p31 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Extend to the N(t) =n condition, we have
+fX(n)|N(t)(x(n)|n) = n!
+tn for X(n) > 0,
+nX
+i=1
+Xi < t.
+For i = 1, 2, . . . , n,
+Fc
+Xi |N(t)(x|n) =
+
+1 − x
+t
+n
+.
+E[Xi|N(t) =n] = t
+n + 1.
+Therefore,
+E[Si|N(t) =n] = it
+n + 1.
+马啸 (SYSU) 随机过程 2022 年秋 30 / 40
+
+=== p32 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Order Statistics
+This relation also applies to X∗
+n+1 = t − SN(t)
+Fc
+X∗
+n+1|N(t)(x|n) =
+
+1 − x
+t
+n
+.
+Thus,
+E[X∗
+n+1|N(t) =n] = t
+n + 1.
+E[X∗
+N(t)+1] =
+∞X
+n=0
+t
+n + 1
+(λt)n exp(−λt)
+n!
+=
+∞X
+n=0
+(λt)n+1 exp(−λt)
+λ(n + 1)! = 1 − exp(−λt)
+λ .
+The mean time back to the previous arrival is 1−exp(−λt)
+λ .
+马啸 (SYSU) 随机过程 2022 年秋 31 / 40
+
+=== p33 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Conditional Arrival Densities and Order Statistics
+Conditional arrival densities and order statistics
+Recall that the joint density of interarrivals X1, . . . , Xn and arrival epoch
+Sn+1 is
+fX1···Xn Sn+1 (x1, . . . , xn, sn+1) =λn+1 exp(−λsn+1).
+Conditional on Sn+1 = t (which is Erlang),
+fX1···Xn |Sn+1 (x1, . . . , xn|t) = λn+1 exp(−λt)
+λn+1tn exp(−λt)/n! = n!
+tn .
+On the other hand,
+fX1···Xn |N(t)(x1, . . . , xn|n) = n!
+tn .
+Both equations are for 0 < x1, . . . , xn and Pn
+i=1 xi < t.
+Both say the conditional density is uniform over the constraint region.
+Why are the two equations the same?
+马啸 (SYSU) 随机过程 2022 年秋 32 / 40
+
+=== p34 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+1. 假设某零件受到外来撞击的次数服从参数为 λ 的 Poisson 过
+程。已知该零件受到撞击次数超过 k 时就不能正常工作，求该零
+件的使用寿命 T 的分布密度函数。
+马啸 (SYSU) 随机过程 2022 年秋 33 / 40
+
+=== p35 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+2. 甲乙丙丁玩游戏。掷一对均匀的骰子，其点数和记为 X，设所掷次数
+服从平均每小时 6 次的泊松分布。一次游戏中 X mod 4 = 1, 2, 3, 0 时，
+分别对应甲、乙、丙、丁胜。
+(1) 计算两小时内，甲胜的次数；
+(2) 计算甲、丙在两个小时内共胜的次数；
+(3) 若两小时内做了 12 次的游戏，甲胜次数；
+(4) 若第一小时内甲胜了三次，问两小时内共玩了多少次的游戏。
+马啸 (SYSU) 随机过程 2022 年秋 34 / 40
+
+=== p36 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+3. 设某网店经营 A,B 两种商品。A 商品下单到达是单位时间 4
+单，B 商品下单到达是单位时间 2 单，均是泊松过程。求：
+(1) 前三个单位时间内收到 3 单的概率；
+(2) 已知前三个单位时间内收到 3 单，求至少有一个是 B 订单的
+概率；
+(3) 第 2 个订单是 B 订单的概率；
+(4) 第 2 个订单到达时间在第二个单位时间内的概率。
+马啸 (SYSU) 随机过程 2022 年秋 35 / 40
+
+=== p37 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+4. 甲乙两人在做投硬币游戏。甲以速率为 λ1 = 2 的泊松过程投一枚不
+均匀硬币，其正面向上概率为 3/4。乙以速率为 λ2 = 3 的泊松过程投一
+枚不均匀硬币，其正面向上概率为2/3。两人投硬币的过程相互独立。求
+(1) 甲比乙先投出 1 次正面向上的概率；
+(2) 甲第 1 次投出正面向上时，乙已经投出正面向上次数的分布；
+(3) 若甲乙两人共投出 5 次正面向上时，游戏结束。求游戏持续时间的
+期望，以及游戏结束时，两人共投硬币次数的期望。
+马啸 (SYSU) 随机过程 2022 年秋 36 / 40
+
+=== p38 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+5. 设 U1, U2, U3, U4, U5 是 5 个在 [0, 1] 上独立均匀分布的随机变
+量，X1, X2, X3, X4, X5 是 {Ui, 1 ≤ i ≤ 5} 的顺序统计量，即 Xi 为
+{Ui, 1 ≤ i ≤ 5} 从小到大排序的第 i 个值，
+X1 = min{U1, U2, U3, U4, U5}, . . . , X5 = max{U1, U2, U3, U4, U5}.
+计算
+(1) E[X5];
+(2) E[X4|X5 = 0.8];
+(3) E[X4|X5 = x5], x5 ∈ [0, 1];
+(4) E[X4];
+马啸 (SYSU) 随机过程 2022 年秋 37 / 40
+
+=== p39 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+6. 令 N = (N(t), t ≥ 0) 是参数为 λ 的 Poisson 过程，S1, S2, . . . 表
+示顾客达到的时刻，求
+(1) E(S1S2|N(1) = 2);
+(2) E(S1 + S2 + · · · + S5|N(1) = 5)。
+马啸 (SYSU) 随机过程 2022 年秋 38 / 40
+
+=== p40 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+课堂练习
+7. 令 N = (N(t), t ≥ 0) 是参数为 λ 的 Poisson 过程，S1, S2, . . . 表
+示顾客达到的时刻，令
+U = S1
+S2
+, V = 1 − S3
+1 − S2
+已知 N(1) = 3，求 (U, V) 的联合分布。
+马啸 (SYSU) 随机过程 2022 年秋 39 / 40
+
+=== p41 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+课堂练习
+Thank you for your attention!
+马啸 (SYSU) 随机过程 2022 年秋 40 / 40
+

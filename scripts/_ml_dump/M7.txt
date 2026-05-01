@@ -1,0 +1,672 @@
+# M7  Prompt-based_learning
+# Source: 7-Prompt-based_learning.pptx    Slides: 92
+
+=== s1 ===
+Prompt-based learning
+
+=== s2 ===
+Finetune
+Prompt learning
+Outline
+
+=== s3 ===
+Finetune
+Pre-trained Language Models
+
+=== s4 ===
+Finetune
+Objective Engineering
+Paradigm: Pre-train, Fine-tune  Time Period : 2017-Now
+Characteristics:
+Pre-trained LMs (PLMs) used as initialization of full model - both shallow and deep features
+Less work on architecture design, but engineer objective functions
+Typical Work:BERT → Fine Tuning
+
+=== s5 ===
+Finetune
+Prompt learning
+Outline
+
+=== s6 ===
+Prompt Learning
+Encouraging a pre-trained model to make particular predictions by providing a "prompt" specifying the task to be done.
+What ?
+
+=== s7 ===
+Prompt Learning
+Why ?
+《 The Power of Scale for Parameter-Efficient Prompt Tuning 》
+Large-scale models are costly to share and serve
+Parameter-efficient Prompt Tuning
+
+=== s8 ===
+Prompt Learning
+How ?
+The general workflow of Prompting
+
+=== s9 ===
+Prompt Learning
+Prompt Addition
+Given input x, we transform it into prompt x’ through two steps:
+Define a template with two slots, one for input [x], and one for the answer [z]
+Fill in the input slot [x]
+The general workflow of Prompting
+
+=== s10 ===
+Prompt Learning
+Prompt Addition
+Example:            Sentiment Classification
+
+=== s11 ===
+Prompt Learning
+Answer Prediction
+Given a prompt, predict the answer [z]:
+Fill in [z]
+The general workflow of Prompting
+
+=== s12 ===
+Prompt Learning
+Answer Prediction
+Example:            Sentiment Classification
+
+=== s13 ===
+Prompt Learning
+Answer-Label Mapping
+Given an answer, map it into a class label
+The general workflow of Prompting
+
+=== s14 ===
+Prompt Learning
+Example:            Sentiment Classification
+Mapping
+
+=== s15 ===
+Prompt Learning
+The general workflow of Prompting
+
+=== s16 ===
+Prompt Learning
+paper：https://arxiv.org/abs/2107.13586
+Examples of input, template, and answer for different tasks.
+
+=== s17 ===
+Prompt Learning
+Fine-tune and Prompt
+Fine-tune
+Prompt
+
+=== s18 ===
+Prompt Learning
+Prompt Engineering
+Paradigm: Pre-train, Prompt, Predict Time Period : 2019-Now
+Characteristics:
+NLP tasks are modeled entirely by relying on LMs
+The tasks of shallow and deep feature extraction, and prediction of the data are all given to the LM
+Engineering of prompts is required
+Representative Work:GPT-3
+
+=== s19 ===
+Prompt Learning
+Traditional Formulation V.S Prompt Formulation
+Prompt Engineering
+
+=== s20 ===
+Prompt Learning
+Traditional Formulation V.S Prompt Formulation
+Prompt Engineering
+How to define  a suitable prompt template?
+
+=== s21 ===
+Prompt Learning
+Types of Prompt Shape
+Prefix Prompt: I love this movie. Overall this movie is [z].
+Cloze Prompt: I love this movie. Overall it was a [z] movie.
+Prompt Engineering
+
+=== s22 ===
+Prompt Learning
+Design of Prompt Templates
+Prompt Engineering
+Search in discrete space
+Search in continuous space
+Hand-crafted
+Automated search
+Configure the manual template based on the characteristics of the task
+
+=== s23 ===
+Prompt Learning
+Answer Engineering
+We have reformulate the task! We also should re-define the “ground truth labels”
+Why do we need answer engineering?
+
+=== s24 ===
+Prompt Learning
+Traditional Formulation V.S Prompt Formulation
+Answer Engineering
+
+=== s25 ===
+Prompt Learning
+Traditional Formulation V.S Prompt Formulation
+Answer Engineering
+
+=== s26 ===
+Prompt Learning
+Answer Engineering
+We have reformulate the task! We also should re-define the “ground truth labels”
+Why do we need answer engineering?
+Definition:
+aims to search for an answer space and a map to the original output Y that results in an effective predictive model
+
+=== s27 ===
+Prompt Learning
+Answer Engineering
+Answer Shape
+Token
+Span
+Sentence
+Answers can be one or more tokens in the pre-trained
+language model vocabulary
+Answers can be chunks of words made up of more than
+one tokens
+Answers can be a sentence of arbitrary length
+
+=== s28 ===
+Prompt Learning
+Answer Engineering
+Answer Shape
+Token
+Token or
+Span
+Sentence
+
+=== s29 ===
+Prompt Learning
+Answer Engineering
+Discrete Space
+Continuous Space
+Hand-crafted
+Automated search
+Infinite answer space
+Finite answer space
+Answer Search
+
+=== s30 ===
+Prompt Learning
+Multi-Prompt Learning
+
+=== s31 ===
+Prompt Learning
+Multi-Prompt Learning
+Prompt Augmentation
+Prompt Ensembling
+
+=== s32 ===
+Prompt Learning
+Multi-Prompt Learning
+Prompt Decomposition
+Prompt Composition
+
+=== s33 ===
+Prompt Learning
+Multi-Prompt Learning
+Prompt Sharing
+
+=== s34 ===
+Prompt Learning
+Prompt-based Training Strategies
+Data Perspective
+Zero-shot: without any explicit training of the LM for the downstream task
+Few-shot: few training samples (e.g., 1-100) of downstream tasks
+Full-data: lots of training samples (e.g., 10K) of downstream tasks
+
+=== s35 ===
+Prompt Learning
+Prompt-based Training Strategies
+Parameter Perspective
+
+=== s36 ===
+Prompt Learning
+Application
+Prompt Learning in NLP
+Prompt Learning in CV
+
+=== s37 ===
+Application：Prompt Learning in NLP
+Representative work 1:
+Main problem:
+《Prefix-Tuning: Optimizing Continuous Prompts for Generation》
+Fine-tuning updates all Transformer parameters (the red Transformer box) and requires storing a full model copy for each task.
+
+=== s38 ===
+Application：Prompt Learning in NLP
+Representative work 1:
+We propose prefix-tuning as an alternative to fine-tuning for conditional generation tasks.
+The idea:
+《Prefix-Tuning: Optimizing Continuous Prompts for Generation》
+"Prefix Tuning" optimizes prefix of all layers
+
+=== s39 ===
+Application：Prompt Learning in NLP
+Representative work 1:
+Approach:
+《Prefix-Tuning: Optimizing Continuous Prompts for Generation》
+
+=== s40 ===
+Application：Prompt Learning in NLP
+Representative work 1:
+Approach:
+《Prefix-Tuning: Optimizing Continuous Prompts for Generation》
+
+=== s41 ===
+Application：Prompt Learning in NLP
+Representative work 1:
+Approach:
+《Prefix-Tuning: Optimizing Continuous Prompts for Generation》
+
+=== s42 ===
+Application：Prompt Learning in NLP
+Representative work 2:
+Main problem :
+Discrete/hard prompts
+requiring domain expertise/understanding of the model’s inner workings
+performance still lags far behind SOTA model tuning results
+sub-optimal and sensitive
+《GPT Understands, Too》
+So, we propose a novel method– P-tuning
+
+=== s43 ===
+Application：Prompt Learning in NLP
+Representative work 2:
+《GPT Understands, Too》
+「 The capital of Britain is [MASK] 」
+「[MASK] is the capital of Britain 」
+Rethinking“What is Prompt Templates？ ”
+Need know
+Motivation :
+
+=== s44 ===
+Application：Prompt Learning in NLP
+Representative work 2:
+《GPT Understands, Too》
+organize context x（「Britain」）
+target y（「[MASK]」）
+a template T
+（ T = {[P0:i]; x; [Pi+1:m],y} ）
+Mapping
+P-tuning
+Approach :
+
+=== s45 ===
+Application：Prompt Learning in NLP
+Representative work 3:
+Main problem:
+《P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks》
+In the context of NLU, prior work reveals that prompt tuning does not perform well for normal-sized pretrained models.
+Tasks are not universal
+Scale is not universal
+It still underperforms fine-tuning when the model size is not large, specifically less than 10 billion parameters
+
+=== s46 ===
+Application：Prompt Learning in NLP
+Representative work 3:
+The idea:
+《P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks》
+Deep Prompt Encoding
+
+=== s47 ===
+Application：Prompt Learning in NLP
+Representative work 3:
+Approach :
+《P-Tuning v2: Prompt Tuning Can Be Comparable to Fine-tuning Universally Across Scales and Tasks》
+Employs the idea of deep prompt tuning
+Not leverage a reparameterization encoder
+Multi-task learning jointly--shared continuous prompts
+Applies a randomly-initialized classification head
+
+=== s48 ===
+Application：Prompt Learning in NLP
+Representative work 4:
+Main problem :
+《 The Power of Scale for Parameter-Efficient Prompt Tuning 》
+Large-scale models are costly to share and serve.
+Fine-tuning:
+As models become larger, storing and serving a tuned copy of the model for each downstream task becomes impractical.
+
+=== s49 ===
+Application：Prompt Learning in NLP
+Representative work 4:
+The idea:
+《 The Power of Scale for Parameter-Efficient Prompt Tuning》
+1. Add “prefix” into the input
+Do not use the insert placement of prompts in P-tuning
+2. Removed the reparameterization of Prefix-Tuning
+
+=== s50 ===
+Application：Prompt Learning in NLP
+Prompt tuning only requires storing a small task-specific prompt for each task, and enables mixed-task inference using the original pretrained model.
+Representative work 4:
+Approach :
+《 The Power of Scale for Parameter-Efficient Prompt Tuning》
+Prompt tuning
+
+=== s51 ===
+Application：Prompt Learning in NLP
+Representative work 5:
+Main problem :
+《 PPT: Pre-trained Prompt Tuning for Few-shot Learning 》
+Prompt tuning(PT)  uses soft prompts composed of continuous embeddings instead of hard prompts (discrete language phrases)
+
+=== s52 ===
+Application：Prompt Learning in NLP
+Representative work 5:
+Main problem :
+《 PPT: Pre-trained Prompt Tuning for Few-shot Learning 》
+We find that PT performs much worse than Fine-tuning under few-shot settings, which may hinder the application of PT in various low-resource scenarios.
+
+=== s53 ===
+Application：Prompt Learning in NLP
+Representative work 5:
+The idea:
+《 PPT: Pre-trained Prompt Tuning for Few-shot Learning 》
+To ensure the generalization of pre-trained prompts, we group typical classification tasks into three formats.
+Each format corresponding to one self-supervised pre-training task.
+
+=== s54 ===
+Application：Prompt Learning in NLP
+Representative work 5:
+《 PPT: Pre-trained Prompt Tuning for Few-shot Learning 》
+Approach :
+
+=== s55 ===
+Application：Prompt Learning in NLP
+Representative work 5:
+《 PPT: Pre-trained Prompt Tuning for Few-shot Learning 》
+Approach :
+1. Sentence-Pair Classification
+2. Multiple-Choice Classification
+3. Single-Sentence Classification
+
+=== s56 ===
+Application：Prompt Learning in NLP
+Representative work 6:
+Motivation:
+《 SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer 》
+
+=== s57 ===
+Application：Prompt Learning in NLP
+Representative work 6:
+Approach :
+《 SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer 》
+
+=== s58 ===
+Application：Prompt Learning in NLP
+Summary
+Prefix-Tuning
+P-Tuning
+P-Tuning v2
+Prompt-Tuning
+PPT
+SoPT
+Optimizes prefix of all layers
+Insert Pseudo Prompt
+Deep Prompt Encoding
+Add prompt into the input
+Group task into three formats
+Prompt pretraining
+
+=== s59 ===
+Prompt Learning
+Application
+Prompt Learning in NLP
+Prompt Learning in CV
+
+=== s60 ===
+Application：Prompt Learning in CV
+Representative work 1:
+Main problem:
+《 Visual Prompt Tuning 》
+The most accurate results are now obtained by adapting large foundation models pre-trained on massive curated or raw data.
+Large models
+
+=== s61 ===
+Application：Prompt Learning in CV
+Representative work 1:
+Motivation:
+《 Visual Prompt Tuning 》
+What is the best way to adapt large pre-trained Transformers to downstream tasks in terms of effectiveness and efficiency?
+
+=== s62 ===
+Application：Prompt Learning in CV
+Representative work 1:
+Approach :
+《 Visual Prompt Tuning 》
+Injects a small number of learnable parameters into Transformer’s input space and keeps the backbone frozen during the downstream training stage.
+
+=== s63 ===
+Application：Prompt Learning in CV
+Representative work 1:
+Approach :
+VPT-Shallow
+《 Visual Prompt Tuning 》
+
+=== s64 ===
+Application：Prompt Learning in CV
+Representative work 1:
+Approach :
+《 Visual Prompt Tuning 》
+VPT-Deep
+
+=== s65 ===
+Application：Prompt Learning in CV
+Representative work 1:
+Results :
+《 Visual Prompt Tuning 》
+
+=== s66 ===
+Application：Prompt Learning in CV
+Representative work 2:
+Critical Questions in Continual Learning:
+《 Learning to Prompt for Continual Learning 》
+Whether the form of episodic memory can go beyond buffering past data to more intelligent and succinct episodic memory system?
+So, we draw inspiration from recent advances in prompt-based learning (prompting).
+Main problem :
+
+=== s67 ===
+Application：Prompt Learning in CV
+Representative work 2:
+Motivation :
+《 Learning to Prompt for Continual Learning 》
+If we train different prompts for different tasks in the continual learning context, test time task identity is still required for making predictions using an appropriate task-specific prompt.
+As a transfer learning technique, the target of prompting is to make frozen pre-trained models achieve good performance on down-streaming individually, not sequentially.
+Therefore, if we instead maintain a single shared prompt for all tasks, the problem of catastrophic forgetting may still exist
+
+=== s68 ===
+Application：Prompt Learning in CV
+Representative work 2:
+Motivation:
+《 Learning to Prompt for Continual Learning 》
+Overview of the L2P framework
+Train a more succinct memory system without accessing task identity at test time.
+
+=== s69 ===
+Application：Prompt Learning in CV
+Representative work 2:
+Approach :
+《 Learning to Prompt for Continual Learning 》
+We propose a new continual learning method called Learning to Prompt for Continual Learning (L2P), which is orthogonal to popular rehearsal-based methods and applicable to practical continual learning scenarios without known task identity or boundaries.
+
+=== s70 ===
+Application：Prompt Learning in CV
+Representative work 2:
+Approach :
+《 Learning to Prompt for Continual Learning 》
+
+=== s71 ===
+Application：Prompt Learning in CV
+Representative work 3:
+Motivation :
+《 Learning Transferable Visual Models From Natural Language Supervision》
+This restricted form of supervision limits their generality and usability since additional labeled data is needed to specify any other visual concept.
+The generalization performance is weak.
+Inference
+
+=== s72 ===
+Application：Prompt Learning in CV
+Representative work 3:
+Approach :
+《 Learning Transferable Visual Models From Natural Language Supervision》
+CLIP(Contrastive Language-Image Pre-training)
+
+=== s73 ===
+Application：Prompt Learning in CV
+Representative work 3:
+Approach :
+《 Learning Transferable Visual Models From Natural Language Supervision》
+
+=== s74 ===
+Application：Prompt Learning in CV
+Representative work 3:
+Approach :
+《 Learning Transferable Visual Models From Natural Language Supervision》
+
+=== s75 ===
+Application：Prompt Learning in CV
+Representative work 4:
+Main problem :
+《 Learning to Prompt for Vision-Language Models 》
+CLIP--hand-crafted prompt
+Make a huge difference in performance
+
+=== s76 ===
+Application：Prompt Learning in CV
+Representative work 4:
+The idea :
+Context Optimization (CoOp)
+《 Learning to Prompt for Vision-Language Models 》
+
+=== s77 ===
+Application：Prompt Learning in CV
+Representative work 4:
+Approach :
+《 Learning to Prompt for Vision-Language Models 》
+
+=== s78 ===
+Application：Prompt Learning in CV
+Hand-crafted prompt  Learnable prompt:
+The prediction probability is computed as
+Representative work 4:
+Approach :
+《 Learning to Prompt for Vision-Language Models 》
+
+=== s79 ===
+Application：Prompt Learning in CV
+Representative work 5:
+Main problem :
+《Conditional Prompt Learning for Vision-Language Models 》
+The learned context is not generalizable to wider unseen classes within the same task.
+
+=== s80 ===
+Application：Prompt Learning in CV
+Representative work 5:
+Motivation:
+《Conditional Prompt Learning for Vision-Language Models 》
+CoOp turns context words in a prompt into a set of learnable vectors and, with only a few labeled images for learning, can achieve huge improvements over intensively-tuned manual prompts.
+To learn generalizable prompts
+
+=== s81 ===
+Application：Prompt Learning in CV
+Representative work 5:
+Approach :
+《Conditional Prompt Learning for Vision-Language Models 》
+Conditional Context Optimization (CoCoOp)
+
+=== s82 ===
+CLIP
+CoOp
+CoCoOp
+Application：Prompt Learning in CV
+Representative work 5:
+Approach :
+《Conditional Prompt Learning for Vision-Language Models 》
+
+=== s83 ===
+Application：Prompt Learning in CV
+Representative work 5:
+Approach :
+《Conditional Prompt Learning for Vision-Language Models 》
+
+=== s84 ===
+Application：Prompt Learning in CV
+Representative work 6:
+Main problem :
+《 Domain Adaptation via Prompt Learning》
+However, these constraints could lead to the distortion of semantic feature structures and loss of class discriminability.
+The problem of Unsupervised Domain Adaptation (UDA)
+Current UDA approaches learn domain-invariant features by aligning source and target feature spaces.
+
+=== s85 ===
+Application：Prompt Learning in CV
+Representative work 6:
+Motivation :
+《 Domain Adaptation via Prompt Learning》
+We introduce the prompt tuning framework for domain adaptation.
+
+=== s86 ===
+Application：Prompt Learning in CV
+Approach :
+Representative work 6:
+《 Domain Adaptation via Prompt Learning》
+We propose Domain Adaptation via Prompt Learning (DAPL) for unsupervised domain adaptation.
+
+=== s87 ===
+Application：Prompt Learning in CV
+Approach :
+Representative work 6:
+《 Domain Adaptation via Prompt Learning》
+DAPL trains the learnable context variables: domain-agnostic context variables and domain-specific context variables, and [CLASS] token which are combined and encoded by a text encoder.
+
+=== s88 ===
+Application：Prompt Learning in CV
+Approach :
+Representative work 6:
+《 Domain Adaptation via Prompt Learning》
+Next, cosine similarity between text and image features is computed and the positive pairs (with matched domain and class) are encouraged to align.
+An image encoder encodes images from different domains.
+
+=== s89 ===
+Application：Prompt Learning in CV
+Approach :
+Representative work 6:
+《 Domain Adaptation via Prompt Learning》
+The classification probability:
+A cross-entropy loss is applied between the image feature and the ground truth class to train the networks
+
+=== s90 ===
+Application：Prompt Learning in CV
+Approach :
+Representative work 6:
+《 Domain Adaptation via Prompt Learning》
+
+=== s91 ===
+Application：Prompt Learning in NLP
+Summary
+VPT
+L2P
+CLIP
+CoOp
+CoCoOp
+DAPL
+Injects learnable parameters for visual task
+Using Prompt for Continual Learning
+Prompt for contrastive learning
+Using Soft prompt
+Add instance-conditional
+Introduce prompt for domain adaptation
+
+=== s92 ===
+Summary
+Prompt Learning
+…
+Few shot
+Zero shot
+

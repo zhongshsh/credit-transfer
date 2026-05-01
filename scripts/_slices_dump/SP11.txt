@@ -1,0 +1,680 @@
+# SP11  Finite Horizon MDP Problems
+# Pages: 41
+
+=== p1 ===
+Stochastic Processes
+Finite Horizon MDP Problems
+Jie Gong
+Autumn, 2022
+J. Gong (SYSU) Finite Horizon Autumn, 2022 1 / 41
+
+=== p2 ===
+Review
+Outline
+1 Review
+2 Linear Quadratic Problem
+3 Inventory Control
+4 Optimal Stopping Problems
+5 Scheduling Problems
+6 Summary
+J. Gong (SYSU) Finite Horizon Autumn, 2022 2 / 41
+
+=== p3 ===
+Review
+MDP Problems
+State xk of the system
+Action uk to be selected at stage k
+State transition with random par. wk
+xk+1 = fk(xk,uk,wk), k = 0,1,...,N −1
+or described implicity by controlled transition prob. pij(u)
+Per-stage cost gk(xk,uk,wk),k = 0,1,...,N −1 and gN(xN)
+Objective: ﬁnd optimal π= {µ0,µ1,...,µ N−1}for
+min
+π
+E
+{N−1∑
+k=0
+gk(xk,µk(xk),wk) + gN(xN)
+}
+J. Gong (SYSU) Finite Horizon Autumn, 2022 3 / 41
+
+=== p4 ===
+Review
+DP Algorithm
+Start with
+JN(xN) = gN(xN),
+and go backwards for k= N −1,N −2,··· ,0
+Jk(xk) = min
+uk
+Ewk {gk(xk,uk,wk) + Jk+1 (fk(xk,uk,wk))},
+where µ∗
+k(xk) minimizes the right side for each xk
+J0(x0) is equal to the optimal cost J∗(x0), and the optimal policy
+is
+π∗= {µ∗
+0,...,µ ∗
+N−1}
+J. Gong (SYSU) Finite Horizon Autumn, 2022 4 / 41
+
+=== p5 ===
+Review
+Structured Optimal Policy
+Deterministic DP Problems ( wk =Const)
+▶ Shortest path problems
+▶ Backward & forward algorithm
+Stochastic Problems ( wk is a random disturbance)
+▶ Perfect state information: exact value xk is known in current stage k
+DP algorithm in general results in numerical solution
+For some well-structured problems, structured optimal policy exists
+▶ Closed-form
+▶ Threshold-based
+▶ ···
+J. Gong (SYSU) Finite Horizon Autumn, 2022 5 / 41
+
+=== p6 ===
+Linear Quadratic Problem
+Outline
+1 Review
+2 Linear Quadratic Problem
+3 Inventory Control
+4 Optimal Stopping Problems
+5 Scheduling Problems
+6 Summary
+J. Gong (SYSU) Finite Horizon Autumn, 2022 6 / 41
+
+=== p7 ===
+Linear Quadratic Problem
+Linear Quadratic Problems: Formulation
+Linear System
+xk+1 = Akxk + Bkuk + wk
+xk ∈Rn,uk ∈Rm
+wk ∈Rn are independent random vectors where E{wk}= 0.
+Quadratic cost
+Ewk
+k=0,1,...,N−1
+{N−1∑
+k=0
+(xT
+kQkxk + uT
+kRkuk) + xT
+NQNxN
+}
+Qk is positive semideﬁnite symmetric.
+Rk is positive deﬁnite symmetric.
+J. Gong (SYSU) Finite Horizon Autumn, 2022 7 / 41
+
+=== p8 ===
+Linear Quadratic Problem
+Linear Quadratic Problems: Algorithm
+DP algorithm
+JN(xN) = xT
+NQNxN
+Jk(xk) = min
+uk
+E
+{
+xT
+kQkxk + uT
+kRkuk + Jk+1(xk+1)
+}
+for k= N −1,N −2,··· ,0, where
+xk+1 = Akxk + Bkuk + wk
+J. Gong (SYSU) Finite Horizon Autumn, 2022 8 / 41
+
+=== p9 ===
+Linear Quadratic Problem
+Linear Quadratic Problems: Optimal Policy
+Jk(xk) is quadratic.
+µ∗
+k(xk) = Lkxk
+Lk = −(BT
+kKk+1Bk + Rk)−1BT
+kKk+1Ak
+Jk(xk) = xT
+kKkxk + Ck , Kk are positive semideﬁnite
+Dicrete-time Riccati equation
+Kk = AT
+k(Kk+1 −Kk+1Bk(BT
+kKk+1Bk+ Rk)−1BT
+kKk+1)Ak+ Qk
+J. Gong (SYSU) Finite Horizon Autumn, 2022 9 / 41
+
+=== p10 ===
+Linear Quadratic Problem
+Riccati Equation and Asymptotic Behavior
+Stationary system with Ak = A,Bk = B,Qk = Q,Rk = R
+The Riccati equation converges limk→−∞Kk = K, where K is
+pos. deﬁnite, and is the unique (within the class of pos.
+semideﬁnite matrices) solution of the algebraic Riccati equation
+K = AT(K−KB(BTKB + R)−1BTK)A+ Q
+The corresponding steady-state controller µ∗(x) = Lx, where
+L= −(BTKB + R)−1BTKA
+is stable in the sense that the matrix (A+ BL) of the system
+xk+1 = (A+ BL)xk + wk
+satisﬁes limk→∞(A+ BL)k = 0.
+J. Gong (SYSU) Finite Horizon Autumn, 2022 10 / 41
+
+=== p11 ===
+Linear Quadratic Problem
+Riccati Equation and Asymptotic Behavior
+In scalar systems, Riccati equation simpliﬁed to
+Kk = A2RKk+1
+B2Kk+1 + R + Q≜ F(Kk+1)
+A
+2
+R
+B
+2
++
+Q
+P
+0
+Q
+F
+(
+P
+)
+45
+0
+P
+P
+k
+P
+k
+P
+*
+-
+R
+B
+2
+K
+P
+K
+P
+K
+P
+K
+P
+K
+P
+K'
++1
+Two steady-state solutions of K = F(K), only one is positive.
+J. Gong (SYSU) Finite Horizon Autumn, 2022 11 / 41
+
+=== p12 ===
+Inventory Control
+Outline
+1 Review
+2 Linear Quadratic Problem
+3 Inventory Control
+4 Optimal Stopping Problems
+5 Scheduling Problems
+6 Summary
+J. Gong (SYSU) Finite Horizon Autumn, 2022 12 / 41
+
+=== p13 ===
+Inventory Control
+Inventory Control: Model
+System uk ≥0,xk,wk ∈R
+xk+1 = xk + uk −wk,k = 0,1,...,N −1
+Cost
+E
+{N−1∑
+k=0
+(cuk + r(xk + uk −wk))
+}
+r(x) = pmax(0,−x) + hmax(0,x),c<p
+wk is i.i.d.
+J. Gong (SYSU) Finite Horizon Autumn, 2022 13 / 41
+
+=== p14 ===
+Inventory Control
+Inventory Control: Derivation
+DP algorithm
+JN(xN) = 0
+Jk(xk) = min
+uk≥0
+{cuk+E{r(xk+uk−wk)}+E{Jk+1(xk+uk−wk)}}
+Re-formulate as
+Jk(xk) = min
+yk≥xk
+{Gk(yk)}−cxk
+where, yk = xk + uk
+H(y) = E{r(y−wk)}
+Gk(y) = cy+ H(y) + E{Jk+1(y−wk)}
+Aim to prove Gk is convex and lim|x|→∞Gk(x) →∞
+J. Gong (SYSU) Finite Horizon Autumn, 2022 14 / 41
+
+=== p15 ===
+Inventory Control
+Appendix: Convexity
+Convex set C
+x1,x2 ∈C,0 ≤θ≤1,=⇒θx1 + (1 −θ)x2 ∈C
+Examples (one convex, two non-convex sets)
+Convex set
+line segment between x1 and x2: all points
+x = θx1 + (1− θ)x2
+with 0 ≤ θ ≤ 1
+convex set : contains line segment between any two points in the set
+x1, x 2 ∈ C, 0 ≤ θ ≤ 1 = ⇒ θx1 + (1− θ)x2 ∈ C
+examples (one convex, two nonconvex sets)
+Convex sets 2–3
+J. Gong (SYSU) Finite Horizon Autumn, 2022 15 / 41
+
+=== p16 ===
+Inventory Control
+Appendix: Convexity
+Convex function f : Rn →R
+▶ domf is convex
+▶ for all x,y ∈domf,0 ≤θ≤1
+f(θx+ (1 −θ)y) ≤θf(x) + (1−θ)f(y)
+x
+f (x)
+x y
+f (x)
+f (y)
+θx+(1-θ)y
+f (θx+(1-θ)y)
+θf (x)+(1-θ)f (y)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 16 / 41
+
+=== p17 ===
+Inventory Control
+Appendix: Convexity
+Examples
+f(x) = ax+ b, f (x) = |x|, f (x) = x2
+▶ If f1,f2 are convex and a≥0, then
+af1(x), f 1(x) + f2(x)
+are convex (extends to inﬁnite sums, integrals)
+▶ If f1,··· ,fm are convex, then
+max{f1(x),··· ,fm(x)}
+is convex
+Convex function has a unique global minimum if it exists
+J. Gong (SYSU) Finite Horizon Autumn, 2022 17 / 41
+
+=== p18 ===
+Inventory Control
+Inventory Control: Optimal Policy
+yk = xk + uk
+Jk(xk) = min
+yk≥xk
+{Gk(yk)}−cxk
+If Gk is convex and lim|x|→∞Gk(x) →∞, the optimal policy
+µ∗
+k(xk) =
+{
+Sk −xk ifxk <Sk
+0 if xk ≥Sk
+where
+Sk = arg min
+y∈R
+Gk(y)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 18 / 41
+
+=== p19 ===
+Inventory Control
+Inventory Control: Proof
+Jk(x) = min
+y≥x
+{Gk(y)}−cx, J N(x) = 0
+Gk(y) = cy+ H(y) + E{Jk+1(y−wk)}
+H(y) = E{r(y−wk)}, r (x) = pmax(0,−x) + hmax(0,x),c<p
+cy+ H(y) is convex and lim|y|→∞(cy+ H(y)) = ∞
+Jk can be proved by induction
+▶ Prove the convexity of GN−1(x) and lim|x|→∞GN−1(x) = ∞
+▶ Prove the convexity of JN−1(x) and lim|x|→∞JN−1(x) = ∞
+▶ For k= N −2,··· ,0, assume the convexity of Jk+1(x) and
+lim|x|→∞Jk+1(x) = ∞
+Prove the convexity ofGk(x) and lim|x|→∞Gk(x) =∞
+Then, prove the convexity ofJk(x) and lim|x|→∞Jk(x) =∞
+J. Gong (SYSU) Finite Horizon Autumn, 2022 19 / 41
+
+=== p20 ===
+Inventory Control
+Inventory Control: Proof
+JN−1(xN−1) =
+{ c(SN−1 −xN−1) + H(SN−1) if xN−1 <SN−1
+H(xN−1) if xN−1 ≥SN−1
+Jk(xk) =
+{ c(Sk −xk) + H(Sk) + E{Jk+1(Sk −wk)} if xk <Sk
+H(xk) + E{Jk+1(xk −wk)} if xk ≥Sk
+for all k= N −2,··· ,0
+J. Gong (SYSU) Finite Horizon Autumn, 2022 20 / 41
+
+=== p21 ===
+Optimal Stopping Problems
+Outline
+1 Review
+2 Linear Quadratic Problem
+3 Inventory Control
+4 Optimal Stopping Problems
+5 Scheduling Problems
+6 Summary
+J. Gong (SYSU) Finite Horizon Autumn, 2022 21 / 41
+
+=== p22 ===
+Optimal Stopping Problems
+Optimal Stopping Problems
+Problem Description
+▶ There exists a control that stops the evolution of the system
+▶ Decide at each stage whether to continue or stop the process
+Example: Asset Selling
+▶ A person has an asset (say a piece of land) to sell within N stages
+▶ In each stage k, a random amount of money wk is oﬀered
+▶ If the oﬀer is accepted, invest the money at a ﬁxed of rate of
+interest r> 0; otherwise, wait for the next oﬀer
+▶ The last oﬀer wN−1 must be accepted if every prior oﬀer has been
+rejected
+J. Gong (SYSU) Finite Horizon Autumn, 2022 22 / 41
+
+=== p23 ===
+Optimal Stopping Problems
+Asset Selling: Problem Formulation
+State xk: the oﬀer under consideration. xk = T means the asset
+has been sold.
+Action uk: u1 (sell) and u2 (do not sell)
+State transition
+xk+1 =fk(xk,uk,wk)
+=
+{ T if xk = T, or xk ̸= T and uk = u1(sell)
+wk otherwise
+where x0 = 0, wk are i.i.d.
+Per-stage reward
+gN(xN) =
+{ xN if xN ̸= T,
+0 otherwise
+gk(xk,uk,wk) =
+{ (1 + r)N−kxk if xk ̸= T and uk = u1,
+0 otherwise
+J. Gong (SYSU) Finite Horizon Autumn, 2022 23 / 41
+
+=== p24 ===
+Optimal Stopping Problems
+Asset Selling: DP algorithm
+Start with
+JN(xN) = gN(xN) =
+{ xN if xN ̸= T,
+0 otherwise
+and go backwards using
+Jk(xk) =maxukEwk {gk(xk,uk,wk) + Jk+1 (fk(xk,uk,wk))},
+=
+{ max
+[
+(1 + r)N−kxk,E{Jk+1(w)}
+]
+if xk ̸= T,
+0 otherwise
+J. Gong (SYSU) Finite Horizon Autumn, 2022 24 / 41
+
+=== p25 ===
+Optimal Stopping Problems
+Asset Selling: Optimal Policy
+Optimal policy
+accept the oﬀer xk if xk >αk
+reject the oﬀer xk if xk <αk
+where
+αk = E{Jk+1(w)}
+(1 + r)N−k
+J. Gong (SYSU) Finite Horizon Autumn, 2022 25 / 41
+
+=== p26 ===
+Optimal Stopping Problems
+Asset Selling: Asymptotic Behavior
+Monotonicity property
+αk ≥αk+1
+Let
+Vk(x) = Jk(x)
+(1 + r)N−k, x ̸= T
+Then
+αk = E{Vk+1(w)}
+1 + r
+It is enough to show that Vk−1(x) ≥Vk(x)
+Proved by induction
+J. Gong (SYSU) Finite Horizon Autumn, 2022 26 / 41
+
+=== p27 ===
+Optimal Stopping Problems
+Asset Selling: Proof
+VN(x) = JN(x) = x
+Vk(x) = max
+[
+x,(1 + r)−1E{Vk+1(w)}
+]
+, k = 0,1,··· ,N −1
+For N and N −1, VN−1(x) ≥x= VN(x)
+Suppose Vk ≥Vk+1
+Vk−1(x) = max
+[
+x,(1 + r)−1E{Vk(w)}
+]
+≥max
+[
+x,(1 + r)−1E{Vk+1(w)}
+]
+=Vk(x)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 27 / 41
+
+=== p28 ===
+Optimal Stopping Problems
+Asset Selling: Asymptotic Behavior
+As αk ≥0, the sequence {αk}converges
+Notice that
+Vk(xk) = max(xk,αk)
+We have ( P(x) = Pr(w<x ))
+αk = E{Vk+1(w)}
+1 + r = P(αk+1)
+1 + r αk+1 + 1
+1 + r
+∫ ∞
+αk+1
+wdP(w)
+Therefore, αk →¯α where
+(1 + r)¯α= P(¯α)¯α+
+∫ ∞
+¯α
+wdP(w)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 28 / 41
+
+=== p29 ===
+Optimal Stopping Problems
+Asset Selling: Asymptotic Behavior
+Optimal stationary policy as N →∞
+accept the oﬀer xk if xk > ¯α
+reject the oﬀer xk if xk < ¯α
+J. Gong (SYSU) Finite Horizon Autumn, 2022 29 / 41
+
+=== p30 ===
+Optimal Stopping Problems
+General Stopping Problems
+Consider a stationary system
+At time k, we may stop at cost t(xk) or choose a control
+uk ∈U(xk) and continue
+JN(xN) = t(xN)
+Jk(xk) = min
+[
+t(xk), min
+uk∈U(xk)
+E{g(xk,uk,wk) + Jk+1 (xk+1)}
+]
+Optimal to stop at time k for state x in the set
+Tk =
+{
+x
+⏐⏐⏐t(x) ≤ min
+u∈U(x)
+E{g(x,u,w ) + Jk+1 (f(x,u,w ))}
+}
+which satisﬁes T0 ⊂···⊂ Tk ⊂Tk+1 ⊂···⊂ TN−1
+Requirement of stopping get loose
+J. Gong (SYSU) Finite Horizon Autumn, 2022 30 / 41
+
+=== p31 ===
+Optimal Stopping Problems
+General Stopping Problems
+Firstly, prove Jk(x) ≤Jk+1(x)
+JN(xN) = t(xN)
+Jk(xk) = min
+[
+t(xk), min
+uk∈U(xk)
+E{g(xk,uk,wk) + Jk+1 (xk+1)}
+]
+For k= N −1,
+JN−1(x) = min
+[
+t(x), min
+u∈U(x)
+E{g(x,u,w ) + JN (f(x,u,w )}
+]
+≤t(x) = JN(x)
+Suppose Jk(x) ≤Jk+1(x),
+Jk−1(x) = min
+[
+t(x), min
+u∈U(x)
+E{g(x,u,w ) + Jk(f(x,u,w )}
+]
+≤min
+[
+t(x), min
+u∈U(x)
+E{g(x,u,w ) + Jk+1 (f(x,u,w )}
+]
+= Jk(x)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 31 / 41
+
+=== p32 ===
+Optimal Stopping Problems
+General Stopping Problems
+Proof of T0 ⊂···⊂ Tk ⊂Tk+1 ⊂···⊂ TN−1
+Tk =
+{
+x
+⏐⏐⏐t(x) ≤ min
+u∈U(x)
+E{g(x,u,w ) + Jk+1 (f(x,u,w ))}
+}
+For ∀x∈Tk−1,
+t(x) ≤ min
+u∈U(x)
+E{g(x,u,w ) + Jk(f(x,u,w ))}
+≤ min
+u∈U(x)
+E{g(x,u,w ) + Jk+1 (f(x,u,w ))}
+=⇒x∈Tk =⇒Tk−1 ⊂Tk
+J. Gong (SYSU) Finite Horizon Autumn, 2022 32 / 41
+
+=== p33 ===
+Scheduling Problems
+Outline
+1 Review
+2 Linear Quadratic Problem
+3 Inventory Control
+4 Optimal Stopping Problems
+5 Scheduling Problems
+6 Summary
+J. Gong (SYSU) Finite Horizon Autumn, 2022 33 / 41
+
+=== p34 ===
+Scheduling Problems
+Scheduling Problems
+We have a set of tasks to perform, the ordering is subject to
+optimal choice
+Costs depend on the order
+There may be stochastic uncertainty, and precedence and resource
+availability constraints
+Some problems can be solved by an interchange argument (start
+with some schedule, interchange two adjacent tasks,and see what
+happens)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 34 / 41
+
+=== p35 ===
+Scheduling Problems
+Example: The Quiz Problem
+A list of N questions
+If question i is answered correctly (with prob. pi), we receive a
+reward Ri; if not, the quiz terminates.
+Objective: choose order of questions to maximize expected reward
+J. Gong (SYSU) Finite Horizon Autumn, 2022 35 / 41
+
+=== p36 ===
+Scheduling Problems
+The Quiz Problem: MDP Formulation
+State: an order of correctly answered questions
+xk = (i0,i1,··· ,ik−1)
+Action: the question to be answered uk = ik
+State transition:
+xk+1 =
+{ (xk,uk), correct
+T, incorrect or xk = T
+Per-stage reward:
+gk(xk,uk,wk) =
+{ Rik, if xk ̸= T and ik is correct,
+0, otherwise
+J. Gong (SYSU) Finite Horizon Autumn, 2022 36 / 41
+
+=== p37 ===
+Scheduling Problems
+The Quiz Problem: Interchange Argument
+For a given order L= (i0,i1,...,i N−1), the expected rewards is
+pi0 (1 −pi1 )Ri0 + pi0 pi1 (1 −pi2 )(Ri0 + Ri1 ) + ... +
+N−1∏
+k=0
+pik
+N−1∑
+k=0
+Rik
+=pi0 Ri0 + pi0 pi1 Ri1 + ... +
+N−1∏
+k=0
+pikRiN−1
+Consider two orders L= (i0,...,i k−1,i,j,i k+1,...,i N−1) and
+L′= (i0,...,i k−1,j,i,i k+1,...,i N−1)
+E{reward of L}= C1 + pi0 ···pik−1 (piRi + pipjRj) + C2
+E{reward of L′}= C1 + pi0 ···pik−1 (pjRj + pipjRi) + C2
+J. Gong (SYSU) Finite Horizon Autumn, 2022 37 / 41
+
+=== p38 ===
+Scheduling Problems
+The Quiz Problem: Interchange Argument
+If L is optimal, E{reward of L}≥ E{reward of L′}
+=⇒ piRi + pipjRj ≥pjRj + pipjRi
+=⇒ piRi
+1 −pi
+≥ pjRj
+1 −pj
+Questions should be answered in decreasing order of piRi/(1 −pi)
+J. Gong (SYSU) Finite Horizon Autumn, 2022 38 / 41
+
+=== p39 ===
+Summary
+Outline
+1 Review
+2 Linear Quadratic Problem
+3 Inventory Control
+4 Optimal Stopping Problems
+5 Scheduling Problems
+6 Summary
+J. Gong (SYSU) Finite Horizon Autumn, 2022 39 / 41
+
+=== p40 ===
+Summary
+Summary
+MDP problems
+Linear-Quadratic
+▶ Linear policy
+Inventory Control
+▶ Threshold based policy
+Optimal Stopping Problems
+▶ Example: Asset selling
+▶ General stopping problems and the properties
+Scheduling Problems
+▶ Example: Quiz problem
+J. Gong (SYSU) Finite Horizon Autumn, 2022 40 / 41
+
+=== p41 ===
+Summary
+Homework
+J. Gong (SYSU) Finite Horizon Autumn, 2022 41 / 41
+

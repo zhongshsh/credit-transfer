@@ -1,0 +1,1758 @@
+# N1  Chapter_9_V7.0-PPT1
+# Source: PPT1-Chapter_9_V7.0-PPT1.pptx    Slides: 144
+
+=== s1 ===
+高级计算机网络Advanced Computer Networks
+Instructor: 张晓溪 zhangxx89@mail.sysu.edu.cn
+计算机学院
+2022.9
+
+=== s2 ===
+高级计算机网络Advanced Computer Networks
+Instructor: 张晓溪 zhangxx89@mail.sysu.edu.cn
+TA：曾天宇 (zengty@mail2.sysu.edu.cn)
+计算机学院
+2022.9
+
+=== s3 ===
+Some Ground Rules
+按时上课
+课程基础：本科计算机网络 （哪些同学本科没有上过？）
+每次三节课连上 （课间休息30分钟，同学们建议大课间休息时间？）
+
+=== s4 ===
+2-
+Main Contents
+Multi-media Networks (多媒体网络):
+Video streaming, VoIP, QoS, CDN, network support for multimedia
+Network Security (网络安全)：
+应用层安全、传输层安全、网络层安全
+SDN (软件定义网络)、NFV、IPV6 与新一代互联网络
+Wireless Networks (无线网络)：
+WiFi， 移动网络和物联网
+Cloud & Edge Computing （云计算和边缘计算）
+DC architecture and energy/cost optimization
+物联网
+
+=== s5 ===
+Key References
+James F. Kurose，Keith W. Ross, “Computer Networking, A Top-Down Approach”,
+the 7th edition，2017
+Papers published in top venues, e.g., SIGOCMM, OSDI, SOSP, NSDI, etc.
+This stack of slides 
+
+=== s6 ===
+Course differences: Grad vs undergrad
+Undergrad:
+Application Layer
+Transport Layer
+Network Layer
+Link Layer
+Wireless and Mobile Networks
+Multimedia Networking
+Network Security
+Grad:
+Network and Link Layers: SDN
+Wireless and Mobile Networks
+Multimedia Networking
+Application layer
+Transport layers: CDN
+Network Security
+Cloud and edge computing
+Papers and presentation !
+
+=== s7 ===
+请 标注名字与学号，否则会移除
+
+=== s8 ===
+Your Research Directions?
+学生科研方向:
+Theory
+Architecture, HPC 2
+Networking >10
+Cloud
+Edge
+System
+Optimization (stochastic)
+CV >10
+Graphics 2
+Bioinformatics 4
+Robotics 2
+
+=== s9 ===
+Grading
+20% Class Attendance/Quiz
+70% Final Presentation and Report
+10% Mid-term presentation
+
+=== s10 ===
+Enjoy the course!
+Comments and/or Questions?
+
+=== s11 ===
+Now let’s get started!!
+
+=== s12 ===
+Now let’s get started!!
+Wait… I don’t remember what I learned from my undergrad course..
+I don’t even recall what the Internet is..
+
+=== s13 ===
+Outline of a recap
+Components and Services of Internet
+Packet switching and latency calculation
+OSI Layers，en(/de)capsulation, header
+Then… It’s more natural to transition to…
+Multi-media networking
+1-
+
+=== s14 ===
+What is the Internet?
+A specific computer network; important, complex..
+One sentence definition: the global system of interconnected computer networks that uses the Internet protocol suite to communicate between networks and devices.
+1-
+
+=== s15 ===
+What is the Internet?
+Two ways to describe it:
+Basic components – “nuts and bolts” view
+Infrastructure and service –  a services view
+1-
+
+=== s16 ===
+Internet
+The Internet: a “nuts and bolts” view
+Introduction: 1-
+
+=== s17 ===
+Internet: “network of networks”
+Interconnected ISPs
+Packet-switched networks (1970s): ancestors of today’s Internet
+protocols control sending, receiving of messages
+e.g., TCP, IP, HTTP, 802.11
+Internet  standards (Hey, please agree on those protocols..)
+RFC: Request for comments
+IETF: Internet Engineering Task Force
+What’s the Internet: “nuts and bolts” view
+1-
+
+=== s18 ===
+A closer look at network structure:
+Network edge:
+Hosts: clients and servers
+Servers often in data centers
+Access networks, physical media: wired, wireless communication links
+Network core:
+Interconnected routers
+Network of networks
+1-
+
+=== s19 ===
+A closer look at network structure:
+网络边缘 (Network Edge)
+端系统(end system)：位于互联网边缘与互联网相连的计算机和其他设备
+端系统由各类主机(host)构成：桌面计算机、移动计算机、服务器、其他智能终端设备
+接入网（Access network）
+网络核心 (Network Core)
+由互联端系统的分组交换设备和通信链路构成的网状网络
+分组交换（       路由器、       链路层交换机）
+通信链路(光纤、铜缆、无线电、激光链路)
+
+=== s20 ===
+Infrastructure that provides services to applications:
+Web, streaming video, multimedia teleconferencing, email, games, e-commerce, social media, inter-connected appliances, …
+The Internet: a “service” view
+Introduction: 1-
+mobile network
+home network
+enterprise
+network
+national or global ISP
+local or regional ISP
+datacenter
+network
+content
+provider
+network
+provides programming interface to distributed applications:
+“hooks” allowing sending/receiving  apps to “connect” to, use  Internet transport service
+provides service options, analogous to postal service
+
+=== s21 ===
+Postal Service: An Analogy to API
+Alice
+@Guangzhou
+Bob
+@Shenzhen
+I want to send a letter to Bob..
+1-
+
+=== s22 ===
+Postal Service: An Analogy to API
+Alice
+@Guangzhou
+Bob
+@Shenzhen
+1. Write a letter..
+2. Put it into an envelope..
+3. Seal the envelope and put a stamp on it..
+4. Drop..
+1-
+
+=== s23 ===
+Postal Service: An Analogy to API
+1. Write a letter..
+2. Put it into an envelope..
+3. Seal the envelope and put a stamp on it..
+4. Drop..
+Postal office API
+1-
+
+=== s24 ===
+What are needed for Networking?
+Introduction: 1-
+Application View （Needs 需求）
+Applications
+Application Characteristics
+User perceptions
+Control View （Means 手段）
+Forwarding/Routing Decision
+Control
+Monitoring
+Error Reporting
+Peer performance matching
+Data  View (Objects 对象)
+How Applications are break down into segment/packets/Frame
+How Segment/Packet/Frame are transfered
+Error Detection/Handling
+
+=== s25 ===
+What’s a protocol?
+Introduction: 1-
+Human protocols:
+“What’s the time?”
+“I have a question”
+Introductions
+… Specific messages sent
+… Specific actions taken when message received, or other events
+Network protocols:
+Computers (devices) rather than humans
+All communication activity in Internet governed by protocols
+
+=== s26 ===
+Mesh of interconnected routers
+Packet-switching (分组转发/包转发):
+Hosts break application-layer messages into packets
+Forward packets from one router to the next, across links on path from source to destination
+Each packet transmitted at full link capacity
+The network core
+1-
+
+=== s27 ===
+Packet-switching: store-and-forward
+It takes L/R seconds to transmit (push out) L-bit packet into link at R bps （bandwidth）
+Store and forward: entire packet must arrive at router before it can be transmitted on next link
+One-hop numerical example:
+L = 7.5 Mbits
+R = 1.5 Mbps
+One-hop transmission delay = 5 sec
+1-
+Source
+R bps
+Destination
+1
+2
+3
+L bits
+per packet
+R bps
+end-end delay = 2L/R (assuming 0 propagation, 0 queuing delay)
+
+=== s28 ===
+What’s the delay of transmitting  P packets?
+Time 0: source transmits packet 1
+Time L/R:
+router receives and transmits packet 1, source transmits packet 2
+Time 2L/R:
+source transmits packet 3
+router transmits packet 2,
+destination receives packet 1 (end-to-end delay)
+Time (= the time of transmitting the last package):
+0+(P-1)*L/R + 2L/R
+source
+R bps
+destination
+1
+2
+3
+L bits
+per packet
+R bps
+
+=== s29 ===
+Packet Switching: queueing delay, loss
+A
+B
+C
+R = 100 Mb/s
+R = 1.5 Mb/s
+D
+E
+queue of packets
+waiting for output link
+1-
+Queuing and loss:
+If arrival rate to link exceeds transmission rate of link for a period of time:
+packets will queue and wait to be transmitted on link
+packets can be dropped (lost) if memory (buffer) fills up
+
+=== s30 ===
+Two key network-core functions
+forwarding: move packets from router’s input to appropriate router output
+1-
+routing: determines source-destination route taken by packets
+routing algorithms
+
+=== s31 ===
+Protocol “layers”
+Networks are complex,
+with many “pieces”:
+hosts
+routers
+links of various media
+applications
+protocols
+hardware, software
+Question:
+is there any hope of organizing structure of network?
+…. or at least our discussion of networks?
+1-
+
+=== s32 ===
+Why layering
+1-
+dealing with complex systems:
+explicit structure allows identification, relationship of complex system’s pieces
+layered reference model for discussion
+modularization eases maintenance, updating of system
+change of implementation of layer’s service transparent to rest of system
+e.g., change in gate procedure doesn’t affect rest of system
+layering considered harmful?
+
+=== s33 ===
+协议层次结构
+运送部门
+铁 路
+部 门
+邮局
+运送部门
+汽运部门
+汽 运
+部 门
+邮包
+邮包
+货物
+货物
+火车
+汽车
+货物
+货物
+信件
+传递的信息
+邮包
+货物
+用户B
+信件
+1.3 网络协议
+
+=== s34 ===
+协议层次结构
+层次栈
+为了降低网络设计的复杂性，大部分网络都组成一个层次栈，每一层都建立在其下一层的基础上
+对等实体
+不同机器上构成相应层次的实体成为对等实体
+接口
+在每一对相邻层次之间的是接口；接口定义了下层向上层提供哪些原语操作与服务
+网络体系结构
+层和协议的集合为网络体系结构，一个特定的系统所使用的一组协议，即每层的协议，称为协议栈
+对等实体
+对等实体
+对等实体
+对等实体
+对等实体
+
+=== s35 ===
+Internet protocol stack
+Application: supporting network applications
+FTP, SMTP, HTTP (Q: def ?? port # ??)
+Transport: process-process data transfer
+TCP (reliable, e.g., file transfer), UDP(fast, e.g., real-time video, DNS)
+Network: routing of datagrams from source to destination
+IP, routing protocols
+Link: data transfer between neighboring network elements
+Ethernet, 802.111 (WiFi), PPP
+Physical: bits “on the wire”
+application
+transport
+network
+link
+physical
+1-
+
+=== s36 ===
+ISO/OSI reference model
+ISO: International Standard Organization （国际标准化组织）
+OSI: Open System Interconnection (开放式通信系统互联)
+Other two models:
+5-layer Internet protocol stack
+TCP/IP model (4 layers): link + physical = host-to-network layer or link layer; network layer  internet layer
+application
+presentation
+session
+transport
+network
+link
+physical
+1-
+
+=== s37 ===
+ISO/OSI reference model
+Presentation: allow applications to interpret meaning of data, e.g., encryption, compression, machine-specific conventions
+Session: synchronization, checkpointing, recovery of data exchange
+Internet stack “missing” these layers!
+These services, if needed, must be implemented in application
+application
+presentation
+session
+transport
+network
+link
+physical
+1-
+
+=== s38 ===
+OSI参考模型
+OSI 7 层模型
+OSI：Open Systems Interconnection
+Day, Zimmermann, 1983
+物理层（Physical Layer）
+定义如何在信道上传输0、1：Bits on the wire
+机械接口（Mechanical）：网线接口大小形状、线缆排列等
+电子信号（Electronic）：电压、电流等
+时序接口（Timing）：采样频率、波特率、比特率等
+介质（Medium）：各种线缆、无线频谱等
+...
+1.4 参考模型
+
+=== s39 ===
+OSI参考模型
+数据链路层 (Data Link Layer)
+实现相邻（Neighboring）网络实体间的数据传输
+成帧（Framing）：从物理层比特流中提取出完整的帧
+错误检测与纠正：为提供可靠数据通信提供可能
+物理地址（MAC address）：48位，理论上唯一网络标识，烧录在网卡，不便更改
+流量控制，避免“淹没”（overwhelming）:当快速的发送端遇上慢速的接收端，接收端缓存溢出
+共享信道上的访问控制（MAC）：同一个信道，同时传输信号。如同：同一间教室内，多人同时发言，需要纪律来控制。
+
+=== s40 ===
+OSI参考模型
+网络层 (Network Layer)
+将数据包跨越网络从源设备发送到目的设备（host to host）
+路由（Routing）：在网络中选取从源端到目的端转发路径，常常会根据网络可达性动态选取最佳路径，也可以使用静态路由
+服务质量（QoS）控制：处理网络拥塞、负载均衡、准入控制、保障延迟
+异构网络互联：在异构编址和异构网络中路由寻址和转发
+Q：为何在唯一的MAC地址之外，还需要唯一的IP地址？
+
+=== s41 ===
+OSI参考模型
+传输层 (Transport Layer)
+从源端口发送数据到目的端口（进程到进程）
+网络层的控制主要面向运营商，传输层为终端用户提供端到端的数据传输控制
+两类模式：
+可靠传输：可靠的端到端数据传输，适合于对通信质量有要求的应用场景，如文件传输等
+不可靠传输：更快捷、更轻量的端到端数据传输，适合于对通信质量要求不高，对通信响应速度要求高的应用场景，如语音对话、视频会议等
+
+=== s42 ===
+OSI参考模型
+会话层 (Session Layer)
+利用传输层提供的服务，在应用程序之间建立和维持会话，并能使会话获得同步
+表示层（Presentation Layer）
+关注所传递信息的语法和语义，管理数据的表示方法，传输的数据结构
+应用层（Application Layer）
+通过应用层协议，提供应用程序便捷的网络服务调用
+
+=== s43 ===
+source
+application
+transport
+network
+link
+physical
+segment
+datagram
+destination
+application
+transport
+network
+link
+physical
+router
+switch
+Encapsulation
+message
+frame
+1-
+Decapsulation
+
+=== s44 ===
+分层模型与网络实例
+端到端通信实例：主机A上的QQ，发送消息；主机B上的QQ，接收消息
+发送端层层封装，接收端层层解封装
+不同层对应协议数据单元（Protocol Data Unit）
+发送：hello
+接收：hello
+消息message
+段segment
+数据报
+packet
+帧
+frame
+主机A
+交换机
+交换机
+主机B
+路由器
+封装
+Encapsulation
+解封装
+Decapsulation
+
+=== s45 ===
+Computer Networking: A Top Down Approach
+A note on the use of these Powerpoint slides:
+We’re making these slides freely available to all (faculty, students, readers). They’re in PowerPoint form so you see the animations; and can add, modify, and delete slides  (including this one) and slide content to suit your needs. They obviously represent a lot of work on our part. In return for use, we only ask the following:
+If you use these slides (e.g., in a class) that you mention their source (after all, we’d like people to use our book!)
+If you post any slides on a www site, that you note that they are adapted from (or perhaps identical to) our slides, and note our copyright of this material.
+Thanks and enjoy!  JFK/KWR
+All material copyright 1996-2016
+J.F Kurose and K.W. Ross, All Rights Reserved
+7th edition Jim Kurose, Keith RossPearson/Addison WesleyApril 2016
+Chapter 9Multimedia Networking
+9-
+Multimedia Networking
+
+=== s46 ===
+Multimedia networking: outline
+9.1 Multimedia networking applications
+9.2 Streaming stored video
+HTTP, UDP, etc.
+Content distribution networks （CDN）
+9.3 Voice-over-IP （VoIP）
+9.4 Protocols for real-time conversational      applications
+9.5 Network support for multimedia
+9-
+Multimedia Networking
+
+=== s47 ===
+Multimedia: audio
+Analog audio signal sampled at constant rate
+Telephone: 8,000 samples/sec
+CD music: 44,100 samples/sec
+Each sample quantized, i.e., rounded
+E.g., 28=256 possible quantized values
+Each quantized value represented by bits, e.g., 8 bits for 256 values
+time
+audio signal amplitude
+analog
+signal
+9-
+Multimedia Networking
+
+=== s48 ===
+Multimedia: audio
+Example: 8,000 samples/sec, 256 quantized values (8 bits):  64,000 bps
+Receiver converts bits back to analog signal:
+some quality reduction
+Pulse Code Modulation (PCM)
+Example: CD (1.411 Mbps)
+Rarely used in the Internet
+Instead, compression techniques are needed!
+9-
+Multimedia Networking
+
+=== s49 ===
+Multimedia: audio
+Example: 8,000 samples/sec, 256 quantized values (8 bits):  64,000 bps
+Receiver converts bits back to analog signal:
+some quality reduction
+Examples
+MPEG 1 layer 3 (MP3: 96, 128, 160 kbps)
+Advanced Audio Coding (AAC) used by Apple
+9-
+Multimedia Networking
+
+=== s50 ===
+Multimedia: audio vs video
+Videos typically have higher bit rates than audios
+Users are generally much more sensitive to audio glitches than video glitches
+9-
+Multimedia Networking
+
+=== s51 ===
+Video: sequence of images displayed at constant rate
+E.g., 24-30 images/sec
+Digital image: array of pixels
+Each pixel is represented by bits (e.g., 24 bits for an RGB image)
+Video Compression (Coding): exploit redundancy within and between images to decrease the # of bits used
+Spatial (within image)
+Temporal (from one image to next)
+Multimedia: video
+frame i
+frame i+1
+Temporal coding example: instead of sending complete frame at i+1, send only differences from frame i
+9-
+
+=== s52 ===
+Multimedia: video
+frame i
+frame i+1
+temporal coding example: instead of sending complete frame at i+1, send only differences from frame i
+CBR: (constant bit rate): Video encoding rate fixed
+VBR:  (variable bit rate): Video encoding rate changes as amount of spatial, temporal coding changes
+Examples:
+MPEG 1 (CD-ROM) 1.5 Mbps
+MPEG2 (DVD) 3-6 Mbps
+MPEG4 (often used in Internet, < 1 Mbps)
+
+=== s53 ===
+Multimedia networking: 3 application types
+Streaming, stored audio, video
+Streaming: can begin playout before downloading the entire file
+Stored (at server): can transmit faster than audio/video will be rendered (implies storing/buffering at client)
+e.g., YouTube, Netflix, Hulu
+Conversational voice/video over IP
+Interactive nature of human-to-human conversation limits delay tolerance
+E.g., Skype
+Streaming live audio, video
+E.g., live sporting event (futbol)
+
+=== s54 ===
+Multimedia networking: 3 application types
+Streaming, stored audio, video
+Streaming: can begin playout before downloading the entire file
+Stored (at server): can transmit faster than audio/video will be rendered (implies storing/buffering at client)
+E.g., YouTube, Netflix (全美第一流媒体,内容付费), Hulu.
+长视频国内巨头：爱奇艺，优酷，腾讯视频，Bilibili
+
+=== s55 ===
+服务质量(QoS)控制概述
+广义的网络服务质量
+网络性能
+可用性
+可靠性
+安全性
+本讲研究的服务质量控制都是为了提高网络保证性能的能力, 和性能相关的主要的QoS参数有：
+带宽 (bandwidth)
+延迟/延迟抖动 (latency/latency jitter)
+分组丢失率 (packet loss rate)
+
+=== s56 ===
+服务质量控制概述
+绝对的（确定性的）性能保证
+一条在任意时刻都可以提供100Mbps带宽的网络链路
+绝对的带宽保证
+概率的（随机的）性能保证
+保证95%的分组的延迟不大于100ms
+概率的延迟保证
+时间平均 的性能保证
+保证一个月中的平均分组丢失率不高于10-5
+平均的丢失率保证
+
+=== s57 ===
+服务质量控制概述－控制粒度
+Packet 分组级（时间粒度大约为1到100微秒）
+分组是互联网QoS控制机制的最小单位
+流量调节机制，包括分组分类器（packet classifier）、分组标记器（packet marking）和流量整形器（traffic shaping）等，分组调度机制 和主动队列管理机制 等
+分组的往返时间（round trip time）, 大约为1到100毫秒
+在这个粒度工作的是拥塞控制和流量控制 等基于反馈的控制机制
+Session 会话级的（以秒和分钟为单位）, 也就是用户会话持续的时间（会话可以采用各种方式定义）
+包括准入控制（admission control）和 QoS 路由
+长期的QoS控制机制
+主要包括流量工程, 能力规划和服务定价 等
+
+=== s58 ===
+服务质量控制概述－控制信息
+QoS控制机制使用的控制信息的粒度（granularity）
+根据每流(per-flow)状态对每个用户流进行控制
+一般来说，流采用（IP源地址、目的地址、源端口号、目的端口号和协议域 ）这五元组进行标识
+对流的聚集进行控制
+流聚集也可以有各种方法，比如每台主机、每个网络前缀、每个服务类别等等
+控制状态的携带者和控制本身的位置
+控制状态的携带者可以是路由器，也可以是分组
+控制的位置可以在用户主机、网络边缘/核心路由器
+
+=== s59 ===
+服务质量控制概述－QoS控制空间
+edge router
+control
+granularity
+packet
+flow
+flow
+aggregation
+control
+state
+packet
+router
+host
+core router
+round trip
+session
+control
+position
+packet
+time
+
+=== s60 ===
+Multimedia networking: outline
+9.1 Multimedia networking applications
+9.2 Streaming stored video
+9.3 Voice-over-IP
+9.4 Protocols for real-time conversational      applications
+9.5 Network support for multimedia
+9-
+Multimedia Networking
+
+=== s61 ===
+Streaming stored video:
+Cumulative data
+time
+9-
+Multimedia Networking
+
+=== s62 ===
+Streaming stored video: challenges
+Continuous playout constraint: once client playout begins, playback must match original timing
+… but network delays are variable (jitter), so will need client-side buffer to match playout requirements
+Other challenges:
+Client interactivity: pause(暂停), fast-forward （快进）, rewind（回放）, jump through video （跳过）
+Video packets may be lost, retransmitted
+9-
+Multimedia Networking
+
+=== s63 ===
+Constant bit
+rate video
+transmission
+Cumulative data
+time
+Client-side buffering and playout delay: compensate for network-added delay, delay jitter
+Streaming stored video: revisited
+9-
+Multimedia Networking
+
+=== s64 ===
+Client-side buffering, playout
+Variable fill
+rate, x(t)
+Client  application
+buffer, size B
+Playout rate,
+e.g., CBR r
+Buffer fill level, Q(t)
+Video server
+Client
+9-
+Multimedia Networking
+
+=== s65 ===
+Client-side buffering, playout
+Variable fill
+rate, x(t)
+Client  application
+buffer, size B
+Buffer fill level, Q(t)
+Video server
+Client
+1. Initial fill of buffer until playout begins at tp
+2. Playout begins at tp
+3. Buffer fill level varies over time as fill rate x(t) varies, and playout rate r is constant
+9-
+Multimedia Networking
+
+=== s66 ===
+Playout buffering: average fill rate (x), playout rate (r):
+x < r: buffer eventually empties (causing freezing of video playout until buffer again fills)
+x > r: buffer will not empty, provided initial playout delay is large enough to absorb variability in x(t) (not averaged)
+Initial playout delay tradeoff: buffer starvation less likely with larger delay, but larger delay until user begins watching
+variable fill
+rate, x(t)
+client  application
+buffer, size B
+playout rate,
+e.g., CBR r
+buffer fill level, Q(t)
+video server
+Client-side buffering, playout
+9-
+Multimedia Networking
+
+=== s67 ===
+Streaming multimedia: UDP
+Server sends at rate appropriate for client
+Often: send rate = encoding rate  (constant)
+Transmission rate can be oblivious to congestion levels
+Short playout delay (2-5 seconds) to remove network jitter
+Error recovery: application-level, time permitting
+RTP [RFC 3550]: multimedia payload types (covered for VoIP)
+Drawbacks: it may fail to provide continuous playout, requires media control server (RTSP server), and may not go through firewalls
+9-
+Multimedia Networking
+
+=== s68 ===
+Streaming multimedia: HTTP
+Multimedia file retrieved via HTTP GET
+Sent at maximum possible rate under TCP
+Fill rate fluctuates due to TCP congestion control, retransmissions (in-order delivery)
+Larger playout delay: smooth TCP delivery rate
+HTTP/TCP passes more easily through firewalls
+Variable rate, x(t)
+TCP send buffer
+Video
+file
+TCP receive buffer
+Application playout buffer
+Server
+Client
+9-
+Multimedia Networking
+Socket
+Socket
+
+=== s69 ===
+Video Streaming and CDNs: context
+Streaming video accounts for 80% of Internet traffic (Cisco 2020):
+Netflix, YouTube,  Amazon, TikTok, etc.
+Challenge:  scale - how to reach ~1B users?
+Single mega-video server won’t work (why?)
+Challenge: heterogeneity
+Different users have different capabilities (e.g., wired versus mobile; bandwidth rich versus bandwidth poor)
+Solution: distributed, application-level infrastructure
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s70 ===
+Streaming stored video: challenges
+Continuous playout constraint: once client playout begins, playback must match original timing
+… but network delays are variable (jitter), so will need client-side buffer to match playout requirements
+Other challenges:
+Client interactivity: pause, fast-forward, rewind, jump through video
+Video packets may be lost, retransmitted
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s71 ===
+Streaming stored video: playout buffering
+Constant bit
+rate video
+transmission
+Cumulative data
+time
+Client-side buffering and playout delay: compensate for network-added delay, delay jitter
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s72 ===
+Streaming multimedia: DASH
+DASH: Dynamic, Adaptive Streaming over HTTP
+server:
+divides video file into multiple chunks
+each chunk stored, encoded at different rates
+manifest file: provides URLs for different chunks
+client:
+periodically measures server-to-client bandwidth
+consulting manifest, requests one chunk at a time
+chooses maximum coding rate sustainable given current bandwidth
+can choose different coding rates at different points in time (depending on available bandwidth at time)
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s73 ===
+Streaming multimedia: DASH
+“Intelligence” at client: client determines
+When to request chunk (so that buffer starvation, or overflow does not occur)
+What encoding rate to request (higher quality when more bandwidth available)
+Where to request chunk (can request from URL server that is “close” to client or has high available bandwidth)
+Streaming video = encoding + DASH + playout buffering
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s74 ===
+Content distribution networks (CDNs)
+challenge: how to stream content (selected from millions of videos) to hundreds of thousands of simultaneous users?
+option 1: single, large “mega-server”
+single point of failure
+point of network congestion
+long path to distant clients
+multiple copies of video sent over outgoing link
+….quite simply: this solution doesn’t scale
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s75 ===
+Content distribution networks (CDNs)
+challenge: how to stream content (selected from millions of videos) to hundreds of thousands of simultaneous users?
+enter deep: push CDN servers deep into many access networks
+close to users
+Akamai: 240,000 servers deployed in more than 120 countries (2015)
+bring home: smaller number (10’s) of larger clusters in POPs near (but not within) access networks
+used by Limelight
+option 2: store/serve multiple copies of videos at multiple geographically distributed sites (CDN)
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s76 ===
+subscriber requests content from CDN
+Content distribution networks (CDNs)
+CDN: stores copies of content at CDN nodes
+e.g. Netflix stores copies of MadMen
+directed to nearby copy, retrieves content
+may choose different copy if network path congested
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s77 ===
+OTT challenges: coping with a congested Internet
+from which CDN node to retrieve content?
+viewer behavior in presence of congestion?
+what content to place in which CDN node?
+OTT: “over the top”
+Content distribution networks (CDNs)
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s78 ===
+CDN content access: a closer look
+netcinema.com
+KingCDN.com
+1. Bob gets URL for video http://netcinema.com/6Y7B23V
+from netcinema.com web page
+2. resolve http://netcinema.com/6Y7B23V
+via Bob’s local DNS
+netcinema’s
+authoratative DNS
+3. netcinema’s DNS returns CNAME for
+http://KingCDN.com/NetC6y&B23V
+6. request video from
+KINGCDN server,
+streamed via HTTP
+KingCDN
+authoritative DNS
+Bob’s
+local DNS
+server
+Bob (client) requests video http://netcinema.com/6Y7B23V
+video stored in CDN at http://KingCDN.com/NetC6y&B23V
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s79 ===
+Case study: Netflix
+Bob manages      Netflix account
+Netflix registration,
+accounting servers
+Amazon cloud
+Bob browses
+Netflix video
+Manifest file, requested
+returned for
+specific video
+DASH server selected, contacted, streaming begins
+upload copies of multiple versions of video to CDN servers
+Application Layer: 2-
+9-
+Multimedia Networking
+
+=== s80 ===
+Multimedia networking: outline
+9.1 multimedia networking applications
+9.2 streaming stored video
+9.3 voice-over-IP
+9.4 protocols for real-time conversational      applications
+9.5 network support for multimedia
+9-
+Multimedia Networking
+
+=== s81 ===
+Voice-over-IP (VoIP)
+VoIP end-end-delay requirement: needed to maintain “conversational” aspect
+higher delays noticeable, impair interactivity
+< 150 msec:  good
+> 400 msec bad
+includes application-level (packetization, playout), network delays
+session initialization: how does callee advertise IP address, port number, encoding algorithms?
+value-added services: call forwarding, screening, recording
+emergency services: 911
+9-
+Multimedia Networking
+
+=== s82 ===
+VoIP characteristics
+speaker’s audio: alternating talk spurts, silent periods.
+64 kbps during talk spurt
+pkts generated only during talk spurts
+20 msec chunks at 8 Kbytes/sec: 160 bytes of data
+application-layer header added to each chunk
+chunk+header encapsulated into UDP or TCP segment
+application sends segment into socket every 20 msec during talkspurt
+9-
+Multimedia Networking
+
+=== s83 ===
+VoIP: packet loss, delay
+network loss: IP datagram lost due to network congestion (router buffer overflow)
+delay loss: IP datagram arrives too late for playout at receiver
+delays: processing, queueing in network; end-system (sender, receiver) delays
+typical maximum tolerable delay: 400 ms
+loss tolerance: depending on voice encoding, loss concealment, packet loss rates between 1% and 10% can be tolerated
+9-
+Multimedia Networking
+
+=== s84 ===
+constant bit
+rate
+transmission
+Cumulative data
+time
+Delay jitter
+end-to-end delays of two consecutive packets: difference can be more or less than 20 msec (transmission time difference)
+9-
+Multimedia Networking
+
+=== s85 ===
+VoIP: fixed playout delay
+receiver attempts to playout each chunk exactly q msecs after chunk was generated.
+chunk has time stamp t: play out chunk at t+q
+chunk arrives after t+q: data arrives too late for playout: data “lost”
+tradeoff in choosing q:
+large q: less packet loss
+small q: better interactive experience
+9-
+Multimedia Networking
+
+=== s86 ===
+sender generates packets every 20 msec during talk spurt.
+first packet received at time r
+first playout schedule: begins at p
+second playout schedule: begins at p’
+VoIP: fixed playout delay
+9-
+Multimedia Networking
+
+=== s87 ===
+Adaptive playout delay (1)
+goal: low playout delay, low late loss rate
+approach: adaptive playout delay adjustment:
+estimate network delay, adjust playout delay at beginning of each talk spurt
+silent periods compressed and elongated
+chunks still played out every 20 msec during talk spurt
+adaptively estimate packet delay: (EWMA - exponentially weighted moving average, recall TCP RTT estimate):
+di = (1-a)di-1 + a (ri – ti)
+delay estimate after ith packet
+small constant, e.g. 0.1
+time received  -
+time sent (timestamp)
+measured delay of ith packet
+9-
+Multimedia Networking
+
+=== s88 ===
+also useful to estimate average deviation of delay, vi :
+estimates di, vi calculated for every received    packet, but used only at start of talk spurt
+for first packet in talk spurt, playout time is:
+remaining packets in talkspurt are played out     periodically
+vi = (1-b)vi-1 + b |ri – ti – di|
+playout-timei = ti + di + Kvi
+Adaptive playout delay (2)
+9-
+Multimedia Networking
+
+=== s89 ===
+Q: How does receiver determine whether packet is first in a talkspurt?
+if no loss, receiver looks at successive timestamps
+difference of successive stamps > 20 msec -->talk spurt begins.
+with loss possible, receiver must look at both time stamps and sequence numbers
+difference of successive stamps > 20 msec and sequence numbers without gaps --> talk spurt begins.
+Adaptive playout delay (3)
+9-
+Multimedia Networking
+
+=== s90 ===
+VoIP: recovery from packet loss (1)
+Challenge: recover from packet loss given small tolerable delay between original transmission and playout
+each ACK/NAK takes ~ one RTT
+alternative: Forward Error Correction (FEC)
+send enough bits to allow recovery without retransmission (recall two-dimensional parity in Ch. 5)
+simple FEC
+for every group of n chunks, create redundant chunk by exclusive OR-ing n original chunks
+send n+1 chunks, increasing bandwidth by factor 1/n
+can reconstruct original n chunks if at most one lost chunk from n+1 chunks, with playout delay
+9-
+Multimedia Networking
+
+=== s91 ===
+another FEC scheme:
+“piggyback lower quality stream”
+send lower resolutionaudio stream as redundant information
+e.g., nominal stream PCM at 64 kbpsand redundant streamGSM at 13 kbps
+non-consecutive loss: receiver can conceal loss
+generalization: can also append (n-1)st and (n-2)nd low-bit ratechunk
+VoiP: recovery from packet loss (2)
+9-
+Multimedia Networking
+
+=== s92 ===
+interleaving to conceal loss:
+audio chunks divided into smaller units, e.g. four 5 msec units per 20 msec audio chunk
+packet contains small units from different chunks
+if packet lost, still have most of every original chunk
+no redundancy overhead, but increases playout delay
+VoiP: recovery from packet loss (3)
+9-
+Multimedia Networking
+
+=== s93 ===
+Voice-over-IP: Skype
+proprietary application-layer protocol (inferred via reverse engineering)
+encrypted msgs
+P2P components:
+Skype clients (SC)
+clients: Skype peers connect directly to each other for VoIP call
+super nodes (SN): Skype peers with special functions
+overlay network: among SNs to locate SCs
+login server
+9-
+Multimedia Networking
+
+=== s94 ===
+P2P voice-over-IP: Skype
+Skype client operation:
+1. joins Skype network by contacting SN (IP address cached) using TCP
+2. logs-in (username, password) to centralized Skype login server
+3. obtains IP address for callee from SN, SN overlay
+or client buddy list
+4. initiate call directly to callee
+9-
+Multimedia Networking
+
+=== s95 ===
+problem: both Alice, Bob are behind “NATs”
+NAT prevents outside peer from initiating connection to insider peer
+inside peer can initiate connection to outside
+relay solution: Alice, Bob maintain open connection
+to their SNs
+Alice signals her SN to connect to Bob
+Alice’s SN connects to Bob’s SN
+Bob’s SN connects to Bob over open connection Bob initially initiated to his SN
+Skype: peers as relays
+9-
+Multimedia Networking
+
+=== s96 ===
+Multimedia networking: outline
+9.1 multimedia networking applications
+9.2 streaming stored video
+9.3 voice-over-IP
+9.4 protocols for real-time conversational      applications: RTP, SIP
+9.5 network support for multimedia
+9-
+Multimedia Networking
+
+=== s97 ===
+Real-Time Protocol (RTP)
+RTP specifies packet structure for packets carrying audio, video data
+RFC 3550
+RTP packet provides
+payload type identification
+packet sequence numbering
+time stamping
+RTP runs in end systems
+RTP packets encapsulated in UDP segments
+interoperability: if two VoIP applications run RTP, they may be able to work together
+9-
+Multimedia Networking
+
+=== s98 ===
+RTP runs on top of UDP
+RTP libraries provide transport-layer interface
+that extends UDP:
+port numbers, IP addresses
+payload type identification
+packet sequence numbering
+time-stamping
+9-
+Multimedia Networking
+
+=== s99 ===
+RTP example
+example: sending 64 kbps PCM-encoded voice over RTP
+application collects encoded data in chunks, e.g., every 20 msec = 160 bytes in a chunk
+audio chunk + RTP header form RTP packet, which is encapsulated in UDP segment
+RTP header indicates type of audio encoding in each packet
+sender can change encoding during conference
+RTP header also contains sequence numbers, timestamps
+9-
+Multimedia Networking
+
+=== s100 ===
+RTP and QoS
+RTP does not provide any mechanism to ensure timely data delivery or other QoS  guarantees
+RTP encapsulation only seen at end systems (not by intermediate routers)
+routers provide best-effort service, making no special effort to ensure that RTP packets arrive at destination in timely matter
+9-
+Multimedia Networking
+
+=== s101 ===
+RTP header
+payload type (7 bits): indicates type of encoding currently being used.  If sender changes encoding during call, sender
+informs receiver via  payload type field
+Payload type 0: PCM mu-law, 64 kbps
+Payload type 3: GSM, 13 kbps
+Payload type 7: LPC, 2.4 kbps
+Payload type 26: Motion JPEG
+Payload type 31: H.261
+Payload type 33: MPEG2 video
+sequence # (16 bits): increment by one for each RTP packet sent
+detect packet loss, restore packet sequence
+9-
+Multimedia Networking
+
+=== s102 ===
+timestamp field (32 bits long): sampling instant of first byte in this RTP data packet
+for audio, timestamp clock increments by one for each sampling period (e.g., each 125 usecs for 8 KHz sampling clock)
+if application generates chunks of 160 encoded samples, timestamp increases by 160 for each RTP packet when source is active. Timestamp clock continues to increase at constant rate when source is inactive.
+SSRC field (32 bits long):  identifies source of  RTP stream. Each stream in RTP session has distinct SSRC
+RTP header
+9-
+Multimedia Networking
+
+=== s103 ===
+RTSP/RTP programming assignment
+build a server that encapsulates stored video frames into RTP packets
+grab video frame, add RTP headers, create UDP segments, send segments to UDP socket
+include seq numbers and time stamps
+client RTP provided for you
+also write client side of RTSP
+issue play/pause commands
+server RTSP provided for you
+9-
+Multimedia Networking
+
+=== s104 ===
+Real-Time Control Protocol (RTCP)
+works in conjunction with RTP
+each participant in RTP session periodically sends RTCP control packets to all other participants
+each RTCP packet contains sender and/or receiver reports
+report statistics useful to  application: # packets sent, # packets lost, interarrival jitter
+feedback used to control performance
+sender may modify its transmissions based on  feedback
+9-
+Multimedia Networking
+
+=== s105 ===
+RTCP: multiple multicast senders
+each RTP session: typically a single multicast address; all RTP /RTCP packets belonging to session use multicast address
+RTP, RTCP packets distinguished from each other via distinct port numbers
+to limit traffic, each participant reduces RTCP traffic as number of conference participants increases
+sender
+receivers
+9-
+Multimedia Networking
+
+=== s106 ===
+RTCP: packet types
+receiver report packets:
+fraction of packets lost, last sequence number, average interarrival jitter
+sender report packets:
+SSRC of RTP stream, current time, number of packets sent, number of bytes sent
+source description packets:
+e-mail address of sender, sender's name, SSRC  of associated RTP stream
+provide mapping between the SSRC and the user/host name
+9-
+Multimedia Networking
+
+=== s107 ===
+RTCP: stream synchronization
+RTCP can synchronize different media streams within a RTP session
+e.g., videoconferencing app: each sender generates one RTP stream for video, one for audio.
+timestamps in RTP packets tied to the video, audio sampling clocks
+not tied to wall-clock time
+each RTCP sender-report packet contains (for most recently generated packet in associated RTP stream):
+timestamp of RTP packet
+wall-clock time for when packet was created
+receivers uses association to synchronize playout of audio, video
+9-
+Multimedia Networking
+
+=== s108 ===
+RTCP: bandwidth scaling
+RTCP attempts to limit its traffic to 5% of session bandwidth
+example : one sender, sending video at 2 Mbps
+RTCP attempts to limit RTCP traffic to 100 Kbps
+RTCP gives 75% of  rate to receivers; remaining 25% to sender
+75 kbps is equally shared among receivers:
+with R receivers,  each receiver gets to send RTCP traffic at 75/R kbps.
+sender gets to send RTCP traffic at 25 kbps.
+participant determines RTCP packet transmission period by calculating avg RTCP packet size (across entire session) and dividing by  allocated rate
+9-
+Multimedia Networking
+
+=== s109 ===
+SIP: Session Initiation Protocol [RFC 3261]
+long-term vision:
+all telephone calls, video conference calls take place over Internet
+people identified by names or e-mail addresses, rather than by phone numbers
+can reach callee (if callee so desires), no matter where callee roams, no matter what IP device callee is currently using
+Which apps use SIP: Facebook Messenger, Skype, Google Hangouts, etc.
+9-
+Multimedia Networking
+
+=== s110 ===
+SIP services
+SIP provides mechanisms for call setup:
+for caller to let callee know she wants to establish a call
+so caller, callee can agree on media type, encoding
+to end call
+determine current IP address of callee:
+maps mnemonic identifier to current IP address
+call management:
+add new media streams during call
+change encoding during call
+invite others
+transfer, hold calls
+9-
+Multimedia Networking
+
+=== s111 ===
+Example: setting up call to known IP address
+Alice’s SIP invite message indicates her port number, IP address, encoding she prefers to receive (PCM mlaw)
+Bob’s 200 OK message indicates his port number, IP address, preferred encoding (GSM)
+SIP messages can be sent over TCP or UDP; here sent over RTP/UDP
+default SIP port number is 5060
+9-
+Multimedia Networking
+
+=== s112 ===
+Setting up a call (more)
+codec negotiation:
+suppose Bob doesn’t have PCM mlaw encoder
+Bob will instead reply with 606 Not Acceptable Reply, listing his encoders. Alice can then send new INVITE message, advertising different encoder
+rejecting a call
+Bob can reject with replies “busy,” “gone,” “payment required,” “forbidden”
+media can be sent over RTP or some other protocol
+9-
+Multimedia Networking
+
+=== s113 ===
+Example of SIP message
+INVITE sip:bob@domain.com SIP/2.0
+Via: SIP/2.0/UDP 167.180.112.24
+From: sip:alice@hereway.com
+To: sip:bob@domain.com
+Call-ID: a2e3a@pigeon.hereway.com
+Content-Type: application/sdp
+Content-Length: 885
+c=IN IP4 167.180.112.24
+m=audio 38060 RTP/AVP 0
+Notes:
+HTTP message syntax
+sdp = session description protocol
+Call-ID is unique for every call
+Here we don’t know Bob’s IP address
+intermediate SIPservers needed
+Alice sends, receives SIP messages using SIP default port 506
+Alice specifies in header that SIP client sends, receives SIP messages over UDP
+9-
+Multimedia Networking
+
+=== s114 ===
+Name translation, user location
+caller wants to call callee, but only has callee’s name or e-mail address.
+need to get IP address of callee’s current host:
+user moves around
+DHCP protocol
+user has different IP devices (PC, smartphone, car device)
+result can be based on:
+time of day (work, home)
+caller (don’t want boss to call you at home)
+status of callee (calls sent to voicemail when callee is already talking to someone)
+9-
+Multimedia Networking
+
+=== s115 ===
+SIP registrar
+REGISTER sip:domain.com SIP/2.0
+Via: SIP/2.0/UDP 193.64.210.89
+From: sip:bob@domain.com
+To: sip:bob@domain.com
+Expires: 3600
+one function of SIP server: registrar
+when Bob starts SIP client, client sends SIP REGISTER message to Bob’s registrar server
+register message:
+9-
+Multimedia Networking
+
+=== s116 ===
+SIP proxy
+another function of SIP server: proxy
+Alice sends invite message to her proxy server
+contains address sip:bob@domain.com
+proxy responsible for routing SIP messages to callee, possibly through multiple proxies
+Bob sends response back through same set of SIP proxies
+proxy returns Bob’s SIP response message to Alice
+contains Bob’s IP address
+SIP proxy analogous to local DNS server plus TCP setup
+9-
+Multimedia Networking
+
+=== s117 ===
+SIP example: jim@umass.edu calls keith@poly.edu
+UMass SIP proxy
+Poly SIP
+registrar
+Eurecom  SIP
+registrar
+197.87.54.21
+128.119.40.186
+9-
+Multimedia Networking
+
+=== s118 ===
+Comparison with H.323
+H.323: another signaling protocol for real-time, interactive multimedia
+H.323: complete, vertically integrated suite of protocols for multimedia conferencing: signaling, registration, admission control, transport, codecs
+SIP: single component. Works with RTP, but does not mandate it. Can be combined with other protocols, services
+H.323 comes from the ITU (telephony)
+SIP comes from IETF: borrows much of its concepts from HTTP
+SIP has Web flavor; H.323 has  telephony flavor
+SIP uses KISS principle: Keep It Simple Stupid
+9-
+Multimedia Networking
+
+=== s119 ===
+Multimedia networking: outline
+9.1 multimedia networking applications
+9.2 streaming stored video
+9.3 voice-over-IP
+9.4 protocols for real-time conversational      applications
+9.5 network support for multimedia
+9-
+Multimedia Networking
+
+=== s120 ===
+Network support for multimedia
+9-
+Multimedia Networking
+
+=== s121 ===
+Dimensioning best effort networks
+approach: deploy enough link capacity so that congestion doesn’t occur, multimedia traffic flows without delay or loss
+low complexity of network mechanisms (use current “best effort” network)
+high bandwidth costs
+challenges:
+network dimensioning: how much bandwidth is “enough?”
+estimating network traffic demand: needed to determine how much bandwidth is “enough” (for that much traffic)
+9-
+Multimedia Networking
+
+=== s122 ===
+Providing multiple classes of service
+thus far: making the best of best effort service
+one-size fits all service model
+alternative: multiple classes of service
+partition traffic into classes
+network treats different classes of traffic differently (analogy: VIP service versus regular service)
+0111
+granularity: differential service among multiple classes, not among individual connections
+history: ToS bits
+9-
+Multimedia Networking
+
+=== s123 ===
+Multiple classes of service: scenario
+R1
+R2
+H1
+H2
+H3
+H4
+1.5 Mbps link
+R1 output
+interface
+queue
+9-
+Multimedia Networking
+
+=== s124 ===
+Scenario 1: mixed HTTP and VoIP
+example:  1Mbps VoIP, HTTP share 1.5 Mbps link.
+HTTP bursts can congest router, cause audio loss
+want to give priority to audio over HTTP
+packet marking needed for router to distinguish between different classes; and new router policy to treat packets accordingly
+Principle 1
+R1
+R2
+9-
+Multimedia Networking
+
+=== s125 ===
+Principles for QOS guarantees (more)
+what if applications misbehave (VoIP sends higher than declared rate)
+policing: force source adherence to bandwidth allocations
+marking, policing at network edge
+provide protection (isolation) for one class from others
+Principle 2
+R1
+R2
+1.5 Mbps link
+1 Mbps
+phone
+packet marking and policing
+9-
+Multimedia Networking
+
+=== s126 ===
+allocating fixed (non-sharable) bandwidth to flow: inefficient use of bandwidth if flows doesn’t use its allocation
+while providing isolation, it is desirable to use
+resources as efficiently as possible
+Principle 3
+R1
+R2
+1.5 Mbps link
+1 Mbps
+phone
+1 Mbps logical link
+0.5 Mbps logical link
+Principles for QOS guarantees (more)
+9-
+Multimedia Networking
+
+=== s127 ===
+Scheduling and policing mechanisms
+packet scheduling: choose next queued packet to send on outgoing link
+previously covered in Chapter 4:
+FCFS: first come first served
+simply multi-class priority
+round robin
+weighted fair queueing (WFQ)
+9-
+Multimedia Networking
+
+=== s128 ===
+Scheduling mechanisms
+scheduling: choose next packet to send on link
+FIFO (first in first out) scheduling: send in order of arrival to queue
+real-world example?
+discard policy: if packet arrives to full queue: who to discard?
+tail drop: drop arriving packet
+priority: drop/remove on priority basis
+random: drop/remove randomly
+queue
+(waiting area)
+packet
+arrivals
+packet
+departures
+link
+(server)
+4-
+Network Layer
+
+=== s129 ===
+Scheduling policies: priority
+priority scheduling: send highest priority queued packet
+multiple classes, with different priorities
+class may depend on marking or other header info, e.g. IP source/dest, port numbers, etc.
+real world example?
+arrivals
+departures
+packet in service
+4-
+Network Layer
+
+=== s130 ===
+Scheduling policies: still more
+Round Robin (RR) scheduling:
+multiple classes
+cyclically scan class queues, sending one complete packet from each class (if available)
+real world example?
+4-
+Network Layer
+
+=== s131 ===
+Weighted Fair Queuing (WFQ):
+generalized Round Robin
+each class gets weighted amount of service in each cycle
+real-world example?
+Scheduling policies: still more
+4-
+Network Layer
+
+=== s132 ===
+Policing mechanisms
+goal: limit traffic to not exceed declared parameters
+Three common-used criteria:
+(long term) average rate: how many pkts can be sent per unit time (in the long run)
+crucial question: what is the interval length: 100 packets per sec or 6000 packets per min have same average!
+peak rate: e.g., 6000 pkts per min (ppm) avg.; 1500 ppm peak rate
+(max.) burst size: max number of pkts sent consecutively (with no intervening idle)
+9-
+Multimedia Networking
+
+=== s133 ===
+Policing mechanisms: implementation
+token bucket: limit input to specified burst size and average rate
+bucket can hold b tokens
+tokens generated at rate r token/sec unless bucket full
+over interval of length t: number of packets admitted less than or equal to  (r t + b)
+9-
+Multimedia Networking
+
+=== s134 ===
+Policing and QoS guarantees
+token bucket, WFQ combine to provide guaranteed upper bound on delay, i.e., QoS guarantee!
+WFQ
+token rate, r
+bucket size, b
+per-flow
+rate, R
+arriving
+traffic
+arriving
+traffic
+9-
+Multimedia Networking
+
+=== s135 ===
+Differentiated services
+want “qualitative” service classes
+“behaves like a wire”
+relative service distinction: Platinum, Gold, Silver
+scalability: simple functions in network core, relatively complex functions at edge routers (or hosts)
+signaling, maintaining per-flow router state  difficult with large number of flows
+don’t define define service classes, provide functional components to build service classes
+9-
+Multimedia Networking
+
+=== s136 ===
+edge router:
+per-flow traffic management
+marks packets as in-profile and out-profile
+core router:
+per class traffic management
+buffering and scheduling based on marking at edge
+preference given to in-profile packets over out-of-profile packets
+Diffserv architecture
+9-
+Multimedia Networking
+
+=== s137 ===
+Edge-router packet marking
+class-based marking: packets of different classes marked differently
+intra-class marking: conforming portion of flow marked differently than non-conforming one
+profile: pre-negotiated rate r, bucket size b
+packet marking at edge based on per-flow profile
+possible use of marking:
+user packets
+rate r
+b
+9-
+Multimedia Networking
+
+=== s138 ===
+Diffserv packet marking: details
+packet is marked in the Type of Service (TOS) in IPv4, and Traffic Class in IPv6
+6 bits used for Differentiated Service Code Point (DSCP)
+determine PHB that the packet will receive
+2 bits currently unused
+DSCP
+unused
+9-
+Multimedia Networking
+
+=== s139 ===
+Classification, conditioning
+may be desirable to limit traffic injection rate of some class:
+user declares traffic profile (e.g., rate, burst size)
+traffic metered, shaped if non-conforming
+9-
+Multimedia Networking
+
+=== s140 ===
+Forwarding Per-hop Behavior (PHB)
+PHB result in a different observable (measurable) forwarding performance behavior
+PHB does not specify what mechanisms to use to ensure required PHB performance behavior
+examples:
+class A gets x% of outgoing link bandwidth over time intervals of a specified length
+class A packets leave first before packets from class B
+9-
+Multimedia Networking
+
+=== s141 ===
+Forwarding PHB
+PHBs proposed:
+expedited forwarding: packet departure rate of a class equals or exceeds specified rate
+logical link with a minimum guaranteed rate
+assured forwarding: 4 classes of traffic
+each guaranteed minimum amount of bandwidth
+each with three drop preference partitions
+9-
+Multimedia Networking
+
+=== s142 ===
+Per-connection QOS guarantees
+basic fact of life: can not support traffic demands beyond link capacity
+call admission: flow declares its needs, network may
+block call (e.g., busy signal) if it cannot meet needs
+Principle 4
+R1
+R2
+1.5 Mbps link
+1 Mbps
+phone
+1 Mbps
+phone
+9-
+Multimedia Networking
+
+=== s143 ===
+QoS guarantee scenario
+resource reservation
+call setup, signaling (RSVP)
+traffic, QoS declaration
+per-element admission control
+request/
+reply
+9-
+Multimedia Networking
+
+=== s144 ===
+Multimedia networking: outline
+9.1 multimedia networking applications
+9.2 streaming stored video
+9.3 voice-over-IP
+9.4 protocols for real-time conversational      applications
+9.5 network support for multimedia
+9-
+Multimedia Networking
+

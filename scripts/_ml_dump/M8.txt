@@ -1,0 +1,462 @@
+# M8  Introduction_to_Causal_Inference
+# Source: 8-Introduction_to_Causal_Inference.pptx    Slides: 84
+
+=== s1 ===
+Introduction to Causal Inference
+
+=== s2 ===
+What is causal inference?
+Background: Causation in Graphs
+Graphs
+Bayesian Networks
+Outline
+
+=== s3 ===
+What is causal inference?
+Inferring the effects of any treatment/policy/intervention/etc
+Examples:
+Effect of treatment on a disease
+Effect of climate change policy on emissions
+Effect of social media on mental health
+Many more (effect of X on Y)
+What is causal inference?
+
+=== s4 ===
+Motivating example: Simpson’s paradox
+Correlation does not imply causation
+Then, what does imply causation?
+Causation in observational studies
+What is causal inference?
+
+=== s5 ===
+Simpson’s paradox: COVID-27
+New disease: COVID-27
+Treatment T: A (0) and B (1)
+Condition C: mild (0) or severe (1)
+Outcome Y: alive (0) or dead (1)
+Motivating example: Simpson’s paradox
+You decide which treatment to chose
+
+=== s6 ===
+Simpson’s paradox: mortality rate table
+Motivating example: Simpson’s paradox
+It seems like Treatment A is doing better than Treatment B
+
+=== s7 ===
+Simpson’s paradox: mortality rate table
+Motivating example: Simpson’s paradox
+Simpson’s paradox: Treatment A is better in total mortality rate, but Treatment B is better in subgroup mortality rate
+
+=== s8 ===
+Simpson’s paradox: mortality rate table
+Motivating example: Simpson’s paradox
+Simpson’s paradox largely comes from this unequal weight.
+
+=== s9 ===
+Motivating example: Simpson’s paradox
+Correlation does not imply causation
+Then, what does imply causation?
+Causation in observational studies
+What is causal inference?
+
+=== s10 ===
+Sleeping with shoes on is strongly correlated with waking up with a headache
+Correlation does not imply causation
+
+=== s11 ===
+Sleeping with shoes on is strongly correlated with waking up with a headache
+Common cause: drinking the night before
+1. Shoe-sleepers differ from non-shoe sleepers in a key way
+2. Confounding
+Total association (e.g. correlation):
+is mixture of causal and
+confounding association
+Correlation does not imply causation
+
+=== s12 ===
+“Correlation = Causation”  is a cognitive bias1
+Correlation does not imply causation
+1The illusion of causality: A cognitive bias underlying pseudoscience (Blanco & Matute, 2018)
+
+=== s13 ===
+“Correlation = Causation”  is a cognitive bias
+we use correlation = causation all the time when we want to explain something and we notice something else is associated with it.
+Correlation does not imply causation
+explains
+why?
+could be whatever is most readily
+available in your mind. (e.g. drink a cup of coffee yesterday)
+
+=== s14 ===
+Nicolas Cage drives people to drown themselves ?
+Correlation does not imply causation
+
+=== s15 ===
+Motivating example: Simpson’s paradox
+Correlation does not imply causation
+Then, what does imply causation?
+Causation in observational studies
+What is causal inference?
+
+=== s16 ===
+Potential outcomes: intuition
+Inferring the effect of treatment/policy on some outcome
+Then, what does imply causation?
+Take pill
+Don’t Take pill
+causal effect
+
+=== s17 ===
+Potential outcomes: intuition
+Inferring the effect of treatment/policy on some outcome
+Then, what does imply causation?
+Take pill
+Don’t Take pill
+no causal effect
+
+=== s18 ===
+Potential outcomes: notation
+Then, what does imply causation?
+Causal effect :
+
+=== s19 ===
+Fundamental problem of causal inference
+Then, what does imply causation?
+Causal effect :
+
+=== s20 ===
+Fundamental problem of causal inference
+It is impossible to observe all potential outcomes for a given individual
+Then, what does imply causation?
+Causal effect :
+Counterfactual
+Factual
+
+=== s21 ===
+Fundamental problem of causal inference
+It is impossible to observe all potential outcomes for a given individual
+Then, what does imply causation?
+Causal effect :
+Factual
+Counterfactual
+
+=== s22 ===
+Then, what does imply causation?
+Recall: correlation does not imply causation
+
+=== s23 ===
+Randomized control trials (RCTs)
+ATE when there is confounding:
+ATE when there is no confounding (e.g. RCTs):
+Then, what does imply causation?
+
+=== s24 ===
+Motivating example: Simpson’s paradox
+Correlation does not imply causation
+Then, what does imply causation?
+Causation in observational studies
+What is causal inference?
+
+=== s25 ===
+Observational studies
+Causation in observational studies
+Can’t always randomize treatment
+• Ethical reasons (e.g. unethical to randomize people to smoke for measuring effect on lung cancer)
+• Infeasibility (e.g. can’t randomize countries into communist/capitalist systems to measure effect on GDP)
+• Impossibility (e.g. can’t change a living person’s DNA at birth for measuring effect on breast cancer)
+
+=== s26 ===
+How do we measure causal effects in observational studies?
+Causation in observational studies
+
+=== s27 ===
+Causation in observational studies
+
+=== s28 ===
+Causation in observational studies
+
+=== s29 ===
+Solution: backdoor adjustment
+Causation in observational studies
+
+=== s30 ===
+Solution: backdoor adjustment
+Causation in observational studies
+
+=== s31 ===
+Application to the COVID-27 example
+Causation in observational studies
+Treatment
+Condition
+
+=== s32 ===
+Application to the COVID-27 example
+Causation in observational studies
+Treatment
+Condition
+
+=== s33 ===
+Application to the COVID-27 example
+Causation in observational studies
+Treatment
+Condition
+
+=== s34 ===
+Application to the COVID-27 example
+Causation in observational studies
+Treatment
+Condition
+Naive
+
+=== s35 ===
+The Flow of Association and Causation in Graphs
+
+=== s36 ===
+Graph terminology
+Bayesian networks and causal graphs
+The basic building blocks of graphs
+The flow of association and causation
+The Flow of Association and Causation in Graphs
+
+=== s37 ===
+Graph terminology: not a graph
+Graph terminology
+
+=== s38 ===
+Graph terminology
+Graph terminology
+
+=== s39 ===
+Graph terminology
+Graph terminology
+
+=== s40 ===
+Graph terminology
+Graph terminology
+
+=== s41 ===
+Graph terminology
+Graph terminology
+
+=== s42 ===
+Graph terminology
+immorality
+Graph terminology
+
+=== s43 ===
+Graph terminology
+Bayesian networks and causal graphs
+The basic building blocks of graphs
+The flow of association and causation
+The Flow of Association and Causation in Graphs
+
+=== s44 ===
+Naively modeling the joint distribution
+Statistical modeling (no causality):
+Bayesian networks and causal graphs
+
+=== s45 ===
+Naively modeling the joint distribution
+Statistical modeling (no causality):
+Bayesian networks and causal graphs
+
+=== s46 ===
+Local Markov assumption
+Given its parents in the DAG, a node X is independent of all of its non-descendants.
+Bayesian networks and causal graphs
+
+=== s47 ===
+Local Markov assumption
+Given its parents in the DAG, a node X is independent of all of its non-descendants.
+Bayesian networks and causal graphs
+
+=== s48 ===
+Local Markov assumption
+Given its parents in the DAG, a node X is independent of all of its non-descendants.
+Bayesian networks and causal graphs
+Question:
+How will the factorization change now?
+
+=== s49 ===
+Local Markov assumption
+Given its parents in the DAG, a node X is independent of all of its non-descendants.
+Bayesian networks and causal graphs
+
+=== s50 ===
+Bayesian network factorization
+Bayesian networks and causal graphs
+
+=== s51 ===
+Minimality assumption
+two parts:
+Given its parents in the DAG, a node X is independent of all its non-descendants (=local Markov assumption ).
+Bayesian networks and causal graphs
+
+=== s52 ===
+Minimality assumption
+Given its parents in the DAG, a node X is independent of all its non-descendants ( just  the local Markov assumption ).
+Adjacent nodes in the DAG are dependent.
+Bayesian networks and causal graphs
+graph 1
+graph 2
+
+=== s53 ===
+Assumptions flowchart
+Bayesian networks and causal graphs
+
+=== s54 ===
+What is a cause?
+Bayesian networks and causal graphs
+
+=== s55 ===
+Causal edges assumption
+Bayesian networks and causal graphs
+In a directed graph, every parent is a direct cause of all its children.
+
+=== s56 ===
+Assumptions flowchart
+Bayesian networks and causal graphs
+
+=== s57 ===
+Graph terminology
+Bayesian networks and causal graphs
+The basic building blocks of graphs
+The flow of association and causation
+The Flow of Association and Causation in Graphs
+
+=== s58 ===
+Graphical building blocks
+The basic building blocks of graphs
+
+=== s59 ===
+Chains and forks: dependence
+The basic building blocks of graphs
+
+=== s60 ===
+Chains and forks: independence
+The basic building blocks of graphs
+blocked path
+
+=== s61 ===
+Chains and forks: independence
+The basic building blocks of graphs
+blocked path
+
+=== s62 ===
+Chains and forks: independence
+The basic building blocks of graphs
+unblocked path
+unblocked path
+
+=== s63 ===
+Proof of conditional independence in chains
+Goal : show
+The basic building blocks of graphs
+Bayesian network factorization:
+Apply Bayes’ rule :
+Apply Bayes’ rule again:
+
+=== s64 ===
+Immoralities
+The basic building blocks of graphs
+
+=== s65 ===
+Immoralities
+The basic building blocks of graphs
+
+=== s66 ===
+Immoralities: conditioning on the collider
+The basic building blocks of graphs
+
+=== s67 ===
+Example: good-looking men are jerks
+The basic building blocks of graphs
+
+=== s68 ===
+Example: good-looking men are jerks scatterplot
+The basic building blocks of graphs
+kindness & looks are independent
+
+=== s69 ===
+Example: good-looking men are jerks scatterplot
+group population into “in relationship” and ”not in relationship”
+The basic building blocks of graphs
+
+=== s70 ===
+Example: good-looking men are jerks scatterplot
+The basic building blocks of graphs
+remove the men that is in relationship
+
+=== s71 ===
+Example: good-looking men are jerks scatterplot
+The basic building blocks of graphs
+
+=== s72 ===
+The basic building blocks of graphs
+
+=== s73 ===
+Graph terminology
+Bayesian networks and causal graphs
+The basic building blocks of graphs
+The flow of association and causation
+The Flow of Association and Causation in Graphs
+
+=== s74 ===
+The flow of association and causation
+Unblocked path: a path that is not blocked
+
+=== s75 ===
+The flow of association and causation
+
+=== s76 ===
+d-separation practice
+The flow of association and causation
+
+=== s77 ===
+d-separation practice
+The flow of association and causation
+(1)
+(2)
+
+=== s78 ===
+d-separation practice
+The flow of association and causation
+(3)
+
+=== s79 ===
+d-separation practice
+The flow of association and causation
+?
+(4)
+
+=== s80 ===
+d-separation practice
+The flow of association and causation
+(5)
+
+=== s81 ===
+The flow of association and causation
+The flow of association and causation
+
+=== s82 ===
+The flow of association and causation
+The flow of association and causation
+causal association & non-causal association
+
+=== s83 ===
+Motivating example:
+the grounding process is usually a trivial language-location association without visual reasoning, e.g., grounding any language query containing sheep to the nearly central regions, due to that most queries about sheep have ground truth locations at the image center.
+Deconfounded Visual Grounding (AAAI2022)
+example
+causal graph
+X: pixel-level image,
+R: language query,
+L: the location for the query.
+G: unobserved confounder
+
+=== s84 ===
+Deconfounded Visual Grounding (AAAI2022)
+backdoor adjustment:
+deconfounded visual grounding model:
+causal graph
+

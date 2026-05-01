@@ -1,0 +1,1816 @@
+# SP10  Markov Decision Processes and Dynamic Programming
+# Pages: 43
+
+=== p1 ===
+Stochastic Processes
+Markov Decision Processes and Dynamic Programming
+Jie Gong
+Autumn 2022
+J. Gong (SYSU) MDP Autumn 2022 1 / 43
+
+=== p2 ===
+Shortest Path Problem
+Outline
+1 Shortest Path Problem
+2 Markov Decision Process
+3 Remarks
+J. Gong (SYSU) MDP Autumn 2022 2 / 43
+
+=== p3 ===
+Shortest Path Problem Problem and Algorithm
+Shortest Path Problem
+A set of nodes between s and t
+A path between nodes i and j with length aij
+If no path, aij = ∞
+Objective: Finding the shortest path from s to t
+. . .
+. . .
+. . .
+Initial Node
+s
+t
+Terminal
+Node
+i
+j
+a
+ij
+J. Gong (SYSU) MDP Autumn 2022 3 / 43
+
+=== p4 ===
+Shortest Path Problem Problem and Algorithm
+Problem Formulation
+System divided into stages k= 0,1,··· ,N
+In stage k, a control uk = µk(xk) is taken depending on state xk
+State xk = i←→node i, control uk = j ←→next node j
+Control sequence {u0,...,u N−1}←→path from s to t
+. . .
+. . .
+. . .
+Stage 0 Stage 1
+Stage 2 Stage
+N
+- 1 Stage
+N
+Initial Node
+s
+t
+Terminal
+Node
+. . .
+i
+j
+a
+ij
+J. Gong (SYSU) MDP Autumn 2022 4 / 43
+
+=== p5 ===
+Shortest Path Problem Problem and Algorithm
+DP Algorithm
+JN(i) =ait, i ∈SN,
+Jk(i) = min
+j∈Sk+1
+{aij + Jk+1(j)}, i ∈Sk,k = 0,...,N −1
+The minimum cost is equal to J0(s)
+. . .
+. . .
+. . .
+Stage 0 Stage 1
+Stage 2 Stage
+N
+- 1 Stage
+N
+Initial Node
+s
+t
+Terminal
+Node
+. . .
+i
+j
+a
+ij
+J. Gong (SYSU) MDP Autumn 2022 5 / 43
+
+=== p6 ===
+Shortest Path Problem Problem and Algorithm
+DP Algorithm
+JN(i) =ait, i ∈SN,
+Jk(i) = min
+j∈Sk+1
+{aij + Jk+1(j)}, i ∈Sk,k = 0,...,N −1
+The minimum cost is equal to J0(s)
+. . .
+. . .
+Stage 0 Stage 1
+Stage 2 Stage
+N
+- 1 Stage
+N
+Initial Node
+s
+t
+Terminal
+Node
+. . .
+i
+j
+a
+ij
+k
+l
+m
+1
+4
+3
+2
+J
+N
+(
+l
+)=1
+. . .
+J. Gong (SYSU) MDP Autumn 2022 6 / 43
+
+=== p7 ===
+Shortest Path Problem Problem and Algorithm
+DP Algorithm
+JN(i) =ait, i ∈SN,
+Jk(i) = min
+j∈Sk+1
+{aij + Jk+1(j)}, i ∈Sk,k = 0,...,N −1
+The minimum cost is equal to J0(s)
+. . .
+. . .
+Stage 0 Stage 1
+Stage 2 Stage
+N
+- 1 Stage
+N
+Initial Node
+s
+t
+Terminal
+Node
+. . .
+i
+j
+a
+ij
+k
+l
+m
+1
+4
+3
+2
+J
+N
+(
+l
+)=1
+J
+N
+(
+m
+)=4
+. . .
+J. Gong (SYSU) MDP Autumn 2022 7 / 43
+
+=== p8 ===
+Shortest Path Problem Problem and Algorithm
+DP Algorithm
+JN(i) =ait, i ∈SN,
+Jk(i) = min
+j∈Sk+1
+{aij + Jk+1(j)}, i ∈Sk,k = 0,...,N −1
+The minimum cost is equal to J0(s)
+. . .
+. . .
+Stage 0 Stage 1
+Stage 2 Stage
+N
+- 1 Stage
+N
+Initial Node
+s
+t
+Terminal
+Node
+. . .
+i
+j
+a
+ij
+k
+l
+m
+1
+4
+3
+2
+J
+N
+(
+l
+)=1
+J
+N
+(
+m
+)=4
+J
+N
+-1
+(
+k
+)=4
+. . .
+J. Gong (SYSU) MDP Autumn 2022 8 / 43
+
+=== p9 ===
+Shortest Path Problem Problem and Algorithm
+Forward DP Algorithm
+Observation: An optimal path s→t is also an optimal path t→s
+in a reverse shortest path problem where the direction of each arc
+is reversed and its length is left unchanged
+Forward DP algorithm (= backward DP algorithm for the reverse
+problem):
+˜JN(j) =asj, j ∈S1,
+˜Jk(j) = min
+i∈SN−k
+{
+aij + ˜Jk+1(i)
+}
+, j ∈SN−k+1,k = 1,...,N −1
+The optimal cost is
+˜J0(t) = min
+i∈SN
+{
+ait + ˜J1(i)
+}
+J. Gong (SYSU) MDP Autumn 2022 9 / 43
+
+=== p10 ===
+Shortest Path Problem Applications and Examples
+Application: Hidden Markov Models
+Markov chain with transition probabilities pij
+State transitions are hidden from view
+For each transition from i to j, we get an (independent)
+observation z with Prob. r(z; i,j)
+Trajectory estimation problem: Given the observation sequence
+ZN = {z1,z2,...,z N}, what is the most likely state transition
+sequence ˆXN = {ˆx0,ˆx1,..., ˆxN}
+max
+XN
+p(XN|ZN)
+We have
+p(XN|ZN) =p(XN,ZN)
+p(ZN)
+Maximizing p(XN|ZN) is equivalent with maximizing p(XN,ZN)
+J. Gong (SYSU) MDP Autumn 2022 10 / 43
+
+=== p11 ===
+Shortest Path Problem Applications and Examples
+Viterbi Algorithm
+We have (using the “multiplication rule” for cond. probs)
+p(XN,ZN) =πx0
+N∏
+k=1
+pxk−1xk r(zk; xk−1,xk)
+Transform from product to sum by log function
+min −ln(πx0 ) −
+N∑
+k=1
+ln(pxk−1xk r(zk; xk−1,xk))
+This is a shortest path problem aij = −ln(pijr(zk; i,j))
+. . .
+. . .
+. . .
+s
+x
+0
+x
+1
+x
+2
+x
+N - 
+1
+x
+N
+t
+i
+j
+a
+ij
+J. Gong (SYSU) MDP Autumn 2022 11 / 43
+
+=== p12 ===
+Shortest Path Problem Applications and Examples
+Example: Convolutional Coding and Decoding
+Noisy communication channel
+▶ Data sequence wk ∈{0,1}
+▶ Codeword sequence yk ∈{0,1}n
+▶ Received sequence zk ∈{0,1}n
+▶ Decoded sequence ˆwk ∈{0,1}
+J. Gong (SYSU) MDP Autumn 2022 12 / 43
+
+=== p13 ===
+Shortest Path Problem Applications and Examples
+Example: Convolutional Coding and Decoding
+Convolutional Coding
+yk = Cxk−1 + dwk, k = 1,2,...
+xk = Axk−1 + bwk, k = 1,2,...
+xk ∈{0,1}m as system state, x0 is given.
+xk xk-1
+wk
+yk
+XA
++X
+b
+X
+d XC
++
+J. Gong (SYSU) MDP Autumn 2022 13 / 43
+
+=== p14 ===
+Shortest Path Problem Applications and Examples
+Example: Convolutional Coding and Decoding
+As an example, let m= 2,n = 3, and
+C =
+
+
+1 0
+0 1
+0 1
+
+,A =
+( 0 1
+1 1
+)
+,d =
+
+
+1
+1
+1
+
+,b =
+( 0
+1
+)
+State transition
+11
+10
+01
+New State xk
+00
+11
+10
+01
+Old State xk _1
+00
+The pair on each arc is the data/codeword pair wk/yk
+Form a trellis diagram.
+J. Gong (SYSU) MDP Autumn 2022 14 / 43
+
+=== p15 ===
+Shortest Path Problem Applications and Examples
+Example: Convolutional Coding and Decoding
+Maximum likelihood estimation
+max
+YN
+p(ZN|YN) = max
+y1,...,yN
+N∏
+k=1
+p(zk|yk) ⇔ min
+y1,...,yN
+N∑
+k=1
+−ln(p(zk|yk))
+p(z|y) is known (channel characteristics), yk is associated with
+state transition
+Shortest path problem (Viterbi Algorithm) in the trellis diagram
+from s to t, where the length of the arc associated with the
+codeword yk is −ln(p(zk|yk))
+The corresponding data sequence {ˆw1,..., ˆwN}is the decoded
+data.
+J. Gong (SYSU) MDP Autumn 2022 15 / 43
+
+=== p16 ===
+Shortest Path Problem General Shortest Path Algorithms
+General Shortest Path Algorithms
+DP is an exhaustive search algorithm
+There are many non-DP shortest path algorithms
+They may be preferable than DP if they avoid calculating the
+optimal cost-to-go of every state
+Essential for problems with huge state spaces (AlphaGo)
+. . .
+. . .
+. . .
+Stage 0 Stage 1
+Stage 2 Stage
+N
+- 1 Stage
+N
+Initial Node
+s
+t
+Terminal
+Node
+. . .
+i
+j
+a
+ij
+J. Gong (SYSU) MDP Autumn 2022 16 / 43
+
+=== p17 ===
+Shortest Path Problem General Shortest Path Algorithms
+Example: Traveling Salesman Problem
+Travel each of N cities exactly once and return to the origin with a
+minimum-mileage
+State in stage n: a sequence of n distinct cities
+The number of states grows exponentially with N
+1
+12 0
+20
+5
+3
+5
+4
+4
+15
+15
+3
+Artificial Terminal Node t
+ABC ABD ACB ACD ADB ADC
+ABCD
+AB AC AD
+ABDC ACBD ACDB ADBC ADCB
+Origin Node sA
+1
+11
+20 20
+2020
+44
+44
+15
+15 5
+5
+33
+5
+33
+15
+Figure: Distance between the
+four cities
+1
+12 0
+20
+5
+3
+5
+4
+4
+15
+15
+3
+Artificial Terminal Node t
+ABC ABD ACB ACD ADB ADC
+ABCD
+AB AC AD
+ABDC ACBD ACDB ADBC ADCB
+Origin Node sA
+1
+11
+20 20
+2020
+44
+44
+15
+15 5
+5
+33
+5
+33
+15
+J. Gong (SYSU) MDP Autumn 2022 17 / 43
+
+=== p18 ===
+Shortest Path Problem General Shortest Path Algorithms
+Label Correcting Methods
+Given: Origin s, destination t, length aij ≥0.
+Idea is to progressively discover shorter paths from the origin s to
+every other node i
+▶ di: Length of the shortest path found from s to i (initially
+ds = 0,di = ∞for i̸= s)
+▶ UPPER: The label dt of the destination
+▶ OPEN list: Contains nodes that are currently active in the sense that
+they are candidates for further examination (initially OPEN= {s})
+Step1 (Node Removal): Remove a node ifrom OPEN and for each
+child j of i, do step2
+Step2 (Node Insertion Test): If di + aij <min{dj,UPPER}, set
+dj = di + aij and set i to be the parent of j. In addition, if j ̸= t,
+place j in OPEN if it is not already in OPEN, while if j = t, set
+UPPER to the new value di + ait of dt
+Step3 (Termination Test): If OPEN is empty, terminate; else go to
+step1
+J. Gong (SYSU) MDP Autumn 2022 18 / 43
+
+=== p19 ===
+Shortest Path Problem General Shortest Path Algorithms
+Label Correcting Methods: Example
+ABC
+ABD ACB ACD ADB ADC
+ABCD
+AB AC
+AD
+ABDC ACBD ACDB ADBC ADCB
+Artificial Terminal Node 
+t
+Origin Node 
+s
+A
+1
+1
+1
+20
+20
+20
+20
+4
+4
+44
+15
+15 5
+5
+33
+5
+3
+3
+15
+Iter. No. Node Exiting OPEN OPEN after Iteration UPPER
+0- 1
+∞
+1 1 2, 7,10
+∞
+2 2 3, 5, 7, 10
+∞
+3 3 4, 5, 7, 10
+∞
+4 4 5, 7, 10 43
+5 5 6, 7, 10 43
+6 6 7, 10 13
+7 7 8, 10 13
+8 8 9, 10 13
+9 9 10 13
+10 10 Empty 13
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+J. Gong (SYSU) MDP Autumn 2022 19 / 43
+
+=== p20 ===
+Shortest Path Problem General Shortest Path Algorithms
+Speciﬁc Label Correcting Methods
+Based on the order of node removal
+Breadth-ﬁrst search
+▶ ﬁrst-in/ﬁrst-out
+Depth-ﬁrst search
+▶ last-in/ﬁrst-out
+Best-ﬁrst search (Dijkstra’s method)
+▶ remove a node with minimum label
+i= arg min
+j in OPEN
+dj
+▶ Beneﬁt: a node will enter the OPEN list at most once
+▶ Overhead: ﬁnd the node with minimum label in each iteration
+J. Gong (SYSU) MDP Autumn 2022 20 / 43
+
+=== p21 ===
+Shortest Path Problem General Shortest Path Algorithms
+Label Correcting Variations
+Non-trivial initialization
+▶ Initialize a “good” path P = (s,i1,··· ,ik,t)
+▶ Initialize labels as
+di =
+{ Length of portion of pathP from s to i if i∈P
+∞ if i /∈P
+and UPPER = {dt}, OPEN = {s,i1,··· ,ik}
+A∗Algorithm
+▶ Place a node j in OPEN only when di + aij + hj <UPPER, where
+hj is a positive underestimate of the shortest distance from j to the
+destination
+Branch-and-bound
+▶ Update UPPER if dj + mj <UPPER, where mj is an upper bound
+of the shortest distance from j to the destination
+J. Gong (SYSU) MDP Autumn 2022 21 / 43
+
+=== p22 ===
+Markov Decision Process
+Outline
+1 Shortest Path Problem
+2 Markov Decision Process
+3 Remarks
+J. Gong (SYSU) MDP Autumn 2022 22 / 43
+
+=== p23 ===
+Markov Decision Process Introduction
+Review of Markov Chain
+Example of Markov Chain:
+4.2 Classiﬁcation of states 163
+since, for each side of the equation, any given set of values for Zn−1, ... , Zn−m+1 on
+the right-hand side of the conditioning sign speciﬁes those values on the left-hand side.
+Thus if we deﬁne Xn−1 = (Zn−1, ... , Zn−m) for each n, this simpliﬁes to
+Pr{Xn | Xn−1, ... , Xm−1} = Pr{Xn | Xn−1} .
+We see that by expanding the state space to include m-tuples of the rv s Zn,w eh a v e
+converted the m dependence over time to a unit dependence over time, i.e., a Markov
+chain is deﬁned using the expanded state space.
+Note that in this new Markov chain, the initial state isXm−1 = (Zm−1, ... , Z0), so one
+might want to shift the time axis to start with X0.
+Markov chains are often described by a directed graph (see Figure4.1(a)). In this graph-
+ical representation, there is one node for each state and a directed arc for each non-zero
+transition probability. If Pij = 0, then the arc from node i to node j is omitted, so the
+difference between zero and non-zero transition probabilities stands out clearly in the
+graph. The classiﬁcation of states, as discussed in Section 4.2, is determined by the set
+of transitions with non-zero probabilities, and thus the graphical representation is ideal
+for that topic.
+A ﬁnite-state Markov chain is also often described by a matrix [P] (see Figure 4.1(b)).
+If the chain has M states, then [ P]i sa n M × M matrix with elements Pij. The matrix
+representation is ideally suited for studying algebraic and computational issues.
+4.2 Classiﬁcation of states
+This section, except where indicated otherwise, applies to Markov chains with both
+ﬁnite and countable state spaces. We start with several deﬁnitions.
+Deﬁnition 4.2.1 An (n-step)walk is an ordered string of nodes,(i0, i1, ... , in),n ≥ 1,
+in which there is a directed arc from im−1 to im for each m,1 ≤ m ≤ n. Apath is a walk
+in which no nodes are repeated. Acycle is a walk in which the ﬁrst and last nodes are
+the same and no other node is repeated.
+1
+P11
+5
+P55
+2 3
+(a)
+4
+P44
+6
+P12
+P41
+P23
+P32
+P45
+P63
+P65
+(b)
+[P]=
+⎡
+⎢⎢⎢⎣
+P11 P12 ··· P16
+P21 P22 ··· P26
+... ... ... ... ... ...
+P61 P62 ··· P66
+⎤
+⎥⎥⎥⎦
+Figure 4.1 (a) Graphical and (b) matrix representations of a six-state Markov chain; a directed arc fromi to j
+is included in the graph if and only if Pij > 0.
+In many problems, the state transition can be controlled
+Control decision in each state incurs a cost/reward
+J. Gong (SYSU) MDP Autumn 2022 23 / 43
+
+=== p24 ===
+Markov Decision Process Introduction
+Markov Decision Process
+Markov decision process (MDP): a “controlled” Markov chain
+4.6 Markov decision theory and dynamic programming
+189
+=
+n
+−
+2
+∑
+h
+=
+0
+[
+P
+h
+]
+r
++
+[
+P
+n
+−
+1
+]
+(
+r
++
+[
+P
+]
+w
+)
+=
+n
+−
+2
+∑
+h
+=
+0
+[
+P
+h
+]
+r
++
+[
+P
+n
+−
+1
+]
+(
+g
+e
++
+w
+)
+=
+v
+(
+n
+−
+1,
+w
+)
++
+g
+e
+,
+where the last step uses (
+4.38
+) plus the fact that
+e
+is a right eigenvector of any stochastic
+matrix. Using induction, this implies (
+4.39
+).
+To establish (
+4.40
+), note from (
+4.38
+) that
+v
+(
+n
+,
+u
+)
+−
+v
+(
+n
+,
+w
+)
+=
+[
+P
+n
+](
+u
+−
+w
+).
+Then (
+4.40
+) follows by using (
+4.39
+) for the value of
+v
+(
+n
+,
+w
+).
+4.6 Markov decision theory and dynamic programming
+In the previous section, we analyzed the behavior of a Markov chain with rewards. In
+this section, we consider a much more elaborate structure in which a decision maker
+can choose among various possible rewards and transition probabilities. In place of the
+reward
+r
+i
+and the transition probabilities
+{
+P
+ij
+;1
+≤
+j
+≤
+M
+}
+associated with a given state
+i
+, there is a choice between some number
+K
+i
+of different rewards, say
+r
+(1)
+i
+,
+r
+(2)
+i
+,
+...
+,
+r
+(
+K
+i
+)
+i
+and a corresponding choice between
+K
+i
+different sets of transition probabilities, say
+{
+P
+(1)
+ij
+;1
+≤
+j
+≤
+M
+}
+,
+{
+P
+(2)
+ij
+,1
+≤
+j
+≤
+M
+}
+,
+...
+,
+{
+P
+(
+K
+i
+)
+ij
+;1
+≤
+j
+≤
+M
+}
+. At each time
+m
+, a decision
+maker, given
+X
+m
+=
+i
+, selects one of the
+K
+i
+possible choices for state
+i
+. Note that if
+decision
+k
+is chosen in state
+i
+, then the reward is
+r
+(
+k
+)
+i
+and the transition probabilities from
+i
+are
+{
+P
+(
+k
+)
+ij
+;1
+≤
+j
+≤
+M
+}
+; it is not permissable to choose
+r
+(
+k
+)
+i
+for one
+k
+and
+{
+P
+(
+k
+)
+ij
+;1
+≤
+j
+≤
+M
+}
+for another
+k
+. We also assume that if decision
+k
+is selected at time
+m
+, the probability of
+entering state
+j
+at time
+m
++
+1i s
+P
+(
+k
+)
+ij
+, independent of earlier states and decisions.
+Figure
+4.10
+shows an example of this situation in which the decision maker can
+choose between two possible decisions in state 2 (
+K
+2
+=
+2), and has no freedom of
+choice in state 1 (
+K
+1
+=
+1). This ﬁgure illustrates the familiar tradeoff between instant
+gratiﬁcation (alternative 2) and long-term gratiﬁcation (alternative 1).
+The set of rules used by the decision maker in selecting an alternative at each time
+is called a
+policy
+. We want to consider the expected aggregate reward over
+n
+steps of
+the ‘Markov chain’ as a function of the policy used by the decision maker. If for each
+Figure 4.10
+A Markov decision problem with two alternatives in state 2.
+0
+.
+99
+ 
+0
+.
+01
+ 
+0
+.
+99
+  
+1
+ 
+2
+r
+1
+=0
+ 
+0
+.
+01
+ 
+r
+(1
+2
+ 
+)
+=1
+  
+              
+Decision
+ 
+1
+0
+.
+99
+ 
+0
+.
+01
+  
+1
+ 
+2
+r
+1
+=0
+ 
+1
+ 
+r
+(2
+2
+ 
+)
+=50
+  
+            
+Decision
+ 
+2
+Objective: determine a set of state-dependent decisions to
+minimize total cost/maximize total reward
+Problem formulation: long-term optimization problem
+Tradeoﬀ between instant gratiﬁcation and long-term gratiﬁcation
+J. Gong (SYSU) MDP Autumn 2022 24 / 43
+
+=== p25 ===
+Markov Decision Process Model and Formulation
+Markov Decision Process (Finite Horizon)
+Discrete-time system with stage k
+xk+1 = fk(xk,uk,wk), k = 0,1,...,N −1
+xk: State of the system (also termed as sk)
+uk: Action to be selected (also termed as ak)
+fk: State transition function with random parameter wk, usually
+described implicity by controlled transition prob. pij(u)
+gk: Cost function that is additive over time
+gk(xk,uk,wk), k = 0,1,...,N −1 andgN(xN)
+J. Gong (SYSU) MDP Autumn 2022 25 / 43
+
+=== p26 ===
+Markov Decision Process Model and Formulation
+Problem Formulation
+Policy: π= {µ0,...,µ N−1}(maybe random), such that
+uk = µk(xk) ∈Uk(xk)
+Expected cost of π starting at x0 is
+Jπ(x0) =E
+{N−1∑
+k=0
+gk(xk,µk(xk),wk) +gN(xN)
+}
+Objective: ﬁnd optimal policy π∗to achieve minimum cost J∗
+J∗(x0) = min
+π
+Jπ(x0) =Jπ∗(x0)
+Remark: Shortest path problem is a deterministic MDP
+J. Gong (SYSU) MDP Autumn 2022 26 / 43
+
+=== p27 ===
+Markov Decision Process Model and Formulation
+Markovian Assumptions
+uk depends at most on xk and not on prior x or u
+uk ∈Uk(xk)
+Probability distribution of wk does not depend on past values
+wk−1,...,w 0 but may depend on xk and uk
+Pk(wk|xk,uk)
+State transition depends only on the current state, control and
+randomness
+xk+1 = fk(xk,uk,wk)
+J. Gong (SYSU) MDP Autumn 2022 27 / 43
+
+=== p28 ===
+Markov Decision Process Examples
+Example 1: Controlled Markov Chain
+4.6 Markov decision theory and dynamic programming
+189
+=
+n
+−
+2
+∑
+h
+=
+0
+[
+P
+h
+]
+r
++
+[
+P
+n
+−
+1
+]
+(
+r
++
+[
+P
+]
+w
+)
+=
+n
+−
+2
+∑
+h
+=
+0
+[
+P
+h
+]
+r
++
+[
+P
+n
+−
+1
+]
+(
+g
+e
++
+w
+)
+=
+v
+(
+n
+−
+1,
+w
+)
++
+g
+e
+,
+where the last step uses (
+4.38
+) plus the fact that
+e
+is a right eigenvector of any stochastic
+matrix. Using induction, this implies (
+4.39
+).
+To establish (
+4.40
+), note from (
+4.38
+) that
+v
+(
+n
+,
+u
+)
+−
+v
+(
+n
+,
+w
+)
+=
+[
+P
+n
+](
+u
+−
+w
+).
+Then (
+4.40
+) follows by using (
+4.39
+) for the value of
+v
+(
+n
+,
+w
+).
+4.6 Markov decision theory and dynamic programming
+In the previous section, we analyzed the behavior of a Markov chain with rewards. In
+this section, we consider a much more elaborate structure in which a decision maker
+can choose among various possible rewards and transition probabilities. In place of the
+reward
+r
+i
+and the transition probabilities
+{
+P
+ij
+;1
+≤
+j
+≤
+M
+}
+associated with a given state
+i
+, there is a choice between some number
+K
+i
+of different rewards, say
+r
+(1)
+i
+,
+r
+(2)
+i
+,
+...
+,
+r
+(
+K
+i
+)
+i
+and a corresponding choice between
+K
+i
+different sets of transition probabilities, say
+{
+P
+(1)
+ij
+;1
+≤
+j
+≤
+M
+}
+,
+{
+P
+(2)
+ij
+,1
+≤
+j
+≤
+M
+}
+,
+...
+,
+{
+P
+(
+K
+i
+)
+ij
+;1
+≤
+j
+≤
+M
+}
+. At each time
+m
+, a decision
+maker, given
+X
+m
+=
+i
+, selects one of the
+K
+i
+possible choices for state
+i
+. Note that if
+decision
+k
+is chosen in state
+i
+, then the reward is
+r
+(
+k
+)
+i
+and the transition probabilities from
+i
+are
+{
+P
+(
+k
+)
+ij
+;1
+≤
+j
+≤
+M
+}
+; it is not permissable to choose
+r
+(
+k
+)
+i
+for one
+k
+and
+{
+P
+(
+k
+)
+ij
+;1
+≤
+j
+≤
+M
+}
+for another
+k
+. We also assume that if decision
+k
+is selected at time
+m
+, the probability of
+entering state
+j
+at time
+m
++
+1i s
+P
+(
+k
+)
+ij
+, independent of earlier states and decisions.
+Figure
+4.10
+shows an example of this situation in which the decision maker can
+choose between two possible decisions in state 2 (
+K
+2
+=
+2), and has no freedom of
+choice in state 1 (
+K
+1
+=
+1). This ﬁgure illustrates the familiar tradeoff between instant
+gratiﬁcation (alternative 2) and long-term gratiﬁcation (alternative 1).
+The set of rules used by the decision maker in selecting an alternative at each time
+is called a
+policy
+. We want to consider the expected aggregate reward over
+n
+steps of
+the ‘Markov chain’ as a function of the policy used by the decision maker. If for each
+Figure 4.10
+A Markov decision problem with two alternatives in state 2.
+0
+.
+99
+ 
+0
+.
+01
+ 
+0
+.
+99
+  
+1
+ 
+2
+r
+1
+=0
+ 
+0
+.
+01
+ 
+r
+(1
+2
+ 
+)
+=1
+  
+              
+Decision
+ 
+1
+0
+.
+99
+ 
+0
+.
+01
+  
+1
+ 
+2
+r
+1
+=0
+ 
+1
+ 
+r
+(2
+2
+ 
+)
+=50
+  
+            
+Decision
+ 
+2
+State: xk ∈{1,2}
+Action: U(1) ={1},U(2) ={1,2}
+State transition: pij(u)
+Cost function: r1 = 0,r(1)
+2 = 1,r(2)
+2 = 50
+Objective:
+min E
+(N∑
+k=0
+r(uk)
+xk
+)
+J. Gong (SYSU) MDP Autumn 2022 28 / 43
+
+=== p29 ===
+Markov Decision Process Examples
+Example 2: Inventory Control
+Ordering a quantity of a certain item in each period to meet a
+stochastic demand, while minimizing the expected cost
+uk
+Stock ordered at
+Period k
+Stock at Period k
+xk
+Stock at Period k + 1
+Inventory System
+Cost of Period k
+r(xk) + cuk
+xk + 1 = xk + uk - wk
+Demand at Period kwk
+J. Gong (SYSU) MDP Autumn 2022 29 / 43
+
+=== p30 ===
+Markov Decision Process Examples
+Example 2: Inventory Control
+State: stock xk available at the beginning of period k
+Action: stock uk ordered at the beginning of period k
+State transition: xk+1 = xk + uk −wk, where wk is the demand
+during period k
+Cost function: stock cost r(xk) and purchasing cost cuk
+Objective:
+min
+µ0,···µN−1
+E
+{N−1∑
+k=0
+(cµk(xk) +r(xk)) +R(xN)
+}
+J. Gong (SYSU) MDP Autumn 2022 30 / 43
+
+=== p31 ===
+Markov Decision Process Examples
+Example 3: Power Control
+Transmit M packets in N stages (N ≥M), at most one packet
+can be transmitted in each stage
+Finite state Markov channel hk ∈{0,1,··· ,L}
+Cost (transmit power) to transmit a packet:
+∞= p(0) >p(1) >p(2) >··· >p(L)
+Cost for remaining packet(s) at the end of N-th slot: K
+Wireless Channel
+ReceiverTransmitter
+J. Gong (SYSU) MDP Autumn 2022 31 / 43
+
+=== p32 ===
+Markov Decision Process Examples
+Example 3: Power Control
+State: xk = (mk,hk), mk - transmitted packets, hk - channel state
+Action uk: 1 (transmit) or 0 (not transmit)
+State transition: mk+1 = mk + uk,hk+1 ∼Pr(hk+1|hk)
+Cost function:
+gk(xk,uk) =ukp(hk), k<N
+gN(xN) =KImN <M
+J. Gong (SYSU) MDP Autumn 2022 32 / 43
+
+=== p33 ===
+Markov Decision Process Examples
+Example 4: Scheduling Problem
+Find optimal sequence of operations A,B,C,D
+A must precede B, and C must precede D
+Start up cost SA, SC
+Transition cost Cmn from operation m to operation n
+J. Gong (SYSU) MDP Autumn 2022 33 / 43
+
+=== p34 ===
+Markov Decision Process Examples
+Example 4: Scheduling Problem
+State xk = (u1,··· ,uk−1): series of operations up to stage
+k∈{1,··· ,4}, x1 = ∅
+Action uk: operation in stage k
+State transition: xk+1 = (xk,uk) (deterministic)
+Cost function:
+g1(u1) ∈{SA,SC}
+gk(xk,uk) =Cuk−1uk , k = 2,3,4
+J. Gong (SYSU) MDP Autumn 2022 34 / 43
+
+=== p35 ===
+Markov Decision Process Examples
+Example 4: Scheduling Problem (Deterministic)
+A
+S
+A
+C
+S
+C
+AB
+C
+AB
+AC
+C
+AC
+CDA
+C
+AD
+ABC
+CA
+C
+CD
+CD
+ACD
+ACB
+CAB
+CAD
+C
+BC
+C
+CB
+C
+CD
+C
+AB
+C
+CA
+C
+DA
+C
+CD
+C
+BD
+C
+DB
+C
+BD
+C
+DB
+C
+AB
+Initial
+State
+J. Gong (SYSU) MDP Autumn 2022 35 / 43
+
+=== p36 ===
+Markov Decision Process Solution: Dynamic Programming
+Principle of optimality
+Let π∗= {µ∗
+0,µ∗
+1,...,µ ∗
+N−1}be optimal policy
+Consider the tail subproblem whereby we are at xi at time i and
+wish to minimize the cost-to-go from time i to time N
+E
+{N−1∑
+k=i
+gk(xk,µk(xk),wk) +gN(xN)
+}
+and the “tail policy” {µ∗
+i,µ∗
+i+1,...,µ ∗
+N−1}
+Principle of optimality(Bellman): The tail policy is optimal for the
+tail subproblem (optimization of the future does not depend on
+what we did in the past)
+Dynamic Programming (DP) algorithm is based on this principle
+J. Gong (SYSU) MDP Autumn 2022 36 / 43
+
+=== p37 ===
+Markov Decision Process Solution: Dynamic Programming
+DP Algorithm
+Start with
+JN(xN) =gN(xN),
+and go backwards for k= N −1,N −2,··· ,0
+Jk(xk) = min
+uk
+Ewk {gk(xk,uk,wk) +Jk+1 (fk(xk,uk,wk))},
+where µ∗
+k(xk) minimizes the right side for each xk
+J0(x0) is equal to the optimal cost J∗(x0), and the optimal policy
+is
+π∗= {µ∗
+0,...,µ ∗
+N−1}
+Question: Computational Complexity? Storage Requirement?
+J. Gong (SYSU) MDP Autumn 2022 37 / 43
+
+=== p38 ===
+Markov Decision Process Solution: Dynamic Programming
+Deterministic v.s. Stochastic
+Deterministic DP
+JN(i) =ait,
+Jk(i) = min
+j∈Sk+1
+{aij + Jk+1(j)},
+for k= N −1,N −2,··· ,0
+Stochastic DP
+JN(xN) =gN(xN),
+Jk(xk) = min
+uk
+Ewk {gk(xk,uk,wk) +Jk+1 (fk(xk,uk,wk))},
+for k= N −1,N −2,··· ,0
+Deterministic DP is a special case of Stochastic DP
+J. Gong (SYSU) MDP Autumn 2022 38 / 43
+
+=== p39 ===
+Markov Decision Process Solution: Dynamic Programming
+Example 4: Solving Scheduling Problem
+ 
+A
+ 
+B
+ 
+C
+ 
+D
+ 
+A
+ 
+-
+ 
+2
+ 
+3
+ 
+4
+ 
+B
+ 
+-
+ 
+-
+ 
+3
+ 
+1
+ 
+C
+ 
+4
+ 
+4
+ 
+-
+ 
+6
+ 
+D
+ 
+3
+ 
+3
+ 
+-
+ 
+-
+ 
+ 
+A
+C
+AB
+AC
+CDA
+ABC
+CA
+CD
+ACD
+ACB
+CAB
+CAD
+Initial
+State
+10
+7
+6
+2
+8
+6
+6
+2
+2
+9
+3
+3
+3
+3
+3
+3
+5
+1
+5
+4
+4
+3
+1
+5
+4
+from
+to
+At each stage, we record the optimal cost-to-go and the optimal
+decision for each state
+J. Gong (SYSU) MDP Autumn 2022 39 / 43
+
+=== p40 ===
+Markov Decision Process More on Problem Formulation
+State Augmentation
+When Markovian assumptions are violated (e.g., disturbances are
+correlated, etc), reformulate/augment the state
+DP algorithm still applies, but the problem gets BIGGER
+Example: Historical dependent
+xk+1 = fk(xk,xk−1,uk,wk)
+Introduce additional state variable yk = xk−1. New system takes
+the form ( xk+1
+yk+1
+)
+=
+( fk(xk,yk,uk,wk)
+xk
+)
+View ˜xk = (xk,yk) as the new state, the problem is an MDP with
+larger state space
+J. Gong (SYSU) MDP Autumn 2022 40 / 43
+
+=== p41 ===
+Remarks
+Outline
+1 Shortest Path Problem
+2 Markov Decision Process
+3 Remarks
+J. Gong (SYSU) MDP Autumn 2022 41 / 43
+
+=== p42 ===
+Remarks
+Remarks
+Very powerful tool for sequential decision making
+▶ Insightful and well-structured solutions (Week 13)
+▶ Generalized problem for inﬁnite horizon and iterative solution (Week
+14)
+Model-based (should know state transition, cost function, etc.)
+The curse of dimensionality (e.g., AlphaGo, state augment, etc.)
+▶ Approximate DP (ADP) or Reinforcement learning (Week 15)
+J. Gong (SYSU) MDP Autumn 2022 42 / 43
+
+=== p43 ===
+Remarks
+Homework
+J. Gong (SYSU) MDP Autumn 2022 43 / 43
+

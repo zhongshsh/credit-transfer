@@ -1,0 +1,2310 @@
+# SP15  Stopping Times for Repeated Experiments
+# Pages: 40
+
+=== p1 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+随机过程
+马啸
+中山大学计算机学院
+2022 年秋
+马啸 (SYSU) 随机过程 2022 年秋 1 / 40
+
+=== p2 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Chapter 5. Renewal processes
+Review
+§ 5.5 Stopping times for repeated experiments
+马啸 (SYSU) 随机过程 2022 年秋 2 / 40
+
+=== p3 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Definition 1
+For a renewal process{N(t); t > 0}, theresidual lifeY(t) at timet is the
+remaining time until the next renewal, i.e.,Y(t) =SN(t)+1 − t.
+lim
+t→∞
+R t
+0 Y(τ)dτ
+t = E[X2]
+2E[X] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 3 / 40
+
+=== p4 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Definition 2
+Let Z(t) be the age of a renewal process at timet where age is defined as
+the interval from the most recent arrival before (or at)t until t, i.e.,
+Z(t) =t − SN(t).
+lim
+t→∞
+R t
+0 Z(τ)dτ
+t = E[X2]
+2E[X] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 4 / 40
+
+=== p5 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Definition 3
+Let eX(t) be theduration of the inter-renewal interval containing timet,
+i.e., eX(t) =XN(t)+1 = SN(t)+1 − SN(t).
+It is clear thateX(t) =Y(t) +Z(t).
+lim
+t→∞
+R t
+0
+eX(τ)dτ
+t = E[X2]
+E[X] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 5 / 40
+
+=== p6 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Review
+Consider the rewardR(t) at timet is given explicitly as a functionR(Z(t), eX(t))
+of the age and duration att.
+We first defineRn as the accumulated reward in thenth renewal interval,
+Rn ≜
+Z Sn
+Sn−1
+R(τ)dτ =
+Z Xn
+z=0
+R(z, Xn )dz.
+This is a function only of the rv.Xn .
+Theorem 1
+Let {R(t); t > 0} be a renewal-reward function for a renewal process with
+expected inter-renewal timeE[X] =X < ∞. If eachRn is a r.v. with
+E[|Rn |] < ∞, then
+lim
+t→∞
+1
+t
+Z t
+τ=0
+R(τ)dτ = E[Rn ]
+X WP1.
+马啸 (SYSU) 随机过程 2022 年秋 6 / 40
+
+=== p7 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments
+Chapter 5. Renewal processes
+Review
+§ 5.5 Stopping times for repeated experiments
+5.5.1 Wald’s equality
+5.5.2 Applying Wald’s equality to E[N(t)]
+5.5.3 Generalized stopping trials, embedded renewals and
+G/G/1 queues
+5.5.4 Little’s theorem
+5.5.5 M/G/1 queues
+马啸 (SYSU) 随机过程 2022 年秋 7 / 40
+
+=== p8 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments
+§ 5.5 Stopping times for repeated experiments
+Definition 4
+A stopping trial(or stopping time) J for a sequence{Xn; n ⩾ 1} of r.v.s is
+a positive integer-valued r.v. such that for eachn ⩾ 1, the indicator r.v.
+I{J=n} is a function of{X1, X2, . . . , Xn}. (We can relax the definition
+further to allowJ to be a possibly defective r.v..)
+马啸 (SYSU) 随机过程 2022 年秋 8 / 40
+
+=== p9 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments
+§ 5.5 Stopping times for repeated experiments
+Examples:
+A gambler goes to a casino and gambles until broke.
+Flip a coin until10 successive heads appear.
+Test an hypothesis with repeated trials until one or the other
+hypothesis is suﬀiciently probable a posteriori.
+我们可能需要从几个假设中选择一个，为此需要重复做试验直到足
+以区分这些假设。如果允许这个试验次数依赖于试验结果，则试验
+次数通常只是预先设定的次数的很小一部分。
+树搜索过程中，如果某些路径再搜索下去没有收益的话，也可以停
+下来。
+马啸 (SYSU) 随机过程 2022 年秋 9 / 40
+
+=== p10 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments
+§ 5.5 Stopping times for repeated experiments
+独立掷一个均匀的骰子。令 Xn 表示第 n 次所得点数。令
+Sn = X1 + X2 + · · · + Xn。定义一个正整数变量 J，J = n 当且仅当
+Sn > 6.
+说明 J 是一个停止时间。
+计算 {J < 3} 的概率。
+计算 {J ≥ 3} 的概率。
+计算在给定 X3 = 6 的条件下，{J ≥ 3} 的概率。
+马啸 (SYSU) 随机过程 2022 年秋 10 / 40
+
+=== p11 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments
+§ 5.5 Stopping times for repeated experiments
+Suppose the rv.sXi in a process{Xn ; n ⩾ 1} have a finite number of possible
+sample values. Then any (possibly defective) stopping trialJ can be represented
+as a rooted tree where the trial at which each sample path stops is represented by
+a terminal node.
+Exmaple 3
+For a Bernoulli process{Xn ; n ⩾ 1}, stopping occurs when the pattern(1, 0) first
+occurs.
+马啸 (SYSU) 随机过程 2022 年秋 11 / 40
+
+=== p12 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+Theorem 2 (Wald’s equality)
+Let {Xn; n ⩾ 1} be a sequence of i.i.d. r.v.s, each of meanX.
+If J is a stopping trial for{Xn; n ⩾ 1} and ifE[J] < ∞, then the sum
+SJ = X1 + X2 + · · · + XJ at the stopping trialJ satisfies
+E[SJ] =XE[J].
+思考题:
+掷一个骰子，点数记为 J。接着再掷 J 次骰子，点数分别记为
+X1, X2, · · · , XJ。若骰子是均匀的，且各次投掷是独立的，求 E[SJ]。
+马啸 (SYSU) 随机过程 2022 年秋 12 / 40
+
+=== p13 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+Theorem 2 (Wald’s equality)
+Let {Xn; n ⩾ 1} be a sequence of i.i.d. r.v.s, each of meanX.
+If J is a stopping trial for{Xn; n ⩾ 1} and ifE[J] < ∞, then the sum
+SJ = X1 + X2 + · · · + XJ at the stopping trialJ satisfies
+E[SJ] =XE[J].
+Proof:
+SJ =
+JX
+n=1
+Xn =
+∞X
+n=1
+Xn I{J⩾n}.
+E[SJ ] =E
+hX
+n
+Xn I{J⩾n}
+i
+=
+X
+n
+E
+
+Xn I{J⩾n}
+
+The essence of the proof is to show thatXn and I{J⩾n} are independent.
+马啸 (SYSU) 随机过程 2022 年秋 13 / 40
+
+=== p14 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+To show thatXn and I{J⩾n} are independent, note that
+I{J⩾n} = 1− I{J<n}.
+Also I{J<n} is a function ofX1, . . . , Xn−1. Since the isXi are i.i.d.,Xn is
+independent ofX1, . . . , Xn−1, and thusI{J<n}, and thus ofI{J⩾n}.
+Therefore,
+E[SJ ] =
+X
+n
+E[Xn I{J⩾n}]
+=
+X
+n
+E[Xn ]E[I{J⩾n}]
+=X
+X
+n
+E[I{J⩾n}]
+=X
+X
+n
+Pr{J ⩾ n} = XE[J].
+马啸 (SYSU) 随机过程 2022 年秋 14 / 40
+
+=== p15 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+思考题：成功概率p 的 Bernoulli 试验，首次成功平均需要几次试验？你
+能想到多少种解法？
+Example 4: Stop when you are ahead
+Consider tossing a coin with probability of heads equal top. $1 is bet on
+each toss and you win on heads, lose on tails. You stop when your
+winnings reach $1.
+We can model it as a sequence of i.i.d. rv.sX1, X2, . . . , where eachXi is 1
+with probablityp and −1 with probablity1 − p. Consider the
+possibly-defective stopping trialJ, whereJ is the firstn for which
+Sn = X1 + · · · + Xn = 1, i.e., the first trial at which the gambler is ahead.
+马啸 (SYSU) 随机过程 2022 年秋 15 / 40
+
+=== p16 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+令 θ = Pr{J < ∞}. 则 θ = p + (1− p)θ2, 解得 θ = 1或者 θ = p/(1 − p).
+Consider p > 1/2.
+对应的解是 θ = 1, 因为后者不是概率。从另外角度，Your winnings (in
+the absence of stopping) would grow without bound, passing through1, so
+J must be a rv..SJ = 1 WP1, soE[SJ] = 1.
+Thus, we have
+E[J] = 1/X = 1
+2p − 1.
+On the other hand, note thatJ = 1 with probabilityp. If J > 1, i.e., if
+S1 = −1, then the only way to reachSn = 1 is to go fromS1 = −1 to
+Sm = 0 for somem (requiring J steps on average);J more steps on
+average then gets to 1. Thus
+J = p + (1− p)(1 + 2J),
+which impliesJ = 1
+2p−1 .
+马啸 (SYSU) 随机过程 2022 年秋 16 / 40
+
+=== p17 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+Consider p < 1/2.
+θ = p/(1 − p) 是正确的解, θ = 1 不是。Thus J is defective and Wald’s
+equation is inapplicable.
+马啸 (SYSU) 随机过程 2022 年秋 17 / 40
+
+=== p18 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Wald’s Equality
+5.5.1 Wald’s Equality
+Consider p = 1/2.
+In the limit asp approaches 1/2 from below,
+Pr{J < ∞} = p/(1 − p) → 1. However, asp approaches 1/2 from above,
+we see thatE[J] = 1/(2p − 1) → ∞.
+Wald’s equality does not hold here, sinceE[J] =∞, and in fact does not
+make sense sinceX = 0.
+领先的概率是 1，但有两个问题：一，平均时间是无穷；二、潜在资本
+风险。
+马啸 (SYSU) 随机过程 2022 年秋 18 / 40
+
+=== p19 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Generalized stopping trials, embedded renewals and G/G/1 queues
+5.5.3 Generalized stopping trials
+Definition 5
+A generalized stopping trialJ for a sequence of pairs of r.v.s
+(X1, Y1), (X2, Y2), . . . is a positive integer-valued r.v. such that, for each
+n ⩾ 1, IJ=n is a function ofX1, Y1, X2, Y2, . . . , Xn, Yn.
+It follows thatIJ<n = 1− IJ⩾n is a function ofX1, Y1, . . . , Xn−1, Yn−1.
+Theorem 3 (Generalized Wald’s equality)
+Let {(Xn, Yn); n ⩾ 1} be a sequence of pairs of r.v.s, where each pair is
+i.i.d. to all other pairs. Assume that eachXi has finite meanX. If J is a
+stopping trial for{(Xn, Yn); n ⩾ 1} and ifE[J] < ∞, then the sum
+SJ = X1 + X2 + · · · + XJ satisfies
+E[SJ] =XE[J].
+Remark: Also eachYi can be replaced by a vector of rv.s.
+马啸 (SYSU) 随机过程 2022 年秋 19 / 40
+
+=== p20 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Generalized stopping trials, embedded renewals and G/G/1 queues
+5.5.3 G/G/1 queues
+The interarrival times are i.i.d..Let {Xi; i ⩾ 1} denote the sequence
+of i.i.d. interarrival intervals, whereXi is the interval from the arrival
+of customeri − 1 to i.
+The service times are i.i.d. and independent of the interarrival times.
+Let {Vi; i ⩾ 0} denote the i.i.d. required service times for these
+customers; these service times are independent of the interarrival
+times.
+Customer 0 arrives at time 0 and immediately enters the server.
+Subsequent arrivals are stored in a queue if the server is busy.
+Each enqueued arrival enters the server, infirst-come-first-served
+(FCFS) order, when the server completes the previous service.
+马啸 (SYSU) 随机过程 2022 年秋 20 / 40
+
+=== p21 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Generalized stopping trials, embedded renewals and G/G/1 queues
+5.5.3 G/G/1 queues
+For Customer1, ifX1 < V0, then the first arrival waits in queue for
+Wq
+1 = V0 − X1. Otherwise, customer 1 enters service immediately.
+Thus
+Wq
+1 = max{V0 − X1, 0}.
+For customeri, （在系统里呆的时间 = 排队时间 + 窗口时间）
+Wq
+i = max{Wq
+i−1 + Vi−1 − Xi, 0}.
+马啸 (SYSU) 随机过程 2022 年秋 21 / 40
+
+=== p22 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Generalized stopping trials, embedded renewals and G/G/1 queues
+5.5.3 G/G/1 queues
+Consider the first arrival (s3 above) that starts a new busy period as a generalized
+stopping trial.
+The sequence of paired rv. is(X1, V0), (X2, V1), . . . .
+J is the smallestn for whichPn
+i=1(Xi − Vi−1) ⩾ 0.
+If E[X] > E[V], thenlimn→∞ Pr{Pn
+i=1(Xi − Vi−1) ⩾ 0} = 1. Thus J is a
+non-degenerate stopping trial.
+If E[J] < ∞, then the generalized Wald’s equality holds andE[SJ ] < ∞.
+马啸 (SYSU) 随机过程 2022 年秋 22 / 40
+
+=== p23 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Generalized stopping trials, embedded renewals and G/G/1 queues
+5.5.3 G/G/1 queues
+The intervals between new busy periods form a renewal process.
+Conditional onJ = j, letX2,k = Xj+k, V2,k−1 = Vj+k−1 for k ⩾ 1, then
+{(X2,k, V2,k−1); k ⩾ 1} is a sequence of i.i.d. pairs with the original
+distribution and statistically independent ofJ and (Xi, Vi−1); 1⩽ i ⩽ J.
+Theorem 4
+Consider a G/G/1 queue with finite expected interarrival timeE[X] and
+finite expected service timeE[V] < E[X]. Then the subsequence of arrivals
+that see an empty system forms a renewal process. The expected number
+of arrivalsE[J] between arrivals to an empty system is finite and the
+expected time between successive busy periods (i.e., the expected
+inter-renewal time) is equal toE[J]E[X].
+马啸 (SYSU) 随机过程 2022 年秋 23 / 40
+
+=== p24 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Generalized stopping trials, embedded renewals and G/G/1 queues
+5.5.3 G/G/1 queues
+Remark:
+The intervals between new busy periods form a renewal process. We
+then have one renewal process embedded in another. Call one the
+arrival process and the other the renewal process. The renewal
+process embodies both arrivals and services.
+Although successive pairs(Xi, Yi) are assumed independent, it is not
+necessary forXi and Yi to be independent. This lack of independency
+does not occur for the G/G/1 (or G/G/m) queue.
+Nothing in the argument above for the G/G/1 queue made any use of
+the FCFS service discipline. One can use any service discipline for
+which the choice of which customer to serve at a given timet is based
+solely on the arrival and service times of customers in the system by
+time t.
+马啸 (SYSU) 随机过程 2022 年秋 24 / 40
+
+=== p25 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+5.5.4 Little’s Theorem
+Consider a queueing system where the arrival process is a renewal process
+A(t). Assume an arrival at time 0, thusA(t) =N(t) + 1.
+The service process can be almost anything, but assume a G/G/1 queue to
+be specific, denoted byD(t).
+Assume the system empties out eventually WP1 and that it restarts on the
+next arrival.
+We have seen that not only are the inter-renewal intervalsXr
+i = Sr
+i − Sr
+i−1
+i.i.d., but also the numbers of customer arrivals in the subsequent
+inter-renewal intervals are i.i.d..
+马啸 (SYSU) 随机过程 2022 年秋 25 / 40
+
+=== p26 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+5.5.4 Little’s Theorem
+Let L(τ) =A(τ) − D(τ).
+This depends on the departure process, but its value is a function of the
+inter-arrivals and service times within the current inter-renewal period.
+Thus it can be viewed as a generalized renewal-reward function onNr(t).
+The total reward within an inter-renewal periodLn is then the integral of
+L(τ) over that period.
+马啸 (SYSU) 随机过程 2022 年秋 26 / 40
+
+=== p27 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+5.5.4 Little’s Theorem
+For the sample value in the figure, this integral is
+Z sr
+1
+0
+L(τ)dτ = w0 + w1 + w2.
+We can see that Z Sr
+1
+0
+L(τ)dτ =
+N(Sr
+1)−1X
+i=0
+Wi.
+The same relationship exists in each inter-renewal interval, and in
+particular we defineLn for eachn ⩾ 1.
+Ln ≜
+Z Sr
+n
+Sr
+n−1
+L(τ)dτ =
+N(Sr
+n )−1X
+i=N(Sr
+n−1)
+Wi .
+马啸 (SYSU) 随机过程 2022 年秋 27 / 40
+
+=== p28 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+The functionL(τ) has the same behaviour as a renewal reward function,
+but it is slightly more general, being a function of more than the age of
+duration the renewal of the renewal counting process{Nr(t); t ≥ 0} at
+t = τ.
+However, the fact that{Ln; n ≥ 1} is an IID sequence lets us use the same
+methodology to treatL(τ) as was used earlier to treat renewal-reward
+functions.
+马啸 (SYSU) 随机过程 2022 年秋 28 / 40
+
+=== p29 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+5.5.4 Little’s Theorem
+Theorem 5 (Little’s theorem)
+For a FCFS G/G/1 queue in which the expected inter-renewal interval is
+finite, the limiting time-average number of customers in the system is
+equal, WP1, to a constant denoted asL. The sample-path-average
+waiting time per customer is also equal, WP1, to a constant denoted as
+W. Finally L = λW where λ is the customer arrival rate, i.e., the
+reciprocal of the expected interarrival time.
+proof:
+Nr (t)X
+n=1
+Ln ⩽
+Z t
+τ=0
+L(τ)dτ ⩽
+N(t)X
+i=0
+Wi ⩽
+Nr (t)+1X
+n=1
+Ln.
+lim
+t→∞
+PN(t)
+i=0 Wi
+t = lim
+t→∞
+R t
+τ=0 L(τ)dτ
+t = E[Ln]
+E[Xr] WP1.
+马啸 (SYSU) 随机过程 2022 年秋 29 / 40
+
+=== p30 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+5.5.4 Little’s Theorem
+Thus, the limiting time average ofL(τ) exists WP1 and is equal to
+L = E[Ln ]/E[Xr ].
+On the other hand, we have
+lim
+t→∞
+PN(t)
+i=0 Wi
+t = lim
+t→∞
+PN(t)
+i=0 Wi
+N(t) lim
+t→∞
+N(t)
+t .
+The left term exists (and equalsL) WP1.
+The second limit on the right also exist WP1 by the strong law for renewal
+process. This limit is called the arrival rateλ = 1/X.
+Thus the first limit on the right, which is the sample-path-average waiting
+time per customer, denotedW, also exists WP1.
+Thus, we haveL = λW.
+(直观意义：系统人数等于到达速率 * 呆在系统的时间)。
+马啸 (SYSU) 随机过程 2022 年秋 30 / 40
+
+=== p31 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments Little’s theorem
+5.5.4 Little’s Theorem
+Remark:
+In essence, Little’s theorem is an accounting identity. Over a busy
+period and the following idle period (i.e., an inter-renewal period),R
+L(τ)dτ = P
+i Wi. The diﬀicult thing, mathematically, was showing
+that {Nr(t); t > 0} is actually a renewal process and showing that the
+Ln are i.i.d., and this was where we needed to understand stopping
+rules.
+The question is not whetherL = λW, but whether these quantities
+exist as sensible time averages WP1 or as limiting ensemble averages.
+It is clear that FCFS order is not required for the argument. Thus the
+theorem generalizes to systems with multiple servers and arbitrary
+service disciplines in which customers do not follow FCFS order.
+马啸 (SYSU) 随机过程 2022 年秋 31 / 40
+
+=== p32 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+5.5.5 M/G/1 queues
+The arrival sequence{Xi ; i ⩾ 1} is Poisson with rateλ = 1/X.
+Let {Vi ; i ⩾ 0} be the sequence of service requirements; these are i.i.d. and
+also independent of the arrivals.
+Assume thatX > V > 0.
+the first arrivalJ > 0 to see an empty system is the smallestn > 0 for whichPn
+i=1(Xi − Vi−1) ⩾ 0.
+Theorem 6
+For an M/G/1 queue withV < X < ∞, the expected number of arrivalsE[J] and
+the expected timeXE[J] between successive initiations of busy periods is given by
+E[J] = X
+X − V , XE[J] = X
+2
+X − V .
+马啸 (SYSU) 随机过程 2022 年秋 32 / 40
+
+=== p33 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+5.5.5 M/G/1 queues
+Proof:
+By the memorylessness of the Poisson process, the time from the
+completion of service of customerJ − 1 to the arrival of customerJ is
+exponential with meanX. What this means is that
+E
+" JX
+i=1
+Xi −
+J−1X
+i=0
+Vi
+#
+= X.
+Applying Wald’s equality to{Xi − Vi−1; i ⩾ 1}, we see that
+(X − V)E[J] =X.
+Thus,
+E[J] = X
+X − V , XE[J] = X
+2
+X − V .
+马啸 (SYSU) 随机过程 2022 年秋 33 / 40
+
+=== p34 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+The Pollaczek-Khinchin formula for M/G/1 queues
+Assume that the service timeV has a finite second momentE[V2] < ∞.
+Let Lq (t) be the number of customers in queue and letR(t) be the residual
+life of the customer in service.
+Let U(t) be the waiting time in queue that would be experienced by a
+customer arriving at timet, assuming FCFS service.
+Thus,
+U(t) =
+Lq (t)−1X
+i=0
+VN(t)−i + R(t).
+Note that if the queue containsLq (t) ⩾ 1 customers at timet, then customer
+number N(t) is at the back of the queue and customer numberN(t) − Lq (t) + 1
+is at the front.截至 t, 共有 N(t) 客户到达，而队列长度是Lq (t), 完成服务或正
+在接受服务的顾客数目是 N(t) − Lq (t), 因此此时排在队首的是
+N(t) − Lq (t) + 1，而队尾的是 N(t)。
+马啸 (SYSU) 随机过程 2022 年秋 34 / 40
+
+=== p35 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+The Pollaczek-Khinchin formula for M/G/1 queues
+Since the service times and inter-arrival times of these completed services
+are independent of the service times of the customers in the queue, and
+thus, givenLq(t) =ℓ,
+E
+2
+4
+Lq (t)−1X
+i=0
+VN(t)−i
+
+Lq(t) =ℓ
+3
+5 = ℓV.
+Taking the expectation overLq(t),
+E[U(t)] =E[Lq(t)]V + E[R(t)].
+We first calculate the time average ofR(t) by viewing it as a reward
+function.
+马啸 (SYSU) 随机过程 2022 年秋 35 / 40
+
+=== p36 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+The Pollaczek-Khinchin formula for M/G/1 queues
+Note thatSr
+Nr (t) is not only a renewal epoch for the renewal process, but
+also an arrival epoch for the arrival process; in particular, it is the
+N(Sr
+Nr (t))-th arrival epoch, and theN(Sr
+Nr (t)) − 1 earlier arrivals are the
+customers that have received service up to timeSr
+Nr (t).
+Z Sr
+Nr (t)
+0
+R(τ)dτ =
+N(Sr
+Nr (t))−1
+X
+i=0
+V2
+i
+2 ⩽
+N(t)−1X
+i=0
+V2
+i
+2 ⩽
+Z Sr
+Nr (t)+1
+0
+R(τ)dτ
+马啸 (SYSU) 随机过程 2022 年秋 36 / 40
+
+=== p37 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+The Pollaczek-Khinchin formula for M/G/1 queues
+From going through virtually the same argument several times, we can
+prove that
+lim
+t→∞
+R t
+0 R(τ)dτ
+t = lim
+t→∞
+PN(t)−1
+i=0 V2
+i
+2N(t)
+N(t)
+t = λE[V2]
+2 WP1.
+As will be seen in Section 5.7.5, the time average above can be replaced
+with a limiting ensemble average so that
+lim
+t→∞
+E[R(t)] = λE[V2]
+2 .
+Similarly, there is a limiting ensemble-average form of Little’s theorem
+which shows that
+lim
+t→∞
+E[Lq(t)] =λWq.
+马啸 (SYSU) 随机过程 2022 年秋 37 / 40
+
+=== p38 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+The Pollaczek-Khinchin formula for M/G/1 queues
+Thus,
+lim
+t→∞
+E[U(t)] =λE[V2]Wq + λE[V2]
+2 .
+注意：
+E[U(t)] is the expected unfinished work at timet; this is the queueing
+delay that a customer would incur by arriving att.
+Wq is the sample-path-average expected queueing delay.
+For Poisson arrivals, the probability of an arrival in(t, t + δ] is independent
+of all earlier arrivals and service times, so it is independent ofU(t). Thus
+limt→∞ E[U(t)] must be equal toWq.
+Thus, we obtain thePollaczek-Khinchin formula:
+Wq = λE[V2]
+2(1 − λE[V]).
+马啸 (SYSU) 随机过程 2022 年秋 38 / 40
+
+=== p39 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+The “slow truck effect”
+If E[V2] =∞, the limiting expected queueing delay is infinite even when
+the expected service time is less than the expected interarrival interval.
+Why doesWq go up withE[V2]?
+Have you ever noticed, when entering a line for service that the customer
+being served often takes much longer than anyone else?
+Note that while a particularly long service is taking place, numerous
+arrivals are coming into the system, and all are being delayed by this single
+long service. In other words, the number of new customers held up by a
+long service is proportional to the length of the service, and the amount
+each of them is held up is also proportional to the length of the service.
+非泊松到达的例子： V 在 (1 − ϵ, 1 +ϵ) 均匀分布，到达在 (2 − ϵ, 2 +ϵ)
+均匀分布。对于 ϵ < 1/2, 无队列，但。 。 。
+马啸 (SYSU) 随机过程 2022 年秋 39 / 40
+
+=== p40 ===
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+§ 5.5 Stopping times for repeated experiments M/G/1 queues
+Thank you for your attention!
+马啸 (SYSU) 随机过程 2022 年秋 40 / 40
+

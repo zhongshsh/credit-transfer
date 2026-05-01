@@ -1,0 +1,503 @@
+# M6  Big_data,_Big_model
+# Source: 6-Big_data,_Big_model.pptx    Slides: 74
+
+=== s1 ===
+Big data, Big model--From rules to statistics
+
+=== s2 ===
+Course website
+https://www.scholat.com/course/cseml2022
+加入课程密码CSEML65432
+
+=== s3 ===
+From rules to statistics
+Big Data，Big Model
+Pre-trained language model
+Pre-trained vision model
+Pre-trained multimodal model
+What else can PTMs do?
+Outline
+
+=== s4 ===
+AI
+人工智能历史回眸：达特茅斯会
+
+=== s5 ===
+吴军 《数学之美》
+“要让机器完成翻译或语音识别这样只有人类才能做到的事情，就必须先让计算机理解自然语言，而做到这一点就必须让计算机有类似我们人类这样的智能”
+
+=== s6 ===
+吴军 《数学之美》
+统计语言模型
+句子一：“美联储主席昨天告诉媒体7000亿美元的救助资金将借给上百家银行、保险公司”
+句子二：“美联储主席昨天7000亿美元的救助资金告诉媒体将借给上百家银行、保险公司”
+句子三：“联主美储席将保险借上媒百诉给银行家昨助天亿美元的救资金告体、7000司公”
+
+=== s7 ===
+吴军 《数学之美》
+统计语言模型：自然语言处理的基础
+广泛运用于机器翻译、语音识别、印刷体或手写体识别、 拼写纠	错和汉字输入等领域。
+将自然语言建模为统计概率，而不是句法。
+用数学的方法描述语言规律
+
+=== s8 ===
+吴军 《数学之美》
+
+=== s9 ===
+Types of Language Models
+
+=== s10 ===
+From rules to statistics
+Big Data，Big Model
+Pre-trained language model
+Pre-trained vision model
+Pre-trained multimodal model
+What else can PTMs do?
+Outline
+
+=== s11 ===
+Big Data, Big Model
+For DNN, one of challenges：data hungry
+overfit
+poor generalization ability
+One solution: construct high-quality datasets
+expensive
+time-consuming
+Key: train effective deep neural models with limited human-annotated data
+
+=== s12 ===
+Big Data, Big Model
+An Intuitive idea : Transfer learning
+Two stage：
+1. Pre-training on source tasks
+2. Fine-tuning on target tasks
+
+=== s13 ===
+Big Data, Big Model
+The history of pre-trained models
+Vision models(based on CNNs)
+AlexNet,  VGG, ResNet
+Language models(based on Transformer)
+GPT, BERT, UNILM
+Vision models(based on Vision Transformer)
+MAE,  MoCo, BEiT, simMIM
+Multimodal models
+CLIP,  BLIP
+
+=== s14 ===
+Big Data, Big Model
+Overview: Pre-trained models
+
+=== s15 ===
+From rules to statistics
+Big Data，Big Model
+Pre-trained language model
+Pre-trained vision model
+Pre-trained multimodal model
+What else can PTMs do?
+Outline
+
+=== s16 ===
+Overview
+Overview: List of Representative PLMs
+
+=== s17 ===
+Architecture
+The architecture of Transformer, GPT, and BERT
+
+=== s18 ===
+GPT
+First SOTA pre-trained language model
+From OpenAI
+Later: GPT-2, GPT-3, ……
+
+=== s19 ===
+GPT
+Stage 1: Unsupervised pre-training
+Unsupervised pre-training, maximising the log-likelihood
+where                        iis an unsupervised corpus of tokens, 𝑘 is the size of context window, 𝑃 is modelled as a neural network with parameters Θ.
+where 𝑈 is one-hot representation of tokens in the window, 𝑛 is the total number of transformer layers, transformer_block() denotes the decoder of the Transformer model (multi-headed self-attention and position-wise feedfoward layers).
+
+=== s20 ===
+GPT
+Pre-training dataset:
+7000+ books
+
+=== s21 ===
+GPT
+Stage 2: Supervised fine-tuning
+Given labelled data 𝐶 , including each input as sequence of tokens x1,…,xm
+Then maximise the final objective function:
+
+=== s22 ===
+GPT
+An example: Transfer Learning to Downstream Tasks
+
+=== s23 ===
+GPT
+How to fine-tuning all tasks?
+input transformation/representation
+
+=== s24 ===
+BERT
+From Decoders to Encoders
+From Google
+Two versions :base and large
+New research: 13 papers in ACL 2022
+
+=== s25 ===
+BERT
+B: Bidirectional
+E: Encoder
+R: Representations
+T: Transformers
+
+=== s26 ===
+BERT
+Input Representation
+• Token Embeddings: WordPiece embedding
+• Segment Embeddings: randomly initialized and learned;
+single sentence input only adds EA
+• Position embeddings: randomly initialized and learned
+
+=== s27 ===
+Pre-training BERT
+Task 1: Masked Language Model(Cloze Task)
+• Randomly select 15% of tokens
+• For 80% :
+• Replace the word
+with the [MASK] token.
+• For 10% :
+• Replace the word
+with a random word
+• For 10% :
+• Keep the word
+unchanged..
+
+=== s28 ===
+Pre-training BERT
+Task 2: Next Sentence Prediction(Binary classification)
+• For every input document
+• Randomly select a split over
+sentences:
+• Store the segment A
+• For 50% :
+Sample random sentence
+split from another document
+as segment B.
+• For 50% :
+Use the actual sentences
+as segment B.
+• Masking (Truncate([segment A,
+segment B]))
+
+=== s29 ===
+Fine-tuning with BERT
+Context vector 𝐶: Take the final hidden state corresponding to the first token in the input: [CLS].
+Transform to a probability distribution of the class labels:
+
+=== s30 ===
+BERT for feature extraction
+Depend on task
+
+=== s31 ===
+After BERT
+Work 1: RoCBert: Robust Chinese Bert with Multimodal Contrastive Pretraining, In ACL, 2022
+Question:
+pretrained language models are vulnerable to adversarial attacks ,especially for logographic languages like Chinese.
+An attack example
+
+=== s32 ===
+After BERT
+Work 1: RoCBert: Robust Chinese Bert with Multimodal Contrastive Pretraining, In ACL, 2022
+The idea:
+pre-train BERT with the contrastive learning objective by maximizing the label consistency under various adversarial examples
+
+=== s33 ===
+After BERT
+Work 2: MPC-BERT: A Pre-Trained Language Model for Multi-Party Conversation Understanding, In ACL, 2022
+multi-party conversation: a hard question
+need to solve: return a response, predict who will be the next and who is the addressee
+
+=== s34 ===
+After BERT
+Work 2: MPC-BERT: A Pre-Trained Language Model for Multi-Party Conversation Understanding, In ACL, 2022
+Current PTMs:
+Overlook the inherent relationships between utterances and interlocutors
+Ignore the relationships between subtasks in MPC
+Key idea:
+For MPC, design self-supervised tasks for PLMs
+
+=== s35 ===
+After BERT
+Work 2: MPC-BERT: A Pre-Trained Language Model for Multi-Party Conversation Understanding, In ACL, 2022
+MPC instance:
+Defined as :
+Target: PTM produces embedding vectors for all utterances
+the semantic information + the speaker and addressee structure
+
+=== s36 ===
+After BERT
+Work 2: MPC-BERT: A Pre-Trained Language Model for Multi-Party Conversation Understanding, In ACL, 2022
+
+=== s37 ===
+After BERT
+Work 2: MPC-BERT: A Pre-Trained Language Model for Multi-Party Conversation Understanding, In ACL, 2022
+Pre-training task1: Reply-to Utterance Recognition
+Target: recognize the addressee of each utterance
+Pre-training task2: Identical Speaker Searching
+Target: know who is the speaker of an utterance
+Pre-training task3: Identical Speaker Searching
+Target: jointly model speakers and addressees in MPC
+
+=== s38 ===
+After BERT
+Work 2: MPC-BERT: A Pre-Trained Language Model for Multi-Party Conversation Understanding, In ACL, 2022
+Pre-training task4: Masked Shared Utterance Restoration
+Target: recognize shared utterance
+Pre-training task5: Shared Node Detection
+Target: measue the semantic relevance of two sub-conversations
+
+=== s39 ===
+From rules to statistics
+Big Data，Big Model
+Pre-trained language model
+Pre-trained vision model
+Pre-trained multimodal model
+What can PTMs do?
+Outline
+
+=== s40 ===
+MoCo V1
+Work : Momentum Contrast for Unsupervised Visual Representation Learning, In CVPR, 2020
+Motivation
+Unsupervised Learning
+Contrastive learning
+Backbone: CNN
+
+=== s41 ===
+MoCo V1
+Contrastive Learning Visualization
+
+=== s42 ===
+MoCo V1
+Contrastive loss
+
+=== s43 ===
+MoCo V1
+Contrastive loss: end to end
+The encoders for computing the query and key representations are updated end-to-end by back-propagation (the two encoders can be different).
+Shortcoming: Problematic when there are many negative samples.
+
+=== s44 ===
+MoCo V1
+Contrastive loss: memory bank
+The key representations are sampled from a memory bank. The representation of a sample in the memory bank was updated when it was last seen.
+Shortcoming: The sampled keys are essentially about the encoders at multiple different steps all over the past epoch and thus are less consistent.
+
+=== s45 ===
+MoCo V1
+Contrastive loss: MoCo
+Key Idea: Consistently but progressively update negative samples. MoCo encodes the new keys on-the-fly by a momentum-updated encoder, and maintains a queue of keys.
+Formally, denoting the parameters of fk as θk and those of fq as θq, we update θk by:
+
+=== s46 ===
+MAE
+Work : Masked Autoencoders Are Scalable Vision Learners, In CVPR, 2022
+Motivation: self-supervised learning in VISION
+NLP					CV
+BERT					MAE
+Transformer				ViT
+
+=== s47 ===
+MAE
+Masked Autoencoder (MAE)
+MAE are scalable self-supervised learners for computer vision
+Mask random patches of the input image and reconstruct the missing pixels
+Accelerate training (by 3x or more) and improves accuracy
+Transfer performance in downstream tasks outperforms supervised pre­ training and shows promising scaling behavior
+Learning high-capacity models that generalizes well
+Vanilla ViT-H achieves the best accuracy (87.8%) among methods that use only lmageNet-1K data
+
+=== s48 ===
+MAE
+Masked Language Modeling
+Success of self-supervised pre-training in NLP
+Method: remove a portion of the input sequence and learn to predict the missing content
+These methods have been shown to scale excellently
+These pre-trained representations generalize well to various downstream tasks
+
+=== s49 ===
+MAE
+Autoencoder
+Encoder maps an input to a latent representation
+Decoder reconstructs the input
+E.g.t PCA and k-means are autoencoders
+Denoising autoencoders (DAE) are a class of autoencoders that corrupt an input signal and learn to reconstruct the original, uncorrupted signal
+A series of methods can be thought of as a generalized DAE under different corruptions, e.g., masking pixels or removing color channels
+
+=== s50 ===
+MAE
+Difference between language and vision
+Architectural Gap
+It is not straightforward to integrate ‘indicators’ such as mask tokens or positional embeddings into convolutional networks
+Solution:ViT
+Information Density
+Language: human-generated signals, highly semantic, information-dense, Need sophisticated language understanding to train a model to predict only a few missing words per sentence
+Images: natural signals, heavy spatial redundancy, A missing patch can be recovered from neighboring patches with little high-level understanding of parts, objects, and scenes
+Solution:masking a very high portion of random patches
+The Role of Autoencoder’s Decoder
+Language: decoder predicts missing words that contain rich semantic information
+Image: decoder reconstructs pixels, hence its output is of a lower semantic level than common recognition tasks
+
+=== s51 ===
+MAE
+MAE Encoder Decoder Architecture
+
+=== s52 ===
+MAE
+Masking
+Image is divided into regular non-overlapping patches
+Sample a subset of patches and mask (i.e., remove) the remaining ones
+High masking ratio (e.g., 75%)
+MAE encoder
+Encoder is a ViT but applied only on visible, unmasked patches
+Encoder only operates on a small subset e.g,2 % of the full set
+Masked patches are removed; No mask tokens are used
+This allows us to train very large encoders with only a fraction of compute and memory
+MAE decoder
+The input to the MAE decoder is the full set of tokens consisting of encoded visible patches and mask tokens
+Positional embeddings are added to all tokens in this full set
+MAE decoder is only used during pre-training to perform the image reconstruction task (only the encoder is used to produce image representations for recognition)
+Decoder has <10% computation per token vs. the encoder
+
+=== s53 ===
+MAE
+Mask policy
+Best policy: randomly mask
+
+=== s54 ===
+MAE
+Simple Implementation
+Generate a token for every input patch
+Randomly shuffle the list of tokens and remove the last portion of the list
+After encoding, mask tokens are appended to the list of encoded patches, and unshuffle the full list (inverting the random shuffle operation)
+The decoder is applied to this full list (with positional embeddings added)
+
+=== s55 ===
+MAE
+MAE Reconstruction
+COCO validation images (pre-trained on ImageNet)
+
+=== s56 ===
+After MAE
+Work1: Masked Autoencoders are Robust Data Augmentors
+Current data augmentors method :
+linear transformations(insufficiently generalize input distribution)
+GAN(uncertain and unstable)
+Target:  make the generation more controllable(by MAE idea)
+
+=== s57 ===
+After MAE
+Work1: Masked Autoencoders are Robust Data Augmentors
+Idea: Mask-Reconstruct Augmentation
+
+=== s58 ===
+After MAE
+Work2: MaskOCR: Text Recognition with Masked Encoder-Decoder Pretraining
+Main idea: using encoder-decoder transformer
+Encoder: extracts the patch-level representations
+Decoder: recognizes the text from the representations
+
+=== s59 ===
+After MAE
+Work2: MaskOCR: Text Recognition with Masked Encoder-Decoder Pretraining
+Encoder:
+
+=== s60 ===
+After MAE
+Work2: MaskOCR: Text Recognition with Masked Encoder-Decoder Pretraining
+Decoder:
+
+=== s61 ===
+From rules to statistics
+Big Data，Big Model
+Pre-trained language model
+Pre-trained vision model
+Pre-trained multimodal model
+What else can PTMs do?
+Outline
+
+=== s62 ===
+CLIP
+Work :  Contrastive Language–Image Pre-training, In ICML, 2021
+Keypoint
+a network which can be directly used for image classification
+suitable for zero-shot learning
+classification accuracy is more robust
+
+=== s63 ===
+CLIP
+Train Model
+Contrastive Pre-training of language-image pairs.
+The text encoder is a standard transformer encoder.
+The extracted feature is the embedding of the CLS token.(ResNet/ViT)
+
+=== s64 ===
+CLIP
+Usage
+
+=== s65 ===
+CLIP
+Zero-shot image classification
+
+=== s66 ===
+CLIP
+How Well Does CLIP Do on Zero-shot Classification?
+
+=== s67 ===
+Applications of CLIP
+StyleCLIP (Patashnik et al.)
+Steering a GAN Using CLIP
+
+=== s68 ===
+Applications of CLIP
+CLIP4Clip (Luo & Ji, et al.)
+Video retrieval using CLIP features
+
+=== s69 ===
+From rules to statistics
+Big Data，Big Model
+Pre-trained language model
+Pre-trained vision model
+Pre-trained multimodal model
+What else can PTMs do?
+Outline
+
+=== s70 ===
+Applications of PTMs
+NLP tasks: BERT, GPT, …….
+CV tasks: MAE, CLIP, BLIP, ……
+Else tasks?
+
+=== s71 ===
+Example of PTMs application
+Work :  The (Un)Surprising Effectiveness of Pre-Trained Vision Models for Control, In ICML, 2022
+Application: policy learning for control
+
+=== s72 ===
+Example of PTMs application
+Work :  The (Un)Surprising Effectiveness of Pre-Trained Vision Models for Control, In ICML, 2022
+MuJoCo tasks: hand manipulation behaviors and locomotion
+Habitat tasks: reach target locations from anywhere on the scene
+
+=== s73 ===
+Example of PTMs application
+Work :  The (Un)Surprising Effectiveness of Pre-Trained Vision Models for Control, In ICML, 2022
+
+=== s74 ===
+PTMs have achieved promising results, in zero/few-shot learning scenarios(CV, NLP tasks)
+PTMs have inspired the development of other AI tasks
+How to develop PTMs next is still an open question
+Summary
+

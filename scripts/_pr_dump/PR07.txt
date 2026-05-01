@@ -1,0 +1,497 @@
+# PR7 Ensemble Learning and Network Optimization
+# Pages: 66
+
+=== p1 ===
+1
+集成学习
+马锦华
+中山大学
+机器智能与先进计算教育部重点实验室
+中山大学计算机学院研究生人工智能应用基础系列课程
+声明：该PPT只供非商业使用，也不可视为任何出版物。由于历史原因，许多图片尚没有标注出处，如果你知道图片的出处，欢迎告诉我们at wszheng@ieee.org.
+
+=== p2 ===
+集成学习❑集成学习理论❑传统集成学习方法❑基于多核学习的集成❑独立性假设下的集成与依赖性建模❑深度学习中的集成
+2
+
+=== p3 ===
+什么是集成学习Original
+Training data
+....D1 D2 Dt-1 Dt
+D
+Step 1:
+Create Multiple
+Data Sets
+C1 C2 Ct -1 Ct
+Step 2:
+Build Multiple
+Classifiers
+C*
+Step 3:
+Combine
+Classifiers
+一般步骤
+3
+
+=== p4 ===
+从臭皮匠到诸葛亮？❑假设有𝑇个分类器o每个分类器都是弱分类器（错分率𝜀<50%）o分类器的错分率相互独立o通过简单多数投票集成𝑇个分类器o集成的错误率为
+𝑋为𝑇个分类器中错误分类的数目o随着𝑇增大，集成的错误率将指数下降
+2(1 )2TiT iTiTTPXiee-éù=êúëûæöæöéù³= -ç÷ç÷êúëûèøèøå21exp (1 2 )2Teæö£--ç÷èøBy Hoeffding'sinequality
+4
+
+=== p5 ===
+从臭皮匠到诸葛亮？❑二项分布
+❑𝑋近似地服从𝑁𝑇𝜀,𝑇𝜀1−𝜀
+𝑇=40 𝑇=80𝜀=0.45𝜀=0.4 𝜀=0.45𝜀=0.4
+5
+
+=== p6 ===
+从臭皮匠到诸葛亮？❑例如有25个分类器，错分率𝜀=0.35
+å
+=
+-
+=-
+÷
+÷
+ø
+ö
+ç
+ç
+è
+æ
+=³
+25
+13
+25
+06.0)1(
+25
+)13(
+i
+ii
+i
+XP ee
+6
+
+=== p7 ===
+从臭皮匠到诸葛亮？❑集成后的线性分类器可区分非线性可分数据
+7
+
+=== p8 ===
+如何获得好的集成分类器：误差-分歧分解❑第𝑖个分类器𝐶!与集成分类器𝐶的分歧（ambiguity）：❑集成分歧的加权平均（𝛼!为集成的权重）：
+❑第𝑖个分类器𝐶!与集成分类器𝐶的误差：
+𝐴!=𝐶!−𝐶"
+̅𝐴=&!#$
+%𝛼!𝐴!=&!#$
+%𝛼!𝐶!−𝐶"
+𝐸!=𝐶!−𝑌"𝐸=𝐶−𝑌" 8
+
+=== p9 ===
+如何获得好的集成分类器：误差-分歧分解❑个体分类器误差的加权平均：
+❑集成分歧的加权平均写成：
+❑集成分类器𝐶的误差：
+*𝐸=&!#$
+%𝛼𝐸!=&!#$
+%𝛼!𝐶!−𝑌"
+̅𝐴=&!#$
+%𝛼!𝐶!−𝑌−𝐶−𝑌"
+𝐸=*𝐸−̅𝐴=*𝐸−𝐸
+9
+
+=== p10 ===
+集成学习成功的要素❑如何获得一组好的分类器o每个分类器错分率𝜀<50%o各个分类器之间有差异（错分率相互独立）❖使用不同的训练样本–控制样本分布：bagging，boosting–控制输入特征：随机森林–数据增强：翻转、随机裁剪、颜色变换等❖使用不同的训练算法–不同的分类模型：决策树、神经网络等–不同的初始参数10
+
+=== p11 ===
+集成学习成功的要素❑如何将分类器以合适的方式进行集成o独立假设下的集成策略❖乘积法、均值法、最大值法、最小值法、中值法、多数投票法o非独立假设下的集成策略❖Stacking：将每个分类器的输出看作特征进行次级（元）学习（meta-learner）❖利用概率分布性质建立关联性模型
+11
+
+=== p12 ===
+集成学习的成功应用❑KDDCup07：第一名“… Decision Forests and …” ❑KDDCup08：挑战1第一名利用Bagging；挑战2第一名“… Using an Ensemble Method ” ❑KDDCup09：Fast Track第一名“Ensemble… ”; Fast Track第二名“… bagging… boosting tree models …”；Slow Track第二名“Boosting… ”；Slow Track第二名“Stochastic Gradient Boosting” ❑KDDCup10：第一名“… Classifier ensembling”；第二名“… Gradient Boosting machines… ” 12
+
+=== p13 ===
+集成学习的成功应用❑KDDCup11：Track1第一名“A Linear Ensemble… ”；Track1第二名“Collaborative filtering Ensemble”；Track2第一名“Ensemble…”；Track2第二名“Linear combination of …” ❑KDDCup12：Track1第一名“Combining… Additive Forest …”；Track2第一名“A Two-stage Ensemble of…” ❑KDDCup13：Track1第一名“Weighted Average Ensemble”；Track1第二名“Gradient Boosting Machine”；Track2第一名“Ensemble the Predictions” 13
+
+=== p14 ===
+集成学习的成功应用❑KDDCup14：第一名“ensemble of GBM, ExtraTrees, Random Forest …”和“the weighted average”；第二名“use both R and Python GBMs”；第三名“gradient boosting machines ... random forests”和“the weighted average of…” ❑Netflix奖：o2007进步奖：集成学习o2008进步奖：集成学习o2009百万特等奖：集成学习14
+
+=== p15 ===
+概览❑集成学习理论❑传统集成学习方法❑基于多核学习的集成❑独立性假设下的集成与依赖性建模❑深度学习中的集成
+15
+
+=== p16 ===
+传统集成学习方法❑Boosting❑Bagging❑随机森林❑Stacking
+16
+
+=== p17 ===
+Boosting❑自适应地改变样本分布进行采样，每次迭代更关注之前被错分的样本o初始化样本权值相等o更新选取样本的规则：每次迭代中改变样本权值（区别于Bagging）o重复以上过程得到若干分类器o采用加权平均决定最后的分类预测
+17
+
+=== p18 ===
+Boosting❑每次迭代：o增加错误分类样本的权值o减小正确分类样本的权值❑例如每次迭代选取的样本如下：Original Data 1 2 3 4 5 6 7 8 9 10
+Boosting (Round 1) 7 3 2 8 7 9 4 10 6 3
+Boosting (Round 2) 5 4 9 4 2 5 1 7 4 2
+Boosting (Round 3) 4 4 8 10 4 5 4 6 3 4
+§样本4难以被正确分类§其权值增加，因此每次迭代中更可能被选中18
+
+=== p19 ===
+代表算法：AdaBoost2003年哥德尔奖（Gödel Prize）Freund & Schapire, A decision theoretic generalization of on-line learning and an application to Boosting. Journal of Computer and System Sciences, 1997, 55: 119-139.❑优点：o准确的分类o十分简单（“just 10 lines of code”-Schapire）o广泛成功的应用o合理的理论基础o… … 
+19
+
+=== p20 ===
+AdaBoost算法介绍❑基分类器：C1, C2, …, CT
+❑错分率：
+❑每个分类器的权值
+()1()Nji j i iiwC x yed==¹å11ln2jjjeaeæö-=ç÷ç÷èø20
+
+=== p21 ===
+AdaBoost算法介绍❑最小化指数损失函数𝑙𝛼)=$*+,
+-𝑤*exp−𝛼)𝐶)𝑥*𝑦*
+=$*+,
+-𝑤*exp−𝛼)𝐶)𝑥*𝑦*𝛿𝐶)𝑥*=𝑦*+𝛿𝐶)𝑥*≠𝑦*
+=$*+,
+-𝑤*exp−𝛼)𝛿𝐶)𝑥*=𝑦*+exp𝛼)𝛿𝐶)𝑥*≠𝑦*=exp−𝛼)1−𝜀)+exp𝛼)𝜀)𝑑𝑙𝛼)𝑑𝛼)=−exp−𝛼)1−𝜀)+exp𝛼)𝜀) 21
+11ln2jjjeaeæö-=ç÷ç÷èø
+
+=== p22 ===
+AdaBoost算法介绍❑权值更新：
+❑如果某次迭代的错分率大于50%，权值重新分配为1/N，并重复取样过程（避免过早停止）❑集成分类器：
+()(1 )exp( ) ( )exp( ) ( )if if jjj i ijiijj i ijCx ywwCx yZaa+-=ì=í¹î
+( )å
+=
+==
+T
+j
+jj
+y
+yxCxC
+1
+)(maxarg)(* da
+22
+这里𝑍!是归一化因子
+
+=== p23 ===
+AdaBoost算法介绍❑最小化指数损失函数
+23
+
+=== p24 ===
+AdaBoost算法
+优点：降低集成分类器的偏差（可选用弱学习器）24
+
+=== p25 ===
+AdaBoost算法示例❑考虑简单的一维数据集：
+❑每个基分类器是一个简单的决策树o决策规则：x £kVSx > ko分割点k通过信息熵选取
+x 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+y 1 1 1 -1 -1 -1 -1 1 1 1
+Original Data:
+x £k
+yleftyright
+TrueFalse
+25
+
+=== p26 ===
+AdaBoost算法示例❑前3次boosting迭代：
+❑基分类器与相应权值：
+Boosting Round 1:
+x 0.1 0.4 0.5 0.6 0.6 0.7 0.7 0.7 0.8 1
+y 1 -1 -1 -1 -1 -1 -1 -1 1 1
+Boosting Round 2:
+x 0.1 0.1 0.2 0.2 0.2 0.2 0.3 0.3 0.3 0.3
+y 1 1 1 1 1 1 1 1 1 1
+Boosting Round 3:
+x 0.2 0.2 0.4 0.4 0.4 0.4 0.5 0.6 0.6 0.7
+y 1 1 -1 -1 -1 -1 -1 -1 -1 -1
+Round Split Point Left Class Right Class alpha
+1 0.75 -1 1 1.738
+2 0.05 1 1 2.7784
+3 0.3 1 -1 4.1195
+26
+
+=== p27 ===
+AdaBoost算法示例❑权值更新：
+❑集成分类结果：
+Round x=0.1 x=0.2 x=0.3 x=0.4 x=0.5 x=0.6 x=0.7 x=0.8 x=0.9 x=1.0
+1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1
+2 0.311 0.311 0.311 0.01 0.01 0.01 0.01 0.01 0.01 0.01
+3 0.029 0.029 0.029 0.228 0.228 0.228 0.228 0.009 0.009 0.009
+Round x=0.1 x=0.2 x=0.3 x=0.4 x=0.5 x=0.6 x=0.7 x=0.8 x=0.9 x=1.0
+1 -1 -1 -1 -1 -1 -1 -1 1 1 1
+2 1 1 1 1 1 1 1 1 1 1
+3 1 1 1 -1 -1 -1 -1 -1 -1 -1
+Sum 5.16 5.16 5.16 -3.08 -3.08 -3.08 -3.08 0.397 0.397 0.397
+Sign 1 1 1 -1 -1 -1 -1 1 1 1
+27
+
+=== p28 ===
+AdaBoost算法应用❑目标检测：oViola-Jones检测器Longuet-Higgins奖（2011）Viola & Jones, Rapid object detection using a Boosted cascade of simple features. CVPR, 2001.o同等准确率，（当时）比state-of-the-art 速度快15倍❑目标跟踪：o基于集成学习的目标跟踪算法Avidan, Ensemble Tracking.IEEE TPAMI, 29(2):261-271, 2007.
+28
+
+=== p29 ===
+其他Boosting算法❑Boosting算法的一般框架
+❑AdaBoost.M1, AdaBoost.MR, FilterBoost, GentleBoost, GradientBoost, MadaBoost, LogitBoost, LPBoost, MultiBoost, RealBoost, RobustBoost, …
+ 29
+
+=== p30 ===
+Gradient Boosting
+30
+
+=== p31 ===
+XGBoost
+31
+
+=== p32 ===
+传统集成学习方法❑Boosting❑Bagging❑随机森林❑Stacking
+32
+
+=== p33 ===
+Bagging（Bootstrap AGGregatING）❑并行式集成学习方法的代表❑“有放回”的取样：
+❑每个采样集训练一个分类器❑每个样本被选择的概率：1−1−1𝑛"→1−1𝑒≈63.2%
+Original Data 1 2 3 4 5 6 7 8 9 10
+Bagging (Round 1) 7 8 10 8 2 5 10 10 5 9
+Bagging (Round 2) 1 4 9 1 2 3 2 7 3 2
+Bagging (Round 3) 1 8 5 10 5 5 9 6 3 7
+33
+
+=== p34 ===
+Bagging算法
+34
+
+=== p35 ===
+Bagging算法示例❑考虑简单的一维数据集：
+❑每个基分类器是一个简单的决策树o决策规则：x £kVSx > ko分割点k通过信息熵选取
+x 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+y 1 1 1 -1 -1 -1 -1 1 1 1
+Original Data:
+x £k
+yleftyright
+TrueFalse
+35
+
+=== p36 ===
+Bagging算法示例Bagging Round 1:
+x 0.1 0.2 0.2 0.3 0.4 0.4 0.5 0.6 0.9 0.9
+y 1 1 1 1 -1 -1 -1 -1 1 1
+Bagging Round 2:
+x 0.1 0.2 0.3 0.4 0.5 0.5 0.9 1 1 1
+y 1 1 1 -1 -1 -1 1 1 1 1
+Bagging Round 3:
+x 0.1 0.2 0.3 0.4 0.4 0.5 0.7 0.7 0.8 0.9
+y 1 1 1 -1 -1 -1 -1 -1 1 1
+Bagging Round 4:
+x 0.1 0.1 0.2 0.4 0.4 0.5 0.5 0.7 0.8 0.9
+y 1 1 1 -1 -1 -1 -1 -1 1 1
+Bagging Round 5:
+x 0.1 0.1 0.2 0.5 0.6 0.6 0.6 1 1 1
+y 1 1 1 -1 -1 -1 -1 1 1 1
+x <= 0.35 è y = 1
+x > 0.35 è y = -1
+36
+
+=== p37 ===
+Bagging算法示例Bagging Round 1:
+x 0.1 0.2 0.2 0.3 0.4 0.4 0.5 0.6 0.9 0.9
+y 1 1 1 1 -1 -1 -1 -1 1 1
+Bagging Round 2:
+x 0.1 0.2 0.3 0.4 0.5 0.5 0.9 1 1 1
+y 1 1 1 -1 -1 -1 1 1 1 1
+Bagging Round 3:
+x 0.1 0.2 0.3 0.4 0.4 0.5 0.7 0.7 0.8 0.9
+y 1 1 1 -1 -1 -1 -1 -1 1 1
+Bagging Round 4:
+x 0.1 0.1 0.2 0.4 0.4 0.5 0.5 0.7 0.8 0.9
+y 1 1 1 -1 -1 -1 -1 -1 1 1
+Bagging Round 5:
+x 0.1 0.1 0.2 0.5 0.6 0.6 0.6 1 1 1
+y 1 1 1 -1 -1 -1 -1 1 1 1
+x <= 0.35 è y = 1
+x > 0.35 è y = -1
+x <= 0.7 è y = 1
+x > 0.7 è y = 1
+x <= 0.35 è y = 1
+x > 0.35 è y = -1
+x <= 0.3 è y = 1
+x > 0.3 è y = -1
+x <= 0.35 è y = 1
+x > 0.35 è y = -1
+37
+
+=== p38 ===
+Bagging算法示例Bagging Round 6:
+x 0.2 0.4 0.5 0.6 0.7 0.7 0.7 0.8 0.9 1
+y 1 -1 -1 -1 -1 -1 -1 1 1 1
+Bagging Round 7:
+x 0.1 0.4 0.4 0.6 0.7 0.8 0.9 0.9 0.9 1
+y 1 -1 -1 -1 -1 1 1 1 1 1
+Bagging Round 8:
+x 0.1 0.2 0.5 0.5 0.5 0.7 0.7 0.8 0.9 1
+y 1 1 -1 -1 -1 -1 -1 1 1 1
+Bagging Round 9:
+x 0.1 0.3 0.4 0.4 0.6 0.7 0.7 0.8 1 1
+y 1 1 -1 -1 -1 -1 -1 1 1 1
+Bagging Round 10:
+x 0.1 0.1 0.1 0.1 0.3 0.3 0.8 0.8 0.9 0.9
+y 1 1 1 1 1 1 1 1 1 1
+x <= 0.75 è y = -1
+x > 0.75 è y = 1
+x <= 0.75 è y = -1
+x > 0.75 è y = 1
+x <= 0.75 è y = -1
+x > 0.75 è y = 1
+x <= 0.75 è y = -1
+x > 0.75 è y = 1
+x <= 0.05 è y = 1
+x > 0.05 è y = 1
+38
+
+=== p39 ===
+Bagging算法示例❑所有基分类器：Round Split Point Left Class Right Class
+1 0.35 1 -1
+2 0.7 1 1
+3 0.35 1 -1
+4 0.3 1 -1
+5 0.35 1 -1
+6 0.75 -1 1
+7 0.75 -1 1
+8 0.75 -1 1
+9 0.75 -1 1
+10 0.05 1 1
+39
+
+=== p40 ===
+Bagging算法示例❑利用多数投票准则集成分类结果：Round x=0.1 x=0.2 x=0.3 x=0.4 x=0.5 x=0.6 x=0.7 x=0.8 x=0.9 x=1.0
+1 1 1 1 -1 -1 -1 -1 -1 -1 -1
+2 1 1 1 1 1 1 1 1 1 1
+3 1 1 1 -1 -1 -1 -1 -1 -1 -1
+4 1 1 1 -1 -1 -1 -1 -1 -1 -1
+5 1 1 1 -1 -1 -1 -1 -1 -1 -1
+6 -1 -1 -1 -1 -1 -1 -1 1 1 1
+7 -1 -1 -1 -1 -1 -1 -1 1 1 1
+8 -1 -1 -1 -1 -1 -1 -1 1 1 1
+9 -1 -1 -1 -1 -1 -1 -1 1 1 1
+10 1 1 1 1 1 1 1 1 1 1
+Sum 2 2 2 -6 -6 -6 -6 2 2 2
+Sign 1 1 1 -1 -1 -1 -1 1 1 1
+40
+
+=== p41 ===
+Bagging算法的优缺点❑Bagging算法集成分类器的期望和方差
+其中𝜇和𝜎"为基分类器的均值和方差，𝜌为基分类器间的相关系数
+E𝐶=E1𝑇&!#$
+%𝐶!=1𝑇&!#$
+%E𝐶!=E𝐶!=𝜇
+D𝐶=D1𝑇&!#$
+%𝐶!=𝜎"𝑇+𝑇−1𝑇𝜌𝜎"
+41
+
+=== p42 ===
+Bagging算法的优缺点❑Bagging集成分类器的偏差与基分类器的偏差近似o因此，Bagging通常选用偏差低的强学习器❑Bagging算法主要是减少分类模型的方差oBagging的抽样是有放回抽样，相关系数0<𝜌<1oBagging算法一般用于训练算法对于训练数据较为敏感的场合（如：决策树）
+42
+
+=== p43 ===
+传统集成学习方法❑Boosting❑Bagging❑随机森林❑Stacking
+43
+
+=== p44 ===
+随机森林算法
+44
+
+=== p45 ===
+随机森林算法的优点❑随机选择特征的好处o通过随机选择的特征训练的基分类器（决策树）相关性更低（𝜌更小）o由于特征数的减少，在给定的时间内学习更多的基分类器（决策树），提高泛化能力❑老当益壮的Leo Breiman, 1928-2005oBreiman, Random forests. Machine learning45(1):5-32, 2001.
+45
+
+=== p46 ===
+传统集成学习方法❑Boosting❑Bagging❑随机森林❑Stacking
+46
+
+=== p47 ===
+Stacking算法
+47
+
+=== p48 ===
+概览❑集成学习理论❑传统集成学习方法❑基于多核学习的集成❑独立性假设下的集成与依赖性建模❑深度学习中的集成
+48
+
+=== p49 ===
+多核学习背景❑提出多核学习（Multiple Kernel Learning, MKL）的动机❑特征融合o每个样本可提取多种特征o例如，图像分类中可提取SIFT, HOG, GISTo有效地选择组合多种能提升预测准确率❑多核融合o如何选择不同类型的核函数，如线性核、高斯核、多项式核等等？o不同参数的核函数，如何选择参数？49
+
+=== p50 ===
+基于多核学习的集成
+50
+
+=== p51 ===
+多核学习应用举例❑蛋白质分类
+mRNA蛋白质间的交互 疏水性基因序列
+51
+
+=== p52 ===
+多核学习的损失函数❑多核集成的分类器
+❑最大间距损失函数（类似于SVM）,,1() , ()wbdwPmm mmfx d xbj==< > +å1(, ( ) ) 1wPim m m imyd x bjx=<> + ³ -å2,,,11min2wdξwPmm ibmidCx=+ååi"s.t.0³i
+x 0md³52
+
+=== p53 ===
+求解多核学习的最优化问题❑对偶问题是带二次约束的二次规划问题o可利用现成求解算法（如CVXOPT，Mosek，CPLEX)❑转化为半无限线性规划问题（semi-infinite linear program，SILP）o通过列生成（Column Generation）技术求解[Sonnenburget al., 2005]❑次梯度（Subgradient）下降[Rakotomamonjy et al. 2007]❑…… 53
+
+=== p54 ===
+概览❑集成学习理论❑传统集成学习方法❑基于多核学习的集成❑独立性假设下的集成与依赖性建模❑深度学习中的集成
+54
+
+=== p55 ===
+独立性假设下的集成❑乘积法
+❑均值法o假设分类器为弱分类器：Pr𝜔&|𝒙'=Pr𝜔&1+𝛿&'
+Pr𝜔.|𝒙,,…𝒙/∝;0+,/Pr𝜔.|𝒙0
+Pr𝜔.|𝒙,,…𝒙/∝;0+,/Pr𝜔.1+𝛿.0
+∝$0+,
+/𝛿.0∝$0+,
+/Pr𝜔.|𝒙0
+55
+
+=== p56 ===
+依赖性建模❑加入依赖性项[Ma et al., TPAMI 2013]
+❑利用解释函数表示联合后验概率[Ma et al., IJCV 2014]
+Pr𝜔.|𝒙,,…𝒙/∝;0+,/Pr𝜔.|𝒙0+𝛼.0𝛿.0Pr𝜔.Dependency weightSmall numberPrior 
+Pr𝜔.|𝒙,,…𝒙/∝$1+2
+3$4!5⋯54"+1𝛼(4!,…,4");0+,
+/Pr𝜔.|𝒙04#
+56
+
+=== p57 ===
+概览❑集成学习理论❑传统集成学习方法❑基于多核学习的集成❑独立性假设下的集成与依赖性建模❑深度学习中的集成
+57
+
+=== p58 ===
+基本方法连接（concatenation）：通道数的增加相加：特征图相加，通道数不变
+58
+
+=== p59 ===
+DenseNet[Huang et al., CVPR 2017]
+59
+
+=== p60 ===
+CliqueNet[Chen et al., CVPR 2018]
+60
+
+=== p61 ===
+FPN[Linet al., CVPR 2017]
+61
+
+=== p62 ===
+丢弃法（Dropout Method）❑对于一个神经层𝑦=𝑓(𝑊𝑥+𝑏)，引入一个丢弃函数𝑑(·)使得𝑦=𝑓(𝑊𝑑(𝑥)+𝑏)。
+其中𝑚∈{0,1}#是丢弃掩码，通过以概率为p的贝努力分布随机生成
+62
+
+=== p63 ===
+Dropout意义❑集成学习的解释o每做一次丢弃，相当于从原始的网络中采样得到一个子网络。如果一个神经网络有n个神经元，那么总共可以采样出2n个子网络❑贝叶斯学习的解释
+其中f(x,θm)为第m次应用丢弃方法后的网络
+63
+
+=== p64 ===
+周期性(Cyclical)学习率调整
+•当参数处于尖锐最小值附近时，增大学习率有助于逃离尖锐最小值•当参数处于平坦最小值附近时，增大学习率依然有可能在该平坦最小值的吸引域（Basin of Attraction）内
+
+=== p65 ===
+Cyclical Learning Rates [Huang et al.,2017] ❑Left: converge to a minimum at the end ❑Right: converges to and escape from multiple local minima for test-time ensemble
+65
+
+=== p66 ===
+Deep Forest ❑对小数据分析的鲁棒性比深度学习更好
+66
+https://doi.org/10.48550/arXiv.1702.08835
+

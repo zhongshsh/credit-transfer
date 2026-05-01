@@ -1,0 +1,1260 @@
+# N3  SDN_v8.0-PPT3
+# Source: PPT3-SDN_v8.0-PPT3.pptx    Slides: 146
+
+=== s1 ===
+Computer Networking: A Top-Down Approach 8th edition Jim Kurose, Keith RossPearson, 2020
+SDN
+A note on the use of these PowerPoint slides:
+We’re making these slides freely available to all (faculty, students, readers). They’re in PowerPoint form so you see the animations; and can add, modify, and delete slides  (including this one) and slide content to suit your needs. They obviously represent a lot of work on our part. In return for use, we only ask the following:
+If you use these slides (e.g., in a class) that you mention their source (after all, we’d like people to use our book!)
+If you post any slides on a www site, that you note that they are adapted from (or perhaps identical to) our slides, and note our copyright of this material.
+For a revision history, see the slide note for this page.
+Thanks and enjoy!  JFK/KWR
+All material copyright 1996-2020
+J.F Kurose and K.W. Ross, All Rights Reserved
+
+=== s2 ===
+The datagram plays a central role in the Internet—every networking student and professional needs to see it, absorb it, and master it.
+IP header: 20 bytes
+Recap: IPv4 datagram
+Network Layer: 4-
+
+=== s3 ===
+Type of Service (TOS): allow different types of IP datagrams to be distinguished from each other.
+E.g., real-time datagrams, (e.g., IP telephony), VS non-real-time traffic (e.g., FTP)
+Explicit Congestion Notification
+Recap: IPv4 datagram
+Network Layer: 4-
+
+=== s4 ===
+Network Layer: 4-
+
+=== s5 ===
+The time-to-live (TTL) ensures that datagrams do not circulate forever (due to, for example, a long-lived routing loop).
+decremented by one each time the datagram is processed by a router.
+TTL field reaches 0, then a router must drop that datagram.
+Recap: IPv4 datagram
+Network Layer: 4-
+
+=== s6 ===
+Upper-layer protocol #: specific transport-layer protocol to which the data portion should be passed. E.g., 6 indicates that the data portion is passed to TCP, 17 indicates that the data is passed to UDP.
+Recap: IPv4 datagram
+Network Layer: 4-
+
+=== s7 ===
+The Internet’s address assignment strategy is known as Classless Interdomain Routing (CIDR—pronounced cider) [RFC 4632]. CIDR generalizes the notion of subnet addressing. As with subnet addressing, the 32-bit IP address is divided into two parts and again has the dotted-decimal form a.b.c.d/x, where the x most significant bits constitute the network portion of the IP address,
+IPv4 address
+Network Layer: 4-
+
+=== s8 ===
+IP addresses are managed under the authority of the Internet Corporation for Assigned Names and Numbers (ICANN) [ICANN 2020], based on guidelines set forth in [RFC 7020]. The role of the nonprofit ICANN organization is not only to allocate IP addresses, but also to manage the DNS root servers.
+IPv4 address
+Network Layer: 4-
+
+=== s9 ===
+Then an organization can assign individual IP addresses to the host and router interfaces in its organization. Host addresses are often configured using the Dynamic Host Configuration Protocol (DHCP) [RFC 2131]. It allows a host to automatically obtain an IP address, subnet mask, first-hop router address (a.k.a. default gateway), and the address of its local DNS server.
+IPv4 address
+Network Layer: 4-
+
+=== s10 ===
+Dynamic Host Configuration Protocol (DHCP) [RFC 2131] allows a host to automatically obtain an IP address, subnet mask, first-hop router address (a.k.a. default gateway), and the address of its local DNS server.
+IPv4 address
+Network Layer: 4-
+
+=== s11 ===
+Network address translation (NAT)
+Network Layer: 4-
+Private network, private address
+Public network, public address
+
+=== s12 ===
+Network address translation (NAT)
+Network Layer: 4-
+A user behind host 10.0.0.1 requests a Web page on server (port 80) 128.119.40.186, assigns an arbitrary port 3345 and sends datagram into the LAN. The NAT router replaces the source IP with its WAN IP 138.76.29.7, replaces the port 3345 with a generated new source port 5001 (any source port number that is not currently in the NAT translation table).
+
+=== s13 ===
+Expanded addressing capabilities. IPv6 increases the size of the IP address from 32 to 128 bits.
+A streamlined 40-byte header. A number of IPv4 fields have been dropped or made optional. The resulting 40-byte fixed-length header allows for faster processing of the IP datagram by a router.
+Flow labeling. IPv6 has an elusive definition of a flow, which can be used to differentiate among the flows, even if the exact meaning of a flow had yet to be determined. (Recall in the multi-media section, VoIP vs Web)
+IPv6 Datagram Format (important changes)
+Network Layer: 4-
+
+=== s14 ===
+IPv6 Datagram Format
+Network Layer: 4-
+IPv4 (20 byte header)
+IPv6 (40 byte header)
+
+=== s15 ===
+Transitioning IPv4 to IPv6 – through tunneling
+Network Layer: 4-
+
+=== s16 ===
+SDN roadmap
+Generalized Forwarding, SDN
+Match+action
+OpenFlow: match+action in action
+SDN Control Plan
+Middleboxes
+Network Layer: 4-
+
+=== s17 ===
+Network-layer services and protocols
+transport segment from sending to receiving host
+sender: encapsulates segments into datagrams, passes to link layer
+receiver: delivers segments to transport layer protocol
+network layer protocols in every Internet device: hosts, routers
+routers:
+examines header fields in all IP datagrams passing through it
+moves datagrams from input ports to output ports to transfer datagrams along end-end path
+mobile network
+enterprise
+network
+national or global ISP
+datacenter
+network
+Network Layer: 4-
+
+=== s18 ===
+Two key network-layer functions
+network-layer functions:
+forwarding: move packets from a router’s input link to appropriate router output link
+analogy: taking a trip
+forwarding: process of getting through single interchange
+routing: process of planning trip from source to destination
+routing: determine route taken by packets from source to destination
+routing algorithms
+Network Layer: 4-
+
+=== s19 ===
+Routing algorithms
+Centralized routing algorithm:
+complete information about connectivity and link costs
+often referred to as link-state (LS) algorithms
+Dijkstra’s algorithm – OSPF (intra-AS)
+computes the least-cost path from one node (source) to all other nodes in the network.
+iterative and has the property that after the kth iteration of the algorithm, the least-cost paths are known to k destination nodes, and among the least-cost paths to all destination
+Network Layer: 4-
+
+=== s20 ===
+Routing algorithms
+decentralized routing algorithm:
+forwarding: move packets from a router’s input link to appropriate router output link
+distance-vector (DV) algorithm, because each node maintains a vector of estimates of the costs (distances) to all other nodes in the net- work.
+Bellman-Ford equation
+BGP: maximum prefix matching, DV algorithm for shortest path...
+Network Layer: 4-
+
+=== s21 ===
+Network layer: data plane, control plane
+Data plane:
+local, per-router function
+determines how datagram arriving on router input port is forwarded to router output port
+Control plane
+network-wide logic
+determines how datagram is routed among routers along end-end path from source host to destination host
+two control-plane approaches:
+traditional routing algorithms: implemented in routers
+software-defined networking (SDN): implemented in (remote) servers
+Network Layer: 4-
+
+=== s22 ===
+A recap of the previous lesson
+11/09/2022
+Network Layer: 4-
+
+=== s23 ===
+Per-router control plane
+Individual routing algorithm components in each and every router interact in the control plane
+1
+2
+values in arriving
+packet header
+3
+Network Layer: 4-
+
+=== s24 ===
+Software-Defined Networking (SDN) control plane
+Remote controller computes, installs forwarding tables in routers
+values in arriving
+packet header
+Network Layer: 4-
+
+=== s25 ===
+Generalized forwarding: match plus action
+Review:  each router contains a forwarding table
+“match plus action” abstraction: match bits in arriving packet, take action
+generalized forwarding:
+many header fields can determine action
+many action possible: drop/copy/modify/log packet
+destination-based forwarding: forward based on dest. IP address
+Network Layer: 4-
+
+=== s26 ===
+flow: defined by header field values (in link-, network-, transport-layer fields)
+generalized forwarding: simple packet-handling rules
+match: pattern values in packet header fields
+actions: for matched packet: drop, forward, modify, matched packet or send matched packet to controller
+priority: disambiguate overlapping patterns
+counters: #bytes and #packets
+Flow table abstraction
+Network Layer: 4-
+
+=== s27 ===
+flow: defined by header fields
+generalized forwarding: simple packet-handling rules
+match: pattern values in packet header fields
+actions: for matched packet: drop, forward, modify, matched packet or send matched packet to controller
+priority: disambiguate overlapping patterns
+counters: #bytes and #packets
+1
+2
+3
+4
+Flow table abstraction
+Network Layer: 4-
+
+=== s28 ===
+OpenFlow: flow table entries
+Match
+Action
+Stats
+Network Layer: 4-
+
+=== s29 ===
+OpenFlow: examples
+IP datagrams destined to IP address  51.6.0.8 should be
+forwarded to router output port 6
+Block (do not forward) datagrams destined to TCP  port 22 (ssh port #)
+Block (do not forward) datagrams sent by host 128.119.1.1
+Network Layer: 4-
+
+=== s30 ===
+OpenFlow: examples
+Layer 2 destination-based forwarding:
+layer 2 frames with destination  MAC address 22:A7:23:11:E1:02 should be forwarded to output port 3
+Network Layer: 4-
+
+=== s31 ===
+match+action: abstraction unifies different kinds of devices
+OpenFlow abstraction
+Router
+match: longest destination IP prefix
+action: forward out a link
+Switch
+match: destination MAC address
+action: forward or flood
+Firewall
+match: IP addresses and TCP/UDP port numbers
+action: permit or deny
+NAT
+match: IP address and port
+action: rewrite address and port
+Network Layer: 4-
+
+=== s32 ===
+OpenFlow example
+Host h1
+10.1.0.1
+Host h2
+10.1.0.2
+Host h4
+10.2.0.4
+Host h3
+10.2.0.3
+Host h5
+10.3.0.5
+s1
+s2
+s3
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+Host h6
+10.3.0.6
+Orchestrated tables can create network-wide behavior, e.g.,:
+datagrams from hosts h5 and h6 should be sent to h3 or h4, via s1 and from there to s2
+Network Layer: 4-
+
+=== s33 ===
+OpenFlow example
+Host h1
+10.1.0.1
+Host h2
+10.1.0.2
+Host h4
+10.2.0.4
+Host h3
+10.2.0.3
+Host h5
+10.3.0.5
+s1
+s2
+s3
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+Host h6
+10.3.0.6
+Orchestrated tables can create network-wide behavior, e.g.,:
+datagrams from hosts h5 and h6 should be sent to h3 or h4, via s1 and from there to s2
+Network Layer: 4-
+
+=== s34 ===
+OpenFlow example: load balancing
+Network Layer: 4-
+Datagrams from h3 to 10.1.*.* are forwarded directly between s2 and s1, datagrams from h4 to 10.1.*.* are to be forwarded directly between s2 and s3 (then to s1).
+Couldn’t be achieved with IP’s destination-based forwarding.
+
+=== s35 ===
+OpenFlow example: load balancing
+Network Layer: 4-
+Datagrams from h3 to 10.1.*.* are forwarded directly between s2 and s1, datagrams from h4 to 10.1.*.* are to be forwarded directly between s2 and s3 (then to s1).
+Couldn’t be achieved with IP’s destination-based forwarding.
+
+=== s36 ===
+OpenFlow example: load balancing
+Network Layer: 4-
+Therefore...
+
+=== s37 ===
+Generalized forwarding: summary
+“match plus action” abstraction: match bits in arriving packet header(s) in any layers, take action
+matching over many fields (link-, network-, transport-layer)
+local actions: drop, forward, modify, or send matched packet to controller
+“program” network-wide behaviors
+simple form of “network programmability”
+programmable, per-packet “processing”
+historical roots: active networking
+today: more generalized programming:
+P4 (see p4.org).
+Network Layer: 4-
+
+=== s38 ===
+Generalized forwarding: summary
+“match plus action” abstraction: match bits in arriving packet header(s) in any layers, take action
+simple form of “network programmability”
+programmable, per-packet “processing”
+historical roots: active networking
+today, more generalized programming:
+P4 (see p4.org): a programming language with higher-level constructs such as variables, general purpose arithmetic and Boolean operations, variables, functions, and conditional statements, as well as constructs specifically designed for datagram processing at line rate. P4 (Programming Protocol-independent Packet Processors).
+Network Layer: 4-
+
+=== s39 ===
+Components of SDN controller
+Network Layer: 5-
+Network-wide distributed, robust  state management
+Communication to/from controlled devices
+…
+…
+…
+…
+Interface, abstractions for network control apps
+SDN
+controller
+3. communication: communicate between SDN controller and controlled switches
+2. network-wide state management : state of networks links, switches, services: a distributed database
+1. interface layer to network control apps: abstractions API
+southbound API
+northbound API
+
+=== s40 ===
+open-source
+maintained by the P4 Language Consortium, a not-for-profit organization hosted by the Open Networking Foundation (ONF)
+P4
+Network Layer: 4-
+http://www.sigcomm.org/sites/default/files/ccr/papers/2014/July/0000000-0000004.pdf
+
+=== s41 ===
+open-source
+maintained by the P4 Language Consortium, a not-for-profit organization hosted by the Open Networking Foundation (ONF)
+P4 is a domain-specific language for network devices, specifying how data plane devices (switches, NICs, routers, filters..) process packets.
+P4
+Network Layer: 4-
+
+=== s42 ===
+open-source, maintained by the P4 Language Consortium, a not-for-profit organization hosted by the Open Networking Foundation (ONF)
+Motivation: future switches should support flexible mechanisms for parsing packets and matching header field; programming new generation to support this flexibility by switch chips is far from easy
+P4 (Programming Protocol independent Packet Processors)
+Network Layer: 4-
+
+=== s43 ===
+Motivation: 1. Future switches should support flexible mechanisms for parsing packets and matching header field; programming new generation to support this flexibility by switch chips is far from easy
+2. Target-independent programs that a compiler can map to a variety of different forwarding devices (ASIC, FPGA, NPU), ranging from relatively slow software switches to the fastest ASIC-based switches.
+P4 (Programming Protocol independent Packet Processors)
+Network Layer: 4-
+
+=== s44 ===
+2. Target-independent programs that a compiler can map to a variety of different forwarding devices (ASIC, FPGA, NPU), ranging from relatively slow software switches to the fastest ASIC-based switches.
+Needs compiler first converts the P4 program into an intermediate table dependency graph representation to determine dependencies between tables, then maps the graph onto switch-specific resources.
+P4 (Programming Protocol independent Packet Processors)
+Network Layer: 4-
+
+=== s45 ===
+Configure operations program the parser, set the order of match+action stages, specify the header fields processed by each stage and which protocols are supported and how the switch may process packets.
+Populate operations add (and remove) entries to the match+action tables that were specified during configuration. It determines the policy applied to packets at any given time.
+P4: a general interface between controller & switches
+Network Layer: 4-
+
+=== s46 ===
+The P4 parser is a finite state machine that walks an incoming byte-stream and extracts headers based on the programmed parse graph.
+Simple example: a parser that extracts the Ethernet source and destination and type fields, then performs a further extraction based on the value in the type field (common values might be ipv4, ipv6, or MPLS).
+P4: a general interface between controller & switches
+Network Layer: 4-
+
+=== s47 ===
+The P4 parser is a finite state machine that walks an incoming byte-stream and extracts headers based on the programmed parse graph.
+P4: a general interface between controller & switches
+Network Layer: 4-
+
+=== s48 ===
+The primary component of a P4 program is a set of user-defined match action tables.
+Tables are composed of lookup keys and a corresponding set of actions and their parameters.
+A trivial example for a L2 switch: store a set of destination MAC addresses as the lookup keys, and the corresponding action could set the output port on the device, and/or increment a counter.
+P4
+Network Layer: 4-
+https://p4.org/
+An example of a L3 switch
+
+=== s49 ===
+Internet network layer: historically implemented via distributed, per-router control approach:
+monolithic router contains switching hardware, runs proprietary implementation of Internet standard protocols (IP, RIP, IS-IS, OSPF, BGP) in proprietary router OS (e.g., Cisco IOS)
+different “middleboxes” for different network layer functions: firewalls, load balancers, NAT boxes, ..
+~2005: renewed interest in rethinking network control plane
+Software defined networking (SDN)
+Network Layer: 5-
+
+=== s50 ===
+Per-router control plane
+Individual routing algorithm components in each and every router interact in the control plane to computer forwarding tables
+1
+2
+values in arriving
+packet header
+3
+Network Layer: 4-
+
+=== s51 ===
+Software-Defined Networking (SDN) control plane
+Remote controller computes, installs forwarding tables in routers
+values in arriving
+packet header
+Network Layer: 4-
+
+=== s52 ===
+Why a logically centralized control plane?
+easier network management: avoid router misconfigurations, greater flexibility of traffic flows
+table-based forwarding (recall OpenFlow API) allows “programming” routers
+centralized “programming” easier: compute tables centrally and distribute
+distributed “programming” more difficult: compute tables as result of distributed algorithm (protocol) implemented in each-and-every router
+open (non-proprietary) implementation of control plane
+foster innovation: let 1000 flowers bloom
+Software defined networking (SDN)
+Network Layer: 5-
+
+=== s53 ===
+SDN analogy: mainframe to PC revolution
+Network Layer: 5-
+Vertically integrated
+Closed, proprietary
+Slow innovation
+Small industry
+Specialized
+Operating
+System
+Specialized
+Hardware
+Specialized
+Applications
+Horizontal
+Open interfaces
+Rapid innovation
+Huge industry
+* Slide  courtesy: N. McKeown
+
+=== s54 ===
+Traffic engineering: difficult with traditional routing
+Network Layer: 5-
+Q: what if network operator wants u-to-z traffic to flow along uvwz, rather than uxyz?
+A: need to re-define link weights so traffic routing algorithm computes routes accordingly (or need a new routing algorithm)!
+link weights are only control “knobs”: not much control!
+
+=== s55 ===
+Traffic engineering: difficult with traditional routing
+Network Layer: 5-
+Q: what if network operator wants to split  u-to-z traffic along uvwz and uxyz (load balancing)?
+A: can’t do it (or need a new routing algorithm)
+
+=== s56 ===
+Traffic engineering: difficult with traditional routing
+Network Layer: 5-
+Q: what if w wants to route blue and red traffic differently from w to z?
+A: can’t do it (with destination-based forwarding, and LS, DV routing)
+We learned in Chapter 4 that generalized forwarding and SDN can be used to achieve any routing desired
+
+=== s57 ===
+Software defined networking (SDN)
+Network Layer: 5-
+3. control plane functions external to data-plane switches (packets switches can be routers and 2-layer switches )
+…
+routing
+access control
+load
+balance
+
+=== s58 ===
+Software defined networking (SDN)
+Network Layer: 5-
+Data-plane switches:
+fast, simple, commodity switches implementing generalized data-plane forwarding (Section 4.4) in hardware
+flow (forwarding) table computed, installed under controller supervision
+API for table-based switch control (e.g., OpenFlow)
+defines what is controllable, what is not
+protocol for communicating with controller (e.g., OpenFlow)
+
+=== s59 ===
+Software defined networking (SDN)
+Network Layer: 5-
+SDN controller (network OS):
+maintain network state information
+interacts with network control applications “above” via northbound API
+interacts with network switches “below” via southbound API
+implemented as distributed system for performance, scalability, fault-tolerance, robustness
+
+=== s60 ===
+Software defined networking (SDN)
+Network Layer: 5-
+network-control apps:
+“brains” of control:  implement control functions using lower-level services, API provided by SDN controller
+unbundled: can be provided by 3rd party: distinct from routing vendor, or SDN controller
+
+=== s61 ===
+Components of SDN controller
+Network Layer: 5-
+Network-wide distributed, robust  state management
+Communication to/from controlled devices
+…
+…
+…
+…
+Interface, abstractions for network control apps
+SDN
+controller
+3. communication: communicate between SDN controller and controlled switches
+2. network-wide state management : state of networks links, switches, services: a distributed database
+1. interface layer to network control apps: abstractions API
+southbound API
+northbound API
+
+=== s62 ===
+Component I: A Communication Layer
+Network Layer: 5-
+Communication to/from controlled devices
+…
+…
+…
+…
+Interface, abstractions for network control apps
+SDN
+controller
+communication:
+a protocol is needed to transfer information between the controller and that device (control switches)
+a device must be able to communicate locally-observed events to the controller (E.g., a message indicating that an attached link has gone up or down, that a device has just joined the network)
+southbound API
+northbound API
+Network-wide distributed, robust  state management
+
+=== s63 ===
+Simple Network Management Protocol
+run on top of TCP/IP
+core: a Network Management System (NMS) software used ot manage network devices remotely
+E.g., inspect server-specific running and specific ports of switches and routers; modify ip of different ports; trap packets: overheating, port congetion, memory defficiency, etc.
+SNMP
+Network Layer: 4-
+
+=== s64 ===
+OpenFlow protocol
+Network Layer: 5-
+Simply, OpenFlow is a protocol that allows a server to tell network switches where to send packets.
+The Open Networking Foundation (ONF), a user-led organization manages the OpenFlow standard.
+
+=== s65 ===
+OpenFlow protocol
+Network Layer: 5-
+Simply, OpenFlow is a protocol that allows a server to tell network switches where to send packets.
+Version 1.1. 2011. The Open Networking Foundation (ONF), a user-led organization manages the OpenFlow standard.
+OpenFlow allows switches from different vendors — often each with their own proprietary interfaces and scripting languages — to be managed remotely using a single, open protocol
+
+=== s66 ===
+OpenFlow protocol
+Network Layer: 5-
+operates between controller & switch
+TCP used to exchange messages
+optional encryption
+operates over TCP, with a default port number of 6653
+TLS (OpenFlow should be used in secure channels.)
+three classes of  OpenFlow messages:
+controller-to-switch
+asynchronous (switch to controller)
+symmetric (misc.)
+
+=== s67 ===
+OpenFlow: controller-to-switch messages
+Network Layer: 5-
+Key controller-to-switch messages
+features: controller queries switch features, switch replies
+configure: controller queries/sets switch configuration parameters
+modify-state: add, delete, modify flow entries in the OpenFlow tables
+packet-out (send-packet): controller can send this packet out of specific switch port. The message itself contains the packet to be sent in its payload.
+
+=== s68 ===
+OpenFlow: switch-to-controller messages
+Network Layer: 5-
+Key switch-to-controller messages
+packet-in: transfer packet (and its control) to controller. A packet arriving at a switch port and not matching any flow table entry is sent to the controller for additional processing.
+flow-removed: flow table entry deleted at switch
+port status: inform controller of a change on a port.
+Fortunately, network operators don’t “program” switches by creating/sending OpenFlow messages directly.  Instead use higher-level abstraction at controller
+
+=== s69 ===
+Component II: state-management layer
+Network Layer: 5-
+Network-wide distributed, robust  state management
+Communication to/from controlled devices
+…
+…
+…
+…
+Interface, abstractions for network control apps
+SDN
+controller
+network-wide state management :
+ultimate goal of the control plane: determine flow tables for controlled devices
+state of networks links, switches, services: a distributed database
+southbound API
+northbound API
+
+=== s70 ===
+Component III: interface to application layer
+Network Layer: 5-
+Network-wide distributed, robust  state management
+Communication to/from controlled devices
+…
+…
+…
+Interface, abstractions for network control apps
+SDN
+controller
+interface layer to network control apps: abstractions API
+Applications can register to be notified when state-change events occur, so that they can take actions in response to network event notifications sent from SDN-controlled devices.
+two popular SDN controllers communicate with their applications using a REST request-response interface
+southbound API
+northbound API
+
+=== s71 ===
+SDN: control/data plane interaction example
+Network Layer: 5-
+…
+…
+…
+…
+Dijkstra’s link-state
+routing
+
+=== s72 ===
+A recap of the previous lesson
+11/16/2022
+Network Layer: 4-
+
+=== s73 ===
+network links have MTU (max. transfer size) - largest possible link-level frame
+different link types, different MTUs
+large IP datagram divided (“fragmented”) within net
+one datagram becomes several datagrams
+“reassembled” only at destination
+IP header bits used to identify, order related fragments
+IP fragmentation/reassembly
+Network Layer: 4-
+fragmentation:
+in: one large datagram
+out: 3 smaller datagrams
+
+=== s74 ===
+IP fragmentation/reassembly
+Network Layer: 4-
+example:
+4000 byte datagram
+MTU = 1500 bytes
+1480 bytes in data field
+offset =
+1480/8
+
+=== s75 ===
+OpenFlow example: load balancing
+Network Layer: 4-
+Datagrams from h3 to 10.1.*.* are forwarded directly between s2 and s1, datagrams from h4 to 10.1.*.* are to be forwarded directly between s2 and s3 (then to s1).
+Couldn’t be achieved with IP’s destination-based forwarding.
+
+=== s76 ===
+OpenFlow example: load balancing
+Network Layer: 4-
+Therefore...
+
+=== s77 ===
+Traffic engineering: difficult with traditional routing
+Network Layer: 5-
+Q: what if network operator wants u-to-z traffic to flow along uvwz, rather than uxyz?
+A: need to re-define link weights so traffic routing algorithm computes routes accordingly (or need a new routing algorithm)!
+link weights are only control “knobs”: not much control!
+
+=== s78 ===
+Traffic engineering: difficult with traditional routing
+Network Layer: 5-
+Q: what if network operator wants to split  u-to-z traffic along uvwz and uxyz (load balancing)?
+A: can’t do it (or need a new routing algorithm)
+
+=== s79 ===
+Traffic engineering: difficult with traditional routing
+Network Layer: 5-
+Q: what if w wants to route blue and red traffic differently from w to z?
+A: can’t do it (with destination-based forwarding, and LS, DV routing)
+We learned in Chapter 4 that generalized forwarding and SDN can be used to achieve any routing desired
+
+=== s80 ===
+Software defined networking (SDN)
+Network Layer: 5-
+3. control plane functions external to data-plane switches (packets switches can be routers and 2-layer switches )
+…
+routing
+access control
+load
+balance
+
+=== s81 ===
+SDN: control/data plane interaction example
+Network Layer: 5-
+…
+…
+…
+…
+Dijkstra’s link-state
+routing
+
+=== s82 ===
+OpenDaylight (ODL) controller
+Network Layer: 5-
+Service Abstraction Layer:
+interconnects internal, external applications and services
+
+=== s83 ===
+ONOS controller
+Network Layer: 5-
+Southbound API
+northbound abstractions,
+protocols
+control apps separate from controller
+intent framework: high-level specification of service: what rather than how
+considerable emphasis on distributed core: service reliability, replication performance scaling
+Traffic Engineering
+Firewalling
+Load balancing
+Northbound API
+Network Applications
+
+=== s84 ===
+hardening the control plane: dependable, reliable, performance-scalable, secure distributed system
+robustness to failures: leverage strong theory of reliable distributed system for control plane
+dependability, security: “baked in” from day one?
+networks, protocols meeting mission-specific requirements
+e.g., real-time, ultra-reliable, ultra-secure
+Internet-scaling: beyond a single AS
+SDN critical in 5G cellular networks
+SDN:  selected challenges
+Network Layer: 5-
+
+=== s85 ===
+SDN-computed versus router-computer forwarding tables:
+just one example of logically-centralized-computed versus protocol computed
+one could imagine SDN-computed congestion control:
+controller sets sender rates based on router-reported (to controller) congestion levels
+SDN and the future of traditional network protocols
+Network Layer: 5-
+
+=== s86 ===
+Inter-autonomous system (inter-AS) routing protocol
+Decentralized, asynchronous, distance-vector-based, complex & challenging
+Steps:
+1. Advertising BGP route information
+3a  2c: eBGP msg "AS3 x"
+2c -> all AS2 routers: iBGP msg "AS3 x"
+2a -> 1c:  eBGP msg
+"AS2 AS3 x"
+BGP (Border Gateway Protocol )
+Network Layer: 4-
+
+=== s87 ===
+Steps:
+2. Determining the best route
+Route: prefix
+attributes: AS-PATH (e.g., "AS2 AS3 x")
+NEXT-HOP (IP of router interface)
+E.g.,
+BGP (Border Gateway Protocol )
+Network Layer: 4-
+
+=== s88 ===
+Steps:
+2. Determining the best route (e.g., hot-patato):
+1b consults 2a and 3d respectively the least-cost intra-AS path to them, e.g., 2 and 3; then 2a is selected (cost: # of router hops)
+consult its forwarding table (configured by intra-AS algorithm OSPF) and find interface I on the least-cost path to 2a, then adds (x, I) to its table.
+BGP (Border Gateway Protocol )
+Network Layer: 4-
+
+=== s89 ===
+Steps:
+2. Determining the best route (e.g., hot-patato):
+1b consults 2a and 3d respectively the least-cost intra-AS path to them, e.g., 2 and 3; then 2a is selected (cost: # of router hops)
+consult its forwarding table (configured by intra-AS algorithm OSPF) and find interface I on the least-cost path to 2a, then adds (x, I) to its table.
+BGP (Border Gateway Protocol )
+Network Layer: 4-
+closest NEXT-HOP selected
+
+=== s90 ===
+Steps:
+2. Determining the best route (more precise version):
+Route: prefix
+attributes: AS-PATH (e.g., "AS2 AS3 x")
+NEXT-HOP (IP of router interface)
+Local preference
+BGP (Border Gateway Protocol )
+Network Layer: 4-
+
+=== s91 ===
+Steps:
+2. Determining the best route (more precise version):
+Select the routes with highest local preference
+Among them, use DV alg. with cost = # of AS hops
+Among them (same local pref. & AS-PATH length), use Hot Patato (closest NEXT-HOP)   Not greedy anymore! e.g., choose 3d first..
+BGP (Border Gateway Protocol )
+Network Layer: 4-
+
+=== s92 ===
+Providers cannot obtain enough capacity on some preferred peering paths to handle peak traffic demand.
+BGP needs improvemnet
+Network Layer: 4-
+https://dl.acm.org/doi/pdf/10.1145/3098822.3098853
+
+=== s93 ===
+BGP is not capacity-aware. Interconnections and paths have limited capacity. Their measurements of a large CDN show that it is unable to obtain enough capacity at many interconnections to route all traffic along the paths preferred by its BGP policy.
+E.g., a provider can cause congestion with huge volumes of adaptive-bitrate video traffic that expands to increase bitrate when capacity allows.
+BGP needs improvemnet
+Network Layer: 4-
+
+=== s94 ===
+BGP is not performance-aware. At any PoP, forwarding the traffic to an IP prefix along the best path chosen by BGP can lead to sub-optimal performance. The attributes that BGP relies upon for path selection, such as AS path length and multi-exit discriminators (MEDs), do not always correlate with performance.
+BGP changes paths only in reaction to changes in policy or the set of available routes.
+BGP only selects a single path finally
+BGP needs improvemnet
+Network Layer: 4-
+
+=== s95 ===
+BGP is not capacity-aware. Interconnections and paths have limited capacity. Their measurements of a large CDN show that it is unable to obtain enough capacity at many interconnections to route all traffic along the paths preferred by its BGP policy.
+Facebook Edge Fabric
+Network Layer: 4-
+
+=== s96 ===
+Google B4 network: success of SDN in practice
+Network Layer: 4-
+
+=== s97 ===
+B4: Google’s Software Defined WAN
+Google's two WANs: 1. User-facing WAN  ----- Gmail, google search,
+2. B4 – connecting their own data-centers
+
+=== s98 ===
+B4: Google’s Software Defined WAN
+Google’s private WAN connecting its data centers
+Elastic bandwidth demands
+Can tolerate periodic failures with temporary BW reduction
+Small number of sites
+Allows special optimization
+Complete control of end application
+Application priorities and control bursts
+Cost Sensitivity
+Unsustainable cost projection with traditional approach (2-3x cost of a fully utilized WAN).
+
+=== s99 ===
+Traditional WAN routing
+
+=== s100 ===
+Centerlized TE: convergence after failure
+
+=== s101 ===
+Centerlized TE: convergence after failure
+
+=== s102 ===
+Centerlized TE: convergence after failure
+
+=== s103 ===
+Centerlized TE: convergence after failure
+
+=== s104 ===
+Centerlized TE: convergence after failure
+
+=== s105 ===
+Centerlized TE: convergence after failure
+
+=== s106 ===
+Centerlized TE: convergence after failure
+
+=== s107 ===
+Centerlized TE: convergence after failure
+
+=== s108 ===
+Advantage of Centralized TE
+Better network utilization with global pictures
+Converges faster to target optimum on failure
+Allows more control and specifying intend
+Deterministic behavior simplifies planning .vs. overprovisioning for worst cast variability
+Can mirror production event streams for testing
+Controller uses modern server hardware – better performance (50x!)
+
+=== s109 ===
+B4 design decisions
+B4 routers built from merchant switch silicon
+APPS trade bandwidth for fault tolerance
+Edge control reduced the buffer size, number of B4 site  small forwarding table
+Low router cost  scale network capacity
+Drive links to 100% utilization
+Effective use of expensive long haul transport
+High average bandwidth over predictability: largest bandwidth consumers can adapt to bandwidth availability
+Centralized traffic engineering
+Multipathing
+Application classification and priority
+Improved over traditional TE schemes
+Faster, deterministic global convergence for failures
+Separate hardware from software
+Customized routing
+Rapid iterating of software protocols
+Easier to protect against common case software failures
+Agnostic to range of hardware deployment
+
+=== s110 ===
+B4 SDN architecture
+Switch hardware (Google custom designed with commodity silicon)
+Forwards traffic
+No complex control software
+OpenFlow controllers (OFC – ONIX based)
+Maintain network state based on network control application directive and switch events
+Instruct switches to set forwarding entries
+Central application
+Central control of the entire network
+
+=== s111 ===
+B4 architecture overview
+
+=== s112 ===
+Switch design
+Embedded processor running Linux; OpenFlow Agent running over Linux
+Observed most failures occurred at software level
+-- Software functions removed from switches
+
+=== s113 ===
+Routing: integrating OpenFlow with existing network deployment
+
+=== s114 ===
+Traffic Engineering
+Forming site topology
+Applications are aggregated to flow group: {source site, destination site, QoS}
+Tunnel represents site-level path
+Tunnel group for a set of tunnels and weights
+Bandwidth function linear to application weight
+
+=== s115 ===
+TE optimization algorithm
+Target: Achieve max-min fairness
+LP can get it in one shot, but too expensive the compute.
+TThe proposed algorithm in this work achieves at least 99% of the band- width utilization with 25x faster performance relative to LP
+Approximate solution with bandwidth function (See the paper for details)
+Tunnel Selection selects the tunnels to be considered for each flow group
+Tunnel Group Generation allocates bandwidth to FGs using bandwidth functions to prioritize at bottleneck links
+Tunnel Group Quantization changes split ratios in each FG to match the granularity supported by switch hardware tables.
+
+=== s116 ===
+Network Layer: 4-
+
+=== s117 ===
+Network Layer: 4-
+
+=== s118 ===
+Fair share
+Network Layer: 4-
+Objective of TE: max min fair-share
+Results are based on contracts between applications and B4
+
+=== s119 ===
+Fair share
+Network Layer: 4-
+Objective of TE: max min fair-share
+Measured demands:
+15, 5, 10 (Gpbs) for
+app 1, 2, and 3
+
+=== s120 ===
+Network Layer: 4-
+Cost per edge: 1 for each, except 10 for A D
+Cost per path: sum of cost over the edges on the path
+
+=== s121 ===
+Network Layer: 4-
+A
+D
+C
+B
+
+=== s122 ===
+Network Layer: 4-
+A
+D
+C
+B
+Iteration 1: Fair share = 0.9
+FG1: 10G                  FG2: 0.45G
+
+=== s123 ===
+Fair share
+Network Layer: 4-
+Objective of TE: max min fair-share
+Measured demands:
+15, 5, 10 (Gpbs) for
+app 1, 2, and 3
+
+=== s124 ===
+Network Layer: 4-
+A
+D
+C
+B
+Iteration 1: Fair share = 0.9
+FG1: 10G                  FG2: 0.45G
+A-> B freezed !
+
+=== s125 ===
+Network Layer: 4-
+A
+D
+C
+B
+Iteration 2: Fair share = 3.33
+FG1: 10G                  FG2: 0.45G
+8.33G                        1.22G
+
+=== s126 ===
+Fair share
+Network Layer: 4-
+Objective of TE: max min fair-share
+Measured demands:
+15, 5, 10 (Gpbs) for
+app 1, 2, and 3
+
+=== s127 ===
+Network Layer: 4-
+A
+D
+C
+B
+Iteration 2: Fair share = 3.33
+FG1: 10G                  FG2: 0.45G
+8.33G                        1.22G
+A-> C
+freezed !
+
+=== s128 ===
+Network Layer: 4-
+A
+D
+C
+B
+Iteration 3:
+FG1: 10G                  FG2: 0.45G
+8.33G                        1.22G
+1.67G                        3.33G
+
+=== s129 ===
+Some other recommended works I
+Network Layer: 4-
+https://ieeexplore.ieee.org/abstract/document/9755209
+
+=== s130 ===
+Some other recommended works I
+Network Layer: 4-
+Idea: End-to-End protocol convention may not work well for hybrid-link networks
+
+=== s131 ===
+Some other recommended works I
+Network Layer: 4-
+
+=== s132 ===
+我国三大运营商在2015年开始启动SDN。2015年，中国移动提出Novonet项目引入SDN/NFV和编排技术，并于2019年启动全球规模最大的网络云八大区构建，其中包括了5G核心网的NFV、数据中心SDN等内容，目前已经广泛应用。这一项目让中国移动构成了全球最大的网络云基础设施，提出了以ONAP为核心的智能化编排管理体系，中国移动主导的ONAP开源社区已经发布EI AIto版。
+中国电信在2019年提出面向2030年的云网融合，中国移动和中国联通在云网融合的基础上，提出面向2030年的算力网络，算力网络是云网融合的深化。算力网络已经被看成是第六代移动通信的支撑网络。
+运营商传统的网络协议IPv4/MPLS是按照网络节点一跳一跳地做网络资源的管理和控制的，与SDN希望的便捷灵活是矛盾的。讨论最热烈的是SRv6协议，它最大的好处是极大地减少了网络的跳数。在SRv6网络中，SDN控制器只要和源地址的节点‘打交道’，就能够实现整条业务流的配置和管控。
+SD-WAN（软件定义广域网）
+Network Layer: 4-
+
+=== s133 ===
+网络的南向接口不局限于OpenFlow协议，也可以不对底层网络设备大动干戈，只是在网络管理控制和能力开放上增强。这其实是开放与封闭的折中，网络的可编程和开放性局限于网络控制平面，转发平面依然采用功能固定的包处理硬件。
+为推动数据平面的可编程，P4（还在发展初期）自2015年起推动了OpenFlow编程能力不足和扩展性差等问题。
+SD-WAN（软件定义广域网）
+Network Layer: 4-
+
+=== s134 ===
+Network layer: “data plane” roadmap
+Network Layer: 4-
+Network layer: overview
+What’s inside a router
+IP: the Internet Protocol
+Generalized Forwarding
+Middleboxes
+middlebox functions
+evolution, architectural principles of the Internet
+
+=== s135 ===
+Middleboxes
+“any intermediary box performing functions apart from normal, standard functions of an IP router on the data path between a source host and destination host”
+Middlebox (RFC  3234)
+
+=== s136 ===
+Middleboxes everywhere!
+enterprise
+network
+national or global ISP
+datacenter
+network
+NAT: home, cellular, institutional
+Firewalls, IDS: corporate, institutional, service providers, ISPs
+Load balancers: corporate, service provider, data center, mobile nets
+Caches: service provider, mobile, CDNs
+Application-specific: service providers, institutional, CDN
+
+=== s137 ===
+Middleboxes
+initially: proprietary (closed) hardware solutions
+move towards “whitebox” hardware implementing open API
+move away from proprietary hardware solutions
+programmable local actions via match+action
+move towards innovation/differentiation in software
+SDN: (logically) centralized control and configuration management often in  private/public cloud
+network functions virtualization (NFV): programmable services over white box  networking, computation, storage
+
+=== s138 ===
+The IP hourglass
+
+=== s139 ===
+The IP hourglass, at middle age
+
+=== s140 ===
+Architectural Principles of the Internet
+“Many members of the Internet community would argue that there is no architecture, but only a tradition, which was not written down for the first 25 years (or at least not by the IAB).  However, in very general terms, the community believes that the goal is connectivity, the tool is the Internet Protocol, and the intelligence is end to end rather than hidden in the network.”
+RFC  1958
+Three cornerstone beliefs:
+simple connectivity
+IP protocol: that narrow waist
+intelligence, complexity at network edge
+
+=== s141 ===
+The end-end argument
+some network functionality (e.g., reliable data transfer, congestion) can be implemented in network, or at network edge
+
+=== s142 ===
+The end-end argument
+some network functionality (e.g., reliable data transfer, congestion) can be implemented in network, or at network edge
+
+=== s143 ===
+Where’s the intelligence?
+
+=== s144 ===
+Question: how are forwarding tables (destination-based forwarding) or flow tables (generalized forwarding) computed?
+Answer: by the control plane (next chapter)
+Chapter 4: done!
+
+=== s145 ===
+Thanks
+Network Layer: 4-
+
+=== s146 ===
+DHCP: Wireshark output (home LAN)
+Network Layer: 4-
+Message type: Boot Reply (2)
+Hardware type: Ethernet
+Hardware address length: 6
+Hops: 0
+Transaction ID: 0x6b3a11b7
+Seconds elapsed: 0
+Bootp flags: 0x0000 (Unicast)
+Client IP address: 192.168.1.101 (192.168.1.101)
+Your (client) IP address: 0.0.0.0 (0.0.0.0)
+Next server IP address: 192.168.1.1 (192.168.1.1)
+Relay agent IP address: 0.0.0.0 (0.0.0.0)
+Client MAC address: Wistron_23:68:8a (00:16:d3:23:68:8a)
+Server host name not given
+Boot file name not given
+Magic cookie: (OK)
+Option: (t=53,l=1) DHCP Message Type = DHCP ACK
+Option: (t=54,l=4) Server Identifier = 192.168.1.1
+Option: (t=1,l=4) Subnet Mask = 255.255.255.0
+Option: (t=3,l=4) Router = 192.168.1.1
+Option: (6) Domain Name Server
+Length: 12; Value: 445747E2445749F244574092;
+IP Address: 68.87.71.226;
+IP Address: 68.87.73.242;
+IP Address: 68.87.64.146
+Option: (t=15,l=20) Domain Name = "hsd1.ma.comcast.net."
+Message type: Boot Request (1)
+Hardware type: Ethernet
+Hardware address length: 6
+Hops: 0
+Transaction ID: 0x6b3a11b7
+Seconds elapsed: 0
+Bootp flags: 0x0000 (Unicast)
+Client IP address: 0.0.0.0 (0.0.0.0)
+Your (client) IP address: 0.0.0.0 (0.0.0.0)
+Next server IP address: 0.0.0.0 (0.0.0.0)
+Relay agent IP address: 0.0.0.0 (0.0.0.0)
+Client MAC address: Wistron_23:68:8a (00:16:d3:23:68:8a)
+Server host name not given
+Boot file name not given
+Magic cookie: (OK)
+Option: (t=53,l=1) DHCP Message Type = DHCP Request
+Option: (61) Client identifier
+Length: 7; Value: 010016D323688A;
+Hardware type: Ethernet
+Client MAC address: Wistron_23:68:8a (00:16:d3:23:68:8a)
+Option: (t=50,l=4) Requested IP Address = 192.168.1.101
+Option: (t=12,l=5) Host Name = "nomad"
+Option: (55) Parameter Request List
+Length: 11; Value: 010F03062C2E2F1F21F92B
+1 = Subnet Mask; 15 = Domain Name
+3 = Router; 6 = Domain Name Server
+44 = NetBIOS over TCP/IP Name Server
+……
+reply
+request
+

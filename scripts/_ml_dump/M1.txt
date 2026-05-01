@@ -1,0 +1,876 @@
+# M1  Introduction
+# Source: 1-Introduction.pdf    Pages: 95
+
+=== p1 ===
+饶洋辉
+副教授，计算机学院
+第一章
+机器学习导论
+课件来源：李航. 统计学习方法. 清华大学深圳研究生院袁春教授讲解材料；吴飞. 人工智能导论：模型与算法
+
+=== p2 ===
+• 饶洋辉
+• 贝叶斯分类器
+• 最大熵模型
+• 提升方法
+• 马尔科夫链蒙特卡洛法
+• 赖韩江
+• 预训练模型（pretrained models）
+• 提示学习（prompt learning）
+• 因果推理（causal inference; backdoor; frontdoor; Counterfactuals）
+• 少样本学习（few shot learning）
+• 谭宁
+• 强化学习（reinforcement learning ）
+• 模仿学习（imitation learning）
+课程信息
+
+=== p3 ===
+课程信息
+
+=== p4 ===
+• 周志华. 机器学习. 清华大学出版社, 2016.
+• Christopher M. Bishop. Pattern Recognition and Machine Learning. Springer, 2006.
+参考书籍
+
+=== p5 ===
+机器学习
+• 维基百科：
+• 机器学习是近20多年兴起的一门多领域交叉学科，涉及概率论、统计学、逼近论、
+凸分析、算法复杂度理论等多门学科。机器学习理论主要是设计和分析一些让计算
+机可以自动“学习”的算法。机器学习算法是一类从数据中自动分析获得规律，并利
+用规律对未知数据进行预测的算法。因为学习算法中涉及了大量的统计学理论，机
+器学习与统计推断学联系尤为密切，也被称为统计学习理论。算法设计方面，机器
+学习理论关注可以实现的，行之有效的学习算法。很多推论问题属于无程序可循难
+度，所以部分的机器学习研究是开发容易处理的近似算法。
+
+=== p6 ===
+相关学术文章下载资源
+• COLT和ICML (每年度的官网): https://proceedings.mlr.press/v178;
+https://icml.cc/virtual/2022/papers.html?filter=titles
+• NeurIPS: https://proceedings.neurips.cc
+• ICLR: https://openreview.net/group?id=ICLR.cc/2022/Conference
+• JMLR (期刊): http://jmlr.csail.mit.edu/papers
+
+=== p7 ===
+机器学习
+• 维基百科：
+• 机器学习有下面几种定义：
+• “机器学习是一门人工智能的科学，该领域的主要研究对象是人工智能，特别是
+如何在经验学习中改善具体算法的性能”。
+• “机器学习是对能通过经验自动改进的计算机算法的研究”。
+• “机器学习是用数据或以往的经验，以此优化计算机程序的性能标准。”
+• 英文定义：A computer program is said to learn from experience E with respect to
+some class of tasks T and performance measure P, if its performance at tasks in T, as
+measured by P,improves with experience E.
+• 汤姆米切尔：机器学习指一个电脑程序从经验 E（例如标签数据）中学习如何
+提高某些任务 T（例如分类）的性能指标 P（例如精度和召回率），即以P作为
+指标，通过E来提高T的表现。
+
+=== p8 ===
+机器学习应用
+• 数据挖掘
+• 计算机视觉
+• 自然语言处理
+• 生物特征识别
+• 搜索引擎
+• 医学诊断
+• 检测信用卡欺诈
+• 证券市场分析
+• DNA序列测序
+• 语音和手写识别
+• 战略游戏
+• 机器人
+
+=== p9 ===
+Text to speech and speech recognition
+
+=== p10 ===
+
+
+=== p11 ===
+Computer vision
+
+=== p12 ===
+• Gene
+Bioinformatics
+
+=== p13 ===
+Bioinformatics
+• Gene
+
+=== p14 ===
+Financial information
+
+=== p15 ===
+Robotic control
+
+=== p16 ===
+Deep learning
+
+=== p17 ===
+机器学习的发展历程
+• “黑暗时代”，人工智能的诞生（1943年~1956年）
+• Warren McCulloch和Walter Pitts在1943年发表了人工智能领域的开篇之作 ，
+提出了人工神经网络模型。
+• John von Neumann。他在1930年加入了普林斯顿大学，在数学物理系任教，
+和阿兰·图灵是同事。
+• Marvin Minsky和Dean Edmonds建造第一台神经网络计算机。
+• 1956年：John McCarthy从普林斯顿大学毕业后去达特茅斯学院工作，说服
+了Marvin Minsky和Claude Shannon在达特茅斯学院组织一个暑期研讨会，
+召集了对机器智能 、人工神经网络和自动理论感兴趣的研究者 ，参加由
+IBM赞助的研讨会。
+
+=== p18 ===
+机器学习的发展历程
+
+=== p19 ===
+• 新的方向：
+• 概率网络
+• 集成学习
+• 可扩展机器学习（对大数据集、高维数据的学习等）
+• 迁移学习
+• 深度学习
+• 提示学习
+• 少样本学习
+• 强化学习
+• 模仿学习
+机器学习的发展历程
+
+=== p20 ===
+国内外的研究者
+• M. I. Jordan
+• Andrew Ng
+• Tommi Jaakkola
+• David Blei
+• Eric Xing
+• D. Koller
+• 2001年IJCAI计算机与思维奖: Terry Winograd、David Marr、Tom Mitchell、Rodney Brooks
+等人之后的第18位获奖者
+• Peter L. Bartlett
+• J. D. Lafferty
+• 国内：李航，周志华，杨强，王晓刚，唐杰，刘铁岩，何晓飞，朱筠，吴军，
+张栋，戴文渊，余凯，邓力，孙健
+
+=== p21 ===
+• 卡内基梅隆大学的计算机科学学士学位，
+• 麻省理工学院的电子工程和计算机科学硕士学位，
+• 加州大学伯克利分校的计算机科学博士学位。
+• 在斯坦福大学计算机科学和电子工程学系担任教授，讲授机器学习课程
+• 吴恩达(Andrew Ng)
+• 硅谷人工智能实验室
+• 北京深度学习实验室
+• 北京大数据实验室
+国内外的研究者
+
+=== p22 ===
+机器学习和数据挖掘的关系
+• 机器学习是数据挖掘的重要工具。
+• 数据挖掘不仅仅要研究、拓展、应用一些机器学习方法，还要通过许多非机器学
+习技术解决数据仓储、大规模数据、数据噪音等等更为实际的问题。
+• 机器学习的涉及面更宽，常用在数据挖掘上的方法通常只是“从数据学习”，然则
+机器学习不仅仅可以用在数据挖掘上，一些机器学习的子领域甚至与数据挖掘关
+系不大，例如增强学习与自动控制等等。
+• 数据挖掘试图从海量数据中找出有用的知识。
+• 大体上看，数据挖掘可以视为机器学习和数据库的交叉，它主要利用机器学习界
+提供的技术来分析海量数据，利用数据库界提供的技术来管理海量数据。
+
+=== p23 ===
+机器学习和数据挖掘的关系
+
+=== p24 ===
+机器学习的一个形象描述
+
+=== p25 ===
+为什么要研究大数据机器学习？
+• 如“尿布→啤酒”的关联规则
+• 实际上，在面对少量数据时关联分析并不难 ，可以直接使用统计学
+中有关相关性的知识 ，这也正是机器学习界没有研究关联分析的一
+个重要原因。
+• 关联分析的困难其实完全是由海量数据造成的 ，因为数据量的增加
+会直接造成挖掘效率的下降 ，当数据量增加到一定程度 ，问题的难
+度就会产生质变。
+• 例如，在关联分析中必须考虑因数据太大而无法承受多次扫描数据库的开销 、
+可能产生在存储和计算上都无法接受的大量中间结果等。
+
+=== p26 ===
+数据库中的知识发现
+• Improving the Efficiency of Apriori
+• FPGrowth:  A Frequent Pattern-Growth Approach
+• ECLAT: Frequent Pattern Mining with Vertical Data Format
+• Mining Colossal Patterns
+
+=== p27 ===
+机器学习相关学术期刊和会议
+• 机器学习
+• 学术会议：NIPS、ICML、ECML和COLT
+• 学术期刊：《Machine Learning》和《Journal of Machine Learning Research》
+• 数据挖掘
+• 学术会议：SIGKDD、ICDM、SDM、PKDD和PAKDD
+• 学术期刊：《Data Mining and Knowledge Discovery》和《IEEE Transactions on Knowledge and Data Engineering》
+• 人工智能
+• 学术会议：IJCAI和AAAI
+• 数据库
+• 学术会议：SIGMOD、VLDB、ICDE
+• 其它一些顶级期刊如
+• 《Artificial Intelligence》、
+• 《Journal of Artificial Intelligence Research》、
+• 《IEEE Transactions on Pattern Analysis and Machine Intelligence》、
+• 《Neural Computation》等也经常发表机器学习和数据挖掘方面的论文
+
+=== p28 ===
+机器学习相关学术期刊和会议
+
+=== p29 ===
+提纲：
+1  大
+机器学习相关学术期刊和会议
+
+=== p30 ===
+机器学习相关学术期刊和会议
+
+=== p31 ===
+机器学习相关学术期刊和会议
+
+=== p32 ===
+提纲：
+1  大
+机器学习相关学术期刊和会议
+
+=== p33 ===
+机器学习和统计学习
+• 维基百科：
+• 机器学习是近20多年兴起的一门多领域交叉学科，涉及概率论、统计学、逼近论、凸分析、算法
+复杂度理论等多门学科。机器学习理论主要是设计和分析一些让计算机可以自动“学习”的算法。
+机器学习算法是一类从数据中自动分析获得规律，并利用规律对未知数据进行预测的算法。因为
+学习算法中涉及了大量的统计学理论，机器学习与统计推断学联系尤为密切，也被称为统计学习
+理论。算法设计方面，机器学习理论关注可以实现的，行之有效的学习算法。很多推论问题属于
+无程序可循难度，所以部分的机器学习研究是开发容易处理的近似算法。
+
+=== p34 ===
+Glossary（Robert Tibshiriani）
+network, graphs model
+weights parameters
+learning fitting
+generalization test set performance
+supervised learning regression/classiﬁcation
+unsupervised learning density estimation, clustering
+large grant = $1,000,000 large grant = $50,000
+nice place to have a meeting:
+Snowbird, Utah, French Alps
+nice place to have a meeting:
+Las Vegas in August
+机器学习和统计学习
+
+=== p35 ===
+• 统计学 机器学习
+———————————–————–
+Estimation Learning
+Classifier Hypothesis
+Data point Example/Instance
+Regression Supervised Learning
+Classification Supervised Learning
+Covariate Feature
+Response Label
+机器学习和统计学习（专业术语）
+
+=== p36 ===
+• 研究方法差异
+• 统计学研究形式化和推导
+• 机器学习更容忍一些新方法
+• 维度差异
+• 统计学强调低维空间问题的统计推导（confidence intervals, hypothesis tests, optimal estimators）
+• 机器学习强调高维预测问题
+• 统计学和机器学习各自更关心的领域：
+• 统计学: survival analysis, spatial analysis, multiple testing, minimax theory, deconvolution,  
+semiparametric inference, bootstrapping, time series.
+• 机器学习: online learning, semisupervised learning, manifold learning, active learning, boosting.
+机器学习和统计学习
+
+=== p37 ===
+机器学习
+• 机器学习的对象
+• data ：计算机及互联网上的各种数字、文字、图像、视频、音频数据以及它
+们的组合。
+• 数据的基本假设是同类数据具有一定的统计规律性。
+• 机器学习的目的
+• 用于对数据（特别是未知数据）进行预测和分析。
+
+=== p38 ===
+机器学习
+• 机器学习的方法
+监督学习(supervised learning)
+数据有标签、一般为回归或分类等任务
+无监督学习(un-supervised learning)
+数据无标签、一般为聚类或若干降维任务
+强化学习(reinforcement learning)
+序列数据决策学习，一般为与从环境交互中学习
+
+=== p39 ===
+
+
+=== p40 ===
+• 问题的形式化
+监督学习
+
+=== p41 ===
+• 联合概率分布
+• 假设输入与输出的随机变量X和Y遵循联合概率分布P(X,Y)
+• P(X,Y)为分布函数或分布密度函数
+• 对于学习系统来说，联合概率分布是未知的
+• 训练数据和测试数据被看作是依联合概率分布P(X,Y)独立同分布产生的。
+• 假设空间
+• 监督学习目的是学习一个由输入到输出的映射，称为模型
+• 模式的集合就是假设空间（hypothesis space）
+• 概率模型：条件概率分布P(Y|X)；决策/映射函数：Y=f(X)
+监督学习
+
+=== p42 ===
+生成模型与判别模型
+• 监督学习的目的就是学习一个模型：
+• 决策函数：
+• 条件概率分布：
+• 生成方法Generative approach 对应生成模型：generative model
+• 朴素贝叶斯法和隐马尔可夫模型
+
+=== p43 ===
+• 判别方法由数据直接学习决策函数f(X)或条件概率分布P(Y|X)作为预测的
+模型，即判别模型
+• Discriminative approach对应discriminative model
+• K近邻法、感知机、决策树、logistic回归模型、最大熵模型、支持向量机、
+提升方法和条件随机场。
+𝑷( 人脸| )
+ =0.99
+𝒇( )
+ 人脸
+生成模型与判别模型
+
+=== p44 ===
+• 各自优缺点：
+• 生成方法：可还原出联合概率分布P(X,Y), 而判别方法不能。生成方法的收敛速度
+更快，当样本容量增加的时候，学到的模型可以更快地收敛于真实模型；当存在
+隐变量时，仍可以使用生成方法，而判别方法则不能用。
+• 判别方法：直接学习到条件概率或决策函数，直接进行预测，往往学习的准确率
+更高；由于直接学习Y=f(X)或P(Y|X),可对数据进行各种程度上的抽象 、定义特征
+并使用特征，因此可以简化学习过程。
+生成模型与判别模型
+
+=== p45 ===
+监督学习
+• Instance，feature vector，feature space
+• 输入实例x 的特征向量：
+• x(i) 与xi 不同，后者表示多个输入变量中的第i 个
+• 训练集：
+• 输入变量和输出变量：
+• 分类问题、标注问题、回归问题
+
+=== p46 ===
+分类问题
+
+=== p47 ===
+分类问题
+• 机器学习的数据集
+• UCI Machine Learning Repository (https://archive-beta.ics.uci.edu/)
+• 鸢尾花数据
+• https://archive-beta.ics.uci.edu/ml/datasets/iris
+• Fisher (an expert) 提供的花朵特征
+• 萼长(cm),萼宽(cm), 花瓣长度(cm), 花瓣宽度(cm), 类别
+分类器: 决策树, 支持向量机, 
+神经网络, …
+
+=== p48 ===
+分类问题
+• 用花瓣长度（cm）与花瓣宽度（cm）绘成的图
+
+=== p49 ===
+分类问题
+• 基于这些数据的分类结果，可以推出以下规则：
+• 花瓣宽度与长度均短的是山鸢尾
+• 花瓣宽度与长度中等的是变色鸢尾
+• 花瓣宽度与长度较长的是维珍尼亚鸢尾
+• 上述规则无法将所有的花都正确地进行归类，具体如下：
+• 属于山鸢尾的花可以很好的通过花瓣长度与宽度与其他两种花区分开
+• 但是变色鸢尾和维珍尼亚鸢尾依照花瓣长度与宽度这两种特性，会有错误的归类
+• 如何解决？
+
+=== p50 ===
+分类问题
+1. 被红线圈起来的记录点：错误分类
+2. 被蓝线圈起来的记录点：未分类
+
+=== p51 ===
+分类问题
+1. 一个更好的分类模型
+
+=== p52 ===
+分类问题
+1. 一个更好的分类模型
+2. 添加更多的特性(比如萼长与萼宽，以及其他可能的特性)
+
+=== p53 ===
+• 二分类评价指标
+• TP    true positive
+• FN   false negative
+• FP    false positive
+• TN   true  negative
+• 精确率
+• 召回率
+• F1值
+分类问题
+
+=== p54 ===
+标注问题
+• 标注：tagging，结构预测：structure prediction
+• 输入：观测序列，输出：标记序列或状态序列
+• 学习和标注两个过程
+• 训练集：
+• 观测序列：
+• 输出标记序列：
+• 模型：条件概率分布
+
+=== p55 ===
+• 例子：
+• 标记表示名词短语的“开始”、“结束”或“其他”（分别以B, E, O表示)
+• 输入：At Microsoft Research, we have an insatiable curiosity and the 
+desire to create new technology that will help define the computing 
+experience.
+• 输出：At/O Microsoft/B Research/E, we/O have/O an/O insatiable/6 
+curiosity/E and/O the/O desire/BE to/O create/O new/B technology/E 
+that/O will/O help/O define/O the/O computing/B experience/E.
+标注问题
+
+=== p56 ===
+回归问题
+• 回归模型是表示从输入变量到输出变量之间映射的
+函数；回归问题的学习等价于函数拟合。
+• 学习和预测两个阶段
+• 训练集：
+
+=== p57 ===
+回归问题
+• 在现实生活中，往往需要分析若干变量之间的关系 ，如碳排放量
+与气候变暖之间的关系 、某一商品广告投入量与该商品销售量之
+间的关系等，这种分析不同变量之间存在关系的研究叫回归分析 ，
+刻画不同变量之间关系的模型被称为回归模型 。如果这个模型是
+线性的，则称为线性回归模型。
+• 一旦确定了回归模型 ，就可以进行预测等分析工作 ，如从碳排放
+量预测气候变化程度、从广告投入量预测商品销售量等。
+
+=== p58 ===
+回归问题
+• 回归学习最常用的损失函数是平方损失函数，在此情况下，回归问题
+可以由著名的最小二乘法(least squares)求解。
+• 股价预测
+
+=== p59 ===
+监督学习：经验风险与期望风险
+测试数据集
+𝒙𝒊′,𝒚𝒊′ ,𝒊 = 𝟏,…,𝒎
+从训练数据集学
+习得到映射函数𝒇
+训练数据集
+𝒙𝒊,𝒚𝒊 ,𝒊 = 𝟏,…,𝒏
+在测试数据集
+测试映射函数𝒇
+经验风险(empirical risk )
+⚫ 训练集中数据产生的损失。
+经验风险越小说明学习模型
+对训练数据拟合程度越好。
+期望风险(expected risk):
+⚫ 当测试集中存在无穷多数据
+时产生的损失。期望风险越
+小，学习所得模型越好。
+
+=== p60 ===
+监督学习：经验风险与期望风险
+训练数据集
+𝒙𝒊,𝒚𝒊 ,𝒊 = 𝟏,…,𝒏
+测试数据集数据无穷多
+𝒙𝒊′,𝒚𝒊′ ,𝒊 = 𝟏,…,∞
+映射函数训练目标：经验风险最小化
+(empirical risk minimization, ERM)
+𝐦𝐢𝐧
+𝒇∈𝜱
+𝟏
+𝒏෍
+𝒊=𝟏
+𝒏
+𝑳𝒐𝒔𝒔 𝒚𝒊,𝒇(𝒙𝒊 )
+选取一个使得训练集所有数据
+损失平均值最小的映射函数。
+这样的考虑是否够？
+映射函数训练目标：期望风险最小化
+(expected risk minimization)
+⚫ 期望风险是模型关于联合分布期望损失，经验风险是模型关于
+训练样本集平均损失。
+⚫ 根据大数定律，当样本容量趋于无穷时，经验风险趋于期望风
+险。所以在实践中很自然用经验风险来估计期望风险。
+⚫ 由于现实中训练样本数目有限，用经验风险估计期望风险并不
+理想，要对经验风险进行一定的约束。
+𝐦𝐢𝐧
+𝒇∈𝜱
+න
+𝒙×𝒚
+𝑳𝒐𝒔𝒔 𝒚,𝒇 𝒙 𝑷 𝒙,𝒚 𝒅𝒙𝒅𝒚
+
+=== p61 ===
+监督学习：过学习与欠学习
+经验风险小（训练
+集上表现好）
+期望风险小（测
+试集上表现好)
+泛化能力强
+经验风险小（训练
+集上表现好）
+期望风险大（测
+试集上表现不好)
+过学习（模型
+过于复杂）
+经验风险大（训练
+集上表现不好）
+期望风险大（测
+试集上表现不好)
+欠学习
+经验风险大（训练
+集上表现不好）
+期望风险小（测
+试集上表现好)
+“神仙算法”
+或“黄粱美梦”
+𝐦𝐢𝐧
+𝒇∈𝜱
+𝟏
+𝒏෍
+𝒊=𝟏
+𝒏
+𝑳𝒐𝒔𝒔 𝒚𝒊,𝒇(𝒙𝒊 )
+𝐦𝐢𝐧
+𝒇∈𝜱
+න
+𝒙×𝒚
+𝑳𝒐𝒔𝒔 𝒚,𝒇 𝒙 𝑷 𝒙,𝒚 𝒅𝒙𝒅𝒚
+经验风险最小化
+期望风险最小化
+模型泛化能力与经验风险、期望风险的关系
+
+=== p62 ===
+模型评估与模型选择
+• 训练误差，训练数据集的平均损失
+• 测试误差，测试数据集的平均损失
+• 损失函数是0-1 损失时：
+• 测试数据集的准确率：
+
+=== p63 ===
+模型评估与模型选择
+
+=== p64 ===
+监督学习：结构风险最小
+𝐦𝐢𝐧
+𝒇∈𝜱
+𝟏
+𝒏෍
+𝒊=𝟏
+𝒏
+𝑳𝒐𝒔𝒔 𝒚𝒊,𝒇(𝒙𝒊 )
+𝐦𝐢𝐧
+𝒇∈𝜱
+න
+𝒙×𝒚
+𝑳𝒐𝒔𝒔 𝒚,𝒇 𝒙 𝑷 𝒙,𝒚 𝒅𝒙𝒅𝒚
+经验风险最小化：仅反映了局部数据
+期望风险最小化：无法得到全量数据
+结构风险最小化(structural risk minimization)：
+为了防止过拟合，在经验风险上加上表示模型
+复 杂 度 的 正 则 化 项(regulatizer) 或 惩 罚 项
+(penalty term ) ：
+𝐦𝐢𝐧
+𝒇∈𝜱
+𝟏
+𝒏෍
+𝒊=𝟏
+𝒏
+𝑳𝒐𝒔𝒔 𝒚𝒊,𝒇(𝒙𝒊 ) + 𝝀𝑱(𝒇)
+模型复杂度经验风险
+在最小化经验风险与降低模型复杂
+度之间寻找平衡
+
+=== p65 ===
+正则化与交叉验证
+• 正则化一般形式：
+• 回归问题中：
+
+=== p66 ===
+• 交叉验证：
+• 训练集training set： 用于训练模型
+• 验证集validation set：用于模型选择
+• 测试集test set： 用于最终对学习方法的评估
+• 简单交叉验证
+• K-折交叉验证
+• 留一交叉验证
+正则化与交叉验证
+
+=== p67 ===
+
+
+=== p68 ===
+无监督学习
+• 训练集：
+• 模型函数：
+• 条件概率分布：
+
+=== p69 ===
+无监督学习
+无监督学习从非标注样本出发来学习数据的分布 ，这是一个异常困难
+的工作。由于无法利用标注信息，因此在无监督学习只能利用假设数
+据具有某些结构来进行学习。正如拉普拉斯所言“概率论只不过是把常
+识用数学公式表达了出来”，无监督学习就是把预设数据具有某种结构
+作为一种“知识”来指导模型的学习。
+
+=== p70 ===
+强化学习
+
+=== p71 ===
+• 状态转移概率函数：
+• 奖励函数：
+• 策略π：给定状态下动作的函数 或者条件概率分布
+• 状态价值函数：
+• 动作价值函数：
+强化学习
+
+=== p72 ===
+• 无模型（model-free）
+• 基于策略（policy-based）：求解最优策略π*
+• 基于价值（value-based）：求解最优价值函数
+• 有模型（model-based）
+• 通过学习马尔可夫决策过程的模型，包括转移概率函数和奖励函数
+• 通过模型对环境的反馈进行预测
+• 求解价值函数最大的策略π*
+强化学习方法
+
+=== p73 ===
+基于价值函数的方法
+• 先学习价值函数，再基于价值函数选择动作
+• Q-learning：使用最大化Q值的动作来更新Q值
+• 假设屋子有5个房间，编号为0-4，房间之间通过门相连，屋子外
+可视为一个大房间，编号为5
+
+=== p74 ===
+基于价值函数的方法
+房间作为图的节点，两房间之间若有门相连则对应节点间
+的一条边， 每个门都有两个方向。
+✓ State：房间（节点）
+✓ Action：从一个房间走到另一个房间（箭头）
+
+=== p75 ===
+基于价值函数的方法
+将agent置于建筑中的任意一个房间，目标是走到屋子外，
+即房间5。每一条边关联一个reward值，直接连接到目标
+房间的门的reward值为100，其他门的reward值为0。
+房间5有一个指向自己的箭头，reward值也为100。
+
+=== p76 ===
+基于价值函数的方法
+假设agent从状态2开始，我们希望通过学习到达状态5。
+
+=== p77 ===
+基于价值函数的方法
+以state为行，action为列构建reward值矩阵R，其中-1表示空值，即节点间没有边相连。
+
+=== p78 ===
+基于价值函数的方法
+✓ 类似地，构建一个与R同阶的矩阵Q，表示agent已经
+从经验中学到的知识 。由于agent 刚开始对外界环境
+一无所知，Q初始化为零矩阵。
+✓ 本例中的状态数目是已知的 （等于6），对于状态数
+目未知的情形，可以让Q从一个元素出发，每发现一
+个新的状态就增加相应的行列。
+✓ Q学习算法的状态转移规则：
+其中s, a表示当前的状态和动作， 表示s的下一个状态
+及动作。学习参数 为满足 的常数。
+(1.1)
+,sa
+
+01 
+( , ) ( , ) max{ ( , )}
+a
+Q s a R s a Q s a = + 
+
+=== p79 ===
+基于价值函数的方法
+agent利用该算法从经验中学习，每一个episode相当于一个training epoch。agent不断探索
+外界环境，并接收外界环境的reward，直至达到目标状态。训练得越多，Q被优化得更
+好，agent就能根据训练后的Q更容易地找到到达目标状态的最快路径。
+
+=== p80 ===
+基于价值函数的方法
+得到充分训练的Q之后：
+
+=== p81 ===
+基于价值函数的方法
+设学习参数为0.8，初始状态为房间1，Q初始化为0矩阵：
+若agent 随机地转移到状态 5 ，更新 Q 矩阵 ，得到一次
+episode后的Q矩阵：
+
+=== p82 ===
+基于价值函数的方法
+第二次episode：随机选择一个初始状态 ，此处选状态3。
+让agent执行走到状态1的action，更新Q：
+现在状态1变成了当前状态，因为状态1还不是目标状态，
+仍需继续探索，故随机选择可能的 action。假定agent选择
+了走到状态5的action，更新Q：
+此处更新并没有引起矩阵Q
+的变化，Q保持不变。
+
+=== p83 ===
+基于价值函数的方法
+执行更多的episode，矩阵Q最终收敛为：
+每个元素都除以5，得到：
+
+=== p84 ===
+基于价值函数的方法
+当矩阵Q接近收敛状态，agent便学习到了转移至目标状态
+的最佳路径：
+
+=== p85 ===
+模仿学习
+• Imitation Learning 
+• Also known as learning by demonstration
+• apprenticeship learning
+• Two approaches:
+• Behavior Cloning
+• Inverse Reinforcement Learning (inverse optimal control)
+
+=== p86 ===
+模仿学习
+Automatic Driving
+
+=== p87 ===
+提示学习
+• What is Prompting？
+• Encouraging a pre-trained model to make particular predictions by providing a “prompt” 
+specifying the task to be done.
+
+=== p88 ===
+提示学习
+• BERT has different pre-training tasks and downstream tasks 
+• Usually requires thousands of examples to fine tune for a task 
+• Prompting tries to convert downstream tasks to the same format of pre-training, 
+i.e. language model 
+• GPT made prompt-based learning popular 
+• Sentiment analysis: I like this movie. It was ___
+
+=== p89 ===
+因果推理
+公鸡打鸣与太阳升起
+“力，形之所以奋也”（墨经）
+⚫ 计算的可解释：因果是现象加解释，是
+一种人类文化，即人类在与自然的反复
+观察、预报、检验中得到的很好考验。
+⚫ 一切学习的前提，是我们要假设，这个
+世界是有规律的。
+哲学上把现象和现象之间那种“引起和被引起”的关系，叫做因果关系，其中引起某种现象产生的现象叫
+做原因，被某种现象引起的现象叫做结果。因果推理是一种重要的推理手段，是人类智能的重要组成。
+
+=== p90 ===
+因果推理
+• What is causal inference？
+• Inferring the effects of any treatment/policy/intervention/etc.
+
+=== p91 ===
+因果推理
+关联(association)：
+直接可从数据中计算得到的统计相关
+反事实(counterfactual)：
+某个事情已经发生了，则在相同环境中，
+这个事情不发生会带来怎样的新结果
+介入(intervention): 
+无法直接从观测数据就能得到关系，
+如“某个商品涨价会产生什么结果”
+可观测性问题 What if we 
+see A 
+(what is?)
+𝑃(𝑦|𝐴)
+决策行动问题 What if we 
+do A (what 
+if?)
+𝑃(𝑦|𝑑𝑜(𝐴))
+（如果采取A
+行为，则B真）
+反事实问题
+(Counterfactual)
+What if we 
+did things 
+differently
+(why?) 𝑃(𝑦′|𝐴)
+（如果A为真，
+则B将不同）
+Options: with what probability
+
+=== p92 ===
+因果推理
+• Examples:
+• Effect of treatment on a disease
+• Effect of climate change policy on emissions
+• Effect of social media on mental health
+• Many more (effect of X on Y)
+• The do-operator
+• Backdoor adjustment
+• Frontdoor adjustment
+
+=== p93 ===
+因果推理
+不用药 用药
+恢复人数 289 273
+总人数 350 350
+恢复率(%) 83 78
+不用药 用药
+男性 女性 男性 女性
+恢复人数 234 55 81 192
+总人数 270 80 87 263
+恢复率
+(%) 87 69 93 73
+表1 某组病人在是否尝试新药
+以后的恢复情况
+表2 以性别分组后的某组病人在是否
+尝试新药以后的恢复情况
+⚫ 表1列出了某组病人在是否尝试新药以后的恢复情况：不用药病人的恢复率高于用药病人的恢复率。
+⚫ 然而，当对所有病人按照性别分组后，可得到表2。当分别比较按照性别分组的两类病人的恢复率时，
+却发现用药病人的恢复率均高于不用药病人的恢复率，这与表1的统计结果正好相反。这就是著名的
+辛普森悖论(Simpson’s paradox)，其指出在总体样本上成立的某种关系却在分组样本里恰好相反。
+
+=== p94 ===
+因果推理
+不用药 用药
+恢复人数 289 273
+总人数 350 350
+恢复率(%) 83 78
+不用药 用药
+男性 女性 男性 女性
+恢复人数 234 55 81 192
+总人数 270 80 87 263
+恢复率
+(%) 87 69 93 73
+表1 某组病人在是否尝试新药
+以后的恢复情况
+表2 以性别分组后的某组病人在是否
+尝试新药以后的恢复情况。用药男性
+和用药女性的恢复率均高于相应性别。
+⚫ 从数学角度而言，上述悖论可写成初等数学不等式
+𝑏
+𝑎 <
+𝑑
+𝑐 ,
+𝑏′
+𝑎′ <
+𝑑′
+𝑐′ ,
+𝑏+𝑏′
+𝑎+𝑎′ >
+𝑑+𝑑′
+𝑐+𝑐′。
+⚫ 辛普森悖论表明，在某些情况下，忽略潜在的“第三个变量”（本例中性别就是用药与否和恢复
+率之外的第三个变量），可能会改变已有的结论，而我们常常却一无所知。从观测结果中寻找
+引发结果的原因、考虑数据生成的过程，由果溯因，就是因果推理。
+
+=== p95 ===
+• Q&A？
+
